@@ -1,0 +1,11 @@
+server:
+  port: 9100
+  
+spring:
+  profiles:
+    active: rds
+ 
+mybatis:
+  type-aliases-package: com.wowdiz.finalproj.dto
+  mapper-locations:
+  - /mapper/**/*.xml

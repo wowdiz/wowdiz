@@ -1,0 +1,25 @@
+/* 메인레이아웃 CSS */
+
+@charset "utf-8";
+
+.wrap{
+}
+
+.header_wrap{
+    width: 1200px;
+    height: 70px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.content_wrap{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.footer_wrap{
+    width: 1200px;
+    height: 70px;
+    margin: 0 auto;
+    text-align: center;
+}
