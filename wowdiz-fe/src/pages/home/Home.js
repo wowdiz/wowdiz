@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const Home = () => {
-  axios.get("http://localhost:9100").then(function(response){
+  axios.get("http://localhost:9150").then(function(response){
     console.log(response)
   });
 
