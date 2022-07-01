@@ -12,6 +12,7 @@ import AdminFunding from './pages/admin/funding/Funding';
 import AdminMember from './pages/admin/member/Member';
 
 import "./style/reset.css";
+import SupportBoard from './pages/support/notice/SupportBoard';
 
 // 최초 작업자: 권능
 // 2022-06-29
@@ -24,6 +25,8 @@ function App() {
         <Route path="" element={<Home/>}/>
         <Route path="/funding" element={<FundingList/>}/>
         <Route path="/mypage" element={<MyPage/>}/>
+        <Route path="/supportboard" element={<SupportBoard/>}/>
+
       </Route>
       {/* 로그인 */}
       <Route path="/login" element={<Login/>}/>
