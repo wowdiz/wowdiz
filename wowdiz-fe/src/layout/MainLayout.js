@@ -8,9 +8,7 @@ import "../style/main_layout.css";
 const MainLayout = () => {
     return (
         <div className='wrap'>
-            <div className='header_full'>
             <Header/>
-            </div>
             <div className='content_wrap'>
                 {/* 실제 컨텐츠가 바뀌는 영역 */}
                 <Outlet/>
