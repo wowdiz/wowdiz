@@ -21,5 +21,6 @@ public class HomeController {
 		TestDto testDto = testService.selectTest();
 		System.out.println(testDto);
 		return testDto;
+		
 	}
 }
