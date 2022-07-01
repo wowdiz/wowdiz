@@ -1,0 +1,103 @@
+  .support_home_layout {
+    width: 100%;
+    height: 990px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .support_menu_backgroundcolor {
+    width: 100%;
+    height: 236px;
+    background: rgba(247,247,247,1);
+    opacity: 1;
+    position: absolute;
+    overflow: hidden;
+  }
+  .support_menu_navi {
+    width: 100%;
+    height: 50px;
+    background: rgba(154,199,248,1);
+    opacity: 1;
+    position: absolute;
+    top: 236px;
+    overflow: hidden;
+  }
+  .support_menu_title {
+    width: 100%;
+    color: rgba(0,0,0,1);
+    position: relative;
+    top: 90px;
+    left: 520px;
+    font-family: Inter;
+    font-weight: Bold;
+    font-size: 40px;
+    opacity: 1;
+    text-align: center;
+  }
+  .support_menu_left {
+    width: 120px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 251px;
+    left: 420px;
+    font-family: Inter;
+    font-weight: Medium;
+    font-size: 16px;
+    opacity: 1;
+    text-align: center;
+  }
+  .support_menu_center {
+    width: 120px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 251px;
+    left: 540px;
+    font-family: Inter;
+    font-weight: Medium;
+    font-size: 16px;
+    opacity: 1;
+    text-align: center;
+  }
+  .support_menu_right {
+    width: 120px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 251px;
+    left: 660px;
+    font-family: Inter;
+    font-weight: Medium;
+    font-size: 16px;
+    opacity: 1;
+    text-align: center;
+  }
+  
+  .support_left_menu_bar {
+    width: 1px;
+    height: 14px;
+    background: rgba(217,217,217,1);
+    opacity: 1;
+    position: absolute;
+    top: 257px;
+    left: 539px;
+    overflow: hidden;
+  }
+  .support_right_menu_bar {
+    width: 1px;
+    height: 14px;
+    background: rgba(217,217,217,1);
+    opacity: 1;
+    position: absolute;
+    top: 257px;
+    left: 659px;
+    overflow: hidden;
+  }
+
+.pagination {
+  align-items: 'center',
+  justify 'center',
+}

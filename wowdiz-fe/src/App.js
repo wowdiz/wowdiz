@@ -8,6 +8,7 @@ import FundingList from './pages/funding/list/FundingList';
 import MyPage from './pages/user/mypage/MyPage';
 
 import "./style/reset.css";
+import NoticeBoard from './pages/support/notice/NoticeBoard';
 
 // 최초 작업자: 권능
 // 2022-06-29
@@ -20,6 +21,8 @@ function App() {
         <Route path="" element={<Home/>}/>
         <Route path="/funding" element={<FundingList/>}/>
         <Route path="/mypage" element={<MyPage/>}/>
+        <Route path="/notice" element={<NoticeBoard/>}/>
+
       </Route>
       {/* 로그인 */}
       <Route path="/login" element={<Login/>}/>
