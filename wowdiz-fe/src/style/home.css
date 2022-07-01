@@ -38,9 +38,8 @@
 .preference_funding_form {
     display: inline-block;
     width: 800px;
-    height: 600px;
+    height: 650px;
      /* background-color: aqua;  */
-    text-align: center;
     line-height: 0.5;
     
 }
@@ -50,7 +49,7 @@
     line-height: 0.9;
     
 }
-.laengking_funding_form {
+.rangking_funding_form {
     display: inline-block;
     width: 400px;
     /* background-color: yellow; */
@@ -58,7 +57,7 @@
     text-align: center;
     line-height: 0.9;
 }
-.laengking_funding {
+.rangking_funding {
     /* background-color: aqua;  */
    text-align: center;
    line-height: 0.9;
@@ -99,14 +98,41 @@
     white-space: nowrap;
 }
 .perference_funding_percent {
-    color: black;
+    display: inline-block;
+    color: #00c4c4;
     font-size: 14px;
     font-weight: 600;
     text-align: left;
 }
+.perference_funding_price {
+    display: inline-block;
+     color: black;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+
+.middle_div{
+ position: relative;
+}
 .midle_var {
-    border: 1px solid #00c4c4;
-    max-width: 240px;
+    position: absolute;
+    top: 4px;
+    width: 236px;
+    border: 2px solid rgb(189, 188, 188);
+    background-color: rgb(189, 188, 188);
+    max-width: 236px;
+    float: left;
+    margin-top: 1px;
+}
+.midle_var_gauge {
+    position: absolute;
+    top: 4px;
+    border: 2px solid #00c4c4;
+    background-color: #00c4c4;
+    max-width: 236px;
+    float: left;
+    margin-top: 1px;
 }
 .perference_fundig_category {
     line-height: 0.99;
@@ -117,10 +143,22 @@
     text-overflow: ellipsis;
     display: inline-block;
     white-space: nowrap;
-    margin-top: 1px;
+    margin-top: 0.5px;
+    color: rgb(148, 148, 148);
+}
+.perference_fundig_maker {
+    line-height: 0.99;
+    display: inline-block;
+    width: 240px;
+    font-size: 14px;
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: -5px;
 }
 
-.leangking_line {
+.rangking_line {
 
 }
 .leangking_line_sub {
@@ -129,18 +167,21 @@
     
 }
 
-.laengking_funding_detail {
+.rangking_funding_detail {
     display: inline-block;
     width: 190px;
     height: 500px;
 }
 
-.laengking_funding_detail_image {
+.rangking_funding_detail_image {
+    position: relative;
     width: 190px;
     height: 150px;
 }
 
-.laengking_fundig_title {
+.rangking_fundig_title {
+    position: relative;
+    top: 12px;
     color: black;
     width: 170px;
     height: 16px;
@@ -152,17 +193,19 @@
     display: inline-block;
     white-space: nowrap;
 }
-.laengking_funding_percent {
+.rangking_funding_percent {
     color: black;
     font-size: 14px;
     font-weight: 600;
     text-align: left;
 }
-.midle_laengking_var {
+.midle_rangking_var_gauge {
     border: 1px solid #00c4c4;;
     max-width: 190px;
+    float: left;
+    margin-top: 1px;
 }
-.laengking_fundig_category {
+.rangking_fundig_category {
     line-height: 0.9;
     width: 190px;
     height: 12px;
@@ -175,8 +218,11 @@
     margin-top: 1px;
 }
 
-.laenking_chart {
-    
-    width: 100px;
+.rangking_chart {
+    position: absolute;
+    margin: 0 auto;
+    top: 100px;
+    left: 55px;
+    width: 80px;
     
 }
