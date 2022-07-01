@@ -3,14 +3,25 @@
 @charset "utf-8";
 
 .wrap{
+    position: relative;
 }
 
+
+.header_full{
+    background-color:  #9AC7F8;
+    /* width: 100%; */
+    width: 1200px;
+    border: 1px inset white;
+    margin: 0 auto;
+}
 .header_wrap{
     width: 1200px;
     height: 70px;
     margin: 0 auto;
     text-align: center;
+    
 }
+
 
 .content_wrap{
     width: 1200px;

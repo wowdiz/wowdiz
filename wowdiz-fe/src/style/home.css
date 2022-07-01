@@ -1,1 +1,182 @@
-/* HOME화면 CSS */
+.main {
+    width: 1200px;
+}
+.main_banner {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 330px;
+    display: flex;
+    opacity : 0.8;
+    filter: alpha(opacity=70);
+   -moz-opacity:0.7;
+   -khtml-opacity: 0.7;
+
+}
+
+.banner_title {
+    position: relative;
+    top: 55%;
+    left: 7%;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+
+}
+.banner_type {
+    position: absolute;
+    top: 70%;
+    left: 7%;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+}
+.main_line{
+    display: flex;
+    width: 1200px;
+    height: 600px;
+}
+.preference_funding_form {
+    display: inline-block;
+    width: 800px;
+    height: 600px;
+     /* background-color: aqua;  */
+    text-align: center;
+    line-height: 0.5;
+    
+}
+.preference_funding {
+     /* background-color: aqua;  */
+    text-align: center;
+    line-height: 0.9;
+    
+}
+.laengking_funding_form {
+    display: inline-block;
+    width: 400px;
+    /* background-color: yellow; */
+    height: 600px;
+    text-align: center;
+    line-height: 0.9;
+}
+.laengking_funding {
+    /* background-color: aqua;  */
+   text-align: center;
+   line-height: 0.9;
+   
+}
+
+.preference_line {
+
+}
+.preference_line_sub {
+    color: gray;
+    font-weight: 800;
+    
+}
+.perference_funding_detail {
+    display: inline-block;
+    float: left;
+    width: 250px;
+    height: 280px;
+    margin-left: 10px;
+}
+
+.perference_funding_detail_image {
+    width: 240px;
+    height: 150px;
+}
+
+.perference_fundig_title {
+    color: black;
+    width: 240px;
+    height: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 0.9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
+}
+.perference_funding_percent {
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+}
+.midle_var {
+    border: 1px solid #00c4c4;
+    max-width: 240px;
+}
+.perference_fundig_category {
+    line-height: 0.99;
+    width: 240px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
+    margin-top: 1px;
+}
+
+.leangking_line {
+
+}
+.leangking_line_sub {
+    color: gray;
+    font-weight: 800;
+    
+}
+
+.laengking_funding_detail {
+    display: inline-block;
+    width: 190px;
+    height: 500px;
+}
+
+.laengking_funding_detail_image {
+    width: 190px;
+    height: 150px;
+}
+
+.laengking_fundig_title {
+    color: black;
+    width: 170px;
+    height: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 0.9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
+}
+.laengking_funding_percent {
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+}
+.midle_laengking_var {
+    border: 1px solid #00c4c4;;
+    max-width: 190px;
+}
+.laengking_fundig_category {
+    line-height: 0.9;
+    width: 190px;
+    height: 12px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
+    margin-top: 1px;
+}
+
+.laenking_chart {
+    
+    width: 100px;
+    
+}
