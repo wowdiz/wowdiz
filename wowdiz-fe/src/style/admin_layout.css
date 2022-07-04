@@ -1,0 +1,45 @@
+/* 운영자 레이아웃 CSS */
+
+@charset "utf-8";
+
+.admin_wrap{
+
+}
+
+.admin_header_full{
+    background-color: #80DACE;
+    width: 100%;
+}
+
+.admin_header_wrap{
+    width: 1200px;
+    height: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    text-align: center;
+    border: 0px solid black;
+    color: white;
+}
+
+.admin_content_wrap{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.admin_footer_full{
+    width: 100%;
+    background-color: #80DACE;
+}
+
+.admin_footer_wrap{
+    width: 1200px;
+    height: 70px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 70px;
+}
+
+.admin_header_menu_link {
+    text-decoration: none;
+    color: white;
+}
