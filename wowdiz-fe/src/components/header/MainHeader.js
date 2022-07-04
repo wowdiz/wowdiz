@@ -9,8 +9,7 @@ import '../../style/header.css';
 const Header = () => {
     return (
         <div className='header_wrap'>
-            <div className='header_full'>
-            </div>
+            <div className='header'>
             {/* 헤더 메뉴버튼 */}
                 <NavLink to='/'><img src={logo} className="logo_image" alt=""/></NavLink>
                 <ul className='header_menu'>  
@@ -32,7 +31,7 @@ const Header = () => {
                     <NavLink to='/login' className="user_var_li">로그인</NavLink>
                     <NavLink to='/register'className="user_var_li">회원가입</NavLink>
                 </span>
-           
+                </div>           
         </div>
     );
 };

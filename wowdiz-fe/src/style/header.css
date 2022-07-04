@@ -1,3 +1,10 @@
+.header {
+    background-color:  #9AC7F8;
+    /* width: 100%; */
+    width: 1200px;
+    border: 1px inset white;
+    height: 70px;
+}
 .logo_image {
     width: 95px;
     height: 40px;
