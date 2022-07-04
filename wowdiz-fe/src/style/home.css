@@ -1,228 +1,325 @@
 .main {
-    width: 1200px;
+  width: 1200px;
+}
+.blind {
+  position: absolute;
+  width: 1200px;
+  background-color: rgb(78, 75, 75);
+  opacity: 0.8;
+  filter: alpha(opacity=50);
+  top: 75px;
+  height: 315px;
 }
 .main_banner {
-    background-size: 100%;
-    background-repeat: no-repeat;
-    height: 330px;
-    display: flex;
-    opacity : 0.8;
-    filter: alpha(opacity=70);
-   -moz-opacity:0.7;
-   -khtml-opacity: 0.7;
-
+  display: inline-block;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 330px;
+  display: flex;
+  cursor: pointer;
+  opacity: 0.8;
+  filter: alpha(opacity=70);
+  -moz-opacity: 0.7;
+  -khtml-opacity: 0.7;
 }
 
 .banner_title {
-    position: relative;
-    top: 55%;
-    left: 7%;
-    color: white;
-    font-size: 22px;
-    font-weight: 700;
-
+  position: relative;
+  top: 55%;
+  left: 7%;
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
 }
 .banner_type {
-    position: absolute;
-    top: 70%;
-    left: 7%;
-    font-size: 16px;
-    font-weight: 700;
-    color: white;
+  position: absolute;
+  top: 70%;
+  left: 7%;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
 }
-.main_line{
-    display: flex;
-    width: 1200px;
-    height: 600px;
+.main_line {
+  display: flex;
+  width: 1200px;
+  border-bottom: 0.5px solid rgb(204, 203, 203);
 }
 .preference_funding_form {
-    display: inline-block;
-    width: 800px;
-    height: 650px;
-     /* background-color: aqua;  */
-    line-height: 0.5;
-    
+  display: inline-block;
+  width: 790px;
+  margin-right: 15px;
+  height: 700px;
+  border-right: 0.8px solid rgb(204, 203, 203);
+
+  line-height: 0.5;
 }
 .preference_funding {
-     /* background-color: aqua;  */
-    text-align: center;
-    line-height: 0.9;
-    
+  text-align: center;
+  line-height: 0.9;
 }
 .rangking_funding_form {
-    display: inline-block;
-    width: 400px;
-    /* background-color: yellow; */
-    height: 600px;
-    text-align: center;
-    line-height: 0.9;
+  display: inline-block;
+  width: 400px;
+  height: 670px;
+  line-height: 0.9;
 }
 .rangking_funding {
-    /* background-color: aqua;  */
-   text-align: center;
-   line-height: 0.9;
-   
+  text-align: center;
+  line-height: 0.8;
 }
 
 .preference_line {
-
 }
 .preference_line_sub {
-    color: gray;
-    font-weight: 800;
-    
+  color: gray;
+  font-weight: 800;
 }
 .perference_funding_detail {
-    display: inline-block;
-    float: left;
-    width: 250px;
-    height: 280px;
-    margin-left: 10px;
+  display: inline-block;
+  width: 230px;
+  height: 24 0px;
+  margin-left: 20px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  margin-top: 15px;
 }
 
 .perference_funding_detail_image {
-    width: 240px;
-    height: 150px;
+  width: 100%;
+  height: 150px;
 }
 
 .perference_fundig_title {
-    color: black;
-    width: 240px;
-    height: 16px;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 0.9;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-    white-space: nowrap;
+  color: black;
+  width: 100%;
+  height: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 0.9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
 }
 .perference_funding_percent {
-    display: inline-block;
-    color: #00c4c4;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: left;
+  display: inline-block;
+  color: #00c4c4;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
 }
 .perference_funding_price {
-    display: inline-block;
-     color: black;
-    font-size: 14px;
-    margin-left: 10px;
+  display: inline-block;
+  color: black;
+  font-size: 14px;
+  margin-left: 10px;
 }
 
-
-.middle_div{
- position: relative;
+.middle_div {
+  position: relative;
 }
-.midle_var {
-    position: absolute;
-    top: 4px;
-    width: 236px;
-    border: 2px solid rgb(189, 188, 188);
-    background-color: rgb(189, 188, 188);
-    max-width: 236px;
-    float: left;
-    margin-top: 1px;
+.midle_bar {
+  position: absolute;
+  top: 2px;
+  width: 100%;
+  border: 2px solid rgb(189, 188, 188);
+  background-color: rgb(189, 188, 188);
+  max-width: 100%;
+  float: left;
+  margin-top: 1px;
 }
-.midle_var_gauge {
-    position: absolute;
-    top: 4px;
-    border: 2px solid #00c4c4;
-    background-color: #00c4c4;
-    max-width: 236px;
-    float: left;
-    margin-top: 1px;
+.midle_bar_gauge {
+  position: absolute;
+  top: 2px;
+  border: 2px solid #00c4c4;
+  background-color: #00c4c4;
+  max-width: 100%;
+  float: left;
+  margin-top: 1px;
 }
-.perference_fundig_category {
-    line-height: 0.99;
-    width: 240px;
-    overflow: hidden;
-    font-size: 12px;
-    font-weight: 700;
-    text-overflow: ellipsis;
-    display: inline-block;
-    white-space: nowrap;
-    margin-top: 0.5px;
-    color: rgb(148, 148, 148);
+.fundig_category_component {
+  line-height: 0.99;
+  width: 100%;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
+  margin-top: 5px;
+  color: rgb(148, 148, 148);
 }
 .perference_fundig_maker {
-    line-height: 0.99;
-    display: inline-block;
-    width: 240px;
-    font-size: 14px;
-    font-weight: 700;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    margin-top: -5px;
+  line-height: 0.99;
+  display: inline-block;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top: -5px;
 }
 
 .rangking_line {
-
 }
-.leangking_line_sub {
-    color: gray;
-    font-weight: 800;
-    
+.rangking_line_sub {
+  color: gray;
+  font-weight: 800;
 }
 
 .rangking_funding_detail {
-    display: inline-block;
-    width: 190px;
-    height: 500px;
+  display: inline-block;
+  width: 100%;
+  height: 220px;
+  cursor: pointer;
 }
 
 .rangking_funding_detail_image {
-    position: relative;
-    width: 190px;
-    height: 150px;
+  position: relative;
+  width: 190px;
+  height: 120px;
 }
 
 .rangking_fundig_title {
-    position: relative;
-    top: 12px;
-    color: black;
-    width: 170px;
-    height: 16px;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 0.9;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-    white-space: nowrap;
+  position: relative;
+  top: 15px;
+  color: black;
+  width: 170px;
+  height: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 0.9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
 }
 .rangking_funding_percent {
-    color: black;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: left;
+  margin-top: 10px;
+  display: inline-block;
+  color: #00c4c4;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
 }
-.midle_rangking_var_gauge {
-    border: 1px solid #00c4c4;;
-    max-width: 190px;
-    float: left;
-    margin-top: 1px;
+.midle_rangking_bar {
+  position: absolute;
+  top: 4px;
+  width: 190px;
+  border: 2px solid rgb(189, 188, 188);
+  background-color: rgb(189, 188, 188);
+  max-width: 190px;
+  float: left;
+  margin-top: -7px;
 }
-.rangking_fundig_category {
-    line-height: 0.9;
-    width: 190px;
-    height: 12px;
-    overflow: hidden;
-    font-size: 12px;
-    font-weight: 700;
-    text-overflow: ellipsis;
-    display: inline-block;
-    white-space: nowrap;
-    margin-top: 1px;
+.midle_rangking_bar_gauge {
+  position: absolute;
+  top: 4px;
+  border: 2px solid #00c4c4;
+  background-color: #00c4c4;
+  max-width: 190px;
+  float: left;
+  margin-top: -7px;
 }
 
 .rangking_chart {
-    position: absolute;
-    margin: 0 auto;
-    top: 100px;
-    left: 55px;
-    width: 80px;
-    
+  position: absolute;
+  margin: 0 auto;
+  top: 68px;
+  left: 55px;
+  width: 80px;
+}
+
+.rangking_funding_1 {
+  display: inline-block;
+  width: 100%;
+  height: 250px;
+  line-height: 0.9;
+}
+.fundig_maker {
+  display: inline-block;
+  line-height: 0.99;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top: -5px;
+}
+.project_wrap {
+  width: 1200px;
+  display: inline-block;
+  text-align: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  height: 250px;
+  opacity: 0.8;
+  filter: alpha(opacity=70);
+  -moz-opacity: 0.7;
+  -khtml-opacity: 0.7;
+}
+.project_button_title {
+  font-weight: 700;
+  font-size: 40px;
+  margin-top: 25px;
+  color: white;
+}
+.project_button_content {
+  color: white;
+  font-weight: 700;
+  font-size: 22px;
+  display: block;
+}
+.project {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.project > h1 {
+  text-align: center;
+}
+.main_line2 {
+  display: flex;
+  width: 1200px;
+  margin-top: 15px;
+}
+.new_funding_form {
+  width: 790px;
+  display: inline-block;
+  border-right: 1px solid rgb(204, 203, 203);
+}
+.new_funding {
+  display: inline-block;
+  width: 790px;
+  height: 320px;
+}
+.support_line {
+  display: inline-block;
+  width: 398px;
+}
+.cycle_image {
+  position: relative;
+  top: 30px;
+  left: 30px;
+  margin-right: 15px;
+  margin-bottom: 50px;
+  width: 160px;
+  height: 160px;
+  border-radius: 100px;
+  display: inline-block;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.cycle_image > h1 {
+  color: black;
+  position: relative;
+  top: 80%;
+  text-align: center;
 }
