@@ -1,0 +1,10 @@
+.admin_member{
+    height: 800px;
+}
+
+.member_list{
+    width: 1200px;
+    height: 600px;
+    background-color: #F8F8F8;
+    padding: 15px;
+}

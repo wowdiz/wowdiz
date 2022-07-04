@@ -79,6 +79,30 @@ const AdminHome = () => {
         }
     ];
 
+    const title = {
+        "title_0":"프로젝트 이름",
+        "title_1":"목표금액",
+        "title_2":"내 용",
+        "title_3":"시작일",
+        "title_4":"종료일"
+    }
+    const data4 = [
+        {
+            "data_0": "Frozen yoghurt",
+            "data_1": "159",
+            "data_2": "6.0",
+            "data_3": "24",
+            "data_4": "4.0"
+        },
+        {
+            "data_0": "lee",
+            "data_1": "159",
+            "data_2": "6.0",
+            "data_3": "24",
+            "data_4": "4.0"
+        }
+    ]
+
     return (
         <div className='admin_home'>
             <h3 style={{color:'#ACACAC'}}>회원관리</h3>
@@ -100,8 +124,7 @@ const AdminHome = () => {
 
             <h3 style={{color:'#ACACAC'}}>승인대기중인 펀딩</h3>
             <div className='home_awaiting_list'>
-                
-                <BasicTable />
+                <BasicTable data={data4} title={title}/>
             </div>
         </div>
     );
