@@ -3,25 +3,24 @@ package com.wowdiz.finalproj.dto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.ibatis.type.Alias;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
+@Data
 @Builder
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Alias("LoginDto")
 public class LoginDto {
 	@NotNull
 	@Size(min = 3, max = 50)
-	private String userEmail;
+	private String user_email;
 	
 	@NotNull
 	@Size(min = 3, max = 100)
-	private String userPwd;
+	private String user_pwd;
 }

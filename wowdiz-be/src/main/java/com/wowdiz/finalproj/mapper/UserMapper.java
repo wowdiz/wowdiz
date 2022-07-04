@@ -4,10 +4,11 @@ import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.wowdiz.finalproj.dto.LoginDto;
 import com.wowdiz.finalproj.dto.UserDto;
 
 @Mapper
 public interface UserMapper {
-	public Optional<UserDto> selectUserWithAuthoritiesByUserEmail(String user_email);
-	public Integer insertUser(UserDto userDto);
+	public Optional<UserDto> selectUserWithAuthoritiesByUserEmail(String userEmail);
+	public void insertUser(UserDto userDto);
 }

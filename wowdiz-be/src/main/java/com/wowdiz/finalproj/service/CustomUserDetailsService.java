@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String user_email) throws UsernameNotFoundException {
 						
 		return userMapper.selectUserWithAuthoritiesByUserEmail(user_email)
-				.map(user -> createUser(user_email, user))
+				.map(userDto -> createUser(user_email, userDto))
 				.orElseThrow(()-> new UsernameNotFoundException(user_email + " -> 데이터베이스에서 찾을 수 없습니다."));
 	}
 	
@@ -34,6 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if (!userDto.isEnabled()) {
 			throw new RuntimeException(user_email + " -> 활성화되어 있지 않습니다.");
 		}
+		System.out.println(userDto);
 		
 //		DB에서 유저의 권한을 가져와서 List로 반환
 //		List<GrantedAuthority> grantedAuthorities = userDto.getAuthorities().stream()
@@ -45,8 +46,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         	grantedAuthorities.add(new SimpleGrantedAuthority(grantedAuthority));
         }
 		
-		return new org.springframework.security.core.userdetails.User(userDto.getUserEmail(),
-				userDto.getUserPwd(),
+		return new org.springframework.security.core.userdetails.User(userDto.getUser_email(),
+				userDto.getUser_pwd(),
 				grantedAuthorities);
 	}
 

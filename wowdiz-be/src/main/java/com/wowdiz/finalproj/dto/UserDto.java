@@ -12,9 +12,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,16 +26,16 @@ public class UserDto {
 	private Integer seq;
 	@NotNull
 	@Size(min = 3, max=50)
-	private String userEmail;
+	private String user_email;
 	
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@NotNull
 	@Size(min = 3, max=50)
-	private String userPwd;
+	private String user_pwd;
 	
 	@NotNull
 	@Size(min = 3, max=50)
-	private String userName;
+	private String user_nickname;
 
 	@NotNull
 	@Size(min = 0, max=10)	
