@@ -21,7 +21,7 @@ import com.wowdiz.finalproj.jwt.JwtFilter;
 import com.wowdiz.finalproj.jwt.TokenProvider;
 
 @RestController
-//@CrossOrigin
+@CrossOrigin
 @RequestMapping("/api")
 public class AuthController {
 	private final TokenProvider tokenProvider;

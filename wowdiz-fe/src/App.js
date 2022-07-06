@@ -18,6 +18,8 @@ import SupportBoard from './pages/support/notice/SupportBoard';
 // 2022-06-29
 // 리액트 프로젝트 구조 및 레이아웃 구조
 function App() {
+
+
   return (
     <Routes>
       {/* 메인레이아웃 */}

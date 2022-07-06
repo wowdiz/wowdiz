@@ -1,12 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo/logo.png";
+import AuthenticationService from "../../jwt/AuthenticationService";
 import "../../style/header.css";
 
 // 최초 작업자: 이광호
 // 2022-06-30
 // Header 작업
 const Header = () => {
+  const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+  console.log(isUserLoggedIn);
   return (
     <div className="header_wrap">
       <div className="header">
@@ -58,12 +61,10 @@ const Header = () => {
         </div>
         {/* 유저 로그인 회원가입 버튼 */}
         <span className="user_bar">
-          <NavLink to="/login" className="user_bar_li">
-            로그인
-          </NavLink>
-          <NavLink to="/register" className="user_bar_li">
-            회원가입
-          </NavLink>
+          {!isUserLoggedIn && <NavLink to="/login" className="user_bar_li">로그인</NavLink>}
+          {!isUserLoggedIn && <NavLink to="/register" className="user_bar_li">회원가입</NavLink>}
+          {isUserLoggedIn && <NavLink className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</NavLink>}
+          
         </span>
       </div>
     </div>
