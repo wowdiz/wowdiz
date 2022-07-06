@@ -46,6 +46,7 @@
     text-decoration: none;
     color: white;
 }
+
 .admin_header_menu{
     position: relative;
 }
@@ -56,7 +57,7 @@
 
 .drop_admin_menu_funding{
     position: absolute;
-    left: 105px;
+    left: 100px;
     top: 55px;
     background-color: #3CBBA4;
     display: inline-block;
@@ -64,4 +65,14 @@
     padding: 10px;
     height: 40px;
     line-height: 40px;
+}
+
+.admin_header_menu_link{
+    float: left;
+    margin-left: 20px;
+    
+}
+
+.admin_header_menu{
+    list-style: none;
 }

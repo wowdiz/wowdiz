@@ -121,13 +121,13 @@ const AdminFunding = () => {
                 <BasicTable data={AwaitingData} title={title} />
             </div>
             <h3 style={{color:'#ACACAC',marginTop:'100px'}}>현재진행중인 펀딩
-            <span className='funding_scroll_top' onClick={() => handleScroll(0)}>↑top</span>
+            <span className='funding_scroll_top' onClick={() => handleScroll(0)}>↑TOP</span>
             </h3>
             <div className='funding_proceeding_list'>
                 <BasicTable data={AwaitingData} title={title} />
             </div>
             <h3 style={{color:'#ACACAC',marginTop:'100px'}}>완료된 펀딩
-            <span className='funding_scroll_top' onClick={() => handleScroll(0)}>↑top</span>
+            <span className='funding_scroll_top' onClick={() => handleScroll(0)}>↑TOP</span>
             </h3>
             <div className='funding_finished_list'>
                 <BasicTable data={AwaitingData} title={title} />
