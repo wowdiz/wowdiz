@@ -1,10 +1,13 @@
 import React from 'react';
+import '../../style/admin_layout.css';
 
 const Footer = () => {
     return (
-        <div className='footer_wrap'>
-            <h1>Footer 입니다.</h1>
-        </div>
+        
+            <div className='footer_wrap'>
+                <h1>Footer 입니다.</h1>
+            </div>
+
     );
 };
 
