@@ -1,0 +1,86 @@
+.register_wrap {
+  display: block;
+  margin: 0 auto;
+  margin-top: 15%;
+}
+.register_form_container {
+  display: block;
+  width: 400px;
+  margin: 0 auto;
+}
+.register_form_title {
+  display: flexbox;
+  text-align: center;
+}
+.register_form_title > p {
+  margin-bottom: 25px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.84);
+  font-size: 17px;
+  font-weight: 300;
+}
+.social_regist {
+  display: block;
+  line-height: 0;
+  font-size: 0;
+  text-align: center;
+}
+.social_regist > button {
+  background-size: contain;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  margin-left: 20px;
+  border-color: #fff;
+  border: 0;
+  margin-bottom: 15px;
+}
+.separator {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: block;
+  position: relative;
+  top: 50%;
+  left: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.06);
+  width: 100%;
+  height: 1px;
+}
+.separator > span {
+  display: inline-block;
+  top: -15px;
+  position: relative;
+  background: #fff;
+  padding: 0 50px;
+  color: rgba(0, 0, 0, 0.411);
+}
+.email_register {
+  display: block;
+  border-color: #ced4da;
+  color: #ced4da;
+  background-color: transparent;
+  margin: 0 auto;
+  width: 100%;
+  height: 50px;
+}
+.bottom_message {
+  display: inline-block;
+  width: 100%;
+  height: 56px;
+  text-align: center;
+  line-height: 56px;
+  font-size: 13px;
+  margin-top: 10px;
+  color: rgba(0, 0, 0, 0.84);
+}
+.bottom_message > p {
+  display: inline-block;
+  margin-right: 30px;
+}
+.bottom_login {
+  display: inline-block;
+  margin-left: 16px;
+  text-decoration: underline;
+  color: #9ac7f8;
+}
