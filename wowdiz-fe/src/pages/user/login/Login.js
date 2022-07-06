@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
-import AuthenticationService from '../../../jwt/AuthenticationService';
+import AuthenticationService from '../../../Service/AuthenticationService';
 const Login = () => {
     
     const {register, handleSubmit } = useForm();

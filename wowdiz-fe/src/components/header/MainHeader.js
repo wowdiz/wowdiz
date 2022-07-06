@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo/logo.png";
-import AuthenticationService from "../../jwt/AuthenticationService";
+import AuthenticationService from "../../Service/AuthenticationService";
 import "../../style/header.css";
 
 // 최초 작업자: 이광호
