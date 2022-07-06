@@ -2,24 +2,28 @@
 
 @charset "utf-8";
 
-.wrap{
+.wrap {
+  position: relative;
 }
 
-.header_wrap{
-    width: 1200px;
-    height: 70px;
-    margin: 0 auto;
-    text-align: center;
+.header_wrap {
+  width: 1200px;
+  height: 70px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.content_wrap{
-    width: 1200px;
-    margin: 0 auto;
+.content_wrap {
+  width: 1200px;
+  margin: 0 auto;
 }
 
-.footer_wrap{
-    width: 1200px;
-    height: 70px;
-    margin: 0 auto;
-    text-align: center;
+.footer_wrap {
+  position: relative;
+  display: block;
+  top: 50px;
+  width: 1200px;
+  height: 70px;
+  margin: 0 auto;
+  text-align: center;
 }
