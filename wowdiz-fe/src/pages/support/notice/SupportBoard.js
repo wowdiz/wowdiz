@@ -18,7 +18,11 @@ const SupportBoard = () => {
                         <span className="support_menu">F A Q</span>
                         <span className="delimiter">|</span>
                         <span className="support_menu last">1:1 문의</span>
+<<<<<<< HEAD
                     </div>
+=======
+                </div>
+>>>>>>> main
             </div>
         </div>
     );

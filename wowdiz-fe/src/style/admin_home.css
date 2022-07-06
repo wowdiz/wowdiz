@@ -1,0 +1,42 @@
+.admin_home{
+    height: 1400px;
+}
+
+.home_chart{
+    width: 1200px;
+    height: 600px;
+    float: left;
+    background-color: #F8F8F8;
+    padding: 15px;
+    margin-bottom: 100px;
+}
+
+div.box1{
+    display: inline-block;
+    height: 300px;
+    width: 350px;
+    text-align: center;
+}
+
+div.box2{
+    display: inline-block;
+    height: 300px;
+    width: 350px;
+    text-align: center;
+}
+
+div.box3{
+    display: inline-block;
+    height: 400px;
+    width: 450px;
+    margin-left: 50px;
+    text-align: center;
+}
+
+.home_awaiting_list{
+    border: 0px solid black;
+    width: 1200px;
+    height: 400px;
+    background-color: #F8F8F8;
+    padding: 15px;
+}

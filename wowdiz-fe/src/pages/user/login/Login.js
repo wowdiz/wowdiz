@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import "../../../style/login.css";
 import "../../../../src/assets/images/logo/logo.png";
@@ -61,6 +62,16 @@ const Login = () => {
             </div>
         </div>
     );
+=======
+import React from "react";
+
+const Login = () => {
+  return (
+    <div>
+      <h1>로그인 페이지입니다.</h1>
+    </div>
+  );
+>>>>>>> main
 };
 
 export default Login;

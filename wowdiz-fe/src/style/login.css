@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* login header */
 .login_top_header{
   height: 70px;
@@ -142,3 +143,15 @@ input::placeholder {
 }
 
 
+=======
+.login_wrap {
+  border: 1px solid black;
+}
+.login_container {
+  width: 1200px;
+  height: 1000px;
+  margin: 0 auto;
+  border: 1px solid black;
+  vertical-align: baseline;
+}
+>>>>>>> main
