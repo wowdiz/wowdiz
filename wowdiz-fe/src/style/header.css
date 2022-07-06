@@ -48,7 +48,7 @@
   line-height: 65px;
   font-size: 14px;
 }
-.serch_bar {
+.search_bar {
   display: inline-block;
   padding-top: 8px;
   padding-right: 10px;
@@ -88,4 +88,18 @@
   text-overflow: inherit;
   white-space: inherit;
   width: 220px;
+}
+.login_wrap {
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 100px;
+}
+.user_bar_login_name {
+  display: inline-block;
+  color: white;
+  font-weight: 700;
+  margin-right: 20px;
+}
+.user_bar_login {
+  display: inline-block;
 }
