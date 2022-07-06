@@ -1,0 +1,35 @@
+.admin_funding{
+    height: 2300px;
+}
+
+.funding_awaiting_list{
+    width: 1200px;
+    height: 600px;
+    float: left;
+    background-color: #F8F8F8;
+    padding: 15px;
+    margin-bottom: 100px;
+}
+
+.funding_proceeding_list{
+    width: 1200px;
+    height: 600px;
+    float: left;
+    background-color: #F8F8F8;
+    padding: 15px;
+    margin-bottom: 100px;
+}
+
+.funding_finished_list{
+    width: 1200px;
+    height: 600px;
+    float: left;
+    background-color: #F8F8F8;
+    padding: 15px;
+}
+
+.funding_scroll_top{
+    float: right;
+    cursor: pointer;
+    
+}

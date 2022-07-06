@@ -7,6 +7,7 @@ import "../../style/header.css";
 // 2022-06-30
 // Header 작업
 const Header = () => {
+
   return (
     <div className="header_wrap">
       <div className="header">

@@ -7,44 +7,36 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export default function BasicTable() {
+export default function BasicTable({title, data}) {
     return (
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
             <TableRow>
-                <TableCell width="150px">프로젝트 이름</TableCell>
-                <TableCell align="right">목표금액</TableCell>
-                <TableCell align="right">내 용</TableCell>
-                <TableCell align="right">시작일</TableCell>
-                <TableCell align="right">종료일</TableCell>
+                <TableCell width="150px">{title.title_0}</TableCell>
+                <TableCell align="right">{title.title_1}</TableCell>
+                <TableCell align="right">{title.title_2}</TableCell>
+                <TableCell align="right">{title.title_3}</TableCell>
+                <TableCell align="right">{title.title_4}</TableCell>
+                {title.title_5?<TableCell align="right">{title.title_5}</TableCell>:''}
+                {title.title_6?<TableCell align="right">{title.title_6}</TableCell>:''}
             </TableRow>
             </TableHead>
             <TableBody>
-            {rows.map((row) => (
+            {data.map((row, idx) => (
                 <TableRow
-                key={row.name}
+                key={idx}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                 <TableCell component="th" scope="row">
-                    {row.name}
+                    {row.data_0}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align="right">{row.data_1}</TableCell>
+                <TableCell align="right">{row.data_2}</TableCell>
+                <TableCell align="right">{row.data_3}</TableCell>
+                <TableCell align="right">{row.data_4}</TableCell>
+                {row.data_5?<TableCell align="right">{row.data_5}</TableCell>:''}
+                {row.data_6?<TableCell align="right">{row.data_6}</TableCell>:''}
                 </TableRow>
             ))}
             </TableBody>

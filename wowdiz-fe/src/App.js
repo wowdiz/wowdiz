@@ -8,8 +8,8 @@ import FundingList from './pages/funding/list/FundingList';
 import MyPage from './pages/user/mypage/MyPage';
 import AdminLayout from './layout/AdminLayout';
 import AdminHome from './pages/admin/home/AdminHome';
-import AdminFunding from './pages/admin/funding/Funding';
-import AdminMember from './pages/admin/member/Member';
+import AdminFunding from './pages/admin/funding/AdminFunding';
+import AdminMember from './pages/admin/member/AdminMember';
 
 import "./style/reset.css";
 import SupportBoard from './pages/support/notice/SupportBoard';
@@ -30,8 +30,10 @@ function App() {
       </Route>
       {/* 로그인 */}
       <Route path="/login" element={<Login/>}/>
+
       {/* 회원가입 */}
       <Route path="/register" element={<Register/>}/>
+
       {/* 운영자레이아웃 */}
       <Route path="/admin" element={<AdminLayout/>}>
         <Route path="" element={<AdminHome />} />
