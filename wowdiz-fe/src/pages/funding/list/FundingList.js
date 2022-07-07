@@ -11,10 +11,11 @@ const FundingList = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1000,
   };
   return (
     <div>
-      <h2> Single Item</h2>
       <Slider {...settings}>
         <div>
           <h3>1</h3>

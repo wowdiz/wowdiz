@@ -1,12 +1,14 @@
 import React from "react";
 import SupportBoard from "../../../components/support/SupportBoard";
 
-const FAQ = () => {
+const Notice = () => {
   return (
     <div>
-      <SupportBoard />
+      <div>
+        <SupportBoard />
+      </div>
     </div>
   );
 };
 
-export default FAQ;
+export default Notice;

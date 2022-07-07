@@ -1,0 +1,30 @@
+.content_news {
+  height: auto;
+  width: 800px;
+  border: 0px solid black;
+}
+.news_title {
+  width: 100%;
+  border-bottom: 1px solid black;
+  float: left;
+}
+.news_list {
+  display: inline-block;
+  width: 770px;
+  height: 80px;
+  padding: 16px;
+  border-bottom: 1px solid gray;
+  text-align: left;
+}
+.news_list_head {
+  font-size: 13px;
+  font-weight: bold;
+}
+.news_list_title {
+  margin: 9px 0;
+  font-size: 17px;
+}
+.news_list_date {
+  margin: 7px 0;
+  font-size: 12px;
+}
