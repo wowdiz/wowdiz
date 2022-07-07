@@ -6,15 +6,15 @@ import { Outlet } from "react-router-dom";
 const AdminLayout = () => {
   return (
     <div className="admin_wrap">
-      <div className="admin_header_full">
-        <Header />
-      </div>
+      {/* <div className='admin_header_full'> */}
+      <Header />
+      {/* </div> */}
       <div className="admin_content_wrap">
         <Outlet />
       </div>
-      <div className="admin_footer_full">
-        <Footer />
-      </div>
+      {/* <div className='admin_footer_full'> */}
+      <Footer />
+      {/* </div> */}
     </div>
   );
 };
