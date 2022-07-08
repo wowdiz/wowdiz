@@ -1,16 +1,14 @@
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home/Home";
-import MainLayout from "./layout/MainLayout";
-import Login from "./pages/user/login/Login";
-import Register from "./pages/user/register/Register";
-import FundingList from "./pages/funding/list/FundingList";
-import MyPage from "./pages/user/mypage/MyPage";
-import AdminLayout from "./layout/AdminLayout";
-import AdminHome from "./pages/admin/home/AdminHome";
-import AdminFunding from "./pages/admin/funding/Funding";
-import AdminMember from "./pages/admin/member/Member";
-
+import './App.css';
+import {Routes, Route} from "react-router-dom";
+import Home from './pages/home/Home';
+import MainLayout from './layout/MainLayout';
+import Login from './pages/user/login/Login';
+import Register from './pages/user/register/Register';
+import FundingList from './pages/funding/list/FundingList';
+import MyPage from './pages/user/mypage/MyPage';
+import AdminLayout from './layout/AdminLayout';
+import { MakerOpenProject } from './pages/maker';
+import {AdminHome, AdminMember, AdminFunding, AdminFundingDetail} from './pages/admin';
 import "./style/reset.css";
 import SupportBoard from "./pages/support/supportboard/SupportBoard";
 import FundingDetail from "./pages/funding/detail/FundingDetail";
@@ -23,7 +21,7 @@ import Notice from "./pages/support/notice/Notice";
 import Event from "./pages/support/event/Event";
 import FAQ from "./pages/support/faq/FAQ";
 
-import Test from "./pages/user/register/AdressApi";
+import Test from "./pages/user/register/AddressApi";
 
 import RegisterForm from "./pages/user/register/RegisterForm";
 
@@ -34,7 +32,8 @@ function App() {
   return (
     <Routes>
       {/* 메인레이아웃 */}
-      <Route path="/" element={<MainLayout />}>
+
+        <Route path="/" element={<MainLayout />}>
         <Route path="" element={<Home />} />
 
         {/*펀딩페이지*/}
@@ -71,6 +70,7 @@ function App() {
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="" element={<AdminHome />} />
         <Route path="/admin/funding" element={<AdminFunding />} />
+        <Route path="/admin/funding/detail" element={<AdminFundingDetail />} />
         <Route path="/admin/member" element={<AdminMember />} />
       </Route>
     </Routes>

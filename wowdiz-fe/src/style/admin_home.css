@@ -11,21 +11,21 @@
     margin-bottom: 100px;
 }
 
-div.box1{
+div.admin_home_box1{
     display: inline-block;
     height: 300px;
     width: 350px;
     text-align: center;
 }
 
-div.box2{
+div.admin_home_box2{
     display: inline-block;
     height: 300px;
     width: 350px;
     text-align: center;
 }
 
-div.box3{
+div.admin_home_box3{
     display: inline-block;
     height: 400px;
     width: 450px;
