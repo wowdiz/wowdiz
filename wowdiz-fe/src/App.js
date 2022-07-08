@@ -7,6 +7,7 @@ import Register from './pages/user/register/Register';
 import FundingList from './pages/funding/list/FundingList';
 import MyPage from './pages/user/mypage/MyPage';
 import AdminLayout from './layout/AdminLayout';
+import { MakerOpenProject } from './pages/maker';
 import {AdminHome, AdminMember, AdminFunding, AdminFundingDetail} from './pages/admin';
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/funding" element={<FundingList/>}/>
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/supportboard" element={<SupportBoard/>}/>
+        <Route path="/maker/open_project" element={<MakerOpenProject />}/>
 
       </Route>
       {/* 로그인 */}
