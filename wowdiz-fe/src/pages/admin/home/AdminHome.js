@@ -86,6 +86,7 @@ const AdminHome = () => {
         "title_3":"시작일",
         "title_4":"종료일"
     }
+    
     const data4 = [
         {
             "data_0": "Frozen yoghurt",
@@ -108,15 +109,15 @@ const AdminHome = () => {
             <h3 style={{color:'#ACACAC'}}>회원관리</h3>
             <div className='home_chart'>
                 <h4>&nbsp;&nbsp;&nbsp;전체 15,021명의 회원이 있습니다.(전일대비 : ↑5.11% / ↓0.64%)</h4>
-                <div className='box1'>
+                <div className='admin_home_box1'>
                     <Pie data={data} chartColor="dark2"/>
                     <h5>회원수 증감 현황(단위:월)</h5>
                 </div>
-                <div className='box2'>
+                <div className='admin_home_box2'>
                     <Pie data={data2} chartColor="nivo"/>
                     <h5>회원 성 비율</h5>
                 </div>
-                <div className='box3'>
+                <div className='admin_home_box3'>
                     <Bar data={data3} chartColor="nivo"/>
                     <h5>회원 연령별 분포도</h5>
                 </div>
