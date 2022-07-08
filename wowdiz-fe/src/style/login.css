@@ -1,0 +1,144 @@
+/* login header */
+.login_top_header{
+  height: 70px;
+  border: 1px solid rgba(0,0,0,.15);
+}
+/* login logo image */
+.logoimage{
+  width: 120px;
+  margin-left: 200px;
+  margin-top: 10px;
+}
+/* login main full layout */
+.login_main_form{
+  margin: 0 auto;
+  position: relative;
+  margin-top: 40px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+}
+/* login id text box */
+.input_id_text_div{
+  margin-bottom: 20px;
+}
+/* login password text box */
+.input_password_text_div{
+  margin-bottom: 20px;
+}
+/* id and password input type design */
+.input_id_text_div > input, 
+.input_password_text_div > input{
+  width: 100%;
+  max-width: 365px;
+  overflow: hidden;
+  height: 48px;
+  line-height: 1.2em;
+  font-size: 17px;
+  font-weight: 300;
+  transition-property: border-color,height,padding-right,color;
+  transition-duration: .2s,0s;
+  outline: none;
+  border: 1px solid rgba(0,0,0,.15);
+  background: #fff;
+  padding: 0 0.94118em;
+  vertical-align: middle;
+  color: rgba(0,0,0,.84);
+  font-family: roboto,Noto Sans KR,-apple-system,dotum,sans-serif;
+}
+/* id and password placeholder 값의 텍스트 컬러 */
+input::placeholder {
+  color: rgb(133, 133, 133);
+  font-size: 16px;
+}
+/* 비밀번호와 아이디 저장 및 아이디, 비밀번호 찾기 간격 */
+.login_id_save{
+  display: block;
+  margin-top: 12px;
+  color: rgba(0,0,0,.84);
+  font-size: 12px;
+}
+/* 아이디 저장 체크박스 */
+.login_id_save_checkbox{
+  display: inline;
+}
+/* 아이디 비밀번호 찾기 텍스트 */
+.login_id_password_search{
+  margin-top: 2px;
+  display: inline;
+  float: right;
+  cursor: pointer;
+}
+/* 로그인 버튼 */
+.login_data_button{
+  margin-top: 24px;
+  margin-bottom: 24px;
+  width: 100%;
+  display: inline;
+  color: #fff;
+  background-color: rgba(154,199,248,1);
+  cursor: pointer;
+  font-size: 16px;
+  height: 48px;
+  border: 0px;
+
+}
+/* 카카오톡, 네이버 이미지 */
+.social_regist_login {
+  display: block;
+  line-height: 0;
+  font-size: 0;
+  text-align: center;
+}
+/* 이메일 회원가입 버튼 */
+.social_regist_login > button {
+  background-size: contain;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  margin-left: 20px;
+  border-color: #fff;
+  border: 0;
+  margin-bottom: 15px;
+}
+/* '또는'_span_태그의_div */
+.login_or {
+  margin-top: 15px;
+  margin-bottom: 39px;
+  display: block;
+  position: relative;
+  top: 50%;
+  left: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.06);
+  width: 100%;
+  height: 1px;
+  font-size: 12px;
+}
+/* '또는'_span_태그 */
+.login_or > span {
+  display: inline-block;
+  top: -8px;
+  position: relative;
+  background: #fff;
+  padding: 0 20px;
+  color: rgba(0, 0, 0, 0.411);
+}
+/* email_회원가입_버튼 */
+.email_register {
+  margin-top: 24px;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.email_register_text{
+  display: inline;
+}
+.email_register_nav_text{
+  display: inline;
+  margin-left: 10px;
+  color: rgba(0, 0, 0, 0.411);
+}
+
+

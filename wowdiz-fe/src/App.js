@@ -9,10 +9,11 @@ import MyPage from './pages/user/mypage/MyPage';
 import AdminLayout from './layout/AdminLayout';
 import { MakerOpenProject } from './pages/maker';
 import {AdminHome, AdminMember, AdminFunding, AdminFundingDetail} from './pages/admin';
-
-
+import Test from "./pages/user/register/AdressApi";
 import "./style/reset.css";
-import SupportBoard from './pages/support/notice/SupportBoard';
+import SupportBoard from "./pages/support/notice/SupportBoard";
+import RegisterForm from "./pages/user/register/RegisterForm";
+
 
 // 최초 작업자: 권능
 // 2022-06-29
@@ -27,16 +28,22 @@ function App() {
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/supportboard" element={<SupportBoard/>}/>
         <Route path="/maker/open_project" element={<MakerOpenProject />}/>
-
       </Route>
+      
       {/* 로그인 */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/test" element={<Test />} />
+      
+      {/* 회원가입 */}
+      <Route path="/register" element={<RegisterForm />} />
+      <Route path="/register_join" element={<Register />} />
       <Route path="/login" element={<Login/>}/>
 
       {/* 회원가입 */}
       <Route path="/register" element={<Register/>}/>
 
       {/* 운영자레이아웃 */}
-      <Route path="/admin" element={<AdminLayout/>}>
+      <Route path="/admin" element={<AdminLayout />}>
         <Route path="" element={<AdminHome />} />
         <Route path="/admin/funding" element={<AdminFunding />} />
         <Route path="/admin/funding/detail" element={<AdminFundingDetail />} />
