@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService{
 		if(userMapper.selectUserWithAuthoritiesByUserEmail(userDto.getUser_email()).orElse(null)!=null) {
 			throw new RuntimeException("이미 가입되어 있는 유저입니다.");
 		}
+		
 		userDto.setUser_pwd(passwordEncoder.encode(userDto.getUser_pwd()));
 		userDto.setAuth("ROLE_USER");
 		userDto.setEnabled(true);

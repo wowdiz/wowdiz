@@ -5,7 +5,12 @@
 		SELECT * FROM user where user_email=#{user_email};
 	</select>
 	
-	<insert id="insertUser" parameterType="UserDto">
-		INSERT INTO user(user_email, user_pwd, user_nickname) values(#{user_email}, #{user_pwd}, #{user_nickname})
+	<insert id="insertGeneralUser" parameterType="UserDto">
+		INSERT INTO user(user_email, user_pwd, user_name, user_phone,
+		user_birthday, user_gender, user_nickname, profile_picture, 
+		create_date, modified_date, sns_type, sns_id, auth, enabled)
+		VALUES(#{user_email}, #{user_pwd}, #{user_name}, #{user_phone},
+		#{user_birthday}, #{user_gender}, #{user_nickname}, #{profile_picture}, 
+		now(), #{modified_date}, #{sns_type}, #{sns_id}, #{auth}, #{enabled})
 	</insert>
 </mapper>

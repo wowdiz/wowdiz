@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo/logo.png";
-import AuthenticationService from "../../Service/AuthenticationService";
+import AuthenticationService from "../../service/AuthenticationService";
 import "../../style/header.css";
+import LogoutComponent from './LogoutComponent';
+import LoginComponent from './LoginComponent';
+
 
 // 최초 작업자: 이광호
 // 2022-06-30
@@ -10,6 +13,7 @@ import "../../style/header.css";
 const Header = () => {
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
   console.log(isUserLoggedIn);
+
   return (
     <div className="header_wrap">
       <div className="header">
@@ -55,17 +59,20 @@ const Header = () => {
               type="search"
               placeholder="프로젝트를 찾으시나요?"
               className="keyword"
-              autocomplete="off"
+              autoComplete="off"
             />
           </form>
         </div>
         {/* 유저 로그인 회원가입 버튼 */}
-        <span className="user_bar">
+        {/* 로그인 전에는 LoginComponent , 로그인후에는 LogoutComponent로 바껴야함 */}
+        { isUserLoggedIn ? <LogoutComponent />:<LoginComponent />}
+
+        {/* <LogoutComponent /> */}
+        {/* <span className="user_bar">
           {!isUserLoggedIn && <NavLink to="/login" className="user_bar_li">로그인</NavLink>}
           {!isUserLoggedIn && <NavLink to="/register" className="user_bar_li">회원가입</NavLink>}
           {isUserLoggedIn && <NavLink className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</NavLink>}
-          
-        </span>
+        </span>*/}
       </div>
     </div>
   );

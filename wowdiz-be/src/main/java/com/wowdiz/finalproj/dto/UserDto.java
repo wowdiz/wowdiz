@@ -1,9 +1,12 @@
 package com.wowdiz.finalproj.dto;
 
+import java.sql.Date;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -32,6 +35,25 @@ public class UserDto {
 	@NotNull
 	@Size(min = 3, max=50)
 	private String user_pwd;
+	
+	private String user_name;
+	
+	private String user_phone;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date user_birthday;
+	
+	private String user_gender;
+	
+	private String profile_picture;
+	
+	private Date reg_date;
+	
+	private Date modified_date;
+	
+	private String sns_type;
+	
+	private String sns_id;
 	
 	@NotNull
 	@Size(min = 3, max=50)

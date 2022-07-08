@@ -1,0 +1,64 @@
+.register_page {
+    display: block;
+  }
+  .register_page_wrap {
+    position: relative;
+    top: 50px;
+    margin: 0 auto;
+    padding-bottom: 96px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    line-height: 20px;
+  }
+  .page-description {
+    color: #495057;
+    font-size: 14px;
+  }
+  .register_page_form > label {
+    display: block;
+    margin-bottom: 8px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.84);
+    font-size: 17px;
+  }
+  .register_page_form > input {
+    margin-top: 5px;
+    border-radius: 3px;
+    height: 48px;
+    line-height: 1.2em;
+    font-size: 17px;
+    font-weight: 300;
+    transition-property: border-color, height, padding-right, color;
+    transition-duration: 0.2s, 0s;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: #fff;
+    padding: 0 0.94118em;
+    width: 90%;
+    vertical-align: middle;
+    color: rgba(0, 0, 0, 0.84);
+    font-family: roboto, Noto;
+  }
+  .register_page_form > p {
+    color: #f25555;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  
+  .register_page_form > button {
+    position: relative;
+    top: 15px;
+    background-color: #00c4c4;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    transition-duration: 0.2s;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    height: 48px;
+    display: inline-block;
+    padding-top: 0.07em;
+    text-decoration: none;
+  }
