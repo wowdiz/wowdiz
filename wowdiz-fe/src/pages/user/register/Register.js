@@ -2,7 +2,7 @@ import "../../../style/register.css";
 import React, { useRef, useState } from "react";
 import { get, useForm } from "react-hook-form";
 import axios from "axios";
-import Test from "./AdressApi";
+import Test from "./AddressApi";
 import { margin, style } from "@mui/system";
 import { isDisabled } from "@testing-library/user-event/dist/utils";
 
@@ -30,7 +30,7 @@ const Register = () => {
     user_nickname: "",
     user_phone: "",
     user_zonecode: "",
-    user_address: "",
+    user_dress: "",
     user_address_detail: "",
   });
   // 주소 창 모달 OPEN
