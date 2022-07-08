@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wowdiz.finalproj.mapper.UserMapper">
+	<select id="selectUserWithAuthoritiesByUserEmail" parameterType="String" resultType="UserDto">
+		SELECT * FROM user where user_email=#{user_email};
+	</select>
+	
+	<insert id="insertGeneralUser" parameterType="UserDto">
+		INSERT INTO user(user_email, user_pwd, user_name, user_phone,
+		user_birthday, user_gender, user_nickname, profile_picture, 
+		create_date, modified_date, sns_type, sns_id, auth, enabled)
+		VALUES(#{user_email}, #{user_pwd}, #{user_name}, #{user_phone},
+		#{user_birthday}, #{user_gender}, #{user_nickname}, #{profile_picture}, 
+		now(), #{modified_date}, #{sns_type}, #{sns_id}, #{auth}, #{enabled})
+	</insert>
+</mapper>
