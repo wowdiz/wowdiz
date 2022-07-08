@@ -13,7 +13,8 @@
   margin-top: 15px;
 }
 .header_menu {
-  float: left;
+  
+  list-style: none;
 }
 .header_menu > li {
   line-height: 40px;
@@ -27,6 +28,8 @@
   text-align: left;
   color: white;
   text-decoration: none;
+  float: left;
+  margin-left: 20px;
 }
 
 .menu_li {
@@ -35,7 +38,6 @@
 }
 .user_bar {
   margin-left: 50px;
-  margin-top: 5px;
   float: right;
 }
 
@@ -50,7 +52,6 @@
 }
 .search_bar {
   display: inline-block;
-  padding-top: 8px;
   padding-right: 10px;
   margin-left: 150px;
   min-width: 100px;
@@ -89,6 +90,7 @@
   white-space: inherit;
   width: 220px;
 }
+
 .login_wrap {
   display: inline-block;
   margin-top: 5px;
@@ -103,3 +105,4 @@
 .user_bar_login {
   display: inline-block;
 }
+

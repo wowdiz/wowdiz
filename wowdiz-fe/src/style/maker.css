@@ -1,0 +1,99 @@
+div.maker_open_project{
+    height: 1800px;
+}
+
+div.maker_open_project_header{
+    background-color: #F8F8F8;
+    width: 100%;
+    height: 120px;
+    line-height: 120px;
+}
+
+div.maker_open_project_header h2{
+    margin-left: 50px;
+}
+
+div.maker_open_project_menu{
+    width: 300px;
+    display: inline-block;
+    position: relative;
+}
+
+div.maker_open_project_menu h3{
+    margin-left: 25px;
+    width: 300px;
+    display: inline-block;
+}
+
+div.maker_open_project_rowmenu>h4{
+    margin-left: 40px;
+    padding-left: 20px;
+    color: #9d9d9d;
+    cursor: pointer;
+    border-left: 3.5px solid #ffffff;
+}
+
+div.maker_open_project_rowmenu>h4.rowmenu_clicked{
+    color: #69b1ff;
+    border-left: 3.5px solid #69b1ff;
+}
+
+div.maker_open_project_form{
+    display: inline-block;
+    width: 850px;
+    height: 700px;
+    position:absolute;
+}
+
+/* 프로젝트 오픈 */
+div.maker_open_project_form div{
+    margin-bottom: 80px;
+}
+
+input.project_input{
+    width: 500px;
+    height: 35px;
+    border: 0;
+    border: solid 1px #ccc;
+    font-size: 20px;
+    padding: 5px;
+}
+
+span.target_money{
+    color: #ff0071;
+}
+
+input.project_input_small{
+    height: 35px;
+    border: 0;
+    border: solid 1px #ccc;
+    font-size: 20px;
+    padding: 5px;
+}
+
+img.project_file_input_img{
+    width: 337px;
+    cursor: pointer;
+}
+
+div.hashtag_arr{
+
+    height: 100px;
+    width: 500px;
+
+}
+
+span.keyword{
+    background-color: #9ac7f8;
+    margin-right: 10px;
+    border-radius: 25px;
+    padding: 3px 8px;
+
+}
+
+.delIcon{
+    cursor: pointer;
+    border-radius: 2px;
+    position: relative;
+    top: 1px;
+}

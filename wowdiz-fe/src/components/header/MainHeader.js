@@ -55,7 +55,7 @@ const Header = () => {
               type="search"
               placeholder="프로젝트를 찾으시나요?"
               className="keyword"
-              autocomplete="off"
+              autoComplete="off"
             />
           </form>
         </div>

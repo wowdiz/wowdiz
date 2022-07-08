@@ -1,0 +1,187 @@
+.reward_header {
+  width: 100%;
+  height: 120px;
+  text-align: center;
+  margin-top: 80px;
+  /* background-color: #2ab625; */
+}
+.reward_category {
+  margin: 0;
+}
+.reward_title {
+  margin: 20px;
+}
+.mySwiper {
+  width: 800px;
+  height: 400px;
+  border: 1px solid black;
+  margin-top: 100px;
+}
+.info_container {
+  display: flex;
+  text-align: center;
+  width: 100%;
+}
+.info_container_banner {
+  display: inline-block;
+  height: 500px;
+  margin-right: 100px;
+}
+.info_box {
+  display: inline;
+  width: 400px;
+  height: 800px;
+  margin-top: 100px;
+  margin-left: 20px;
+}
+.order_container {
+  display: inline-block;
+  width: 100%;
+  height: 120px;
+  margin: 50px auto;
+  text-align: center;
+}
+.order_icon {
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 25px;
+  background: #dedede no-repeat 50% / cover border-box;
+  width: 56px;
+  height: 56px;
+  text-align: center;
+}
+.order_wrap {
+  display: inline-block;
+  margin-right: 18px;
+  margin-top: 30px;
+  text-align: center;
+}
+.order_name {
+  margin-top: 10px;
+  line-height: 18px;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+.order_date {
+  font-size: 13px;
+}
+.arrow {
+  display: inline;
+  margin: 20px 20px 20px 20px;
+}
+.funding_btn {
+  display: flex;
+  height: 80px;
+  top: 1984px;
+  border-radius: 10px;
+  text-align: center;
+  border: 0;
+  font-size: 20px;
+  margin-top: 55px;
+}
+.btn_funding {
+  display: inline-block;
+  width: 275px;
+  height: 70px;
+  background-color: #9ac7f8;
+  border-radius: 20px;
+  border: 0px;
+}
+.funding_like {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border: 1px solid black;
+  margin-left: 10px;
+  border-radius: 20px;
+}
+.info_state {
+  position: sticky;
+  width: 100%;
+  text-align: left;
+  font-size: 20px;
+}
+.info_bar {
+  width: 100%;
+  overflow: hidden;
+  height: 3px;
+  background: #9ac7f8;
+  border: 0px;
+  margin: 30px 0px 30px 0px;
+}
+.info_caution {
+  width: 320px;
+  height: 80px;
+  border-radius: 20px;
+  background-color: pink;
+  margin: 57px 0px 35px 0px;
+  margin-right: 0px;
+  padding: 20px 20px 20px 20px;
+  text-align: left;
+  line-height: 25px;
+}
+.funding_goal {
+  width: 800px;
+  height: 100px;
+  border-radius: 20px;
+  display: block;
+  background-color: #9ac7f8;
+  text-align: left;
+  padding: 10px 10px 20px 10px;
+}
+.info_seller {
+  width: 320px;
+  height: 90px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: white;
+  padding: 20px;
+}
+.content_menu_bar {
+  top: 0;
+  position: sticky;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  margin-top: 30px;
+  background-color: hsla(0, 0%, 100%, 0.85);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.content_menu {
+  display: flex;
+  justify-content: space-around;
+  width: 395px;
+  margin: 0 auto;
+  font-size: 20px;
+  text-align: center;
+}
+.content_container {
+  display: flex;
+  text-align: center;
+  width: 100%;
+}
+.content {
+  height: 1200px; /*auto*/
+  width: 800px;
+}
+.funding_select {
+  margin: 0px 0px 0px 20px;
+  padding: 15px;
+  width: 420px;
+  height: 800px;
+  border: 1px solid black;
+}
+strong {
+  font-size: 24px;
+}
+.menu_bar_title {
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+.menu_bar_style {
+  text-decoration: none;
+  color: black;
+}
