@@ -1,5 +1,5 @@
 div.maker_open_project{
-    height: 1800px;
+    height: 1500px;
 }
 
 div.maker_open_project_header{
@@ -96,4 +96,48 @@ span.keyword{
     border-radius: 2px;
     position: relative;
     top: 1px;
+}
+
+.reward_wrap{
+    background-color: #f9f9f9;
+    width: 800px;
+    height: 700px;
+    padding: 25px 15px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+input.reward_radio{
+    visibility: hidden;
+    cursor: pointer;
+    width: 0;
+    opacity: 0;
+}
+
+div.reward_wrap th{
+    width: 150px;
+    text-align: left;
+}
+
+.reward_label_radio{
+    display: inline-block;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+    background-color: white;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #c4c4c4;
+    color: gray;
+}
+
+.reward_label_radio_checked{
+    text-align: center;
+    display: inline-block;
+    background-color: #004d9f;
+    cursor: pointer;
+    width: 150px;
+    height: 35px;
+    line-height: 35px;
+    color: white;
 }
