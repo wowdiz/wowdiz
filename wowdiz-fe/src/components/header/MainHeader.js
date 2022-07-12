@@ -1,12 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo/logo.png";
+import AuthenticationService from "../../service/AuthenticationService";
 import "../../style/header.css";
+import LogoutComponent from './LogoutComponent';
+import LoginComponent from './LoginComponent';
+
 
 // 최초 작업자: 이광호
 // 2022-06-30
 // Header 작업
 const Header = () => {
+  const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+  console.log(isUserLoggedIn);
 
   return (
     <div className="header_wrap">
@@ -33,7 +39,7 @@ const Header = () => {
           </li>
         </ul>
         {/* 서치 폼  */}
-        <div className="serch_bar">
+        <div className="search_bar">
           <form
             method="GET"
             action="/pundingproject/search"
@@ -58,14 +64,15 @@ const Header = () => {
           </form>
         </div>
         {/* 유저 로그인 회원가입 버튼 */}
-        <span className="user_bar">
-          <NavLink to="/login" className="user_bar_li">
-            로그인
-          </NavLink>
-          <NavLink to="/register" className="user_bar_li">
-            회원가입
-          </NavLink>
-        </span>
+        {/* 로그인 전에는 LoginComponent , 로그인후에는 LogoutComponent로 바껴야함 */}
+        { isUserLoggedIn ? <LogoutComponent />:<LoginComponent />}
+
+        {/* <LogoutComponent /> */}
+        {/* <span className="user_bar">
+          {!isUserLoggedIn && <NavLink to="/login" className="user_bar_li">로그인</NavLink>}
+          {!isUserLoggedIn && <NavLink to="/register" className="user_bar_li">회원가입</NavLink>}
+          {isUserLoggedIn && <NavLink className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</NavLink>}
+        </span>*/}
       </div>
     </div>
   );

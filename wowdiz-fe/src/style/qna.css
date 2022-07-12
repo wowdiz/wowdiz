@@ -1,0 +1,139 @@
+.container {
+  width: 100%;
+  display: block;
+
+  margin-top: 50px;
+}
+.container_header {
+  height: 100px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+  margin-bottom: 50px;
+}
+label {
+  display: inline;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+#title {
+  width: 600px;
+  height: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border: 2px solid #d8d8d8d8;
+  font-size: 20px;
+  padding: 0.75rem;
+}
+#user_name,
+#mail,
+#phone {
+  display: inline-block;
+  width: 260px;
+  height: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border: 1px solid #d8d8d8;
+  font-size: 15px;
+  padding: 0.75rem;
+}
+#file {
+  width: 300px;
+  border-radius: 10px;
+  border: 1px solid #d8d8d8;
+  font-size: 15px;
+  padding: 18px;
+}
+#content {
+  display: block;
+  width: 600px;
+  height: 300px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border: 1px solid #d8d8d8;
+  font-size: 15px;
+  padding: 0.75rem;
+}
+.file_form {
+  position: relative;
+  display: inline-block;
+}
+
+.file_name {
+  position: relative;
+  display: inline-block;
+}
+#file::file-selector-button {
+  float: right;
+  display: none;
+}
+.filewrap {
+  display: flex;
+  flex-direction: row;
+}
+.filewrap > div {
+  width: calc(100% - 128px);
+}
+span.file_name {
+  border-radius: 10px;
+  border: 1px solid #d8d8d8;
+  font-size: 15px;
+  padding: 6px;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  margin-left: 8px;
+  line-height: 48px;
+}
+.btn_qna {
+  width: 250px;
+  height: 60px;
+  text-align: center;
+  top: 1984px;
+  background: #9ac7f8;
+  border-radius: 10px;
+  border: 0;
+  font-size: 20px;
+  cursor: pointer;
+}
+.qna_btn {
+  width: 100%;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  text-align: center;
+}
+.warp {
+  display: block;
+}
+.wa {
+  display: inline-block;
+}
+.was {
+  display: inline-block;
+  margin-left: 50px;
+}
+.asas {
+  position: relative;
+  left: 300px;
+  display: inline-block;
+}
+#qna_consent {
+  background-size: 24px 24px;
+  border-radius: 100%;
+  left: 0;
+  width: 17px;
+  height: 17px;
+}
+.consent_wrap {
+  width: 100%;
+  font-size: 18px;
+  margin-top: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.consent_info {
+  color: #a8a8a8;
+  font-size: 15px;
+  margin-left: 28px;
+}

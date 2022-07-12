@@ -1,0 +1,124 @@
+.login_full_layout {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+}
+.login_left_layout_background {
+  position: relative;
+  width: 360px;
+  background: linear-gradient(
+    180deg,
+    rgba(84, 160, 244, 0.5),
+    rgba(113, 173, 238, 0.1),
+    rgba(217, 217, 217, 0)
+  );
+}
+.login_main_form {
+  position: relative;
+  top: 100px;
+  left: 100px;
+  width: 1100px;
+  height: 800px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.login_left_main_form_background {
+  position: relative;
+  width: 260px;
+  height: 700px;
+  background: linear-gradient(
+    180deg,
+    rgba(84, 160, 244, 0.5),
+    rgba(113, 173, 238, 0.1),
+    rgba(217, 217, 217, 0)
+  );
+}
+.login_main_source {
+  left: 400px;
+  position: relative;
+  width: 260px;
+  height: 700px;
+  top: 50px;
+  /* border: 1px solid darkblue; */
+}
+.login_main_source_top_text {
+  color: #737373;
+  font-size: 22px;
+}
+.login_id_text {
+  margin-top: 11px;
+  width: 450px;
+  height: 65px;
+  border: 1px solid black;
+  background: #f3f3f3;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.login_pwd_text {
+  margin-top: 11px;
+  width: 450px;
+  height: 65px;
+  border: 1px solid black;
+  background: #f3f3f3;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.login_success_button {
+  margin-top: 11px;
+  width: 456px;
+  height: 65px;
+  background: linear-gradient(
+    180deg,
+    rgba(84, 160, 244, 0.5) 28.36%,
+    rgba(113, 173, 238, 0.1) 88.18%,
+    rgba(217, 217, 217, 0) 100%
+  );
+  text-align: center;
+  line-height: 65px;
+  cursor: pointer;
+}
+.login_id_pwd_join {
+  margin-top: 11px;
+  width: 456px;
+  height: 65px;
+  text-align: center;
+  line-height: 65px;
+  cursor: pointer;
+}
+.kakaotalk_login {
+  margin-top: 11px;
+  width: 456px;
+  height: 65px;
+  text-align: center;
+  line-height: 65px;
+  background: linear-gradient(
+    180deg,
+    rgba(244, 218, 84, 0.5),
+    rgba(113, 173, 238, 0.1),
+    rgba(217, 217, 217, 0)
+  );
+}
+.naver_login {
+  margin-top: 11px;
+  width: 456px;
+  height: 65px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    #8eff7b 28.36%,
+    rgba(113, 173, 238, 0.1) 88.18%,
+    rgba(217, 217, 217, 0) 100%
+  );
+  line-height: 65px;
+}
+.google_login {
+  margin-top: 11px;
+  width: 456px;
+  height: 65px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(206, 206, 206, 0.5) 28.36%,
+    rgba(113, 173, 238, 0.1) 88.18%,
+    rgba(217, 217, 217, 0) 100%
+  );
+  line-height: 65px;
+}
