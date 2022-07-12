@@ -1,8 +1,7 @@
-import userEvent from '@testing-library/user-event';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import defaultImg from '../../assets/images/util/fileUploader.png';
 import ClearIcon from '@mui/icons-material/Clear';
-import { margin } from '@mui/system';
+
 
 const MakerOpenProjectForm1 = () => {
     const [lengthChecker, setLengthChecker] = useState(0);
@@ -24,31 +23,32 @@ const MakerOpenProjectForm1 = () => {
         setDuration(Number(dDay));
     };
 
-    const [image, setImage] = useState(defaultImg);
+    const [mainImage, setMainImage] = useState(defaultImg);
     const fileInput = useRef(null);
 
     //대표이미지 파일미리보기
     const handleFileUpload = (e) => {
         if(e.target.files[0]){
-            setImage(e.target.files[0])
+            setMainImage(e.target.files[0])
         } else { //업로드 취소할 시
-            setImage(defaultImg);
+            setMainImage(defaultImg);
             return;
         }
 	    //화면에 프로필 사진 표시
         const reader = new FileReader();
         reader.onload = () => {
             if(reader.readyState === 2){
-                setImage(reader.result);
+                setMainImage(reader.result);
             }
         }
         reader.readAsDataURL(e.target.files[0]);
     }
+
     //img 호버로 도움말 표시
     const [isHovering, setIsHovering] = useState(0);
 
     //keyword
-    const [keywordArr, setKeywordArr] = useState(['이영자','강호동','유재석','김숙','송은이']);
+    const [keywordArr, setKeywordArr] = useState([]);
     const [keyword, setKeyword] = useState('');
 
     //keyword 입력이벤트
@@ -108,7 +108,7 @@ const MakerOpenProjectForm1 = () => {
                 <h3>프로젝트 대표 이미지를 등록해주세요</h3>
                 <input type='file' style={{display:'none'}} accept={defaultImg}
                     name='profile_img' onChange={handleFileUpload} ref={fileInput}/>
-                <img className='project_file_input_img' src={image} alt='' 
+                <img className='project_file_input_img' src={mainImage} alt='' 
                     onClick={() => {fileInput.current.click()}}
                     onMouseOver={() => setIsHovering(1)}
                     onMouseOut={() => setIsHovering(0)}
