@@ -1,11 +1,11 @@
-import './App.css';
-import {Routes, Route} from "react-router-dom";
-import Home from './pages/home/Home';
-import MainLayout from './layout/MainLayout';
-import Login from './pages/user/login/Login';
-import Register from './pages/user/register/RegisterTest';
-import FundingList from './pages/funding/list/FundingList';
-import MyPage from './pages/user/mypage/MyPage';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/home/Home";
+import MainLayout from "./layout/MainLayout";
+import Login from "./pages/user/login/Login";
+import Register from "./pages/user/register/Register";
+import FundingList from "./pages/funding/list/FundingList";
+import MyPage from "./pages/user/mypage/MyPage";
 import AdminLayout from './layout/AdminLayout';
 import { MakerOpenProject } from './pages/maker';
 import {AdminHome, AdminMember, AdminFunding, AdminFundingDetail} from './pages/admin';
@@ -48,8 +48,9 @@ function App() {
         </Route>
 
         <Route path="/mypage" element={<MyPage />} />
+        {/*고객센터페이지*/}
         <Route path="/supportboard" element={<SupportBoard />}>
-          <Route path="/supportboard/notice" element={<Notice />} />
+          <Route path="/supportboard" element={<Notice />} />
           <Route path="/supportboard/event" element={<Event />} />
           <Route path="/supportboard/faq" element={<FAQ />} />
           <Route path="/supportboard/qna" element={<QNA />} />

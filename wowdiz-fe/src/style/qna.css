@@ -91,7 +91,6 @@ span.file_name {
   height: 60px;
   text-align: center;
   top: 1984px;
-  background: #9ac7f8;
   border-radius: 10px;
   border: 0;
   font-size: 20px;
@@ -106,14 +105,14 @@ span.file_name {
 .warp {
   display: block;
 }
-.wa {
+.mail_warp {
   display: inline-block;
 }
-.was {
+.phone_warp {
   display: inline-block;
   margin-left: 50px;
 }
-.asas {
+.qna_form {
   position: relative;
   left: 300px;
   display: inline-block;
