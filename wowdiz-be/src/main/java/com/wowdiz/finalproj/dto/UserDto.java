@@ -47,7 +47,7 @@ public class UserDto {
 	
 	private String profile_picture;
 	
-	private Date reg_date;
+	private Date create_date;
 	
 	private Date modified_date;
 	
