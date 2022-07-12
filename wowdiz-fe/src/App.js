@@ -8,8 +8,8 @@ import FundingList from "./pages/funding/list/FundingList";
 import MyPage from "./pages/user/mypage/MyPage";
 import AdminLayout from "./layout/AdminLayout";
 import AdminHome from "./pages/admin/home/AdminHome";
-import AdminFunding from "./pages/admin/funding/Funding";
-import AdminMember from "./pages/admin/member/Member";
+import AdminFunding from "./pages/admin/funding/AdminFunding";
+import AdminMember from "./pages/admin/member/AdminMember";
 
 import "./style/reset.css";
 import SupportBoard from "./pages/support/supportboard/SupportBoard";
@@ -47,8 +47,9 @@ function App() {
         </Route>
 
         <Route path="/mypage" element={<MyPage />} />
+        {/*고객센터페이지*/}
         <Route path="/supportboard" element={<SupportBoard />}>
-          <Route path="/supportboard/notice" element={<Notice />} />
+          <Route path="/supportboard" element={<Notice />} />
           <Route path="/supportboard/event" element={<Event />} />
           <Route path="/supportboard/faq" element={<FAQ />} />
           <Route path="/supportboard/qna" element={<QNA />} />
