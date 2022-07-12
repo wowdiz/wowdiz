@@ -3,6 +3,7 @@ import "../../../style/funding.css";
 import Banner from "../../../components/main/Banner";
 import Perference_funding from "../../../components/main/Perference_funding";
 
+
 const FundingList = () => {
   const banner = [
     {

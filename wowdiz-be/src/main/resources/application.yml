@@ -9,3 +9,7 @@ mybatis:
   type-aliases-package: com.wowdiz.finalproj.dto
   mapper-locations:
   - /mapper/**/*.xml
+  
+logging:
+  level:
+    com.wowdiz.finalproj: DEBUG
