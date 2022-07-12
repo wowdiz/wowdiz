@@ -5,7 +5,6 @@
 .funding_awaiting_list{
     width: 1200px;
     height: 600px;
-    float: left;
     background-color: #F8F8F8;
     padding: 15px;
     margin-bottom: 100px;
@@ -14,7 +13,6 @@
 .funding_proceeding_list{
     width: 1200px;
     height: 600px;
-    float: left;
     background-color: #F8F8F8;
     padding: 15px;
     margin-bottom: 100px;
@@ -23,7 +21,6 @@
 .funding_finished_list{
     width: 1200px;
     height: 600px;
-    float: left;
     background-color: #F8F8F8;
     padding: 15px;
 }
@@ -32,4 +29,38 @@
     float: right;
     cursor: pointer;
     
+}
+
+
+/* funding_detail */
+.admin_funding_awaiting_detail{
+    height: 2300px;
+}
+
+.admin_funding_awaiting_detail_form{
+    margin-top: 30px;
+    width: 1200px;
+    height: 2200px;
+    background-color: #F8F8F8;
+    padding: 15px;
+}
+
+table.admin_funding_awaiting_detail_form_table{
+    border-collapse: collapse;
+}
+
+table.admin_funding_awaiting_detail_form_table th{
+    border-right: 1px solid #9d9d9d;
+    width: 150px;
+    height: 80px;
+    color: #9d9d9d;
+}
+
+table.admin_funding_awaiting_detail_form_table td{
+    padding: 0px 30px;
+    width: 450px;
+}
+
+td.rowSeven{
+    border: 1px solid black;
 }
