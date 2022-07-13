@@ -1,0 +1,201 @@
+/* 백그라운드 투명 검정 레이아웃 */
+.mypage_top_background{
+    position: absolute;
+    width: 1200px;
+    height: 470px;
+    background-color:rgba(0, 0, 0, 0.4);
+}
+/* 마이페이지 메인 레이아웃폼 */
+.mypage_full_layout_form{
+    position: relative;
+    left: 5px;
+    background-color: #fff;
+    width: 1130px;
+    margin: 0 auto;
+    border-bottom: 0.8px solid rgb(204, 203, 203);
+    display: flex;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    top: 20px;
+}
+/* 마이페이지 메인 왼쪽 레이아웃폼 */
+.mypage_left_layout_form{
+    position: relative;
+    width: 340px;
+    border-right: 0.8px solid rgb(204, 203, 203);
+    white-space:pre-line;
+    word-break:break-all;
+}
+/* 마이페이지 메인 오른쪽 레이아웃폼 */
+.mypage_right_layout_form{
+    width: 790px;
+    max-width: 790px;
+    white-space:pre-line;
+    word-break:break-all;
+}
+/* 마이페이지 프로필 이미지 박스 */
+.mypage_profile_image_box{
+    margin: 75px;
+    margin-left: 85px;
+    background-color: #9AC7F8;
+    text-align: center;
+    font-size: 22px;
+    display: inline-block;
+    padding: 45px;
+    border-radius: 365px 365px 365px 365px;
+}
+/* 마이페이지 프로필 하단 텍스트 */
+.mypage_profile_text_box{
+    text-align: center;
+    line-height: 40px;
+    margin-top: -30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 22px;
+}
+/* 마이페이지 프로필 하단 텍스트 폰트 사이즈 */
+.mypage_profile_text_box>p{
+    font-size: 14px;
+}
+/* 마이페이지 프로필 하단 회원정보 변경 버튼 */
+.mypage_data_button{
+    background-color: rgba(154,199,248,1);
+    border: 0px;
+    color: #fff;
+    font-size: 16px;
+    height: 48px;
+    width: 240px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+/* 마이페이지 메인 오른쪽 레이아웃폼 */
+.mypage_right_data_form{
+    display: flex;
+    width: 700px;
+    margin: 0 auto;
+}
+/* 펀딩, 질문 갯수 표시 레이아웃 및 텍스트 폰트 사이즈 */
+.mypage_punding_data,.mypage_questions_data{
+    width: 350px;
+    text-align: center;
+    font-size: 22px;
+    margin-top: 75px;
+    line-height: 140px;
+}
+/* 펀딩 데이터, 질문 갯수 표시 가운데에 경계선 */
+.mypage_punding_data{
+    border-right:0.8px solid rgb(204, 203, 203);
+}
+/* 펀딩 및 질문 데이터 폰트 사이즈 */
+.mypage_punding_data>p>b ,.mypage_questions_data>p>b{
+    font-size: 16px;
+    margin:100px;
+}
+/* 펀딩 및 질문 데이터 폰트 간격 */
+.mypage_punding_data>p, .mypage_questions_data>p{
+    margin-top: -100px;
+}
+/* 펀딩금액, 펀딩포인트,my펀딩 전체 레이아웃 */
+.mypage_punding_point_mypunding_layout{
+    width: 700px;
+    margin: 0 auto;
+    background-color: #9AC7F8;
+    display: block;
+}
+/* 펀딩금액, 펀딩포인트,my펀딩 세부 레이아웃 */
+.mypage_punding_point_mypunding_layout_left, .mypage_punding_point_mypunding_layout_center, .mypage_punding_point_mypunding_layout_right{
+    display: inline-block;
+    width: 233px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+/* 펀딩금액, 펀딩포인트,my펀딩 세부 백그라운드 컬러 및 간격 */
+.mypage_punding_point_mypunding_layout_left>b, .mypage_punding_point_mypunding_layout_center>b, .mypage_punding_point_mypunding_layout_right>b{
+    background-color: #f8f8f8;
+    padding: 10px 20px 10px 20px;
+}
+/* ㅇㅇㅇ님께서 최근 관심있는 펀딩 레이아웃 */
+.mypage_like_funding_text{
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 28px;
+}
+/* ㅇㅇㅇ님께서 최근 관심있는 펀딩 폰트사이즈 */
+.mypage_like_funding_text>b{
+    font-size: 22px;
+}
+/* ㅇㅇㅇ님께서 최근 관심있는 펀딩 이미지 레이아웃 */
+.mypage_like_funding_image_layout{
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+/* 최근 관심있는 펀딩 왼쪽 레이아웃 */
+.mypage_like_funding_image_layout_left{
+    width: 210px;
+    display: inline-block;
+    text-align: center;
+}
+/* 최근 관심있는 펀딩 이미지 레이아웃 사이즈 */
+.mypage_funding_image_layout{
+    width: 210px;
+    display: inline-block;
+    height: 150px;
+    border: 1px solid #9AC7F8;
+}
+/* 최근 관심있는 펀딩 이미지 텍스트 정렬 및 폰트 사이즈 */
+.mypage_like_funding_image_layout_center>b,.mypage_like_funding_image_layout_left>b,.mypage_like_funding_image_layout_right>b{
+    display: block;
+    text-align: left;
+    width: 100%;
+    font-size: 16px;
+}
+/* 최근 관심있는 펀딩 중간 레이아웃 */
+.mypage_like_funding_image_layout_center{
+    width: 210px;
+    display: inline-block;
+    text-align: center;
+    margin-left:33px;
+}
+/* 최근 관심있는 펀딩 오른쪽 레이아웃 */
+.mypage_like_funding_image_layout_right{
+    width: 210px;
+    display: inline-block;
+    text-align: center;
+    float: right;
+}
+.mypage_new_funding_text{
+    display: inline-block;
+    width: 709px;
+    margin-top: 50px;
+    margin-left: 425px;
+    font-size: 22px;
+}
+.mypage_new_funding_image_layout{
+    margin-left: 425px;
+    width: 700px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.mypage_new_funding_image_layout_left{
+    width: 210px;
+    display: inline-block;
+    white-space:pre-line;
+    word-break:break-all;
+}
+.mypage_new_funding_image_layout_center{
+    width: 210px;
+    display: inline-block;
+    margin-left:33px;
+    white-space:pre-line;
+    word-break:break-all;
+}
+.mypage_new_funding_image_layout_right{
+    width: 210px;
+    display: inline-block;
+    float: right;
+    white-space:pre-line;
+    word-break:break-all;
+}
