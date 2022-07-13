@@ -37,6 +37,7 @@ function App() {
 
         <Route path="/" element={<MainLayout />}>
         <Route path="" element={<Home />} />
+        <Route path="maker/open_project" element={<MakerOpenProject/>}/>
 
         {/*펀딩페이지*/}
         <Route path="/funding" element={<FundingList />} />
