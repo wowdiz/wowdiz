@@ -28,9 +28,7 @@ export default function BasicTable({title, data}) {
                 key={idx}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                <TableCell component="th" scope="row">
-                    {row.data_0}
-                </TableCell>
+                <TableCell component="th" scope="row">{row.data_0}</TableCell>
                 <TableCell align="right">{row.data_1}</TableCell>
                 <TableCell align="right">{row.data_2}</TableCell>
                 <TableCell align="right">{row.data_3}</TableCell>

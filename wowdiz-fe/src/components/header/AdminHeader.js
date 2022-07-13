@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../style/admin_layout.css';
 import {NavLink, useNavigate} from 'react-router-dom';
 
@@ -46,18 +46,16 @@ const AdminHeader = () => {
                     onMouseOut={() => setIsHovering(0)}
                     ><NavLink to='/admin/funding' className='admin_header_menu_link admin_menu_funding'
                     style={{cursor:'pointer'}}
-                    >FUNDING</NavLink>
-                    </li></label>
+                    >FUNDING</NavLink></li></label>
                     {isHovering===1?<div className='drop_admin_menu_funding'
                     onMouseOver={() => setIsHovering(1)}
                     onMouseOut={() => setIsHovering(0)}
-                    ><span
-                    onClick={() => handleScroll(0)}>AWAITING</span>&nbsp; |&nbsp;
+                    ><span onClick={() => handleScroll(0)}>AWAITING</span>&nbsp; |&nbsp;
                     <span onClick={() => handleScroll(800)}>PROCEEDING</span>&nbsp; |&nbsp;
                     <span onClick={() => handleScroll(1580)}>FINISHED</span></div>:''}
                 </ul>
                 
-                <ul>
+                <ul className='admin_header_menu'>
                     <li className='admin_header_menu_link' style={{float:'right'}}>ADMIN</li>
                 </ul>
             </div>

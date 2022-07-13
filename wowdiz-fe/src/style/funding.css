@@ -1,0 +1,30 @@
+.category_wrap {
+  width: 100%;
+  height: 100px;
+  margin: 80px auto;
+  text-align: center;
+}
+.category_icon {
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 25px;
+  background: #dedede no-repeat 50% / cover border-box;
+  width: 56px;
+  height: 56px;
+  box-sizing: border-box;
+}
+.category_container {
+  display: inline-block;
+  margin-right: 18px;
+}
+.category_name {
+  margin-top: 60px;
+  line-height: 18px;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 500;
+}
+.funding_content {
+  width: 100%;
+  border: 1px solid black;
+}

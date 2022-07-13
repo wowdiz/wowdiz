@@ -36,10 +36,8 @@ import CycleImage from "../../components/main/CycleImage";
 SwiperCore.use([Navigation, Pagination, Autoplay]); //
 
 const Home = () => {
-
   axios.get("http://localhost:9150").then(function (response) {
     console.log(response);
-
   });
 
   const image1 = back_image;
@@ -100,10 +98,10 @@ const Home = () => {
     },
     {
       img: banner6,
-      title: "기미닉보이가 엄선한 파워슈즈",
+      title: "단비셀럽이 신어서 완판된 슈즈",
       price: "3,000,000 원",
       catagory: "의류",
-      maker: "기미닉패션 주식",
+      maker: "기미닉보다 단비닉 주식",
       percent: "60%",
     },
   ];
@@ -118,7 +116,7 @@ const Home = () => {
         <div className="preference_funding_form">
           <div className="preference_funding">
             <h2 className="preference_line">취향 맞춤 펀딩 프로젝트</h2>
-            <p className="preference_line_sub"> 고객 맞춤 Best 펀딩 </p>
+            <p className="preference_line_sub"> 단비 맞춤 Best 펀딩 </p>
           </div>
           {banner &&
             banner.map((data, idx) => (
@@ -166,7 +164,10 @@ const Home = () => {
         <div className="new_funding_form">
           <div className="preference_funding">
             <h2 className="preference_line">주목해야할 신규 펀딩</h2>
-            <p className="preference_line_sub"> 주목해라 이것이 권능이다 </p>
+            <p className="preference_line_sub">
+              {" "}
+              주목해라 이것이 권능이다 권능 못생기고 못났음.{" "}
+            </p>
           </div>
           <div className="new_funding">
             <Swiper
