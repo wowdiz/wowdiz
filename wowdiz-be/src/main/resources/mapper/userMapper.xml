@@ -31,7 +31,7 @@
 		UPDATE authentication SET authentication_key=#{authentication_key}, create_date=now() WHERE authentication_email=#{authentication_email};
 	</update>
 	<!-- 인증키 확인 -->
-	<select id="authenticationSelect" parameterType="String" resultType="String">
+	<select id="authenticationKeySelect" parameterType="String" resultType="String">
 		SELECT authentication_key FROM authentication WHERE authentication_email=#{user_email}
 	</select>
 </mapper>

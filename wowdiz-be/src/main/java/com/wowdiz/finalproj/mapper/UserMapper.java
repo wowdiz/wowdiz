@@ -22,4 +22,6 @@ public interface UserMapper {
 	public void authenticationInsert(AuthenticationDto authenticationDto);
 // 인증번호 재전송
 	public void authenticationUpdate(AuthenticationDto authenticationDto);
+// 인증번호 확인
+	public String authenticationKeySelect(String authentication_Key);
 }
