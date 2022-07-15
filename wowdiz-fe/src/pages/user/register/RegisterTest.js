@@ -6,7 +6,6 @@ import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import { border, color } from "@mui/system";
 import { useScrollTrigger } from "@mui/material";
 
-
 const RegisterTest = () => {
   // react-hook-form 함수
   const el = document.getElementById("user_email");
@@ -53,7 +52,6 @@ const RegisterTest = () => {
 
           alert("이미 사용중인 이메일입니다.");
           trigger("user_email");
-         
         } else if (res.data === "") {
           setUser_emailCheck(false);
 

@@ -24,6 +24,7 @@ const LogoutComponent = () => {
 
   const logout = () => {
     AuthenticationService.logout();
+    window.location.reload();
   };
 
   return (

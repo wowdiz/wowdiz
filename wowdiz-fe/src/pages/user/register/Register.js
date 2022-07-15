@@ -26,17 +26,18 @@ const RegisterTest = () => {
   ///이메일 중복확인
   const [user_emailCheck, setUser_emailCheck] = useState(null);
   const checkUrl = "http://localhost:9150/" + "api/duplicateCheck";
-
+  const comfrimUrl = "http://localhost:9150/" + "api/emailConfirm";
   //이메일 인증번호
   const [emailAuth, setEmailAuth] = useState();
-
+  //입력된 이메일
+  const data_email = getValues("user_email");
+  const data_key = getValues("email_confirm");
   //중복이메일 체크 및 이메일 인증 메세지 보내기
   const email_check_button = (e) => {
     //이메일 유효성 체크
     const emailExp =
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    //입력된 이메일
-    const data_email = getValues("user_email");
+
     //인증번호
     const email_confirm = document.getElementById("email_confirm");
     if (data_email === "") {
@@ -65,13 +66,7 @@ const RegisterTest = () => {
     }
   };
 
-  const authCofirm = (e) => {
-    if (getValues("email_confirm") === emailAuth) {
-      alert("성공");
-    } else {
-      alert("인증번호 재입력");
-    }
-  };
+  const authCofirm = (e) => {};
 
   // 비밀번호 확인
   const user_password = useRef();
@@ -165,7 +160,7 @@ const RegisterTest = () => {
               </p>
             ))}
           {user_emailCheck && (
-            <div>
+            <div style={{ display: { emailAuth } }}>
               <label
                 className="accountLabel"
                 style={{ display: "flex", marginTop: "15px" }}
@@ -180,7 +175,7 @@ const RegisterTest = () => {
                   placeholder="인증번호를 입력해주세요"
                   required
                   {...register("email_confirm", {
-                    required: <p>이메일을 인증번호를 입력해주세요.</p>,
+                    required: <p>이메일 인증번호를 입력해주세요.</p>,
                     validate: (value) => value === emailAuth,
                   })}
                 />
