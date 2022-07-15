@@ -54,6 +54,8 @@ function App() {
           <Route path="/supportboard/faq" element={<FAQ />} />
           <Route path="/supportboard/qna" element={<QNA />} />
         </Route>
+        {/* 메이커 */}
+        <Route path="maker/open_project" element={<MakerOpenProject />} />
       </Route>
 
       {/* 로그인 */}
@@ -67,6 +69,8 @@ function App() {
 
       {/* 회원가입 */}
       <Route path="/register" element={<Register />} />
+
+      
 
       {/* 운영자레이아웃 */}
       <Route path="/admin" element={<AdminLayout />}>
