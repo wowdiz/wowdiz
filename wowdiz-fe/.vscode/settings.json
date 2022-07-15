@@ -1,5 +1,5 @@
 {
- "editor.formatOnSave": false,
+ "editor.formatOnSave": true,
  "editor.defaultFormatter": null,
 "workbench.tree.indent": 4,
 "[javascript]": {
