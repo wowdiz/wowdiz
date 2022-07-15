@@ -25,16 +25,19 @@ const MakerOpenProjectForm3 = () => {
     //     rewardOptionShort:"",
     //     deliveryNecessity:""
     // }]);
-    const [reward, setReward] = useState([{
-        rewardMoney:"",
-        rewardPossibility:"",
-        rewardQuantity:"",
-        rewardSubject:"",
-        rewardContent:"",
-        deliveryDate:"",
-        rewardOption:rewardOption,
-        deliveryNecessity:""
-    }]);
+
+    // const [reward, setReward] = useState([{
+    //     rewardMoney:"",
+    //     rewardPossibility:"",
+    //     rewardQuantity:"",
+    //     rewardSubject:"",
+    //     rewardContent:"",
+    //     deliveryDate:"",
+    //     rewardOption:rewardOption,
+    //     deliveryNecessity:""
+    // }]);
+
+    const [reward, setReward] = useState([]);
 
     const [rewardArr, setRewardArr] = useState([]);
 
@@ -76,11 +79,9 @@ const MakerOpenProjectForm3 = () => {
     }
 
     const addReward = () => {
-        setReward({
-            ...reward,
-            rewardOption : rewardOption
-        });
+        setReward(reward.rewardOption.concat(rewardOptionArr));
         setTimeout(() => {setRewardArr(rewardArr.concat(reward));},2500);
+        // setRewardArr(rewardArr.concat(reward));
         console.log('rewardArr',rewardArr);
     }
 
@@ -201,6 +202,7 @@ const MakerOpenProjectForm3 = () => {
                                     {
                                         rewardOptionArr && rewardOptionArr.map((item, idx) => (
                                             <RewardOption2 
+                                                key={idx}
                                                 item={item}
                                                 i={idx}
                                                 rewardOptionRef={rewardOptionRef}
