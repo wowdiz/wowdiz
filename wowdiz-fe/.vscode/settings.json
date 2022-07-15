@@ -1,5 +1,8 @@
 {
  "editor.formatOnSave": false,
  "editor.defaultFormatter": null,
- "workbench.tree.indent": 4
+"workbench.tree.indent": 4,
+"[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
 }

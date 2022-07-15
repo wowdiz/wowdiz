@@ -2,7 +2,7 @@ import "../../../style/register.css";
 import React, { useRef, useState } from "react";
 import { get, useForm } from "react-hook-form";
 import axios from "axios";
-import Test from "./AdressApi";
+import Test from "./AddressApi";
 import { margin, style } from "@mui/system";
 import { isDisabled } from "@testing-library/user-event/dist/utils";
 

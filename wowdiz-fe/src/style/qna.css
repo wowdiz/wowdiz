@@ -28,10 +28,21 @@ label {
 }
 #user_name,
 #mail,
-#phone {
+#phone
+{
   display: inline-block;
   width: 260px;
   height: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border: 1px solid #d8d8d8;
+  font-size: 15px;
+  padding: 0.75rem;
+}
+.qna_type{
+  display: inline-block;
+  width: 286px;
+  height: 56px;
   margin-bottom: 30px;
   border-radius: 10px;
   border: 1px solid #d8d8d8;
@@ -105,12 +116,16 @@ span.file_name {
 .warp {
   display: block;
 }
-.mail_warp {
-  display: inline-block;
-}
-.phone_warp {
+.user_name_warp,
+.phone_warp
+{
   display: inline-block;
   margin-left: 50px;
+}
+.qna_type_warp,
+.mail_warp
+{
+  display: inline-block;
 }
 .qna_form {
   position: relative;

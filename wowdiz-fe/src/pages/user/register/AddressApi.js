@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Modal, Typography } from "@mui/material";
 import DaumPostcode from "react-daum-postcode";
 
-const AdressApi = ({ modalStyle, handlePostCode, handleClose, open }) => {
+const AddressApi = ({ modalStyle, handlePostCode, handleClose, open }) => {
   return (
     <Modal
       open={open}
@@ -28,4 +28,4 @@ const AdressApi = ({ modalStyle, handlePostCode, handleClose, open }) => {
   );
 };
 
-export default AdressApi;
+export default AddressApi;
