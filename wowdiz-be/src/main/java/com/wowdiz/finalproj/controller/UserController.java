@@ -70,14 +70,12 @@ public class UserController {
 	}
 	@PostMapping("/emailConfirm")
 	public ResponseEntity<String> emailConfirm(@RequestParam String confirm){
-		System.out.println(confirm);
-		System.out.println(authenticationKey);
+		
 		if(authenticationKey==confirm) {
 			return ResponseEntity.ok("succes");	
 		} else {
 			return ResponseEntity.ok("fail");	
 		}
-		
 	}
 
 }
