@@ -5,7 +5,6 @@ import axios from "axios";
 import Test from "./AddressApi";
 import { margin, style } from "@mui/system";
 import { isDisabled } from "@testing-library/user-event/dist/utils";
-import "../../../style/register.css"
 
 const Register = () => {
   // react-hook-form 함수

@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+.purchase_step > ol {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-content: center;
+}
+
+.purchase_step > ol > li > em{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 75px;
+    height: 75px;
+    font-size: 14px;
+    background: rgb(255, 255, 255);
+    border: 1px dashed rgb(151, 151, 151);
+    border-radius: 50%;
+    font-weight: 800;
+}
+
+.purchase_step > ol {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.purchase_step ol li.step_active em {
+    width: 75px;
+    height: 75px;
+    color: rgb(255, 255, 255);
+    border: none;
+    background: #9ac7f8;
+}
+
+
+.purchase_step > ol > li:nth-child(2)::after {
+    position:absolute;
+    left: 0;
+    top: 3px;
+    content: "";
+    width: 1px;
+    height: 15px;
+    background-color: black;
+}
