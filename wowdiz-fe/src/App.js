@@ -20,10 +20,10 @@ import DetailInfo from "./pages/funding/detail/DetailInfo";
 import Notice from "./pages/support/notice/Notice";
 import Event from "./pages/support/event/Event";
 import FAQ from "./pages/support/faq/FAQ";
-
 import Test from "./pages/user/register/AddressApi";
-
 import RegisterForm from "./pages/user/register/RegisterForm";
+import QNAList from "./pages/support/qna/QNAList";
+import QNADetail from "./pages/support/qna/QNADetail";
 
 // 최초 작업자: 권능
 // 2022-06-29
@@ -35,7 +35,7 @@ function App() {
     <Routes>
       {/* 메인레이아웃 */}
 
-        <Route path="/" element={<MainLayout />}>
+      <Route path="/" element={<MainLayout />}>
         <Route path="" element={<Home />} />
 
         {/*펀딩페이지*/}
@@ -54,7 +54,13 @@ function App() {
           <Route path="/supportboard/event" element={<Event />} />
           <Route path="/supportboard/faq" element={<FAQ />} />
           <Route path="/supportboard/qna" element={<QNA />} />
+          <Route path="/supportboard/qnalist" element={<QNAList />} />
+          <Route
+            path="/supportboard/qnadetail/:inquiry_id" element={<QNADetail />}
+          />
         </Route>
+        {/* 메이커 */}
+        <Route path="maker/open_project" element={<MakerOpenProject />} />
       </Route>
 
       {/* 로그인 */}
@@ -68,6 +74,8 @@ function App() {
 
       {/* 회원가입 */}
       <Route path="/register" element={<Register />} />
+
+      
 
       {/* 운영자레이아웃 */}
       <Route path="/admin" element={<AdminLayout />}>
