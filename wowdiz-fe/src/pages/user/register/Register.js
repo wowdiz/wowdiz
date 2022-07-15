@@ -2,11 +2,13 @@ import "../../../style/register.css";
 import React, { useRef, useState } from "react";
 import { set, useForm } from "react-hook-form";
 import axios from "axios";
+import Test from "./AddressApi";
+import { margin, style } from "@mui/system";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { height } from "@mui/system";
 import { Elderly } from "@mui/icons-material";
-
 
 const RegisterTest = () => {
   // react-hook-form 함수
