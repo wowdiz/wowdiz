@@ -16,6 +16,7 @@ const MakerOpenProject = () => {
             <div className='maker_open_project_header'>
                 <h2>{title}</h2>
             </div>
+            <div style={{display:"flex"}}>
             <div className='maker_open_project_menu'>
                 <h3>프로젝트 만들기</h3>
                 <div className='maker_open_project_rowmenu'>
@@ -42,6 +43,7 @@ const MakerOpenProject = () => {
                 </div>
             </div>
             {processSelector===1?<Form1/>:processSelector===2?<Form2/>:processSelector===3?<Form3/>:processSelector===4?<Form4/>:<Form5/>}
+            </div>
         </div>
     );
 };

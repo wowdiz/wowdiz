@@ -1,8 +1,9 @@
 div.maker_open_project{
-    height: 1500px;
+    display: block;
 }
 
 div.maker_open_project_header{
+    display: inline-block;
     background-color: #F8F8F8;
     width: 100%;
     height: 120px;
@@ -16,7 +17,6 @@ div.maker_open_project_header h2{
 div.maker_open_project_menu{
     width: 300px;
     display: inline-block;
-    position: relative;
 }
 
 div.maker_open_project_menu h3{
@@ -41,8 +41,7 @@ div.maker_open_project_rowmenu>h4.rowmenu_clicked{
 div.maker_open_project_form{
     display: inline-block;
     width: 850px;
-    height: 700px;
-    position:absolute;
+
 }
 
 /* 프로젝트 오픈 */
@@ -100,11 +99,8 @@ span.keyword{
 
 .reward_wrap{
     background-color: #f9f9f9;
-    width: 800px;
-    height: 700px;
+    width: 870px;
     padding: 25px 15px;
-    font-size: 18px;
-    font-weight: bolder;
 }
 
 input.reward_radio{
@@ -115,8 +111,15 @@ input.reward_radio{
 }
 
 div.reward_wrap th{
-    width: 150px;
+    width: 130px;
+    height: 60px;
     text-align: left;
+    vertical-align: top;
+    padding-top:10px;
+}
+
+div.reward_wrap td{
+    vertical-align: top;
 }
 
 .reward_label_radio{
@@ -129,6 +132,7 @@ div.reward_wrap th{
     line-height: 35px;
     border: 1px solid #c4c4c4;
     color: gray;
+    padding: 3.5px;
 }
 
 .reward_label_radio_checked{
@@ -140,4 +144,172 @@ div.reward_wrap th{
     height: 35px;
     line-height: 35px;
     color: white;
+    padding: 5px;
+}
+
+input.select_reward_quantity{
+    margin-left: 15px;
+    width: 150px;
+    height: 35px;
+    border: 0;
+    border: solid 1px #ccc;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.reward_content{
+    width: 500px;
+    height: 300px;
+    border: 0;
+    border: solid 1px #ccc;
+    font-size: 20px;
+    padding: 5px;
+}
+
+button.reward_btn_reg{
+    margin-left: 300px;
+    margin-right: 15px;
+
+}
+
+button.reward_btn_reg, button.reward_btn_reset{
+    width: 150px;
+    height: 40px;
+    border: 0;
+    border: solid 1px #ccc;
+    background-color: white;
+    font-size: 20px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 7px;
+    margin-top: 15px;
+}
+
+button.reward_btn_reg:hover, button.reward_btn_reset:hover{
+    background-color: #004d9f;
+    color: white;
+    transition: all 0.2s;
+}
+
+div.reward_preview{
+    width: 350px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    margin-right: 25px;
+    padding-left: 15px;
+}
+
+h3.reward_preview_possibility{
+    background-color: #ed1971;
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+}
+
+hr.reward_preview_line{
+    border: 0.3px dotted #ebebeb;
+    width: 330px;
+    margin: 15px 0 15px;
+}
+
+select.reward_preview_selector{
+    height: 52px;
+    border: 1px solid #d8d8d8;
+    border-radius: 7px;
+    font-size: 16px;
+    letter-spacing: -.033em;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    width: 95%;
+}
+
+input.reward_preview_short_answer{
+    height: 30px;
+    border: 1px solid #d8d8d8;
+    border-radius: 7px;
+    font-size: 16px;
+    letter-spacing: -.033em;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    width: 89%;
+    background-color: #f9f9f9;
+}
+
+div.reward_preview_btn{
+    display: block;
+    text-align: center;
+    margin: 15px 0 15px -15px;
+}
+
+div.reward_preview_btn>label {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+div.reward_preview_btn>label>span {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+    margin-left: 2px;
+    top: -5px;
+}
+
+label.reward_preview_btn_necessity:hover,
+label.reward_preview_btn_update:hover,
+label.reward_preview_btn_delete:hover{
+    transition: all 0.2s;
+    background-color: #ededed;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+div.reward_option_btn{
+    text-align: center;
+    border: 1px solid #004d9f;
+    color: #003f83;
+    border-radius: 5px;
+    width: 500px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 20px;
+    padding: 5px;
+    cursor: pointer;
+}
+div.reward_option_btn:hover{
+    background-color: #004d9f;
+    color: white;
+    transition: all 0.2s;
+}
+
+input.reward_option_type1{
+    width: 215px;
+    height: 35px;
+    border: 0;
+    border: solid 1px #ccc;
+    font-size: 20px;
+    padding: 5px;
+}
+
+input.reward_option_type2{
+    width: 500px;
+    height: 35px;
+    border: 0;
+    border: solid 1px #ccc;
+    font-size: 20px;
+    padding: 5px;
+}
+
+input.reward_option_type3{
+    margin-left: 15px;
+    width: 260px;
+    height: 35px;
+    border: 0;
+    border: solid 1px #ccc;
+    font-size: 20px;
+    padding: 5px;
 }
