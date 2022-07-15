@@ -21,11 +21,11 @@ const LogoutComponent = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  
-  const logout = () =>{
+
+  const logout = () => {
     AuthenticationService.logout();
-  }
-  
+  };
+
   return (
     <div className="login_wrap">
       <p className="user_bar_login_name">기민이님 </p>
@@ -59,13 +59,15 @@ const LogoutComponent = () => {
               </MenuItem>
             ))} */}
             <MenuItem key={settings[0]} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{settings[0]}</Typography>
-              </MenuItem>
+              <Typography textAlign="center">{settings[0]}</Typography>
+            </MenuItem>
             <MenuItem key={settings[1]} onClick={handleCloseUserMenu}>
               <Typography textAlign="center">{settings[1]}</Typography>
             </MenuItem>
             <MenuItem key={settings[2]} onClick={handleCloseUserMenu}>
-              <Typography textAlign="center" onClick={logout}>{settings[2]}</Typography>
+              <Typography textAlign="center" onClick={logout}>
+                {settings[2]}
+              </Typography>
             </MenuItem>
           </Menu>
         </Box>

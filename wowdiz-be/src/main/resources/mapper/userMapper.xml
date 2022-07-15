@@ -4,13 +4,34 @@
 	<select id="selectUserWithAuthoritiesByUserEmail" parameterType="String" resultType="UserDto">
 		SELECT * FROM user where user_email=#{user_email};
 	</select>
-	
+	<!-- 회원가입 -->
 	<insert id="insertGeneralUser" parameterType="UserDto">
-		INSERT INTO user(user_email, user_pwd, user_name, user_phone,
+		INSERT INTO user(user_id, user_email, user_password, user_name, user_phone,
 		user_birthday, user_gender, user_nickname, profile_picture, 
 		create_date, modified_date, sns_type, sns_id, auth, enabled)
-		VALUES(#{user_email}, #{user_pwd}, #{user_name}, #{user_phone},
+		VALUES(#{user_id}, #{user_email}, #{user_password}, #{user_name}, #{user_phone},
 		#{user_birthday}, #{user_gender}, #{user_nickname}, #{profile_picture}, 
 		now(), #{modified_date}, #{sns_type}, #{sns_id}, #{auth}, #{enabled})
 	</insert>
+	<!-- 이메일 중복 확인 -->
+	<select id="duplicateSelect" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM user WHERE user_email=#{user_eamil}
+	</select>
+	<!-- 인증 이메일 아이디 확인 -->
+	<select id="authenticationSelect" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM authentication WHERE authentication_email=#{user_email}
+	</select>
+	<!-- 인증이메일 테이블에 등록 -->
+	<insert id="authenticationInsert" parameterType="AuthenticationDto" >
+		INSERT INTO authentication (authentication_id, authentication_email, authentication_key, create_date, authentication_enabled)
+		VALUES (#{authentication_id}, #{authentication_email},#{authentication_key},now(),#{authentication_enabled}) 	
+	</insert>
+	<!-- 인증키 재요청 -->
+	<update id="authenticationUpdate" parameterType="AuthenticationDto">
+		UPDATE authentication SET authentication_key=#{authentication_key}, create_date=now() WHERE authentication_email=#{authentication_email};
+	</update>
+	<!-- 인증키 확인 -->
+	<select id="authenticationKeySelect" parameterType="String" resultType="String">
+		SELECT authentication_key FROM authentication WHERE authentication_email=#{user_email}
+	</select>
 </mapper>
