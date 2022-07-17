@@ -1,40 +1,108 @@
-import React from "react";
+import React, { useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
 import "../../../style/qna.css";
 
-const QNA = () => {
+const QNA = ({ history }) => {
+  const [checkbutton, setCheckbutton] = useState([]);
+  const [num, setNum] = useState("");
+  const phoneRef = useRef();
+
+ const SPRING_URL = "http://localhost:9150/";
+ const pagelistUrl = SPRING_URL + "supportboard/qna";
+
+  const changeHandle = (checked, id) => {
+    if (checked) {
+      setCheckbutton([...checkbutton, id]);
+      /* console.log("체크");*/
+    } else {
+      setCheckbutton(checkbutton.filter((button) => button !== id));
+      /* console.log("체크");*/
+    }
+  };
+  const isAllChecked = checkbutton.length === 1;
+  const disabled = !isAllChecked;
+
+  // 휴대폰 번호 입력 함수
+  const handlePhone = (e) => {
+    const value = phoneRef.current.value.replace(/\D+/g, "");
+    const numberLength = 11;
+
+    let result;
+    result = "";
+
+    for (let i = 0; i < value.length && i < numberLength; i++) {
+      switch (i) {
+        case 3:
+          result += "-";
+          break;
+        case 7:
+          result += "-";
+          break;
+
+        default:
+          break;
+      }
+
+      result += value[i];
+    }
+
+    phoneRef.current.value = result;
+
+    setNum(e.target.value);
+  };
+
   return (
     <div className="container">
       <div className="container_header">
-        궁금한 점/의견을 남겨주시면 빠른 시일 내에 답변 드리겠습니다.
+        궁금한 점/의견을 남겨주시면 빠른 시일 내에 이메일로 답변 드리겠습니다.
       </div>
-      <form className="asas">
-        <label for="user_name">이름</label>
-        <input
-          type="text"
-          id="user_name"
-          required="required"
-          className="form-control"
-          placeholder="이름을 입력하세요."
-        />
+      <form className="qna_form" action={pagelistUrl} method="post">
         <div className="warp">
-          <div className="wa">
+          <div className="qna_type_warp">
+            <p style={{ margin: "0px 0px 8px" }}>문의유형</p>
+            <select className="qna_type" name="inquiry_type">
+              <option value="001">일반문의</option>
+              <option value="002">리워드문의</option>
+              <option value="003">배송문의</option>
+              <option value="004">결제문의</option>
+            </select>
+          </div>
+          <div className="user_name_warp">
+            <label for="user_name">이름</label>
+            <input
+              type="text"
+              id="user_name"
+              name="user_name"
+              required="required"
+              className="form-control"
+              placeholder="이름을 입력하세요."
+            />
+          </div>
+        </div>
+        <div className="warp">
+          <div className="mail_warp">
             <label for="mail">이메일</label>
             <input
               type="text"
               id="mail"
+              name="user_email"
               required="required"
               className="form-control"
-              placeholder="이메일"
+              placeholder="이메일을 입력해주세요."
             />
           </div>
-          <div className="was">
+          <div className="phone_warp">
             <label for="phone">휴대폰 번호</label>
             <input
-              type="text"
+              type="tel"
               id="phone"
+              name="user_phone"
               required="required"
               className="form-control"
-              placeholder="'-'없이 숫자만 입력해주세요."
+              value={num}
+              ref={phoneRef}
+              onChange={handlePhone}
+              placeholder="휴대폰 번호를 입력해주세요."
             />
           </div>
         </div>
@@ -42,6 +110,7 @@ const QNA = () => {
         <input
           type="text"
           id="title"
+          name="inquiry_title"
           className="form-control"
           required="required"
           placeholder="제목을 입력해 주세요"
@@ -49,7 +118,7 @@ const QNA = () => {
         <div style={{ position: "relative" }}>
           <label for="content">문의 내용</label>
           <textarea
-            name="content"
+            name="inquiry_content"
             id="content"
             required="required"
             className="form-control"
@@ -57,13 +126,13 @@ const QNA = () => {
           />
         </div>
 
-        <label for="file">파일 첨부하기 (선택)</label>
+        {/* <label for="file">파일 첨부하기 (선택)</label>
         <div className="file_form">
           <label className="file_label">
             <input type="file" id="file" className="file_input" />
             <span className="file_name">파일업로드</span>
           </label>
-        </div>
+        </div> */}
         <div className="consent_container">
           <label for="qna_consent" className="consent_wrap">
             <input
@@ -71,6 +140,10 @@ const QNA = () => {
               name="qna_consent"
               id="qna_consent"
               class="form-checkbox"
+              onChange={(e) => {
+                changeHandle(e.currentTarget.checked, "check");
+              }}
+              checked={checkbutton.includes("check") ? true : false}
             ></input>
             &nbsp;개인정보 수집·이용에 동의
           </label>
@@ -79,11 +152,27 @@ const QNA = () => {
           </div>
         </div>
         <div className="qna_btn">
-          <button type="submit" className="btn_qna">
-            제출
+          <button
+            type="submit"
+            className="btn_qna"
+            disabled={disabled}
+            style={
+              disabled
+                ? { backgroundColor: "#acd4ff", cursor: "default" }
+                : { backgroundColor: "#9ac7f8" }
+            }
+          >
+            제출하기
           </button>
         </div>
       </form>
+      <div>
+        <NavLink to="/supportboard/qnalist">
+          <button type="button" className="admin_button">
+            QNA리스트
+          </button>
+        </NavLink>
+      </div>
     </div>
   );
 };

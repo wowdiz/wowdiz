@@ -54,8 +54,8 @@ const LogoutComponent = () => {
               </MenuItem>
             ))} */}
             <MenuItem key={settings[0]} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{settings[0]}</Typography>
-              </MenuItem>
+              <Typography textAlign="center">{settings[0]}</Typography>
+            </MenuItem>
             <MenuItem key={settings[1]} onClick={handleCloseUserMenu}>
               <Typography textAlign="center">{settings[1]}</Typography>
             </MenuItem>
