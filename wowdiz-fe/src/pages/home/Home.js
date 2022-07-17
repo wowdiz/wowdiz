@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
 import React from "react";
-import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper"; // 추가
 import "swiper/css"; //basic
@@ -36,10 +35,6 @@ import CycleImage from "../../components/main/CycleImage";
 SwiperCore.use([Navigation, Pagination, Autoplay]); //
 
 const Home = () => {
-  axios.get("http://localhost:9150").then(function (response) {
-    console.log(response);
-  });
-
   const image1 = back_image;
 
   const cycleImage = [

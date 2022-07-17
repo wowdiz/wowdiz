@@ -47,6 +47,7 @@ public class TokenProvider implements InitializingBean {
 	
 	@Override
 	public void afterPropertiesSet() {
+		logger.debug(secretKey);
 		byte[] keyBytes = Decoders.BASE64.decode(secretKey);
 		this.key = Keys.hmacShaKeyFor(keyBytes);
 	}
