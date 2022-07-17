@@ -36,12 +36,6 @@ import CycleImage from "../../components/main/CycleImage";
 SwiperCore.use([Navigation, Pagination, Autoplay]); //
 
 const Home = () => {
-
-  axios.get("http://localhost:9150").then(function (response) {
-    console.log(response);
-
-  });
-
   const image1 = back_image;
 
   const cycleImage = [
