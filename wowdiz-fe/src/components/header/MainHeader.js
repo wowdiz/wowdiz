@@ -5,13 +5,14 @@ import AuthenticationService from "../../Service/AuthenticationService";
 import "../../style/header.css";
 import LogoutComponent from "./LogoutComponent";
 import LoginComponent from "./LoginComponent";
+import UserService from "../../service/UserService";
 
 // 최초 작업자: 이광호
 // 2022-06-30
 // Header 작업
 const Header = () => {
-  const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
-  console.log(isUserLoggedIn);
+  const isLoggedIn = UserService.isLoggedIn();
+  console.log(isLoggedIn);
 
   return (
     <div className="header_wrap">
@@ -64,7 +65,8 @@ const Header = () => {
         </div>
         {/* 유저 로그인 회원가입 버튼 */}
         {/* 로그인 전에는 LoginComponent , 로그인후에는 LogoutComponent로 바껴야함 */}
-        {isUserLoggedIn ? <LogoutComponent /> : <LoginComponent />}
+
+        {isLoggedIn ? <LogoutComponent /> : <LoginComponent />}
 
         {/* <LogoutComponent /> */}
         {/* <span className="user_bar">

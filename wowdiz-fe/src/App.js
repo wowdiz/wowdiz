@@ -27,6 +27,7 @@ import Event from "./pages/support/event/Event";
 import FAQ from "./pages/support/faq/FAQ";
 import Test from "./pages/user/register/AddressApi";
 import RegisterForm from "./pages/user/register/RegisterForm";
+import FundingReward from "./pages/funding/pay/FundingReward";
 import QNAList from "./pages/support/qna/QNAList";
 import QNADetail from "./pages/support/qna/QNADetail";
 import QNAAnswer from "./pages/support/qna/QNAAnswer";
@@ -45,13 +46,14 @@ function App() {
 
         {/*펀딩페이지*/}
         <Route path="/funding" element={<FundingList />} />
-        <Route path="/fundingdetail" element={<FundingDetail />}>
-          <Route path="/fundingdetail" element={<DetailMain />} />
-          <Route path="/fundingdetail/news" element={<DetailNews />} />
-          <Route path="/fundingdetail/comm" element={<DetailCommunity />} />
-          <Route path="/fundingdetail/info" element={<DetailInfo />} />
+        <Route path="/funding/detail" element={<FundingDetail />}>
+          <Route path="/funding/detail" element={<DetailMain />} />
+          <Route path="/funding/detail/news" element={<DetailNews />} />
+          <Route path="/funding/detail/comm" element={<DetailCommunity />} />
+          <Route path="/funding/detail/info" element={<DetailInfo />} />
         </Route>
-
+        {/* 펀딩 결제 */}
+        <Route path="/funding/purchase" element={<FundingReward />}></Route>
         <Route path="/mypage" element={<MyPage />} />
         {/*고객센터페이지*/}
         <Route path="/supportboard" element={<SupportBoard />}>

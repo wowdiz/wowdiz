@@ -6,8 +6,8 @@ import kakao from "../../../assets/images/register/kakao.png";
 import naver from "../../../assets/images/register/naver.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import AuthenticationService from "../../../Service/AuthenticationService";
+import UserService from "../../../service/UserService";
+import AxiosService from "../../../service/AxiosService";
 
 // 최초 작업자: 이기민
 // 2022-07-06
@@ -16,15 +16,24 @@ const Login = () => {
   const navigation = useNavigate();
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    AuthenticationService.executeJwtAuthenticationService(data).then((res) => {
-      const token = res.data.token;
-      if (token) {
-        localStorage.setItem("jwtToken", token);
-        navigation("/   ");
-      }
-    });
+  const onSubmit = (userData) => {
+    //    console.log(UserService.login(userData));
+
+    //맨 처음에 값이 제대로 반영이 안되는 이유는
+    //리액트는 렌더링될 때,  이미 모든 값을 읽은 후라서 그런다.
+    //로그인눌러서 if문 체크해도 이미 false값을 받아놓은 상태이다.
+    UserService.login(userData);
+    console.log("isLoggedIn()", isLoggedIn());
+
+    if (isLoggedIn) {
+      navigation("/");
+    } else {
+      alert("아이디 비밀번호를 확인해주세요.");
+    }
+  };
+
+  const isLoggedIn = () => {
+    return UserService.isLoggedIn();
   };
 
   //   <form onSubmit={handleSubmit(onSubmit)}>

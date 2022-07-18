@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,16 +37,19 @@ public class AuthController {
 	public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto){
 		UsernamePasswordAuthenticationToken authenticationToken = 
 				new UsernamePasswordAuthenticationToken(loginDto.getUser_email(), loginDto.getUser_pwd());
-
+		try {
 		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 			
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		String jwt = tokenProvider.createToken(authentication);
-
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
-		
 		return new ResponseEntity<>(new TokenDto(jwt), httpHeaders, HttpStatus.OK);
+		} catch(UsernameNotFoundException e) {
+			e.getStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 }

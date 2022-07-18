@@ -8,6 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import user from "../../assets/images/user/default_image.jpg";
 import AuthenticationService from "../../Service/AuthenticationService";
+import UserService from "../../service/UserService";
 
 const settings = ["마이페이지", "내가 펀딩한 목록", "로그아웃"];
 
@@ -21,11 +22,6 @@ const LogoutComponent = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  const logout = () => {
-    AuthenticationService.logout();
-  };
-
   return (
     <div className="login_wrap">
       <p className="user_bar_login_name">기민이님 </p>
@@ -65,7 +61,7 @@ const LogoutComponent = () => {
               <Typography textAlign="center">{settings[1]}</Typography>
             </MenuItem>
             <MenuItem key={settings[2]} onClick={handleCloseUserMenu}>
-              <Typography textAlign="center" onClick={logout}>
+              <Typography textAlign="center" onClick={UserService.logout}>
                 {settings[2]}
               </Typography>
             </MenuItem>
