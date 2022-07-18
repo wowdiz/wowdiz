@@ -6,6 +6,8 @@ const Notice = () => {
     <div>
       <div>
         <SupportBoard />
+        <SupportBoard />
+        <SupportBoard />
       </div>
     </div>
   );
