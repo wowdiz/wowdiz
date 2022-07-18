@@ -1,0 +1,23 @@
+.detail_head{
+    width: auto;
+}
+p.detail_title{
+    font-size: 22px;
+    padding: 20px;
+    margin: 0;
+}
+.detail_head{
+    padding: 20px;
+}
+.detail_writer{
+    font-size: 15px;
+    border-bottom: 1px solid black;
+    line-height: 30px;
+    padding: 20px;
+}
+.detail_content{
+    width: auto;
+    height: 300px;
+    border: 1px solid black;
+    margin-top: 30px;
+}

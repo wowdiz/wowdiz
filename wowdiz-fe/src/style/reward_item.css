@@ -1,0 +1,47 @@
+li {
+    list-style-type: none;
+}
+
+.purchase_wrap {
+    width: 860px;
+    margin: 0 auto;
+
+}
+
+.reward_box {
+    margin-top: 15px;
+    background-color: #f9f9f9;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    /* overflow: hidden;     */
+}
+
+.reward_box > .left {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.reward_box > .right {
+    /* float: left; */
+    width: 700px;
+
+}
+
+
+/* float를 시켰을 때 부모가 height 값을 잃어버리는데
+부모의 height값을 지켜준다.
+*/
+.reward_box::after{
+    content:'';
+    display:block;
+    clear:left;
+}
+
+.reward_title {
+    font-size: 12px;
+    margin: 0;
+}
+
