@@ -1,11 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo/logo.png";
-import AuthenticationService from "../../service/AuthenticationService";
+import AuthenticationService from "../../Service/AuthenticationService";
 import "../../style/header.css";
-import LogoutComponent from './LogoutComponent';
-import LoginComponent from './LoginComponent';
-
+import LogoutComponent from "./LogoutComponent";
+import LoginComponent from "./LoginComponent";
 
 // 최초 작업자: 이광호
 // 2022-06-30
@@ -65,7 +64,7 @@ const Header = () => {
         </div>
         {/* 유저 로그인 회원가입 버튼 */}
         {/* 로그인 전에는 LoginComponent , 로그인후에는 LogoutComponent로 바껴야함 */}
-        { isUserLoggedIn ? <LogoutComponent />:<LoginComponent />}
+        {isUserLoggedIn ? <LogoutComponent /> : <LoginComponent />}
 
         {/* <LogoutComponent /> */}
         {/* <span className="user_bar">

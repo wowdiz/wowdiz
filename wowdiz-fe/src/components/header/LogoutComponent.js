@@ -7,7 +7,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import user from "../../assets/images/user/default_image.jpg";
-import AuthenticationService from "../../service/AuthenticationService";
+import AuthenticationService from "../../Service/AuthenticationService";
 
 const settings = ["마이페이지", "내가 펀딩한 목록", "로그아웃"];
 

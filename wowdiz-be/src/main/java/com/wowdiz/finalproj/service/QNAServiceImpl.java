@@ -33,4 +33,14 @@ public class QNAServiceImpl implements QNAService {
 	public QNADto qnadetail(Integer inquiry_id) {
 		return qnaMapper.qnadetail(inquiry_id);
 	}
+	
+	@Override
+	public QNADto qnaanswer(Integer inquiry_id) {
+		return qnaMapper.qnaanswer(inquiry_id);
+	}
+	
+	@Override
+	public void qnadelete(Integer inquiry_id){
+		qnaMapper.qnadelete(inquiry_id);
+	}
 }

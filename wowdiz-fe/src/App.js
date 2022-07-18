@@ -6,9 +6,14 @@ import Login from "./pages/user/login/Login";
 import Register from "./pages/user/register/Register";
 import FundingList from "./pages/funding/list/FundingList";
 import MyPage from "./pages/user/mypage/MyPage";
-import AdminLayout from './layout/AdminLayout';
-import { MakerOpenProject } from './pages/maker';
-import {AdminHome, AdminMember, AdminFunding, AdminFundingDetail} from './pages/admin';
+import AdminLayout from "./layout/AdminLayout";
+import { MakerOpenProject } from "./pages/maker";
+import {
+  AdminHome,
+  AdminMember,
+  AdminFunding,
+  AdminFundingDetail,
+} from "./pages/admin";
 import "./style/reset.css";
 import SupportBoard from "./pages/support/supportboard/SupportBoard";
 import FundingDetail from "./pages/funding/detail/FundingDetail";
@@ -24,13 +29,13 @@ import Test from "./pages/user/register/AddressApi";
 import RegisterForm from "./pages/user/register/RegisterForm";
 import QNAList from "./pages/support/qna/QNAList";
 import QNADetail from "./pages/support/qna/QNADetail";
+import QNAAnswer from "./pages/support/qna/QNAAnswer";
+import FAQWrite from "./pages/support/faq/FAQWrite";
 
 // 최초 작업자: 권능
 // 2022-06-29
 // 리액트 프로젝트 구조 및 레이아웃 구조
 function App() {
-
-
   return (
     <Routes>
       {/* 메인레이아웃 */}
@@ -53,10 +58,16 @@ function App() {
           <Route path="/supportboard" element={<Notice />} />
           <Route path="/supportboard/event" element={<Event />} />
           <Route path="/supportboard/faq" element={<FAQ />} />
+          <Route path="/supportboard/faqwrite" element={<FAQWrite />} />
           <Route path="/supportboard/qna" element={<QNA />} />
           <Route path="/supportboard/qnalist" element={<QNAList />} />
           <Route
-            path="/supportboard/qnadetail/:inquiry_id" element={<QNADetail />}
+            path="/supportboard/qnadetail/:inquiry_id"
+            element={<QNADetail />}
+          />
+          <Route
+            path="/supportboard/qnaanswer/:inquiry_id"
+            element={<QNAAnswer />}
           />
         </Route>
         {/* 메이커 */}
@@ -74,8 +85,6 @@ function App() {
 
       {/* 회원가입 */}
       <Route path="/register" element={<Register />} />
-
-      
 
       {/* 운영자레이아웃 */}
       <Route path="/admin" element={<AdminLayout />}>

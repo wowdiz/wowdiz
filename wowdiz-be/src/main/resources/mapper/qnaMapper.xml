@@ -16,5 +16,16 @@
 		select inquiry_id, user_name, user_email, user_phone, inquiry_title, inquiry_content, inquiry_type, write_date, answer_date, inquiry_status
 		from inquiry where inquiry_id=#{inquiry_id}
 	</select>
+	
+	<select id="qnaanswer" parameterType="Integer" resultType="QNADto">
+		select inquiry_id, user_name, user_email, user_phone, inquiry_title, inquiry_content
+		from inquiry where inquiry_id=#{inquiry_id}
+	</select>
+	
+	<delete id="qnadelete">
+		delete from inquiry where inquiry_id=#{inquiry_id}
+	</delete>
+	
+	
 		
 </mapper>

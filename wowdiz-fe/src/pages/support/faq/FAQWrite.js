@@ -5,7 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const FAQ = () => {
+const FAQWrite = () => {
   return (
     <div>
       <Accordion>
@@ -51,4 +51,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default FAQWrite;

@@ -33,18 +33,26 @@ public class QNAController {
 	}
 	
 	@PostMapping("/qna")
-	public void qnacreate(QNADto dto) {
-		
+	public void qnacreate(QNADto dto) {	
 		qnaService.qnacreate(dto);
-
 	}
+	
 	@GetMapping("/qnadetail")
-	public QNADto qnadetail(@RequestParam Integer inquriy_id) {
-		System.out.println(inquriy_id);
-//		System.out.println(qnaService.qnadetail(Integer.parseInt(inquriy_id)));
-		return qnaService.qnadetail(inquriy_id);
-		
+	public QNADto qnadetail(@RequestParam Integer inquiry_id) {
+//		System.out.println(inquiry_id);
+		return qnaService.qnadetail(inquiry_id);
 	}
 	
+	@GetMapping("/qnaanswer")
+	public QNADto qnaanswer(@RequestParam Integer inquiry_id) {
+		System.out.println("i"+inquiry_id);
+		return qnaService.qnaanswer(inquiry_id);
+	}
 	
+	@GetMapping("/qnadelete")
+	public void qnadetele(Integer inquiry_id) {
+		System.out.println(inquiry_id);
+		qnaService.qnadelete(inquiry_id);
+	}
+
 }
