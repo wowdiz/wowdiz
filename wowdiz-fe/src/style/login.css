@@ -8,6 +8,7 @@
     width: 120px;
     margin-left: 200px;
     margin-top: 10px;
+    display: block;
   }
   /* login main full layout */
   .login_main_form{
