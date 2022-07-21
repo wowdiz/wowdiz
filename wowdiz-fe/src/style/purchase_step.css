@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+.purchase_step{
+    margin: 50px 0;
+}
+
 .purchase_step > ol {
     width: 100%;
     display: flex;

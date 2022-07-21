@@ -26,7 +26,7 @@ import Event from "./pages/support/event/Event";
 import FAQ from "./pages/support/faq/FAQ";
 import Test from "./pages/user/register/AddressApi";
 import RegisterForm from "./pages/user/register/RegisterForm";
-import FundingReward from "./pages/funding/pay/FundingReward";
+import FundingReward from "./pages/funding/purchase/FundingReward";
 import QNAList from "./pages/support/qna/QNAList";
 import QNADetail from "./pages/support/qna/QNADetail";
 

@@ -3,12 +3,14 @@ li {
 }
 
 .purchase_wrap {
-    width: 860px;
+    width: 820px;
     margin: 0 auto;
 
 }
 
 .reward_box {
+    position: relative;
+    padding: 20px;
     margin-top: 15px;
     background-color: #f9f9f9;
     width: 100%;
@@ -20,16 +22,19 @@ li {
 
 .reward_box > .left {
     width: 100px;
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
 }
-
+.reward_box > .left > input{
+    position: absolute;
+    left: 50px;
+    top: 50px;
+}
 .reward_box > .right {
     /* float: left; */
-    width: 700px;
+    width: 100%;
 
 }
-
 
 /* float를 시켰을 때 부모가 height 값을 잃어버리는데
 부모의 height값을 지켜준다.
@@ -40,8 +45,60 @@ li {
     clear:left;
 }
 
-.reward_title {
-    font-size: 12px;
-    margin: 0;
+div.reward_detail {
+    margin-top: 20px;
 }
 
+p.reward_price{
+    margin: 0 0 15px 0;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+p.reward_title {
+    margin: 0 0 2px 0;
+    font-size: 14px;
+}
+
+p.reward_info {
+    margin: 0;
+    font-size: 12px;
+}
+
+div.reward_amount{
+    display: inline-block;
+    width: 120px;
+}
+
+div.reward_amount p{
+    margin: 0;
+    font-size: 12px;
+}
+
+div.reward_option{
+    display: inline-block;
+    width: 550px;
+}
+
+div.reward_option p{
+    margin: 0;
+    font-size: 12px;
+}
+
+input.reward_qty{
+    width: 50px;
+    text-align: center;
+}
+
+input.reward_option{
+    width: 100%;
+}
+
+
+select.reward_option_detail{
+    width: 100%;
+}
+
+input.reward_option_detail{
+    width: 100%;
+}

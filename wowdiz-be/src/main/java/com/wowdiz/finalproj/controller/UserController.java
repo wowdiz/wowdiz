@@ -58,7 +58,7 @@ public class UserController {
       if(user_email == "") {
          return ResponseEntity.badRequest().body("email empty");
       } else if(confirmCheck == 1) {
-         return ResponseEntity.ok("cofirm");
+         return ResponseEntity.ok("cofirm");	
       } else {
          Boolean authenticationCreate =userService.authenticationCreate(map);
          if(authenticationCreate==true) {
