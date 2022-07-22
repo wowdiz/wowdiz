@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo/logo.png";
-import AuthenticationService from "../../Service/AuthenticationService";
 import "../../style/header.css";
 import LogoutComponent from "./LogoutComponent";
 import LoginComponent from "./LoginComponent";

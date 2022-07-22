@@ -32,6 +32,7 @@ import QNAList from "./pages/support/qna/QNAList";
 import QNADetail from "./pages/support/qna/QNADetail";
 import QNAAnswer from "./pages/support/qna/QNAAnswer";
 import FAQWrite from "./pages/support/faq/FAQWrite";
+import FAQUpdate from "./pages/support/faq/FAQUpdate";
 
 // 최초 작업자: 권능
 // 2022-06-29
@@ -60,9 +61,18 @@ function App() {
           <Route path="/supportboard" element={<Notice />} />
           <Route path="/supportboard/event" element={<Event />} />
           <Route path="/supportboard/faq" element={<FAQ />} />
+          <Route path="/supportboard/faqdetail/:faq_id" element={<FAQ />} />
+          <Route path="/supportboard/faqdelete/:faq_id" element={<FAQ />} />
+          <Route
+            path="/supportboard/faqupdate/:faq_id"
+            element={<FAQUpdate />}
+          />
           <Route path="/supportboard/faqwrite" element={<FAQWrite />} />
           <Route path="/supportboard/qna" element={<QNA />} />
-          <Route path="/supportboard/qnalist" element={<QNAList />} />
+          <Route
+            path="/supportboard/qnapage/:currentPage"
+            element={<QNAList />}
+          />
           <Route
             path="/supportboard/qnadetail/:inquiry_id"
             element={<QNADetail />}

@@ -1,28 +1,26 @@
-import axios from "axios";
+import AxiosService from "../../../service/AxiosService";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../../style/qna_detail.css";
 
 const QNADetail = () => {
   const { inquiry_id } = useParams();
+  const { inquiry_status } = useParams();
   const [detail, setDetail] = useState([]);
   const navi = useNavigate();
 
-  const SPRING_URL = "http://localhost:9150/";
-  let detailtUrl =
-    SPRING_URL + "supportboard/qnadetail?inquiry_id=" + inquiry_id;
-  let qnadeleteUrl =
-    SPRING_URL + "supportboard/qnadelete?inquiry_id=" + inquiry_id;
+  let detailtUrl = "/supportboard/qnadetail?inquiry_id=" + inquiry_id;
+  let qnadeleteUrl = "/supportboard/qnadelete?inquiry_id=" + inquiry_id;
 
   const getData = () => {
-    axios.get(detailtUrl, inquiry_id).then((res) => {
+    AxiosService.get(detailtUrl, inquiry_id).then((res) => {
       setDetail(res.data);
       console.log("res.datai1", res.data);
     });
   };
 
   const getDelete = () => {
-    axios.get(qnadeleteUrl, inquiry_id).then((res) => {
+    AxiosService.get(qnadeleteUrl, inquiry_id).then((res) => {
       console.log(res);
       alert("삭제되었습니다.");
       window.location.href = "/supportboard/qnalist";

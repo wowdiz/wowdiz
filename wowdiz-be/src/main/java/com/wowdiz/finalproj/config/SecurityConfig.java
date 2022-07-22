@@ -78,7 +78,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/signup").permitAll()
                 .antMatchers("/api/duplicateCheck").permitAll()
                 .antMatchers("/supportboard/*").permitAll()
-                .antMatchers("/supportboard/qnadelete").permitAll()
                 .antMatchers("/purchase/getRewards").permitAll()
                 .anyRequest().authenticated()
 

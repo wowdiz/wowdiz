@@ -172,7 +172,7 @@ const QNA = ({ history }) => {
         </div>
       </form>
       <div>
-        <NavLink to="/supportboard/qnalist">
+        <NavLink to="/supportboard/qnapage">
           <button type="button" className="admin_button">
             QNA리스트
           </button>
