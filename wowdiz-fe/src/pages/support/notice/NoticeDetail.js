@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import SupportBoard from "../../../components/support/SupportBoard";
+import SupportNotice from "../../../components/support/SupportNotice";
 import AxiosService from "../../../service/AxiosService";
 
-const Notice = () => {
+const NoticeDetail = () => {
 
   const [data,setData] =useState([])
 
@@ -21,7 +21,7 @@ const Notice = () => {
       <div>
       {data &&
         data.map((data, idx) => (
-            <SupportBoard  key={idx} data={data} />
+            <SupportNotice  key={idx} data={data} />
       ))}
 
       </div>
@@ -29,4 +29,4 @@ const Notice = () => {
   );
 };
 
-export default Notice;
+export default NoticeDetail;
