@@ -24,7 +24,6 @@
   margin: 0 auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  border-bottom: 1px solid black;
 }
 
 .notice_important {
@@ -64,6 +63,5 @@
 }
 
 .notice_info {
-  width: auto;
-  height: auto;
+  margin-left: 20px;
 }
