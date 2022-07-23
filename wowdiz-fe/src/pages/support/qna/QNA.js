@@ -7,8 +7,8 @@ const QNA = ({ history }) => {
   const [num, setNum] = useState("");
   const phoneRef = useRef();
 
- const SPRING_URL = "http://localhost:9150/";
- const pagelistUrl = SPRING_URL + "supportboard/qna";
+  const SPRING_URL = "http://localhost:9150/";
+  const pagelistUrl = SPRING_URL + "supportboard/qna";
 
   const changeHandle = (checked, id) => {
     if (checked) {
@@ -50,6 +50,10 @@ const QNA = ({ history }) => {
 
     setNum(e.target.value);
   };
+  const qnasubmit = () => {
+    alert("제출 되었습니다.");
+    document.location.href = "http://localhost:4200/supportboard/qna";
+  };
 
   return (
     <div className="container">
@@ -61,10 +65,10 @@ const QNA = ({ history }) => {
           <div className="qna_type_warp">
             <p style={{ margin: "0px 0px 8px" }}>문의유형</p>
             <select className="qna_type" name="inquiry_type">
-              <option value="001">일반문의</option>
-              <option value="002">리워드문의</option>
-              <option value="003">배송문의</option>
-              <option value="004">결제문의</option>
+              <option value="일반문의">일반문의</option>
+              <option value="리워드문의">리워드문의</option>
+              <option value="배송문의">배송문의</option>
+              <option value="결제문의">결제문의</option>
             </select>
           </div>
           <div className="user_name_warp">
@@ -126,13 +130,13 @@ const QNA = ({ history }) => {
           />
         </div>
 
-        {/* <label for="file">파일 첨부하기 (선택)</label>
+        <label for="file">파일 첨부하기 (선택)</label>
         <div className="file_form">
           <label className="file_label">
             <input type="file" id="file" className="file_input" />
             <span className="file_name">파일업로드</span>
           </label>
-        </div> */}
+        </div>
         <div className="consent_container">
           <label for="qna_consent" className="consent_wrap">
             <input
@@ -161,13 +165,14 @@ const QNA = ({ history }) => {
                 ? { backgroundColor: "#acd4ff", cursor: "default" }
                 : { backgroundColor: "#9ac7f8" }
             }
+            onClick={qnasubmit}
           >
             제출하기
           </button>
         </div>
       </form>
       <div>
-        <NavLink to="/supportboard/qnalist">
+        <NavLink to="/supportboard/qnapage/1">
           <button type="button" className="admin_button">
             QNA리스트
           </button>
