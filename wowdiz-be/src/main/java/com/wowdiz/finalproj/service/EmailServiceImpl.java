@@ -1,6 +1,9 @@
 package com.wowdiz.finalproj.service;
 
+import java.util.Map;
+
 import javax.mail.Message.RecipientType;
+import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -63,6 +66,34 @@ public class EmailServiceImpl implements EmailService {
             throw new IllegalArgumentException();
         }
         
+        return authenticationKey;
+    }
+    
+    public MimeMessage faqAnswerMessage(Map<String, String> map) throws Exception {
+		String user_email = map.get("answer_user_email");
+		String user_name = map.get("answer_user_name");
+		String title = map.get("title");
+		String content = map.get("content");
+    	MimeMessage  faqMessage = emailSender.createMimeMessage();
+    	faqMessage.addRecipients(RecipientType.TO, user_email);
+    	faqMessage.setSubject(title);//제목
+    	String msgg=content;
+    	 
+    	faqMessage.setText(msgg, "utf-8", "html");//내용
+    	faqMessage.setFrom(new InternetAddress("bitgwang1215@gmail.com","WOWDIZ"));//보내는 사람
+    	return faqMessage;
+    }
+    
+    @Override
+    public String sendFaqAnswerMessage(Map<String, String> map)throws Exception {
+        // TODO Auto-generated method stub
+        MimeMessage faqMessage = faqAnswerMessage(map);
+        try{//예외처리
+            emailSender.send(faqMessage);
+        }catch(MailException err){
+            err.printStackTrace();
+            throw new IllegalArgumentException();
+        }
         return authenticationKey;
     }
 }
