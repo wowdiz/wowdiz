@@ -30,9 +30,13 @@ import RegisterForm from "./pages/user/register/RegisterForm";
 import FundingReward from "./pages/funding/pay/FundingReward";
 import QNAList from "./pages/support/qna/QNAList";
 import QNADetail from "./pages/support/qna/QNADetail";
+
+import SnsRegister from "./pages/user/register/SnsRegister";
+
 import QNAAnswer from "./pages/support/qna/QNAAnswer";
 import FAQWrite from "./pages/support/faq/FAQWrite";
 import FAQUpdate from "./pages/support/faq/FAQUpdate";
+
 
 // 최초 작업자: 권능
 // 2022-06-29
@@ -93,6 +97,7 @@ function App() {
       {/* 회원가입 */}
       <Route path="/register" element={<RegisterForm />} />
       <Route path="/register_join" element={<Register />} />
+      <Route path="/snsregister_join" element={<SnsRegister />} />
       <Route path="/login" element={<Login />} />
 
       {/* 회원가입 */}

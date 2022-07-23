@@ -8,10 +8,9 @@ import AxiosService from "../../../service/AxiosService";
 import CustomModal from "../../../components/user/CustomModal";
 import RegisterHead from "../../../components/user/RegisterHead";
 import JoinPresenter from "../../../components/user/JoinPresenter";
-import UserService from "../../../service/UserService";
 import { useNavigate } from "react-router-dom";
 
-const RegisterTest = () => {
+const SnsRegister = () => {
   // 이용약관 체크박스
   const [allCheck, setAllCheck] = useState(false);
   const [regCheck, setRegCheck] = useState(false);
@@ -68,10 +67,11 @@ const RegisterTest = () => {
     }
   }, [regCheck, fundingCheck, userCheck]);
 
+  // 화면이동
+  const navigation = useNavigate();
   // react-hook-form 함수
   const {
     register,
-    watch,
     handleSubmit,
     getValues,
     trigger,
@@ -83,20 +83,47 @@ const RegisterTest = () => {
   const [modalContent, setModalContent] = useState();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  ///이메일 중복확인
-  const [user_emailCheck, setUser_emailCheck] = useState(null);
-  ///닉네임 중복확인
-  const [user_nicknameCheck, setUser_nicknameCheck] = useState(null);
-  const comfrimUrl = "http://localhost:9150/" + "api/emailConfirm";
-  //이메일 인증번호
-  const [emailAuth, setEmailAuth] = useState(false);
-  //입력된 이메일
+  const snsInfo = localStorage.getItem("snsToken").split(",");
+  const [userInfo, setUserInfo] = useState(snsInfo);
+
+  // 카카오
+  const { Kakao } = window;
+  // 입력된 이메일
   const data_email = getValues("user_email");
   const [disable, setDisable] = React.useState(false);
+  // 이메일 중복확인
+  const [user_emailCheck, setUser_emailCheck] = useState(null);
 
+  // 이메일 중복확인 URL
+  const comfrimUrl = "http://localhost:9150/" + "api/emailConfirm";
+  // 이메일 인증번호
+  const [emailAuth, setEmailAuth] = useState(false);
+
+  // 입력된 이메일 값
   const email_confirm = document.getElementById("email_confirm");
+  // 닉네임 중복확인
+  const [user_nicknameCheck, setUser_nicknameCheck] = useState(null);
 
-  //중복이메일 체크 및 이메일 인증 메세지 보내기
+  //  닉네임 확인
+  const nicknameCheck = () => {
+    const nickname = getValues("user_nickname");
+    AxiosService.post("/api/nicknameCheck", { user_nickname: nickname }).then(
+      (res) => {
+        if (res.data === false) {
+          setUser_nicknameCheck(false);
+          handleOpen();
+          setModalTitle("닉네임 중복확인");
+          setModalContent("중복된 닉네임입니다.");
+        } else {
+          setUser_nicknameCheck(true);
+          handleOpen();
+          setModalTitle("닉네임 중복확인");
+          setModalContent("사용가능한 닉네임입니다.");
+        }
+      }
+    );
+  };
+
   const email_check_button = (e) => {
     //이메일 유효성 체크
     const emailExp =
@@ -171,64 +198,51 @@ const RegisterTest = () => {
       });
   };
 
-  // 비밀번호 확인
-  const user_password = useRef();
-  user_password.current = watch("user_password");
-
-  //  닉네임 확인
-  const nicknameCheck = () => {
-    const nickname = getValues("user_nickname");
-    AxiosService.post("/api/nicknameCheck", { user_nickname: nickname }).then(
-      (res) => {
-        if (res.data == false) {
-          setUser_nicknameCheck(false);
-          handleOpen();
-          setModalTitle("아이디 중복확인");
-          setModalContent("중복된 아이디입니다.");
-        } else {
-          setUser_nicknameCheck(true);
-          handleOpen();
-          setModalTitle("아이디 중복확인");
-          setModalContent("사용가능한 닉네임입니다.");
-        }
-      }
-    );
-  };
-  //로그인 체크
-  const isLoggedIn = () => {
-    return UserService.isLoggedIn();
-  };
-  //로그인 후 페이지 이동
-  const navigation = useNavigate();
-
   // 회원가입 완료 버튼
   const onSubmit = (data) => {
     if (disable === true && user_nicknameCheck === true && allCheck === true) {
       console.log(data);
-      const url = "api/signup";
-      AxiosService.post(url, data, {
-        user_recommend: getValues("user_recommend"),
-      }).then((res) => {
+      const url = "api/sns/signup";
+      AxiosService.post(url, data).then((res) => {
+        console.log(res);
         if (res.data === "pass") {
           handleOpen();
           setModalTitle("회원가입");
           setModalContent("회원가입완료");
-          console.log(data.user_email);
-          console.log(data.user_password);
-          UserService.login({
-            user_email: data.user_email,
-            user_pwd: data.user_password,
+          Kakao.Auth.login({
+            success: function (authObj) {
+              console.log(authObj);
+              axios
+                .post(
+                  "http://localhost:9150" + "/api/oauth2/kakao",
+                  { access_token: authObj.access_token },
+                  { withCredentials: true }
+                )
+                .then((res) => {
+                  console.log(res.data.sns_type);
+                  if (res.data.sns_type === "kakao") {
+                    localStorage.setItem("snsToken", res.data.token);
+                    navigation("/snsregister_join");
+                  }
+                  if (res.data.sns_type.includes("kakao_user=")) {
+                    localStorage.setItem("jwtToken", res.data.token);
+                    localStorage.setItem(
+                      "authenticatedUser",
+                      res.data.sns_type.substring(11)
+                    );
+                    localStorage.removeItem("snsToken");
+                    navigation("/");
+                  }
+                })
+                .catch((error) => {
+                  console.log("login fail");
+                  console.log(error);
+                });
+            },
+            fail: function (err) {
+              alert(JSON.stringify(err));
+            },
           });
-          console.log("isLoggedIn()", isLoggedIn());
-          if (isLoggedIn) {
-            navigation("/");
-          }
-        } else if (res.data === "emailCheck") {
-          handleOpen();
-          setModalTitle("회원가입 오류");
-          setModalContent(
-            "비정상적인 이메일 인증을 감지하였습니다. 확인해주세요."
-          );
         } else if (res.data === "nicknameCheck") {
           handleOpen();
           setModalTitle("회원가입 오류");
@@ -245,10 +259,6 @@ const RegisterTest = () => {
           setModalContent("오류입니다. bitgwang1215@gmail.com 문의주세요.");
         }
       });
-    } else if (disable !== true) {
-      handleOpen();
-      setModalTitle("회원가입 오류");
-      setModalContent("이메일 인증 확인해주세요.");
     } else if (user_nicknameCheck !== true) {
       handleOpen();
       setModalTitle("회원가입 오류");
@@ -264,34 +274,17 @@ const RegisterTest = () => {
     <div className="register_page">
       <RegisterHead />
       <div className="register_page_wrap">
-        <h2> 회원가입</h2>
+        <h2>SNS 회원가입</h2>
         <p className="page-description">최소한의 정보를 받고 있습니다.</p>
         <form onSubmit={handleSubmit(onSubmit)} className="register_page_form">
-          <input type="hidden" value="snsnull" {...register("sns_id")} />
-          <label className="accountLabel">이름</label>
+          <input type="hidden" value={snsInfo[0]} {...register("sns_type")} />
+          <input type="hidden" value={snsInfo[1]} {...register("sns_id")} />
+          <input type="hidden" value={snsInfo[3]} {...register("user_name")} />
           <input
-            className="user_name"
-            placeholder="이름 입력"
-            {...register("user_name", {
-              required: "이름을 입력해주세요",
-              minLength: {
-                value: 2,
-                message: "2자 이상의 이름만 사용 가능합니다.",
-              },
-              maxLength: {
-                value: 12,
-                message: "12자 이하의 이름만 사용 가능합니다.",
-              },
-              pattern: {
-                value: /^([가-힣])|([a-zA-Z])$/,
-                message: "이름은 한글 또는 영문으로만 입력해주세요",
-              },
-              onBlur: () => {
-                trigger("user_name");
-              },
-            })}
+            type="hidden"
+            value={snsInfo[4]}
+            {...register("profile_picture")}
           />
-          {errors.user_name && <p>{errors.user_name.message}</p>}
           <label className="accountLabel">Email</label>
           <div
             className="user_email_box"
@@ -387,56 +380,11 @@ const RegisterTest = () => {
               {errors.email_confirm && errors.email_confirm.message}
             </div>
           )}
-          <label className="accountLabel">비밀번호</label>
           <input
-            id="user_password"
-            className="user_password"
-            type="password"
-            required
-            {...register("user_password", {
-              required: "비밀번호를 입력해주세요",
-              minLength: {
-                value: 6,
-                message: "6자 이상의 비밀번호만 사용 가능합니다.",
-              },
-              maxLength: {
-                value: 16,
-                message: "16자 이하의 비밀번호만 사용 가능합니다.",
-              },
-              pattern: {
-                value: /^(?=.*\d)(?=.*[a-zA-ZS]).{6,}/,
-                message: "영문, 숫자를 혼용하여 입력해주세요..",
-              },
-              onChange: () => {
-                trigger("user_password");
-              },
-              onBlur: () => {
-                trigger("user_password");
-              },
-            })}
+            type="hidden"
+            value={snsInfo[1]}
+            {...register("user_password")}
           />
-          {errors.user_password && <p>{errors.user_password.message}</p>}
-          <label className="accountLabel">비밀번호 확인</label>
-          <input
-            className="password_confirm"
-            type="password"
-            required
-            {...register("password_confirm", {
-              required: "비밀번호를 한번 더해주세요",
-              validate: (value) => value === user_password.current,
-              onChange: () => {
-                trigger("password_confirm");
-              },
-              onBlur: () => {
-                trigger("password_confirm");
-              },
-            })}
-          />
-          {errors.password_confirm && <p>{errors.password_confirm.message}</p>}
-          {errors.password_confirm &&
-            errors.password_confirm.type === "validate" && (
-              <p>비밀번호가 일치하지 않습니다.</p>
-            )}
           <label className="accountLabel">닉네임</label>
           <div
             className="user_email_box"
@@ -579,4 +527,4 @@ const RegisterTest = () => {
   );
 };
 
-export default RegisterTest;
+export default SnsRegister;
