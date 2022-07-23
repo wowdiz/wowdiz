@@ -8,10 +8,12 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
     const [necessity, setNecessity] = useState('Y');
     const [rewardOptionType, setRewardOptionType] = useState(['선택형0']);
 
-    const [subjectLengthChecker,setSubjectLengthChecker] = useState(0);
-    const [contentLengthChecker, setContentLengthChecker] = useState(0);
-    const [rewardOption, setRewardOption] = useState([]);
-    const [rewardOptionArr, setRewardOptionArr] = useState([]);
+
+  const [subjectLengthChecker, setSubjectLengthChecker] = useState(0);
+  const [contentLengthChecker, setContentLengthChecker] = useState(0);
+  const [rewardOption, setRewardOption] = useState([]);
+  const [rewardOptionArr, setRewardOptionArr] = useState([]);
+
 
     const [rewardOptionKeywordArr, setRewardOptionKeywordArr] = useState([]);
     const [rewardOptionKeyword, setRewardOptionKeyword] = useState('');
@@ -29,10 +31,11 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
         required_parcel:'', //배송필요유무
     });
 
-    const [rewardArr, setRewardArr] = useState([]);
+  const [rewardArr, setRewardArr] = useState([]);
 
-    const rewardRef = useRef([]);
-    const rewardOptionRef = useRef([]);
+  const rewardRef = useRef([]);
+  const rewardOptionRef = useRef([]);
+
 
     const handleReward = (e) => {
         setReward({
@@ -42,21 +45,21 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
         console.log('reward',reward);
     }
 
-    const handleRewardSubjectLength = (e) => {
-        setSubjectLengthChecker(e.target.value.length);
-        setReward({
-            ...reward,
-            [e.target.name] : e.target.value
-        });
-    }
+  const handleRewardSubjectLength = (e) => {
+    setSubjectLengthChecker(e.target.value.length);
+    setReward({
+      ...reward,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    const handleRewardContentLength = (e) => {
-        setContentLengthChecker(e.target.value.length);
-        setReward({
-            ...reward,
-            [e.target.name] : e.target.value
-        });
-    }
+  const handleRewardContentLength = (e) => {
+    setContentLengthChecker(e.target.value.length);
+    setReward({
+      ...reward,
+      [e.target.name]: e.target.value,
+    });
+  };
 
     const handleRadioPossibility = (e) => {
         setPossibility(e.target.value);
@@ -213,6 +216,7 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
                                                 setRewardOptionKeywordArrs={setRewardOptionKeywordArrs}
                                             />
                                         ))
+
                                     }
                                 </td>
                             </tr>
@@ -253,7 +257,24 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
                 }
             </div>
         </div>
-    );
+      </div>
+
+      <div>
+        <h3>등록된 리워드 미리보기</h3>
+        {rewardArr.length === 0 ? (
+          <p style={{ color: "gray" }}>
+            리워드가 없습니다. 리워드를 추가해주세요.
+          </p>
+        ) : (
+          ""
+        )}
+        {rewardArr &&
+          rewardArr.map((item, idx) => (
+            <RegReward data={item} key={idx} idx={idx} onDelete={delReward} />
+          ))}
+      </div>
+    </div>
+  );
 };
 
 export default MakerOpenProjectForm3;

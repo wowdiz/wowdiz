@@ -74,9 +74,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //서버에서 제한없이 모든 접근 허용
                 .antMatchers("/").permitAll()
-                .antMatchers("/api/hello").permitAll()
                 .antMatchers("/api/authenticate").permitAll()	
                 .antMatchers("/api/signup").permitAll()
+                .antMatchers("/api/duplicateCheck").permitAll()
+                .antMatchers("/supportboard/*").permitAll()
+                .antMatchers("/purchase/getRewards").permitAll()
                 .anyRequest().authenticated()
 
                 .and()

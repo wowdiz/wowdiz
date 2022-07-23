@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wowdiz.finalproj.mapper.QNAMapper">
+
+	<select id="qnalist" resultType="QNADto">
+		select inquiry_id, user_name, user_email, user_phone, inquiry_title, inquiry_content, inquiry_type, write_date, answer_date, inquiry_status 
+		from inquiry order by inquiry_id desc;
+	</select>
+	
+	<select id="qnapaging" parameterType="Map" resultType="QNADto">
+		select inquiry_id, user_name, user_email, user_phone, inquiry_title, inquiry_content, inquiry_type, write_date, answer_date, inquiry_status 
+		from inquiry order by inquiry_id desc limit #{startNum}, #{perPage};
+	</select>
+	
+	<select id="qnatotalpage" resultType="Integer">
+		select count(*) from inquiry;		
+	</select>
+	
+	<insert id="qnacreate">
+		insert into inquiry (user_name, user_email, user_phone, inquiry_title, inquiry_content, inquiry_type, write_date)
+		value (#{user_name}, #{user_email}, #{user_phone}, #{inquiry_title}, #{inquiry_content}, #{inquiry_type}, now())
+	</insert>
+	
+	<select id="qnadetail" parameterType="Integer" resultType="QNADto">
+		select inquiry_id, user_name, user_email, user_phone, inquiry_title, inquiry_content, inquiry_type, write_date, answer_date, inquiry_status
+		from inquiry where inquiry_id=#{inquiry_id}
+	</select>
+	
+	<select id="qnaanswer" parameterType="Integer" resultType="QNADto">
+		select inquiry_id, user_name, user_email, user_phone, inquiry_title, inquiry_content
+		from inquiry where inquiry_id=#{inquiry_id}
+	</select>
+	
+	<delete id="qnadelete">
+		delete from inquiry where inquiry_id=#{inquiry_id}
+	</delete>
+	
+	
+		
+</mapper>

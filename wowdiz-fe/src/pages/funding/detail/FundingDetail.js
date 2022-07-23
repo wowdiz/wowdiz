@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../../style/funding_detail.css";
 import "swiper/css";
@@ -9,6 +9,8 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { NavLink, Outlet } from "react-router-dom";
 
 const FundingDetail = () => {
+  const [style, setStyle] = useState(1);
+  const [like, setLike] = useState("false");
   return (
     <div>
       <div className="reward_header">
@@ -88,7 +90,14 @@ const FundingDetail = () => {
             <button type="button" className="btn_funding">
               펀딩하기
             </button>
-            <div className="funding_like">♡</div>
+            <button className="funding_like">
+              <i
+                className={like === "false" ? "icon_like" : "icon_unlike"}
+                onClick={() => {
+                  setLike(false);
+                }}
+              />
+            </button>
           </div>
           <div className="info_caution">
             펀딩을 마치면 결제 예약 상태입니다. 종료일에 100% 이상이 달성되었을
@@ -100,22 +109,50 @@ const FundingDetail = () => {
       <div className="content_menu_bar">
         <div className="content_menu">
           <p className="menu_bar_title">
-            <NavLink className="menu_bar_style" to="/fundingdetail/">
+            <NavLink
+              className={style === 1 ? "menu_bar_style" : "menu_bar_style_sub"}
+              to="/fundingdetail/"
+              style={{ textDecoration: "none" }}
+              onClick={() => {
+                setStyle(1);
+              }}
+            >
               스토리
             </NavLink>
           </p>
           <p className="menu_bar_title">
-            <NavLink className="menu_bar_style" to="/fundingdetail/news">
+            <NavLink
+              className={style === 2 ? "menu_bar_style" : "menu_bar_style_sub"}
+              to="/fundingdetail/news"
+              style={{ textDecoration: "none" }}
+              onClick={() => {
+                setStyle(2);
+              }}
+            >
               새소식
             </NavLink>
           </p>
           <p className="menu_bar_title">
-            <NavLink className="menu_bar_style" to="/fundingdetail/comm">
+            <NavLink
+              className={style === 3 ? "menu_bar_style" : "menu_bar_style_sub"}
+              to="/fundingdetail/comm"
+              style={{ textDecoration: "none" }}
+              onClick={() => {
+                setStyle(3);
+              }}
+            >
               커뮤니티
             </NavLink>
           </p>
           <p className="menu_bar_title">
-            <NavLink className="menu_bar_style" to="/fundingdetail/info">
+            <NavLink
+              className={style === 4 ? "menu_bar_style" : "menu_bar_style_sub"}
+              to="/fundingdetail/info"
+              style={{ textDecoration: "none" }}
+              onClick={() => {
+                setStyle(4);
+              }}
+            >
               안내
             </NavLink>
           </p>

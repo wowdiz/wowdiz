@@ -26,7 +26,7 @@ import lombok.ToString;
 @Alias("UserDto")
 public class UserDto {
 	
-	private Integer seq;
+	private Integer user_id;
 	@NotNull
 	@Size(min = 3, max=50)
 	private String user_email;
@@ -34,7 +34,7 @@ public class UserDto {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@NotNull
 	@Size(min = 3, max=50)
-	private String user_pwd;
+	private String user_password;
 	
 	private String user_name;
 	
@@ -47,7 +47,7 @@ public class UserDto {
 	
 	private String profile_picture;
 	
-	private Date reg_date;
+	private Date create_date;
 	
 	private Date modified_date;
 	
