@@ -13,4 +13,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TokenDto {
 	private String token;
+	private String sns_type;
 }

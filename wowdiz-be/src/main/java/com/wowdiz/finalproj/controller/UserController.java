@@ -1,11 +1,15 @@
 package com.wowdiz.finalproj.controller;
 
+import java.text.ParseException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,17 +29,55 @@ public class UserController {
    
    private final UserService userService;
    private final EmailService emailService;
+   private final PasswordEncoder passwordEncoder;
 
    
-   public UserController(UserService userService, EmailService emailService) {
+   public UserController(UserService userService, EmailService emailService, PasswordEncoder passwordEncoder) {
       this.userService = userService;
       this.emailService = emailService;
+      this.passwordEncoder = passwordEncoder;
    }
    
 
    @PostMapping("/signup")
    public ResponseEntity<String> signup(@Valid @RequestBody UserDto userDto) {
-	   String recommenderEmail = userDto.getUser_recommend();	 
+	   String recommenderEmail = userDto.getUser_recommend();
+	   
+	   //추천인 아이디 입력시 
+	   if(recommenderEmail != "" ) {
+		   //추천인 ID가 존재시 작업
+		   if(userService.emailDuplicateCheck(recommenderEmail)==1) {
+			   String result = userService.signup(userDto);
+			   if(result.equals("pass")) {
+				
+				 userService.recommendation(userDto.getUser_email(), recommenderEmail);
+				 //회원가입 성공시 
+				 return ResponseEntity.ok(result);
+			   }else {
+				   //회원가입 오류시 
+				   return ResponseEntity.ok(userService.signup(userDto)); 
+			   }   	   
+		   }else
+			   //추천인 ID 가 존재하지않을시 Error
+			   return ResponseEntity.ok("recommederError");
+	   }
+	   //추천인 아이디를 입력하지 않았을떄 
+	   else {
+		   //회원가입 성공 
+		   if(userService.signup(userDto).equals("pass")) {
+		      userService.pointInsert(userDto.getUser_email(), 0);
+			  return ResponseEntity.ok("pass"); 
+		   }else {
+			//회원가입 실패 
+			   return ResponseEntity.ok(userService.signup(userDto)); 
+		   }
+	   }
+   }
+   @PostMapping("sns/signup")
+   public ResponseEntity<String> snsSignup(@Valid @RequestBody UserDto userDto) {
+	   String recommenderEmail = userDto.getUser_recommend();
+	   String snsId = userDto.getSns_id()+"E";
+	   userDto.setUser_password(passwordEncoder.encode(snsId));
 	   //추천인 아이디 입력시 
 	   if(recommenderEmail != "" ) {
 		   //추천인 ID가 존재시 작업
@@ -126,5 +168,7 @@ public class UserController {
 			return ResponseEntity.ok(false);
 		
 	}
+	
+
 
 }

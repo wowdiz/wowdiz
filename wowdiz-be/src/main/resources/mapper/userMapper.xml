@@ -4,6 +4,9 @@
 	<select id="selectUserWithAuthoritiesByUserEmail" parameterType="String" resultType="UserDto">
 		SELECT * FROM user where user_email=#{user_email};
 	</select>
+		<select id="selectUserWithAuthoritiesBySnsUserEmail" parameterType="Map" resultType="UserDto">
+		SELECT * FROM user where user_email=#{user_email} and sns_type=#{sns_type};
+	</select>
 	<!-- 회원가입 -->
 	<insert id="insertGeneralUser" parameterType="UserDto">
 		INSERT INTO user(user_id, user_email, user_password, user_name, user_phone,
@@ -73,4 +76,12 @@
 	<select id="pointUser" parameterType="WowPointDto" resultType="WowPointDto">
 		SELECT * FROM wowpoint WHERE user_id=#{user_id}
 	</select>
+	<!-- kakao 유저확인 -->
+	<select id="snsIdSelect" parameterType="String" resultType="UserDto" >
+		SELECT * FROM user where user_email=#{user_email};
+	</select>
+	<update id="snsInsert" parameterType="UserDto">
+		UPDATE user SET sns_id=#{sns_id}, sns_type=#{sns_type} WHERE user_id=#{user_id}
+	</update>
+		
 </mapper>

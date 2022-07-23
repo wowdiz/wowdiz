@@ -34,8 +34,8 @@ public class UserDto {
 	@Pattern(regexp = "/^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$/i")
 	private String user_email;
 	
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@NotNull
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Size(min = 6, max=50)
 	@Pattern(regexp = "/^(?=.*\\d)(?=.*[a-zA-ZS]).{6,}/")
 	private String user_password;
@@ -67,6 +67,8 @@ public class UserDto {
 	
 	private String sns_type;
 	
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@Size(min = 6, max=50)
 	private String sns_id;
 	
 	@NotNull

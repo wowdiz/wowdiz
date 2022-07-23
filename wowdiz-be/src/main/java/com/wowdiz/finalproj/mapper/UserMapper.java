@@ -15,6 +15,7 @@ import com.wowdiz.finalproj.dto.WowPointHistoryDto;
 @Mapper
 public interface UserMapper {
 	public Optional<UserDto> selectUserWithAuthoritiesByUserEmail(String userEmail);
+	public Optional<UserDto> selectUserWithAuthoritiesBySnsUserEmail(Map<String, String> map);
 //	회원가입
 	public void insertGeneralUser(UserDto userDto);
 //	이메일 중복확인
@@ -45,5 +46,9 @@ public interface UserMapper {
 	public void pointUpdate(WowPointDto wowPointDto);
 // 포인트 테이블 확인
 	public WowPointDto pointUser(WowPointDto wowPointDto);
+// SNS 가입한 사실확인
+	public UserDto snsIdSelect(String user_email); 
+// SNS 업데이트 
+	public void snsInsert(UserDto userDto);
 	
 }

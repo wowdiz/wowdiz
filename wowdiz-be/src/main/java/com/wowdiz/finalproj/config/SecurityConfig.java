@@ -1,6 +1,7 @@
 package com.wowdiz.finalproj.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -9,6 +10,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.filter.CorsFilter;
 
 import com.wowdiz.finalproj.jwt.JwtAccessDeniedHandler;
@@ -76,13 +78,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/api/authenticate").permitAll()	
                 .antMatchers("/api/signup").permitAll()
+                .antMatchers("/api/sns/signup").permitAll()
                 .antMatchers("/api/duplicateCheck").permitAll()  // 이메일 중복확인 및 인증코드 발송
                 .antMatchers("/purchase/getRewards").permitAll()
                 .antMatchers("/api/emailConfirm").permitAll() // 이메일 인증코드확인
                 .antMatchers("/api/nicknameCheck").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/oauth2/kakao/**").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/oauth2/kakao").permitAll() // 닉네임 중복확인
                 .anyRequest().authenticated()
-
+                
+                
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider));
+ 
     }
 }

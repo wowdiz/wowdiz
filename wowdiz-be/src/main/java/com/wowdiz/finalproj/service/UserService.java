@@ -35,5 +35,12 @@ public interface UserService {
 	public void pointAdd(String user_id, Integer current_wowpoint);
 // 포인트 정보 확인
 	public Integer pointFind(String user_id);
+	
+//카카오 토큰얻기
+	public Map<String, Object> kakaoUser(String access_Token);
+// 카카오 유저 찾기 	
+	public UserDto snsIdfind(String user_email);
+// 카카오 업데이트 
+	public void snsInsert(UserDto userDto);
 
 }

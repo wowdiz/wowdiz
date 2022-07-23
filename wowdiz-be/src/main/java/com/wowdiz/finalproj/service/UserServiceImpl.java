@@ -1,12 +1,22 @@
 package com.wowdiz.finalproj.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.wowdiz.finalproj.dto.AuthenticationDto;
 import com.wowdiz.finalproj.dto.RecommendationDto;
 import com.wowdiz.finalproj.dto.UserDto;
@@ -42,6 +52,7 @@ public class UserServiceImpl implements UserService{
 		}
 		else {
 		userDto.setUser_password(passwordEncoder.encode(userDto.getUser_password()));
+		userDto.setSns_id(passwordEncoder.encode(userDto.getSns_id()));
 		userDto.setAuth("ROLE_USER");
 		userDto.setEnabled(true);
 		userMapper.insertGeneralUser(userDto);
@@ -62,6 +73,7 @@ public class UserServiceImpl implements UserService{
 	public Optional<UserDto> getUserWithAuthorities(){
 		return SecurityUtil.getCurrentUserEmail().flatMap(userMapper::selectUserWithAuthoritiesByUserEmail);
 	}
+	
 
 	@Override
 	public Integer emailDuplicateCheck(String user_email) {
@@ -136,8 +148,7 @@ public class UserServiceImpl implements UserService{
 		Integer userID =userMapper.userIDSelect(user_email);
 		//추천인 고유값
 		Integer recmmendationID = userMapper.userIDSelect(recommendation_email);
-		
-		
+
 		//추천인 포인트 3000원
 		Integer recomendationPoint = 3000;
 		
@@ -152,10 +163,12 @@ public class UserServiceImpl implements UserService{
 		wowUserPointDto.setCurrent_wowpoint(recomendationPoint);
 		userMapper.pointInsert(wowUserPointDto);
 		// 추천인 포인트 추가 
+		System.out.println("test"+recommendation_email);
 		WowPointDto wowRecommenderPointDto = new WowPointDto();
 		wowRecommenderPointDto.setUser_id(recommendation_email);
 		wowRecommenderPointDto = userMapper.pointUser(wowRecommenderPointDto);
-		wowRecommenderPointDto.setCurrent_wowpoint(wowRecommenderPointDto.getCurrent_wowpoint()+recomendationPoint);
+		System.out.println("fdf"+wowRecommenderPointDto);
+		wowRecommenderPointDto.setCurrent_wowpoint((Integer)(wowRecommenderPointDto.getCurrent_wowpoint()+recomendationPoint));
 		userMapper.pointUpdate(wowRecommenderPointDto);
 		// 유저 히스토리 등록
 		WowPointHistoryDto wowUserPointHistoryDto = new WowPointHistoryDto();
@@ -192,5 +205,71 @@ public class UserServiceImpl implements UserService{
 	public Integer pointFind(String user_id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Map<String, Object> kakaoUser(String access_Token) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> userInfo = new HashMap<String, Object>();
+		String reqURL = "https://kapi.kakao.com/v2/user/me";
+		try {
+			URL url = new URL(reqURL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+
+			// 요청에 필요한 Header에 포함될 내용
+			conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+			
+			String headerType = conn.getContentType();
+			
+
+			BufferedReader br; 
+			if (headerType.toUpperCase().indexOf("UTF-8")!=-1) {
+			
+			br= new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+			}else {
+				br= new BufferedReader(new InputStreamReader(conn.getInputStream(),"ECU-KR"));
+			}
+			String line = "";
+			String result = "";
+
+			while ((line = br.readLine()) != null) {
+				result += line;
+			}
+
+			JsonParser parser = new JsonParser();
+			JsonElement element = parser.parse(result);
+   
+			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+			JsonObject profile = kakao_account.getAsJsonObject().get("profile").getAsJsonObject();
+		
+			String thumbnail_image_url=profile.getAsJsonObject().get("thumbnail_image_url").getAsString();
+			String kakaoId= element.getAsJsonObject().get("id").getAsString();
+			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+			String email = kakao_account.getAsJsonObject().get("email").getAsString();
+			String user_name = properties.getAsJsonObject().get("nickname").getAsString();
+			
+			userInfo.put("sns_id", kakaoId);
+			userInfo.put("profile_picture", thumbnail_image_url);
+			userInfo.put("sns_type", "kakao");
+			userInfo.put("user_email", email);
+			userInfo.put("user_name", user_name);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	return userInfo;
+	}
+	@Override
+	public UserDto snsIdfind(String user_email) {
+		return userMapper.snsIdSelect(user_email);
+	}
+
+	@Override
+	public void snsInsert(UserDto userDto) {
+		// TODO Auto-generated method stub
+		 userMapper.snsInsert(userDto);
 	}
 }
