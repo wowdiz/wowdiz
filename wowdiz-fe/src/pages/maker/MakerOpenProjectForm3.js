@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
 import RegReward from './RegReward';
 import RewardOption from './RewardOption';
-import RewardOption2 from './RewardOption2';
 
-const MakerOpenProjectForm3 = () => {
+
+const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
     const [possibility, setPossibility] = useState('무제한');
-    const [necessity, setNecessity] = useState('necessary');
+    const [necessity, setNecessity] = useState('Y');
     const [rewardOptionType, setRewardOptionType] = useState(['선택형0']);
 
     const [subjectLengthChecker,setSubjectLengthChecker] = useState(0);
@@ -13,31 +13,21 @@ const MakerOpenProjectForm3 = () => {
     const [rewardOption, setRewardOption] = useState([]);
     const [rewardOptionArr, setRewardOptionArr] = useState([]);
 
-    // const [reward, setReward] = useState([{
-    //     rewardMoney:"",
-    //     rewardPossibility:"",
-    //     rewardQuantity:"",
-    //     rewardSubject:"",
-    //     rewardContent:"",
-    //     deliveryDate:"",
-    //     rewardOption:"",
-    //     rewardOptionKeyword:"",
-    //     rewardOptionShort:"",
-    //     deliveryNecessity:""
-    // }]);
+    const [rewardOptionKeywordArr, setRewardOptionKeywordArr] = useState([]);
+    const [rewardOptionKeyword, setRewardOptionKeyword] = useState('');
+    const [rewardOptionKeywordArrs, setRewardOptionKeywordArrs] = useState([""]);
+    const [isHovering, setIsHovering] = useState(0);
 
-    // const [reward, setReward] = useState([{
-    //     rewardMoney:"",
-    //     rewardPossibility:"",
-    //     rewardQuantity:"",
-    //     rewardSubject:"",
-    //     rewardContent:"",
-    //     deliveryDate:"",
-    //     rewardOption:rewardOption,
-    //     deliveryNecessity:""
-    // }]);
-
-    const [reward, setReward] = useState([]);
+    const [reward, setReward] = useState({
+        rewardPossibility: '무제한', //단지 초기값이고 백에 넘기진 않을것.
+        reward_limit: '',
+        deliveryDate:'', //예약배송일이없다 테이블에 추가하자
+        reward_info:'', //reward_info
+        reward_price: '', //reward_price
+        rewardOptions:'', 
+        reward_title:'', //reward_title
+        required_parcel:'', //배송필요유무
+    });
 
     const [rewardArr, setRewardArr] = useState([]);
 
@@ -49,6 +39,7 @@ const MakerOpenProjectForm3 = () => {
             ...reward,
             [e.target.name] : e.target.value
         })
+        console.log('reward',reward);
     }
 
     const handleRewardSubjectLength = (e) => {
@@ -76,40 +67,44 @@ const MakerOpenProjectForm3 = () => {
     }
     const handleRadioNecessity = (e) => {
         setNecessity(e.target.value);
+        setReward({
+            ...reward,
+            [e.target.name] : e.target.value
+        });
     }
 
     const addReward = () => {
-        setReward(reward.rewardOption.concat(rewardOptionArr));
-        setTimeout(() => {setRewardArr(rewardArr.concat(reward));},2500);
-        // setRewardArr(rewardArr.concat(reward));
+        setRewardArr(rewardArr.concat(reward));
         console.log('rewardArr',rewardArr);
+    }
+
+    const addForm = () => {
+        setForm({
+            ...form,
+            reward : rewardArr
+        })
     }
 
     const delReward = (idx) => {
         setRewardArr(rewardArr.filter((data,index) => idx !== index));
     }
 
-    const addRewardOption = () => {
-        // let newOptionArr = [...rewardOptionArr];
-        // let newOption = rewardOptionArr.slice(-1)[0];
-        // newOption += 1;
-        // newOptionArr.push(newOption);
-        // setRewardOptionArr(newOptionArr);
-        setRewardOption(rewardOption.concat({
-            rewardOptionLong:"",
-            rewardOptionKeyword:"",
-            rewardOptionShort:""
-        }))
+    const addRewardOption = () => { 
         setRewardOptionArr(rewardOptionArr.concat([rewardOption]));
         setRewardOptionType(rewardOptionType.concat([`선택형${rewardOptionType.length}`]));
+
     }
 
     const delRewardOption = (idx) => {
-        console.log(idx);
         setRewardOptionArr(rewardOptionArr.filter((data,index) => idx !== index));
     }
 
+    //아직 미구현... 
     const onResetReward = () => {
+    }
+
+    const setProject = () => {
+
     }
 
     return (
@@ -125,7 +120,7 @@ const MakerOpenProjectForm3 = () => {
                             <tr>
                                 <th>리워드 금액</th>
                                 <td>
-                                    <input className='project_input' name='rewardMoney'
+                                    <input className='project_input' name='reward_price'
                                     type="number" onChange={handleReward}
                                     ref={(el) => (rewardRef.current[0] = el)}/>
                                 </td>
@@ -136,7 +131,7 @@ const MakerOpenProjectForm3 = () => {
                                     <label className={possibility==='무제한'?'reward_label_radio_checked':'reward_label_radio'}
                                     htmlFor='id_reward_radio1'>
                                     <input className='reward_radio' name='rewardPossibility'
-                                    type="radio" value="무제한" id='id_reward_radio1'
+                                    type="radio" value='무제한' id='id_reward_radio1'
                                     checked={possibility === '무제한'}
                                     onChange={handleRadioPossibility}
                                     ref={(el) => (rewardRef.current[1] = el)}/>무제한</label>
@@ -146,7 +141,7 @@ const MakerOpenProjectForm3 = () => {
                                     type="radio" value="제한" id='id_reward_radio2'
                                     checked={possibility === '제한'}
                                     onChange={handleRadioPossibility}/>제한</label>
-                                    <input className='select_reward_quantity' name='rewardQuantity'
+                                    <input className='select_reward_quantity' name='reward_limit'
                                     type={possibility==='제한'?'number':'hidden'}
                                     defaultValue='0' onChange={handleReward}
                                     ref={(el) => (rewardRef.current[2] = el)}/>
@@ -156,7 +151,7 @@ const MakerOpenProjectForm3 = () => {
                             <tr>
                                 <th>리워드 제목</th>
                                 <td>
-                                    <input className='project_input' name='rewardSubject'
+                                    <input className='project_input' name='reward_title'
                                     type="text" maxLength={30}
                                     onChange={handleRewardSubjectLength}
                                     ref={(el) => (rewardRef.current[3] = el)}/>
@@ -166,7 +161,7 @@ const MakerOpenProjectForm3 = () => {
                             <tr>
                                 <th>리워드 내용</th>
                                 <td>
-                                    <textarea className='reward_content' name='rewardContent'
+                                    <textarea className='reward_content' name='reward_info'
                                     maxLength={70}
                                     type="text" placeholder='준비된 리워드와 설명을 적어주세요'
                                     onChange={handleRewardContentLength}
@@ -185,23 +180,13 @@ const MakerOpenProjectForm3 = () => {
                             <tr>
                                 <th>리워드 옵션</th>
                                 <td>
-                                    {/* <RewardOption
-                                    rewardOptionRef={rewardOptionRef}
-                                    rewardOptionArr={rewardOptionArr}
-                                    rewardOptionType={rewardOptionType}
-                                    rewardOption={rewardOption}
-                                    setRewardOption={setRewardOption}
-                                    setRewardOptionType={setRewardOptionType}
-                                    rewardRef={rewardRef}
-                                    addRewardOption={addRewardOption}
-                                    handleReward={handleReward}
-                                    delRewardOption={delRewardOption} 
-                                    setRewardOptionArr={setRewardOptionArr}/> */}
                                     {rewardOptionArr.length===0?<div className='project_input reward_option_btn'
-                                    type="button" style={{marginBottom: '0px'}} onClick={addRewardOption}>리워드 옵션 추가하기</div>:''}
+                                    type="button" style={{marginBottom: '0px'}} 
+                                    onClick={addRewardOption}>리워드 옵션 추가하기</div>:''}
+
                                     {
                                         rewardOptionArr && rewardOptionArr.map((item, idx) => (
-                                            <RewardOption2 
+                                            <RewardOption 
                                                 key={idx}
                                                 item={item}
                                                 i={idx}
@@ -216,6 +201,16 @@ const MakerOpenProjectForm3 = () => {
                                                 handleReward={handleReward}
                                                 delRewardOption={delRewardOption} 
                                                 setRewardOptionArr={setRewardOptionArr}
+                                                setReward={setReward}
+                                                reward={reward}
+                                                rewardOptionKeywordArr={rewardOptionKeywordArr}
+                                                setRewardOptionKeywordArr={setRewardOptionKeywordArr}
+                                                rewardOptionKeyword={rewardOptionKeyword}
+                                                setRewardOptionKeyword={setRewardOptionKeyword}
+                                                isHovering={isHovering}
+                                                setIsHovering={setIsHovering}
+                                                rewardOptionKeywordArrs={rewardOptionKeywordArrs}
+                                                setRewardOptionKeywordArrs={setRewardOptionKeywordArrs}
                                             />
                                         ))
                                     }
@@ -224,18 +219,18 @@ const MakerOpenProjectForm3 = () => {
                             <tr>
                                 <th>배송지 필요여부</th>
                                 <td>
-                                    <label className={necessity==='necessary'?'reward_label_radio_checked':'reward_label_radio'}
+                                    <label className={necessity==='Y'?'reward_label_radio_checked':'reward_label_radio'}
                                     htmlFor='id_reward_radio3'>
-                                    <input className='reward_radio' name='deliveryNecessity'
-                                    type="radio" value="necessary" id='id_reward_radio3'
-                                    checked={necessity === 'necessary'}
+                                    <input className='reward_radio' name='required_parcel'
+                                    type="radio" value="Y" id='id_reward_radio3'
+                                    checked={necessity === 'Y'}
                                     onChange={handleRadioNecessity}
                                     ref={(el) => (rewardRef.current[9] = el)}/>배송지 필요</label>
-                                    <label className={necessity==='unnecessary'?'reward_label_radio_checked':'reward_label_radio'}
+                                    <label className={necessity==='N'?'reward_label_radio_checked':'reward_label_radio'}
                                     htmlFor='id_reward_radio4'>
-                                    <input className='reward_radio' name='deliveryNecessity'
-                                    type="radio" value="unnecessary" id='id_reward_radio4'
-                                    checked={necessity === 'unnecessary'}
+                                    <input className='reward_radio' name='required_parcel'
+                                    type="radio" value="N" id='id_reward_radio4'
+                                    checked={necessity === 'N'}
                                     onChange={handleRadioNecessity}
                                     ref={(el) => (rewardRef.current[9] = el)}/>배송지 필요없음</label>
                                 </td>
@@ -243,7 +238,7 @@ const MakerOpenProjectForm3 = () => {
                         </tbody>
                     </table><br/>
                     <hr style={{border:'0.3px solid #ebebeb'}}/>
-                    <button className='reward_btn_reg' type='button' onClick={addReward}>등록</button>
+                    <button className='reward_btn_reg' type='button' onClick={addReward} onBlur={addForm}>등록</button>
                     <button className='reward_btn_reset' type='button' onClick={onResetReward}>초기화</button>
                 </div>
             </div>
@@ -256,8 +251,6 @@ const MakerOpenProjectForm3 = () => {
                         <RegReward data={item} key={idx} idx={idx} onDelete={delReward}/>
                     ))
                 }
-                
-
             </div>
         </div>
     );
