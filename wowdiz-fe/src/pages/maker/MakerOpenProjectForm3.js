@@ -3,106 +3,106 @@ import RegReward from "./RegReward";
 import RewardOption from "./RewardOption";
 
 const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
- const [possibility, setPossibility] = useState("무제한");
- const [necessity, setNecessity] = useState("Y");
- const [rewardOptionType, setRewardOptionType] = useState(["선택형0"]);
+    const [possibility, setPossibility] = useState("무제한");
+    const [necessity, setNecessity] = useState("Y");
+    const [rewardOptionType, setRewardOptionType] = useState(["선택형0"]);
 
- const [subjectLengthChecker, setSubjectLengthChecker] = useState(0);
- const [contentLengthChecker, setContentLengthChecker] = useState(0);
- const [rewardOption, setRewardOption] = useState([]);
- const [rewardOptionArr, setRewardOptionArr] = useState([]);
+    const [subjectLengthChecker, setSubjectLengthChecker] = useState(0);
+    const [contentLengthChecker, setContentLengthChecker] = useState(0);
+    const [rewardOption, setRewardOption] = useState([]);
+    const [rewardOptionArr, setRewardOptionArr] = useState([]);
 
- const [rewardOptionKeywordArr, setRewardOptionKeywordArr] = useState([]);
- const [rewardOptionKeyword, setRewardOptionKeyword] = useState("");
- const [rewardOptionKeywordArrs, setRewardOptionKeywordArrs] = useState([""]);
- const [isHovering, setIsHovering] = useState(0);
+    const [rewardOptionKeywordArr, setRewardOptionKeywordArr] = useState([]);
+    const [rewardOptionKeyword, setRewardOptionKeyword] = useState("");
+    const [rewardOptionKeywordArrs, setRewardOptionKeywordArrs] = useState([""]);
+    const [isHovering, setIsHovering] = useState(0);
 
- const [reward, setReward] = useState({
-  rewardPossibility: "무제한", //단지 초기값이고 백에 넘기진 않을것.
-  reward_limit: "",
-  deliveryDate: "", //예약배송일이없다 테이블에 추가하자
-  reward_info: "", //reward_info
-  reward_price: "", //reward_price
-  rewardOptions: "",
-  reward_title: "", //reward_title
-  required_parcel: "", //배송필요유무
- });
+    const [reward, setReward] = useState({
+        rewardPossibility: "무제한", //단지 초기값이고 백에 넘기진 않을것.
+        reward_limit: "",
+        deliveryDate: "", //예약배송일이없다 테이블에 추가하자
+        reward_info: "", //reward_info
+        reward_price: "", //reward_price
+        rewardOptions: "",
+        reward_title: "", //reward_title
+        required_parcel: "", //배송필요유무
+    });
 
- const [rewardArr, setRewardArr] = useState([]);
+    const [rewardArr, setRewardArr] = useState([]);
 
- const rewardRef = useRef([]);
- const rewardOptionRef = useRef([]);
+    const rewardRef = useRef([]);
+    const rewardOptionRef = useRef([]);
 
- const handleReward = (e) => {
-  setReward({
-   ...reward,
-   [e.target.name]: e.target.value,
-  });
-  console.log("reward", reward);
- };
+    const handleReward = (e) => {
+        setReward({
+        ...reward,
+        [e.target.name]: e.target.value,
+        });
+        console.log("reward", reward);
+    };
 
- const handleRewardSubjectLength = (e) => {
-  setSubjectLengthChecker(e.target.value.length);
-  setReward({
-   ...reward,
-   [e.target.name]: e.target.value,
-  });
- };
+    const handleRewardSubjectLength = (e) => {
+        setSubjectLengthChecker(e.target.value.length);
+        setReward({
+            ...reward,
+            [e.target.name]: e.target.value,
+        });
+    };
 
- const handleRewardContentLength = (e) => {
-  setContentLengthChecker(e.target.value.length);
-  setReward({
-   ...reward,
-   [e.target.name]: e.target.value,
-  });
- };
+    const handleRewardContentLength = (e) => {
+        setContentLengthChecker(e.target.value.length);
+        setReward({
+            ...reward,
+            [e.target.name]: e.target.value,
+        });
+    };
 
- const handleRadioPossibility = (e) => {
-  setPossibility(e.target.value);
-  setReward({
-   ...reward,
-   [e.target.name]: e.target.value,
-  });
- };
- const handleRadioNecessity = (e) => {
-  setNecessity(e.target.value);
-  setReward({
-   ...reward,
-   [e.target.name]: e.target.value,
-  });
- };
+    const handleRadioPossibility = (e) => {
+        setPossibility(e.target.value);
+        setReward({
+            ...reward,
+            [e.target.name]: e.target.value,
+        });
+    };
+    const handleRadioNecessity = (e) => {
+        setNecessity(e.target.value);
+        setReward({
+            ...reward,
+            [e.target.name]: e.target.value,
+        });
+    };
 
- const addReward = () => {
-  setRewardArr(rewardArr.concat(reward));
-  console.log("rewardArr", rewardArr);
- };
+    const addReward = () => {
+        setRewardArr(rewardArr.concat(reward));
+        console.log("rewardArr", rewardArr);
+    };
 
- const addForm = () => {
-  setForm({
-   ...form,
-   reward: rewardArr,
-  });
- };
+    const addForm = () => {
+        setForm({
+            ...form,
+            reward: rewardArr,
+        });
+    };
 
- const delReward = (idx) => {
-  setRewardArr(rewardArr.filter((data, index) => idx !== index));
- };
+    const delReward = (idx) => {
+        setRewardArr(rewardArr.filter((data, index) => idx !== index));
+    };
 
- const addRewardOption = () => {
-  setRewardOptionArr(rewardOptionArr.concat([rewardOption]));
-  setRewardOptionType(
-   rewardOptionType.concat([`선택형${rewardOptionType.length}`])
-  );
- };
+    const addRewardOption = () => {
+    setRewardOptionArr(rewardOptionArr.concat([rewardOption]));
+    setRewardOptionType(
+    rewardOptionType.concat([`선택형${rewardOptionType.length}`])
+    );
+    };
 
- const delRewardOption = (idx) => {
-  setRewardOptionArr(rewardOptionArr.filter((data, index) => idx !== index));
- };
+    const delRewardOption = (idx) => {
+    setRewardOptionArr(rewardOptionArr.filter((data, index) => idx !== index));
+    };
 
- //아직 미구현...
- const onResetReward = () => {};
+    //아직 미구현...
+    const onResetReward = () => {};
 
- const setProject = () => {};
+    const setProject = () => {};
 
  return (
   <div className="maker_open_project_form">
@@ -336,19 +336,6 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
       초기화
      </button>
     </div>
-   </div>
-
-   <div>
-    <h3>등록된 리워드 미리보기</h3>
-    {rewardArr.length === 0 ? (
-     <p style={{ color: "gray" }}>리워드가 없습니다. 리워드를 추가해주세요.</p>
-    ) : (
-     ""
-    )}
-    {rewardArr &&
-     rewardArr.map((item, idx) => (
-      <RegReward data={item} key={idx} idx={idx} onDelete={delReward} />
-     ))}
    </div>
 
    <div>
