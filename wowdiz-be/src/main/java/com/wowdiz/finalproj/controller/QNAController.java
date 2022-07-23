@@ -50,7 +50,7 @@ public class QNAController {
 	public QNADto qnadetail(@RequestParam Integer inquiry_id) {
 //		System.out.println(inquiry_id);
 		return qnaService.qnadetail(inquiry_id);
-	}
+	}	
 	
 	@GetMapping("/qnaanswer")
 	public QNADto qnaanswer(@RequestParam Integer inquiry_id) {

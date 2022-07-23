@@ -1,6 +1,7 @@
 package com.wowdiz.finalproj.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.jdbc.core.namedparam.ParsedSql;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,11 +30,17 @@ public class FAQController {
 		this.faqService = faqService;
 	}
 		
-	@RequestMapping("/faq")
-	public List <FAQDto> faqlist() {
-		System.out.println(faqService.faqlist());
-		return faqService.faqlist();
-		
+//	@RequestMapping("/faq")
+//	public List <FAQDto> faqlist() {
+//		System.out.println(faqService.faqlist());
+//		return faqService.faqlist();
+//		
+//	}
+	
+	@PostMapping("/faqpage")
+	public Map<String, Object> faqPaging(@RequestParam(defaultValue = "1") Integer currentPage){
+		System.out.println("ddd"+currentPage);
+		return faqService.faqPaging(currentPage);
 	}
 	
 	@PostMapping("/faqwrite")
@@ -53,15 +60,14 @@ public class FAQController {
 		faqService.faqdelete(faq_id);
 	}
 	
-	@GetMapping("/faqupdate")
-	public void faqupdateform (@RequestParam Integer faq_id) {
-		FAQDto dto=faqService.faqdetail(faq_id);
+	@PostMapping("/faqupdate")
+	public void faqupdateform (@RequestBody FAQDto dto) {
 		
 		faqService.faqupdate(dto);
 	}
-	
-	@PostMapping("/faqupdate")
-	public void faqupdate (FAQDto dto) {
-		faqService.faqupdate(dto);
-	}
+//	
+//	@PostMapping("/faqupdate")
+//	public void faqupdate (FAQDto dto) {
+//		faqService.faqupdate(dto);
+//	}
 }
