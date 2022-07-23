@@ -12,18 +12,21 @@ const FAQ = () => {
   const { faq_id } = useParams();
   const [faqdata, setFaqdata] = useState([]);
   const [toggleUpdate, setToggleUpdate] = useState([]);
+  const [addlist, setAddlist] = useState([]);
+  const { currentPage } = useParams();
 
   const navi = useNavigate();
 
-  let faqlistUrl = "/supportboard/faq";
+  let faqlistUrl = "/supportboard/faqpage";
 
   console.log(faqlistUrl);
 
   const faqList = useCallback(() => {
-    AxiosService.get(faqlistUrl, faq_id).then((res) => {
+    AxiosService.post(faqlistUrl, faq_id).then((res) => {
       console.log(res);
       setFaqdata(res.data);
       setToggleUpdate(new Array(res.data.length).fill(true));
+      setAddlist([...addlist, res.data]);
       console.log("res.faqdata", res.data);
     });
   }, [faqlistUrl]);
@@ -35,7 +38,7 @@ const FAQ = () => {
       console.log(res);
 
       alert("삭제되었습니다.");
-      window.location.href = "/supportboard/faq";
+      window.location.href = "/supportboard/faqpage";
     });
   };
 
@@ -124,7 +127,11 @@ const FAQ = () => {
                 </AccordionDetails>
               </Accordion>
             ) : (
-              <FAQUpdate />
+              <FAQUpdate
+                title={row.faq_title}
+                content={row.faq_content}
+                faqid={row.faq_id}
+              />
             )}
           </div>
         ))}
@@ -135,6 +142,16 @@ const FAQ = () => {
         onClick={() => navi("/supportboard/faqwrite")}
       >
         글쓰기
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          AxiosService.get(faqlistUrl).then((res) => {
+            setAddlist([...addlist, ...res.data]);
+          });
+        }}
+      >
+        더보기
       </button>
     </div>
   );

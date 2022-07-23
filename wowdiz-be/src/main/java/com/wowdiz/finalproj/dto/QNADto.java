@@ -23,4 +23,5 @@ public class QNADto {
 	private Timestamp answer_date;
 	private Integer inquiry_status;
 	private Integer qnatotalpage;
+	private Integer no;
 }

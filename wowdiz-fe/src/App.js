@@ -60,7 +60,7 @@ function App() {
         <Route path="/supportboard" element={<SupportBoard />}>
           <Route path="/supportboard" element={<Notice />} />
           <Route path="/supportboard/event" element={<Event />} />
-          <Route path="/supportboard/faq" element={<FAQ />} />
+          <Route path="/supportboard/faqpage" element={<FAQ />} />
           <Route path="/supportboard/faqdetail/:faq_id" element={<FAQ />} />
           <Route path="/supportboard/faqdelete/:faq_id" element={<FAQ />} />
           <Route

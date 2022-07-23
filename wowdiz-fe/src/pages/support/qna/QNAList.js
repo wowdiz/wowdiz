@@ -53,7 +53,6 @@ const QNAList = () => {
       setData(res.data);
 
       console.log("res.data", res.data);
-      console.log(res.data);
     });
   }, [pagelistUrl]);
 
@@ -84,7 +83,7 @@ const QNAList = () => {
               data.list.map((row, idx) => (
                 <StyledTableRow key={idx}>
                   <StyledTableCell component="th" scope="row" align="center">
-                    {row.inquiry_id}
+                    {data.no - idx}
                   </StyledTableCell>
                   <StyledTableCell
                     align="center"
