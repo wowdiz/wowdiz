@@ -6,7 +6,6 @@ import ClearIcon from '@mui/icons-material/Clear';
 const MakerOpenProjectForm1 = ( props ) => {
     const [lengthChecker, setLengthChecker] = useState(0);
     const [duration, setDuration] = useState(0);
-    const today = new Date().toISOString().substring(0, 10);
 
     //onChange 현재날짜로부터 선택한 종료일사이의 일수 구하기
     const diffDate = (e) => {
@@ -14,35 +13,14 @@ const MakerOpenProjectForm1 = ( props ) => {
         const toDate = new Date(value);
         const dMillis = toDate.getTime() - Math.floor(new Date().getTime()/86400000)*86400000;
         const dDay = dMillis/86400000; //1000*60*60*24=하루
-        // if(dMillis%86400000 > 0){
-        //     return setDuration(dDay+1);
-        // }
         if(dDay > 60 || dDay < 7) {
             alert('최소 7일부터 최대 60일까지로 기간을 다시 설정해 주세요.');
         }
         setDuration(Number(dDay));
     };
 
-    // const [mainImage, setMainImage] = useState(defaultImg);
     const fileInput = useRef(null);
 
-    // //대표이미지 파일미리보기
-    // const handleFileUpload = (e) => {
-    //     if(e.target.files[0]){
-    //         setMainImage(e.target.files[0])
-    //     } else { //업로드 취소할 시
-    //         setMainImage(defaultImg);
-    //         return;
-    //     }
-	//     //화면에 프로필 사진 표시
-    //     const reader = new FileReader();
-    //     reader.onload = () => {
-    //         if(reader.readyState === 2){
-    //             setMainImage(reader.result);
-    //         }
-    //     }
-    //     reader.readAsDataURL(e.target.files[0]);
-    // }
 
     //대표이미지업로드
     const handleFileUpload = (e) => {
@@ -66,7 +44,6 @@ const MakerOpenProjectForm1 = ( props ) => {
     const [isHovering, setIsHovering] = useState(0);
 
     //keyword
-    // const [keywordArr, setKeywordArr] = useState([]);
     const [keyword, setKeyword] = useState('');
 
     //keyword 입력이벤트
@@ -127,6 +104,7 @@ const MakerOpenProjectForm1 = ( props ) => {
                 <p style={{color:'gray'}}><span className='target_money'>최소 100,000원 이상</span>이어야 합니다.</p>
                 <input className='project_input' type="number" min={100000} 
                 name='target_amount'
+                defaultValue={props.form.target_amount}
                 onBlur={(e) => {
                     props.handleProject(e);
                 }}
@@ -137,8 +115,9 @@ const MakerOpenProjectForm1 = ( props ) => {
                 <h3>프로젝트의 진행 기간을 적어주세요</h3>
                 <p style={{color:'gray'}}>최소 7일부터 최대 60일까지 가능합니다.</p>
                 <span style={{fontSize:'1.2em'}}>"{duration}"</span><span style={{color:'gray'}}>일 남음</span>
-                <input className='project_input_small' type='date' defaultValue={today} onChange={diffDate}
+                <input className='project_input_small' type='date' onChange={diffDate}
                 name='close_date'
+                defaultValue={props.form.close_date}
                 onBlur={(e) => {
                     props.handleProject(e);
                 }}

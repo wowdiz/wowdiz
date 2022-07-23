@@ -13,7 +13,7 @@ const MakerOpenProjectForm2 = ({ form, setForm, handleProject }) => {
                 <h2>Using CKEditor 5 build in React</h2>
                 <CKEditor
                     editor={ ClassicEditor }
-                    data="<p>Hello from CKEditor 5!</p>"
+                    data={form.project_story}
                     onReady={ editor => {
                         // You can store the "editor" and use when it is needed.
                         console.log( 'Editor is ready to use!', editor );
