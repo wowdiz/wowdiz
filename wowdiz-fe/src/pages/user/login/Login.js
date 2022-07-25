@@ -1,24 +1,84 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../../style/login.css";
 import "../../../../src/assets/images/logo/logo.png";
 import logoimage from "../../../assets/images/logo/logo.png";
-import kakao from "../../../assets/images/register/kakao.png";
+import kakaos from "../../../assets/images/register/kakao.png";
 import naver from "../../../assets/images/register/naver.png";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, withRouter } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import UserService from "../../../service/UserService";
 import AxiosService from "../../../service/AxiosService";
+import axios from "axios";
+import { RssFeed } from "@mui/icons-material";
 
 // 최초 작업자: 이기민
 // 2022-07-06
 // 로그인 페이지 디자인
+
+// 작업자: 이광호
+// 2022-07-17
+// kakao 시큐리티 로그인, 일반 로그인 유저 기능 완성  프론트 엔드
+
+const { Kakao } = window;
+
 const Login = () => {
   const navigation = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, getValues, setValue } = useForm();
+
+  const kakaoLoginClickHandler = () => {
+    Kakao.Auth.login({
+      success: function (authObj) {
+        console.log(authObj);
+        axios
+          .post(
+            "http://localhost:9150" + "/api/oauth2/kakao",
+            { access_token: authObj.access_token },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            console.log(res.data.sns_type);
+            if (res.data.sns_type === "kakao") {
+              localStorage.setItem("snsToken", res.data.token);
+              navigation("/snsregister_join");
+            }
+            if (res.data.sns_type.includes("kakao_user=")) {
+              localStorage.setItem("jwtToken", res.data.token);
+              localStorage.setItem(
+                "authenticatedUser",
+                res.data.sns_type.substring(11)
+              );
+              navigation("/");
+            }
+          })
+          .catch((error) => {
+            console.log("login fail");
+            console.log(error);
+          });
+      },
+      fail: function (err) {
+        alert(JSON.stringify(err));
+      },
+    });
+  };
+
+  // 체크박스 상태
+  const [isRemember, setIsRemember] = useState();
+
+  //페이지가 최초 렌더링 될 경우
+  useEffect(() => {
+    //저장된 로컬스토리지가 있으면, CheckBox TRUE 및 UserID에 값 셋팅
+    if (localStorage.getItem("rememberUserId") !== undefined) {
+      setValue("user_email", localStorage.getItem("rememberUserId"));
+      // setTimeout(() => setIsRemember(true), 700);
+    } else if (!localStorage.getItem("rememberUserId") === true) {
+      // setTimeout(() => setIsRemember(false), 700);
+    }
+  }, []);
+  const handleOnChange = (e) => {
+    setIsRemember(e.target.checked);
+  };
 
   const onSubmit = (userData) => {
-    //    console.log(UserService.login(userData));
-
     //맨 처음에 값이 제대로 반영이 안되는 이유는
     //리액트는 렌더링될 때,  이미 모든 값을 읽은 후라서 그런다.
     //로그인눌러서 if문 체크해도 이미 false값을 받아놓은 상태이다.
@@ -26,7 +86,16 @@ const Login = () => {
     console.log("isLoggedIn()", isLoggedIn());
 
     if (isLoggedIn) {
-      navigation("/");
+      if (isRemember === false) {
+        localStorage.removeItem("rememberUserId");
+        setIsRemember(false);
+        setTimeout(() => navigation("/"), 700);
+      } else {
+        const userId = getValues("user_email");
+        setIsRemember(true);
+        localStorage.setItem("rememberUserId", userId);
+        setTimeout(() => navigation("/"), 700);
+      }
     } else {
       alert("아이디 비밀번호를 확인해주세요.");
     }
@@ -35,12 +104,6 @@ const Login = () => {
   const isLoggedIn = () => {
     return UserService.isLoggedIn();
   };
-
-  //   <form onSubmit={handleSubmit(onSubmit)}>
-  //     <input {...register('user_email')}/><br/>
-  //     <input {...register('user_pwd')}/><br/>
-  //     <input type="submit" />
-  //   </form>
 
   return (
     <div>
@@ -57,6 +120,11 @@ const Login = () => {
           <div className="input_id_text_div">
             <input
               type="email"
+              defaultValue={
+                localStorage.getItem("rememberUserId") !== undefined
+                  ? localStorage.getItem("remeberUserId")
+                  : ""
+              }
               {...register("user_email")}
               className="user_email"
               placeholder="이메일 아이디"
@@ -70,14 +138,27 @@ const Login = () => {
               {...register("user_pwd")}
               className="user_password"
               maxLength="17"
-              placeholder="비밀번호(영문, 숫자, 특수 문자 포함 8자 이상)"
-              title="비밀번호(영문, 숫자, 특수 문자 포함 8자 이상)"
+              placeholder="비밀번호(영문, 숫자, 특수 문자 포함 6자 이상)"
+              title="비밀번호(영문, 숫자, 특수 문자 포함 6자 이상)"
             />
           </div>
           {/* id and password input type design */}
           <div className="login_id_save">
-            <input type="checkbox" className="login_id_save_checkbox" />
-            <span>아이디 저장</span>
+            <input
+              type="checkbox"
+              className="login_id_save_checkbox"
+              id="saveId"
+              onChange={(e) => {
+                handleOnChange(e);
+              }}
+              defaultChecked={
+                isRemember === true || localStorage.getItem("rememberUserId")
+                  ? true
+                  : false
+              }
+            />
+
+            <span style={{ display: "inline-block" }}>아이디 저장</span>
             <span className="login_id_password_search">
               아이디∙비밀번호 찾기
             </span>
@@ -94,7 +175,8 @@ const Login = () => {
           <div className="social_regist_login">
             <button
               className="kakao"
-              style={{ backgroundImage: `URL(${kakao})` }}
+              style={{ backgroundImage: `URL(${kakaos})` }}
+              onClick={kakaoLoginClickHandler}
             />
             <button
               className="naver"
