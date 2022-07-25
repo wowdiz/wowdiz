@@ -64,6 +64,7 @@ const Header = () => {
         </div>
         {/* 유저 로그인 회원가입 버튼 */}
         {/* 로그인 전에는 LoginComponent , 로그인후에는 LogoutComponent로 바껴야함 */}
+
         {isLoggedIn ? <LogoutComponent /> : <LoginComponent />}
 
         {/* <LogoutComponent /> */}

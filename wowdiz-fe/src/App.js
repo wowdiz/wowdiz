@@ -14,6 +14,7 @@ import {
   AdminFunding,
   AdminFundingDetail,
 } from "./pages/admin";
+import "./style/reset.css";
 import SupportBoard from "./pages/support/supportboard/SupportBoard";
 import FundingDetail from "./pages/funding/detail/FundingDetail";
 import QNA from "./pages/support/qna/QNA";
@@ -30,6 +31,13 @@ import RegisterForm from "./pages/user/register/RegisterForm";
 import FundingReward from "./pages/funding/pay/FundingReward";
 import QNAList from "./pages/support/qna/QNAList";
 import QNADetail from "./pages/support/qna/QNADetail";
+
+import SnsRegister from "./pages/user/register/SnsRegister";
+
+import QNAAnswer from "./pages/support/qna/QNAAnswer";
+import FAQWrite from "./pages/support/faq/FAQWrite";
+import FAQUpdate from "./pages/support/faq/FAQUpdate";
+
 
 // 최초 작업자: 권능
 // 2022-06-29
@@ -59,12 +67,26 @@ function App() {
           <Route path="/supportboard" element={<Notice />} />
           <Route path="/supportboard/noticedetail" element={<NoticeDetail />} />
           <Route path="/supportboard/event" element={<Event />} />
-          <Route path="/supportboard/faq" element={<FAQ />} />
+          <Route path="/supportboard/faqpage" element={<FAQ />} />
+          <Route path="/supportboard/faqdetail/:faq_id" element={<FAQ />} />
+          <Route path="/supportboard/faqdelete/:faq_id" element={<FAQ />} />
+          <Route
+            path="/supportboard/faqupdate/:faq_id"
+            element={<FAQUpdate />}
+          />
+          <Route path="/supportboard/faqwrite" element={<FAQWrite />} />
           <Route path="/supportboard/qna" element={<QNA />} />
-          <Route path="/supportboard/qnalist" element={<QNAList />} />
+          <Route
+            path="/supportboard/qnapage/:currentPage"
+            element={<QNAList />}
+          />
           <Route
             path="/supportboard/qnadetail/:inquiry_id"
             element={<QNADetail />}
+          />
+          <Route
+            path="/supportboard/qnaanswer/:inquiry_id"
+            element={<QNAAnswer />}
           />
         </Route>
         {/* 메이커 */}
@@ -78,6 +100,7 @@ function App() {
       {/* 회원가입 */}
       <Route path="/register" element={<RegisterForm />} />
       <Route path="/register_join" element={<Register />} />
+      <Route path="/snsregister_join" element={<SnsRegister />} />
       <Route path="/login" element={<Login />} />
 
       {/* 회원가입 */}

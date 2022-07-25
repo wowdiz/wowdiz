@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 import org.apache.ibatis.type.Alias;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Alias("QNADto")
@@ -17,6 +19,9 @@ public class QNADto {
 	private String inquiry_content;
 	private String inquiry_type;
 	private String	 write_date;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Timestamp answer_date;
 	private Integer inquiry_status;
+	private Integer qnatotalpage;
+	private Integer no;
 }
