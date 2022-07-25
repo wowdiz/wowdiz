@@ -19,5 +19,5 @@ public class RewardDto {
 	private String purchase_limit;
 	private boolean require_parcel;
 	private String parcel_fee;
-	private List<RewardOptionDto> rewardOptionDto;
+	private List<RewardOptionDto> optionList;
 }

@@ -1,11 +1,11 @@
 package com.wowdiz.finalproj.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wowdiz.finalproj.dto.ProjectRewardOptionDto;
 import com.wowdiz.finalproj.dto.RewardAndRewardOptionDto;
 import com.wowdiz.finalproj.dto.RewardDto;
 import com.wowdiz.finalproj.dto.RewardOptionDto;
@@ -28,6 +28,12 @@ public class RewardServiceImpl implements RewardService{
 		return rewardMapper.selectRewardResultMap(project_id);
 	}
 
+	@Override
+	public List<ProjectRewardOptionDto> selectProjectResultMap(String project_id) {
+		
+		return rewardMapper.selectProjectResultMap(project_id);
+	}
+	
 	@Override
 	public List<RewardDto> selectReward(String project_id) {
 		return rewardMapper.selectReward(project_id);

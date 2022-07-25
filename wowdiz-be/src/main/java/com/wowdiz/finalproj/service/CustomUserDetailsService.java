@@ -24,8 +24,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String user_email) throws UsernameNotFoundException {
-						
-		return userMapper.selectUserWithAuthoritiesByUserEmail(user_email)
+							
+			return userMapper.selectUserWithAuthoritiesByUserEmail(user_email)
 				.map(userDto -> createUser(user_email, userDto))
 				.orElseThrow(()-> new UsernameNotFoundException(user_email + " -> 데이터베이스에서 찾을 수 없습니다."));
 	}

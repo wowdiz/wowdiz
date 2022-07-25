@@ -1,41 +1,93 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useReducer } from "react";
 import PurchaseStep from "../../../components/funding/PurchaseStep";
-import RewardItem from "../../../components/funding/RewardItem";
 import "../../../style/reward_item.css";
 import "../../../style/reset.css";
 import AxiosService from "../../../service/AxiosService";
+import RewardItem from "./../../../components/funding/RewardItem";
 
-//reducer = state를 업데이트를 하는 역할
-//dispatch = state를 업데이트를 위한 요구
-//action = 요구의 내용
-
-//reducer를 통해서 특정 state를 수정하고 싶을 때마다
-//dispatch(useReducer에 의해 만들어진 함수)를 호출하는데, 인자로 action을 담아서 보낸다.
-
-//최종 선택한 값들이 담길 배열
-//project_id를 동적으로 받아와야하고
-//reward는 선택한 것만 담겨서 와야한다.
-
-const FundingReward = () => {
-  //나중에 동적으로 처리해야된다.
-  const project_id = "1";
+const FundingReward = ({ project_id }) => {
+  project_id = 1;
+  const [project, setProject] = useState([]);
 
   const [rewardData, setRewardData] = useState([]);
-  console.log(rewardData);
   useEffect(() => {
     AxiosService.post("/purchase/getRewards", project_id).then((res) => {
-      setRewardData(res.data);
+      setProject(res.data[0]);
+      setRewardData(res.data[0].rewardList);
+      console.log(res.data);
     });
   }, []);
 
+  const [totalPrice, setTotalPrice] = useState(0);
+  //구매정보가 담길 곳
+  const [purchaseInfo, setPurchaseInfo] = useState({
+    project_id: project_id,
+    project_name: "",
+    total_qty: 0,
+    total_price: 0,
+    rewards: [], //선택한 리워드를 여기다가 주입.
+  });
+
+  //리워드가 담길 곳
+
+  useEffect(() => {
+    purchaseInfo.total_price = totalPrice;
+  }, [totalPrice]);
+
+  const handleNextStepButton = () => {
+    const checkedCnt = [].slice
+      .call(document.querySelectorAll(".reward_checkbox"))
+      .filter(function (e) {
+        return e.checked;
+      }).length;
+    if (checkedCnt === 0) {
+      alert("최소 1개 이상의 리워드를 선택해주세요.");
+      return;
+    }
+
+    const finalOptionLists = document.querySelectorAll(".reward_option_detail");
+    for (let i = 0; i < finalOptionLists.length; i++) {
+      if (finalOptionLists[i].value === "") {
+        alert(
+          "선택한 리워드 중 설정되지 않은 옵션이 있습니다.\n옵션을 설정한 후 다시 시도해 주세요."
+        );
+        return;
+      }
+    }
+  };
   return (
     <div className="purchase_wrap">
       <PurchaseStep />
       <div className="reward_list">
-        {rewardData &&
-          rewardData.map((data, idx) => (
-            <RewardItem key={idx} rewardData={data} />
+        <ol>
+          {rewardData.map((singleReward, singleRewardIndex) => (
+            <RewardItem
+              key={singleRewardIndex}
+              singleReward={singleReward}
+              singleRewardIndex={singleRewardIndex}
+              purchaseInfo={purchaseInfo}
+              setPurchaseInfo={setPurchaseInfo}
+              totalPrice={totalPrice}
+              setTotalPrice={setTotalPrice}
+              project={project}
+              setProject={setProject}
+            />
           ))}
+        </ol>
+      </div>
+      <p className="purchase_info">
+        {project.project_name}에{" "}
+        <span className="purchase_total_price">{totalPrice}</span>원을
+        펀딩합니다.
+      </p>
+      <div style={{ textAlign: "center" }}>
+        <button
+          type="button"
+          className="next_step_btn"
+          onClick={handleNextStepButton}
+        >
+          다음 단계로
+        </button>
       </div>
     </div>
   );

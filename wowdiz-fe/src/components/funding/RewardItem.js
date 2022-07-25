@@ -1,87 +1,156 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import RewardOptionSelection from "./RewardOptionSelection";
 import RewardOptionAnswer from "./RewardOptionAnswer";
+import { style } from "@mui/system";
 
-// initialState.rewardOptionDto.concat(initialState.rewardOptionDto)
-const RewardItem = ({ rewardData }) => {
-  const initialState = {
-    index: 0,
-    rewardOptionDto: [rewardData.rewardOptionDto],
-  };
-
-  const initialRewardOption = rewardData;
-  console.log("========================================================");
-  console.log(rewardData);
-  const [checkReward, setCheckReward] = useState(false);
+const RewardItem = ({
+  singleReward,
+  singleRewardIndex,
+  purchaseInfo,
+  setPurchaseInfo,
+  project,
+  setProject,
+  totalPrice,
+  setTotalPrice,
+}) => {
+  const [checkbox, setCheckbox] = useState(false);
   const [qty, setQty] = useState(1);
-  const [optionList, setOptionList] = useState(initialState);
+  const limit = Number.parseInt(singleReward.purchase_limit);
 
-  //const [rewardOptionList, dispatch] = useReducer(reducer, []);
-  const handleCheckReward = () => {
-    setCheckReward(!checkReward);
-    console.log("========handleCheckReward========");
-    console.log(initialRewardOption);
-  };
+  //DB에서 가져온 초기 값
+  const initialRewards = singleReward;
+  const initialOptionList = singleReward.optionList;
 
-  // const handleOnChangeQty = (e) => {
-  //   let tmp = Number.parseInt(e.target.value);
-  //   if (tmp <= 0) {
-  //     alert("0보다 작음");
-  //     return;
-  //   }
-  // };
+  //옵션
+  const [optionArr, setOptionArr] = useState(initialOptionList);
+
+  //현재 선택한 옵션
+  const [newCurrentOptionList, setNewCurrentOptionList] =
+    useState(initialOptionList);
 
   const handleDecreaseBtn = () => {
     if (qty <= 1) {
       alert("1개 이하로 수량을 선택할 수 없습니다.");
       return;
     }
-    setQty((qty) => Number.parseInt(qty) - 1);
+    setQty((qty) => qty - 1);
+    setOptionArr(
+      optionArr.slice(0, optionArr.length - initialOptionList.length)
+    );
+
+    setTotalPrice(totalPrice - singleReward.reward_price);
+
+    setNewCurrentOptionList(
+      newCurrentOptionList.slice(
+        0,
+        newCurrentOptionList.length - initialOptionList.length
+      )
+    );
+
+    let newSingleReward = {
+      ...singleReward,
+      optionList: newCurrentOptionList,
+    };
+
+    purchaseInfo.rewards[singleRewardIndex] = newSingleReward;
   };
 
   const handleIncreaseBtn = () => {
     // 제한수량 이상은 못 늘어나게 유효성 필요.
-    const limit = Number.parseInt(rewardData.purchase_limit);
-
     if (qty >= limit) {
       alert("최대 수량을 초과했습니다.");
       setQty(limit);
       return;
     }
 
-    setQty((qty) => Number.parseInt(qty) + 1);
-    let newOptionList = optionList;
+    setQty((qty) => qty + 1);
 
-    newOptionList.rewardOptionDto = newOptionList.rewardOptionDto.concat(
-      initialState.rewardOptionDto
-    );
+    setTotalPrice(totalPrice + singleReward.reward_price);
 
-    newOptionList.index = newOptionList.index + 1;
-
-    setOptionList(newOptionList);
-    console.log(newOptionList);
+    let newOptionList = optionArr;
+    newOptionList = newOptionList.concat(initialOptionList);
+    setOptionArr(newOptionList);
   };
 
+  useEffect(() => {
+    if (checkbox) {
+      setTotalPrice(totalPrice + singleReward.reward_price);
+
+      let newSingleReward = {
+        ...singleReward,
+        qty: qty,
+      };
+
+      setPurchaseInfo({
+        ...purchaseInfo,
+        project_id: project.project_id,
+
+        project_name: project.project_name,
+
+        open_date: project.open_date,
+        close_date: project.close_date,
+
+        rewards: purchaseInfo.rewards.concat(newSingleReward).sort(),
+      });
+
+      purchaseInfo.total_price = totalPrice;
+    } else {
+      if (totalPrice > 0)
+        setTotalPrice(totalPrice - singleReward.reward_price * qty);
+
+      let afterDeleteRewards = purchaseInfo.rewards.filter(
+        (data) => singleReward.reward_id !== data.reward_id
+      );
+
+      setQty(1);
+      setOptionArr(initialOptionList);
+      setNewCurrentOptionList(initialOptionList);
+
+      setPurchaseInfo({
+        ...purchaseInfo,
+        rewards: afterDeleteRewards,
+      });
+    }
+  }, [checkbox]);
+
+  console.log("###purchaseInfo###", purchaseInfo);
+  const handleCheckBox = () => {
+    setCheckbox(!checkbox);
+  };
+
+  console.log("purchaseInfo", purchaseInfo);
+  console.log("newCurrentOptionList", newCurrentOptionList);
+  // console.log("selectedOptionList", selectedOptionList);
+
+  console.log("singleReward", singleReward);
   return (
     <li>
-      <div className="reward_box">
+      <div className={checkbox ? "reward_box checked" : "reward_box"}>
         <div className="left">
-          <input type={"checkbox"} onClick={handleCheckReward} />
+          <input
+            type={"checkbox"}
+            className="reward_checkbox"
+            onChange={() => handleCheckBox()}
+          />
         </div>
         <div className="right">
           <p className="reward_price">
-            {rewardData.reward_price}원 펀딩합니다.
+            {singleReward.reward_price}원 펀딩합니다.
           </p>
-          <p className="reward_title">{rewardData.reward_title}</p>
-          <p className="reward_info">{rewardData.reward_info}</p>
+          <p className="reward_title">{singleReward.reward_title}</p>
+          <p className="reward_info">{singleReward.reward_info}</p>
+          <p className="reward_delivery">
+            배송비:{singleReward.parcel_fee}원 │ 리워드 제공 예상일 :{" "}
+            {project.delivery_date} 예정
+          </p>
 
-          {checkReward && (
+          {checkbox && (
             <div className="reward_detail">
               <div className="reward_amount">
                 <p>수량:</p>
                 <button
                   type="button"
-                  name="decrease_btn"
+                  className="decrease_btn"
                   onClick={handleDecreaseBtn}
                 >
                   -
@@ -91,28 +160,49 @@ const RewardItem = ({ rewardData }) => {
                   type={"input"}
                   name="count"
                   value={qty}
-                  //onChange={handleOnChangeQty}
+                  onChange={() => {}}
                 />
                 <button
                   type="button"
-                  name="increase_btn"
+                  className="increase_btn"
                   onClick={handleIncreaseBtn}
                 >
                   +
                 </button>
               </div>
               <div className="reward_option">
-                {rewardData.rewardOptionDto !== 0 &&
-                  optionList.rewardOptionDto.map((optionData, idx) =>
-                    optionData.map((data, idx) =>
-                      data.reward_option_detail ? (
-                        <RewardOptionSelection
-                          key={idx}
-                          rewardOptionDto={data}
-                        />
-                      ) : (
-                        <RewardOptionAnswer key={idx} rewardOptionDto={data} />
-                      )
+                {singleReward.optionList !== 0 &&
+                  optionArr.map((singleOption, singleOptionIndex) =>
+                    singleOption.reward_option_detail ? (
+                      <RewardOptionSelection
+                        key={singleOptionIndex}
+                        singleReward={singleReward}
+                        singleRewardIndex={singleRewardIndex}
+                        singleOptionIndex={singleOptionIndex}
+                        singleOption={singleOption}
+                        initialOptionList={initialOptionList}
+                        purchaseInfo={purchaseInfo}
+                        setPurchaseInfo={setPurchaseInfo}
+                        initialRewards={initialRewards}
+                        newCurrentOptionList={newCurrentOptionList}
+                        setNewCurrentOptionList={setNewCurrentOptionList}
+                        qty={qty}
+                      />
+                    ) : (
+                      <RewardOptionAnswer
+                        key={singleOptionIndex}
+                        singleReward={singleReward}
+                        singleRewardIndex={singleRewardIndex}
+                        singleOptionIndex={singleOptionIndex}
+                        singleOption={singleOption}
+                        initialOptionList={initialOptionList}
+                        purchaseInfo={purchaseInfo}
+                        setPurchaseInfo={setPurchaseInfo}
+                        initialRewards={initialRewards}
+                        newCurrentOptionList={newCurrentOptionList}
+                        setNewCurrentOptionList={setNewCurrentOptionList}
+                        qty={qty}
+                      />
                     )
                   )}
               </div>

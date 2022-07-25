@@ -5,20 +5,24 @@ li {
 .purchase_wrap {
     width: 820px;
     margin: 0 auto;
-
 }
 
 .reward_box {
     position: relative;
     padding: 20px;
     margin-top: 15px;
-    background-color: #f9f9f9;
+    background-color: #f1f1f1;
     width: 100%;
     height: auto;
     display: flex;
     align-items: center;
     /* overflow: hidden;     */
 }
+
+.reward_box.checked{
+    background-color: #e4f0ff;
+}
+
 
 .reward_box > .left {
     width: 100px;
@@ -47,6 +51,8 @@ li {
 
 div.reward_detail {
     margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
 }
 
 p.reward_price{
@@ -56,33 +62,48 @@ p.reward_price{
 }
 
 p.reward_title {
-    margin: 0 0 2px 0;
+    margin: 0 0 5px 0;
     font-size: 14px;
+    font-weight: 500;
 }
 
-p.reward_info {
-    margin: 0;
+p.reward_info, p.reward_delivery {
+    margin:0;
     font-size: 12px;
+    font-weight: 500;
+
 }
+
 
 div.reward_amount{
     display: inline-block;
-    width: 120px;
+    width: 140px;
 }
 
 div.reward_amount p{
-    margin: 0;
-    font-size: 12px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.reward_qty, .reward_qty::placeholder, .increase_btn, .decrease_btn {
+    font-size: 14px;
+    margin-bottom: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 div.reward_option{
     display: inline-block;
-    width: 550px;
+    width: 530px;
 }
 
 div.reward_option p{
-    margin: 0;
-    font-size: 12px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-size: 14px;
 }
 
 input.reward_qty{
@@ -95,10 +116,37 @@ input.reward_option{
 }
 
 
-select.reward_option_detail{
+.reward_option_detail, .reward_option_detail::placeholder{
     width: 100%;
+    font-size: 14px;
+    margin-bottom: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
-input.reward_option_detail{
-    width: 100%;
+div.reward_list > .option_lists {
+    background-color: #d1e7ff;
+}
+
+p.purchase_info{
+    text-align: center;
+    font-weight: 600;
+    margin: 50px 0;
+}
+
+span.purchase_total_price{
+    color: #599ee8;
+    text-decoration: underline;
+}
+
+button.next_step_btn{
+    padding: 15px 30px;
+    font-weight: 500;
+    font-size: 15px;
+    color: white;
+    background-color: #9ac7f8;
+    border: 0;
+    cursor: pointer;
 }
