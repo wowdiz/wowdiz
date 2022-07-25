@@ -12,14 +12,18 @@ import lombok.Data;
 @Data
 public class MakerDto {
 	//project table
+	private Integer project_id;
 	private String project_name;
-	private Integer targtet_amount;
+	private Integer target_amount;
+	private String project_thumbnail;
 	private String project_story;
 	private String project_keyword;
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
-	private Timestamp close_date;
+//	@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
+//	private Timestamp close_date;
+	private String close_date;
 	
 	//project_reward table
+	private Integer reward_id;
 	private Integer reward_price;
 	private String reward_title;
 	private String reward_info;

@@ -79,6 +79,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/duplicateCheck").permitAll()
                 .antMatchers("/supportboard/*").permitAll()
                 .antMatchers("/purchase/getRewards").permitAll()
+                
+                //maker
+                .antMatchers("/maker/insertMakerProject").permitAll()
                 .anyRequest().authenticated()
 
                 .and()

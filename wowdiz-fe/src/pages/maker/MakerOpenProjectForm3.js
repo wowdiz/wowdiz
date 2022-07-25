@@ -15,6 +15,7 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
     const [rewardOptionKeywordArr, setRewardOptionKeywordArr] = useState([]);
     const [rewardOptionKeyword, setRewardOptionKeyword] = useState("");
     const [rewardOptionKeywordArrs, setRewardOptionKeywordArrs] = useState([""]);
+
     const [isHovering, setIsHovering] = useState(0);
 
     const today = new Date().toISOString().substring(0, 10);
@@ -114,15 +115,23 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
 
     //아직 미구현...
     const onResetReward = () => {
-        rewardRef.current[0].value = '';
-        rewardRef.current[3].value = '';
-        rewardRef.current[4].value = '';
+        rewardRef.current[0].value = null;
+        rewardRef.current[3].value = null;
+        rewardRef.current[4].value = null;
         rewardRef.current[5].value = today;
         setRewardOptionArr([]);
     };
 
     const onBlurResetReward = () => {
         setReward([]);
+    }
+
+    const titleLengthChecker = () => {
+        if(rewardRef.current[3].value === '') {
+            return 0;
+        } else {
+            return rewardRef.current[3].value.length;
+        }
     }
 
     return (
@@ -222,6 +231,8 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
                                 ref={(el) => (rewardRef.current[3] = el)}
                                 />
                                 <span style={{ color: "gray" }}>&nbsp;{subjectLengthChecker}/30</span>
+                                {/* <span style={{ color: "gray" }}>
+                                    &nbsp;{rewardRef.current[3].value===null?'0':rewardRef.current.value.length}/30</span> */}
                                 </td>
                             </tr>
                             <tr>
@@ -248,7 +259,7 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
                                 name="deliveryDate"
                                 type="date"
                                 onChange={handleReward}
-                                defaultValue={form.close_date}
+                                defaultValue={reward.deliveryDate}
                                 ref={(el) => (rewardRef.current[5] = el)}
                                 />
                                 </td>

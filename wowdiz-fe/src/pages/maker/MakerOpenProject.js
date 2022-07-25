@@ -38,7 +38,6 @@ const MakerOpenProject = () => {
             ...form,
             [e.target.name]: e.target.value,
         });
-        console.log("form", form);
     };
 
     //여기서 엑시오스서비스가야함
@@ -50,6 +49,8 @@ const MakerOpenProject = () => {
     const url = "/maker/insertMakerProject"
 
     const onSubmit = () => {
+        console.log("form", form);
+
         axios.post(urll, form)
         .then(res => console.log('post성공'))
         .catch((error) => {
@@ -57,7 +58,7 @@ const MakerOpenProject = () => {
             console.log(error);
         });
     };
-    console.log("form", form);
+    
 
     return (
         <div className="maker_open_project">
