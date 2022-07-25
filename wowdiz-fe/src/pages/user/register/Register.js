@@ -1,15 +1,14 @@
 import "../../../style/register.css";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import AxiosService from "../../../service/AxiosService";
 import CustomModal from "../../../components/user/CustomModal";
-import RegisterHead from "../../../components/user/RegisterHead";
 import JoinPresenter from "../../../components/user/JoinPresenter";
 import UserService from "../../../service/UserService";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../../components/loading/Loading";
 
 const RegisterTest = () => {
   // 이용약관 체크박스
@@ -19,8 +18,6 @@ const RegisterTest = () => {
   const [userCheck, setUserCheck] = useState(false);
 
   const allBtnEvent = () => {
-    console.log(allCheck);
-
     if (allCheck === false) {
       setAllCheck(true);
       setRegCheck(true);
@@ -83,11 +80,14 @@ const RegisterTest = () => {
   const [modalContent, setModalContent] = useState();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  //로딩 창 관리
+  const [loading, setLoading] = useState(null);
   ///이메일 중복확인
   const [user_emailCheck, setUser_emailCheck] = useState(null);
   ///닉네임 중복확인
   const [user_nicknameCheck, setUser_nicknameCheck] = useState(null);
-  const comfrimUrl = "http://localhost:9150/" + "api/emailConfirm";
+  const comfrimUrl = "api/user/emailConfirm";
   //이메일 인증번호
   const [emailAuth, setEmailAuth] = useState(false);
   //입력된 이메일
@@ -113,62 +113,64 @@ const RegisterTest = () => {
       setModalTitle("이메일 정보입력 오류");
       setModalContent("이메일을 형식에 맞추어 입력해주세요");
     } else {
-      axios
-        .post("http://localhost:9150/api/duplicateCheck", {
-          user_email: data_email,
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.data === "cofirm") {
-            setUser_emailCheck(false);
-            handleOpen();
-            setModalTitle("이메일 오류");
-            setModalContent("이미 가입된 이메일입니다.");
-          } else if (res.data === "") {
-            setUser_emailCheck(false);
-            handleOpen();
-            setModalTitle("이메일 오류");
-            setModalContent("이메일을 입력해주세요.");
-          } else if (res.data === "pass") {
-            setUser_emailCheck(true);
-            handleOpen();
-            setModalTitle("이메일 인증확인");
-            setModalContent("이메일을 인증번호를 확인해주세요 .");
-          } else {
-            setUser_emailCheck(true);
-            handleOpen();
-            setModalTitle("이메일 인증확인");
-            setModalContent("이메일 인증번호를 확인해주세요.");
-          }
-          if (user_emailCheck === true) {
-            email_confirm.focus();
-          }
-        });
+      setLoading(true);
+      AxiosService.post("/api/user/duplicateCheck", {
+        user_email: data_email,
+      }).then((res) => {
+        console.log(res);
+        if (res.data === "cofirm") {
+          setUser_emailCheck(false);
+          handleOpen();
+          setModalTitle("이메일 오류");
+          setModalContent("이미 가입된 이메일입니다.");
+          setLoading(false);
+        } else if (res.data === "") {
+          setUser_emailCheck(false);
+          handleOpen();
+          setModalTitle("이메일 오류");
+          setModalContent("이메일을 입력해주세요.");
+          setLoading(false);
+        } else if (res.data === "pass") {
+          setUser_emailCheck(true);
+          handleOpen();
+          setModalTitle("이메일 인증확인");
+          setModalContent("이메일을 인증번호를 확인해주세요 .");
+          setLoading(false);
+        } else {
+          setUser_emailCheck(true);
+          handleOpen();
+          setModalTitle("이메일 인증확인");
+          setModalContent("이메일 인증번호를 확인해주세요.");
+          setLoading(false);
+        }
+        if (user_emailCheck === true) {
+          email_confirm.focus();
+          setLoading(false);
+        }
+      });
     }
   };
 
   //인증완료 버튼
   const authCofirm = (e) => {
     const data_key = getValues("email_confirm");
-    axios
-      .post(comfrimUrl, {
-        user_email: data_email,
-        authentication_key: data_key,
-      })
-      .then((res) => {
-        console.log(res.data);
-        if (res.data === true) {
-          setDisable(true);
-          handleOpen();
-          setModalTitle("이메일 인증");
-          setModalContent("인증 완료");
-        } else {
-          setDisable(false);
-          handleOpen();
-          setModalTitle("이메일 인증");
-          setModalContent("인증번호를 다시 확인해주세요.");
-        }
-      });
+    AxiosService.post(comfrimUrl, {
+      user_email: data_email,
+      authentication_key: data_key,
+    }).then((res) => {
+      console.log(res.data);
+      if (res.data === true) {
+        setDisable(true);
+        handleOpen();
+        setModalTitle("이메일 인증");
+        setModalContent("인증 완료");
+      } else {
+        setDisable(false);
+        handleOpen();
+        setModalTitle("이메일 인증");
+        setModalContent("인증번호를 다시 확인해주세요.");
+      }
+    });
   };
 
   // 비밀번호 확인
@@ -178,21 +180,21 @@ const RegisterTest = () => {
   //  닉네임 확인
   const nicknameCheck = () => {
     const nickname = getValues("user_nickname");
-    AxiosService.post("/api/nicknameCheck", { user_nickname: nickname }).then(
-      (res) => {
-        if (res.data == false) {
-          setUser_nicknameCheck(false);
-          handleOpen();
-          setModalTitle("아이디 중복확인");
-          setModalContent("중복된 아이디입니다.");
-        } else {
-          setUser_nicknameCheck(true);
-          handleOpen();
-          setModalTitle("아이디 중복확인");
-          setModalContent("사용가능한 닉네임입니다.");
-        }
+    AxiosService.post("/api/user/nicknameCheck", {
+      user_nickname: nickname,
+    }).then((res) => {
+      if (res.data === false) {
+        setUser_nicknameCheck(false);
+        handleOpen();
+        setModalTitle("아이디 중복확인");
+        setModalContent("중복된 아이디입니다.");
+      } else {
+        setUser_nicknameCheck(true);
+        handleOpen();
+        setModalTitle("아이디 중복확인");
+        setModalContent("사용가능한 닉네임입니다.");
       }
-    );
+    });
   };
   //로그인 체크
   const isLoggedIn = () => {
@@ -205,7 +207,7 @@ const RegisterTest = () => {
   const onSubmit = (data) => {
     if (disable === true && user_nicknameCheck === true && allCheck === true) {
       console.log(data);
-      const url = "api/signup";
+      const url = "api/user/signup";
       AxiosService.post(url, data, {
         user_recommend: getValues("user_recommend"),
       }).then((res) => {
@@ -262,7 +264,6 @@ const RegisterTest = () => {
 
   return (
     <div className="register_page">
-      <RegisterHead />
       <div className="register_page_wrap">
         <h2> 회원가입</h2>
         <p className="page-description">최소한의 정보를 받고 있습니다.</p>
@@ -346,7 +347,7 @@ const RegisterTest = () => {
                 사용 가능한 이메일입니다. 인증번호를 입력해주세요
               </p>
             ))}
-          {user_emailCheck && (
+          {user_emailCheck === true && disable === false ? (
             <div style={{ display: { emailAuth } }}>
               <label
                 className="accountLabel"
@@ -386,6 +387,10 @@ const RegisterTest = () => {
               </div>
               {errors.email_confirm && errors.email_confirm.message}
             </div>
+          ) : user_emailCheck === true && disable === true ? (
+            <></>
+          ) : (
+            <></>
           )}
           <label className="accountLabel">비밀번호</label>
           <input
@@ -484,7 +489,7 @@ const RegisterTest = () => {
             className="user_phone"
             required
             maxLength="13"
-            placeholder="휴대폰번호를 입력해주세요  ex)010-0000-0000"
+            placeholder="ex)010-0000-0000"
             {...register("user_phone", {
               required: "휴대폰번호를 입력해주세요",
               pattern: {
@@ -575,6 +580,9 @@ const RegisterTest = () => {
           modalContent={modalContent}
         />
       </div>
+      {loading && (
+        <Loading type="spokes" color="black" message="이메일 전송중" />
+      )}
     </div>
   );
 };

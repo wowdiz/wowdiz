@@ -1,0 +1,190 @@
+
+.user_find_wrap {
+    /* display: block; */
+    margin: 0 auto;
+    padding: 0 16px;
+    width: 100%;
+    max-width: 1400px;
+    color: rgba(0,0,0,.84);
+}
+.user_find_wrap .user_find_title {
+    padding-top: 56px;
+    padding-bottom: 36px;
+    text-align: left;
+    width: 1200px;
+    margin: 0 auto;
+    display: block;
+}
+.user_find_wrap .user_find_title .user_find_subject {
+    display: block;
+    line-height: 40px;
+    min-width: auto;
+    font-size: 35px;
+    font-weight: 700;
+    vertical-align: baseline;
+    word-break: keep-all;
+}
+.user_find_wrap .user_find_title > ul {
+    display: block;
+    margin: 0 auto;
+}
+.user_find_title > ul > label  {
+    cursor: pointer;  
+    display: block;
+    width: 170px;
+    height: 47px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 48px;
+    color: #90949c;
+    font-size: 15px;
+    float: left;
+
+}
+.user_find_title_user {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.user_find_title_user_select {
+    border-bottom: 2px solid #69aef7;;
+    height: 47px;
+}
+
+.user_find_title_user_select > p {
+    font-weight: 700;
+    color:#69aef7;;
+    font-size: 20px;
+}
+.user_find_content {
+    background: #f5f7fa;
+    margin-top: 33px;
+    display: block;
+}
+.user_find_box {
+    margin: 0 auto;
+    border-top: 1px solid transparent;
+    padding-top: 24px;
+    padding-bottom: 160px;
+    width: 100%;
+    max-width: 400px;
+}
+.user_find_box > p {
+    margin-bottom: 40px;
+    font-weight: 700;
+    color: rgba(0,0,0,.54);
+   
+}
+.user_find_text {
+  margin-bottom: 40px;
+  font-weight: 700;
+  color: rgba(0,0,0,.54);
+}
+
+.user_find_id_from {
+display: block;
+border-radius: 3px;
+
+width: 100%;
+}
+
+.user_find_id_from > input {
+    display: inline-block;
+    border-radius: 3px;
+    height: 43px;
+    line-height: 1.2em;
+    font-size: 19px;
+    font-weight: 300;
+    transition-property: border-color, height, padding-right, color;
+    transition-duration: 0.2s, 0s;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: #fff;
+    width: 98%;
+    vertical-align: middle;
+    color: rgba(0, 0, 0, 0.84);
+    font-family: roboto, Noto;
+  }
+  .user_find_id_from >input:focus {
+    border: 2px solid #69aef7;
+    outline: none;
+  }
+  .user_find_id_from > button {
+    margin-top: 35px;
+    background-color: #69aef7;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    transition-duration: 0.2s;
+    border: 0px solid rgba(0, 0, 0.15);
+    border-radius: 3px;
+    height: 47px;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .user_find_id_from > button > b {
+    font-size: 18px;
+
+  }
+.find_login_button {
+    margin-top: 35px;
+    background-color: #102842;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    transition-duration: 0.2s;
+    border: 0px solid rgba(0, 0, 0.15);
+    border-radius: 3px;
+    height: 47px;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+.find_login_button > b {
+    font-size: 18px;
+  }
+.user_find_confirm_from {
+    display: block;
+    border-radius: 3px;
+    height: 70px;
+    width: 100%;
+}
+.user_find_confirm_from > input {
+    display: inline-block;
+    border-radius: 3px;
+    height: 43px;
+    line-height: 1.2em;
+    font-size: 19px;
+    font-weight: 300;
+    transition-property: border-color, height, padding-right, color;
+    transition-duration: 0.2s, 0s;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: #fff;
+    width: 98%;
+    vertical-align: middle;
+    color: rgba(0, 0, 0, 0.84);
+    font-family: roboto, Noto;
+  }
+.user_find_confirm_from >input:focus {
+    border: 2px solid #69aef7;
+    outline: none;
+  }
+.user_find_confirm_from > button {
+    margin-top: 35px;
+    background-color: #69aef7;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    transition-duration: 0.2s;
+    border: 0px solid rgba(0, 0, 0.15);
+    border-radius: 3px;
+    height: 47px;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+.user_find_confirm_from > button > b {
+    font-size: 18px;
+  }

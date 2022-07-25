@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService{
 		this.emailService =emailService;
 	}
 	
+	// 일반유저 및 카카오 유저 회원가입 
 	@Transactional
 	public String signup(UserDto userDto) {
 		if(userMapper.selectUserWithAuthoritiesByUserEmail(userDto.getUser_email()).orElse(null)!=null) {
@@ -74,7 +75,7 @@ public class UserServiceImpl implements UserService{
 		return SecurityUtil.getCurrentUserEmail().flatMap(userMapper::selectUserWithAuthoritiesByUserEmail);
 	}
 	
-
+	//이메일 중복확인 및 이메일 찾기 
 	@Override
 	public Integer emailDuplicateCheck(String user_email) {
 //		String user_email = map.get("user_email");
@@ -82,7 +83,7 @@ public class UserServiceImpl implements UserService{
 		System.out.println(userMapper.emailDuplicateSelect(user_email));
 		return userMapper.emailDuplicateSelect(user_email);
 	}
-
+	// 이메일 인증번호 생성 
 	@Override
 	public Boolean authenticationCreate(Map<String,String> map) throws Exception {
 		String user_email = map.get("user_email");
@@ -107,13 +108,13 @@ public class UserServiceImpl implements UserService{
 		}
 	
 	}
-
+	//이메일 인증키 값 
 	@Override
 	public String authenticationKeySelect(String user_email) {
 		
 		return userMapper.authenticationKeySelect(user_email);
 	}
-
+	//닉네임 중복확인 
 	@Override
 	public Boolean nicknameDuplicateSelect(Map<String, String> map) {
 		String user_nickname = map.get("user_nickname");
@@ -128,7 +129,7 @@ public class UserServiceImpl implements UserService{
 			return true;
 		}
 	}
-
+	// 이메일 인증 확인
 	@Override
 	public void authenticationSucces(String user_email) {
 		
@@ -206,7 +207,7 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//카카오 유저 정보 가져오기 
 	@Override
 	public Map<String, Object> kakaoUser(String access_Token) {
 		// TODO Auto-generated method stub
@@ -262,14 +263,66 @@ public class UserServiceImpl implements UserService{
 
 	return userInfo;
 	}
+	// SNS 등록 확인 
 	@Override
 	public UserDto snsIdfind(String user_email) {
 		return userMapper.snsIdSelect(user_email);
 	}
-
+	// SNS 유저 등록 
 	@Override
 	public void snsInsert(UserDto userDto) {
 		// TODO Auto-generated method stub
 		 userMapper.snsInsert(userDto);
 	}
+
+	@Override
+	public Integer snsUserDivision(String user_email) {
+		UserDto userDto = new UserDto();
+		userDto = userMapper.snsIdSelect(user_email);
+		String sns_type=userDto.getSns_type();
+		if(sns_type!=null) {
+		
+			if(sns_type.contains("user") == true && sns_type.contains("kakao")==false) {
+				return 1; // 0이면 일반유저만 등록  
+			}else if(sns_type.contains("kakao") == true && sns_type.contains("user")==false) {
+				return 2; // 1이면 kakao 만 가입
+			}else if(sns_type.contains("kakao") == true && sns_type.contains("user") == true){
+				return 3; // 2이면 유저로도 가입 카카오로도 가입된 유저
+			}else {
+				return 4;
+			}
+		}else {
+			return 1;
+		}
+
+	}
+//  Password 찾기 실행시 인증번호 보내기 
+	@Override
+	public Integer findUserPassword(String user_email) {
+		String authentication_key;
+		try {
+			authentication_key = emailService.sendSimpleMessage(user_email);
+			AuthenticationDto authenticationDto = new AuthenticationDto();
+			authenticationDto.setAuthentication_email(user_email);
+			authenticationDto.setAuthentication_enabled(true);
+			authenticationDto.setAuthentication_key(authentication_key);
+			userMapper.authenticationEnabledUpdate(authenticationDto);
+			userMapper.authenticationUpdate(authenticationDto);
+			return 1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+	
+		return 0;
+	}
+// Password 변경
+	@Override
+	public void changePassword(UserDto userDto) {
+		// TODO Auto-generated method stub
+		userDto.setUser_password(passwordEncoder.encode(userDto.getUser_password()));
+		userMapper.passwordUpdate(userDto);		
+	}
+	
 }

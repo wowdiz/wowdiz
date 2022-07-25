@@ -6,7 +6,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import AxiosService from "../../../service/AxiosService";
 import CustomModal from "../../../components/user/CustomModal";
-import RegisterHead from "../../../components/user/RegisterHead";
+import RegisterHead from "../../../components/header/RegisterHead";
 import JoinPresenter from "../../../components/user/JoinPresenter";
 import { useNavigate } from "react-router-dom";
 
@@ -272,7 +272,6 @@ const SnsRegister = () => {
 
   return (
     <div className="register_page">
-      <RegisterHead />
       <div className="register_page_wrap">
         <h2>SNS 회원가입</h2>
         <p className="page-description">최소한의 정보를 받고 있습니다.</p>

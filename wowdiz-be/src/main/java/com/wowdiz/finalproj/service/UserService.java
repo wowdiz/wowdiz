@@ -42,5 +42,11 @@ public interface UserService {
 	public UserDto snsIdfind(String user_email);
 // 카카오 업데이트 
 	public void snsInsert(UserDto userDto);
-
+// 아이디 찾기 일반유저 및 sns 가입 유저 구분
+	public Integer snsUserDivision(String user_email);
+// Password 찾기
+	public Integer findUserPassword(String user_email);
+// Password 변경
+	public void changePassword(UserDto userDto);
+	
 }
