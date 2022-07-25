@@ -23,6 +23,7 @@ import DetailNews from "./pages/funding/detail/DetailNews";
 import DetailCommunity from "./pages/funding/detail/DetailCommunity";
 import DetailInfo from "./pages/funding/detail/DetailInfo";
 import Notice from "./pages/support/notice/Notice";
+import NoticeDetail from "./pages/support/notice/NoticeDetail";
 import Event from "./pages/support/event/Event";
 import FAQ from "./pages/support/faq/FAQ";
 import Test from "./pages/user/register/AddressApi";
@@ -48,6 +49,7 @@ function App() {
 
       <Route path="/" element={<MainLayout />}>
         <Route path="" element={<Home />} />
+        <Route path="maker/open_project" element={<MakerOpenProject/>}/>
 
         {/*펀딩페이지*/}
         <Route path="/funding" element={<FundingList />} />
@@ -63,6 +65,7 @@ function App() {
         {/*고객센터페이지*/}
         <Route path="/supportboard" element={<SupportBoard />}>
           <Route path="/supportboard" element={<Notice />} />
+          <Route path="/supportboard/noticedetail" element={<NoticeDetail />} />
           <Route path="/supportboard/event" element={<Event />} />
           <Route path="/supportboard/faqpage" element={<FAQ />} />
           <Route path="/supportboard/faqdetail/:faq_id" element={<FAQ />} />
