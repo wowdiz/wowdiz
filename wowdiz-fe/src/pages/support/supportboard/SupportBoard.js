@@ -18,6 +18,7 @@ const SupportBoard = () => {
             <NavLink
               className={style === 1 ? "menu_style" : "menu_title"}
               to="/supportboard"
+              
               style={{ textDecoration: "none" }}
               onClick={() => {
                 setTitle("공지사항");

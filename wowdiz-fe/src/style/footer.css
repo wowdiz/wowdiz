@@ -1,6 +1,24 @@
-div.footer_wrap{
+div.footer_wrap {
     background-color: #9ac7f8;
-    text-align: center;
-    height: 70px;
-    line-height: 70px;
+}
+
+.footer_wrap1 {
+    display: inline-block;
+    margin-top: 40px;
+    margin-left: -56px;
+    font-size: 4px;
+}
+
+.footer_wrap2 {
+    margin-left: 630px;
+    font-size: 4px;
+    display: inline-block;
+}
+
+.logo_image_footer {
+    margin-left: 15px;
+    margin-top: 15px;
+    float: left;
+    height: 20px;
+    display: inline-block;
 }

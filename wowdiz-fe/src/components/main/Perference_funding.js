@@ -14,8 +14,7 @@ const Perference_funding = ({ data, idx }) => {
           alt=""
         ></img>
         <p className="perference_fundig_title">{data.title}</p>
-        <p className="fundig_category_component">{data.catagory}</p>
-        <p className="perference_fundig_maker">{data.maker}</p>
+        <p className="fundig_category_component">{data.catagory} | {data.maker}</p>
         <div className="middle_div">
           <hr className="midle_bar"></hr>
           <hr

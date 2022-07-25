@@ -2,20 +2,22 @@
   background-color: #9ac7f8;
   /* width: 100%; */
   width: 1200px;
-  border: 1px inset white;
   height: 70px;
+  margin-top: -15px;
 }
+
 .logo_image {
-  width: 95px;
   height: 40px;
   float: left;
   margin-left: 15px;
   margin-top: 15px;
 }
+
 .header_menu {
   list-style: none;
 }
-.header_menu > li {
+
+.header_menu>li {
   line-height: 40px;
   letter-spacing: -0.6px;
   font-size: 20px;
@@ -29,14 +31,15 @@
   text-decoration: none;
   float: left;
   margin-left: 20px;
+  margin-top: 14px;
 }
 
 .menu_li {
   text-decoration-line: none;
   color: white;
 }
+
 .user_bar {
-  margin-left: 50px;
   float: right;
 }
 
@@ -44,29 +47,34 @@
   text-decoration-line: none;
   color: white;
   margin-left: 1px;
-  font-weight: 700;
+  font-weight: 550;
   margin-right: 15px;
-  line-height: 65px;
-  font-size: 14px;
+  line-height: 70px;
+  font-size: 20px;
 }
+
 .search_bar {
   display: inline-block;
   padding-right: 10px;
-  margin-left: 150px;
+  margin-left: 140px;
   min-width: 100px;
+  color: white;
 }
+
 .search_form {
   display: block;
   position: relative;
-  border: 1px solid #00c4c4;
+  border: 1px solid white;
   border-radius: 20px;
   height: 40px;
   padding: 0;
   left: 0px;
-  top: 5px;
+  top: 16px;
   box-sizing: border-box;
   width: 300px;
+  margin-left: 135px;
 }
+
 .keyword {
   vertical-align: baseline;
   font: inherit;
@@ -90,18 +98,23 @@
   width: 220px;
 }
 
+input.keyword::placeholder {
+  color: white;
+}
+
 .login_wrap {
   display: inline-block;
   margin-top: 5px;
   margin-left: 100px;
 }
+
 .user_bar_login_name {
   display: inline-block;
   color: white;
   font-weight: 700;
   margin-right: 20px;
 }
+
 .user_bar_login {
   display: inline-block;
 }
-

@@ -86,6 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/supportboard/*").permitAll()
 
                 .antMatchers("/purchase/getRewards").permitAll()
+                .antMatchers("/notice/list").permitAll()
                 .antMatchers("/api/emailConfirm").permitAll() // 이메일 인증코드확인
                 .antMatchers("/api/nicknameCheck").permitAll() // 닉네임 중복확인
                 .antMatchers("/api/oauth2/kakao/**").permitAll() // 닉네임 중복확인
