@@ -36,7 +36,8 @@ import SnsRegister from "./pages/user/register/SnsRegister";
 import QNAAnswer from "./pages/support/qna/QNAAnswer";
 import FAQWrite from "./pages/support/faq/FAQWrite";
 import FAQUpdate from "./pages/support/faq/FAQUpdate";
-
+import FindUser from "./pages/user/register/FindUser";
+import UserLayout from "./layout/UserLayout";
 
 // 최초 작업자: 권능
 // 2022-06-29
@@ -91,17 +92,18 @@ function App() {
       </Route>
 
       {/* 로그인 */}
-      <Route path="/login" element={<Login />} />
+
       <Route path="/test" element={<Test />} />
 
-      {/* 회원가입 */}
-      <Route path="/register" element={<RegisterForm />} />
-      <Route path="/register_join" element={<Register />} />
-      <Route path="/snsregister_join" element={<SnsRegister />} />
-      <Route path="/login" element={<Login />} />
-
-      {/* 회원가입 */}
-      <Route path="/register" element={<Register />} />
+      {/* 회원가입  / 로그인  / 아이디 찾기 / 패스워드 찾기*/}
+      <Route path="/user" element={<UserLayout />}>
+        <Route path="/user/login" element={<Login />} />
+        <Route path="/user/register" element={<RegisterForm />} />
+        <Route path="/user/register_join" element={<Register />} />
+        <Route path="/user/snsregister_join" element={<SnsRegister />} />
+        <Route path="/user/login" element={<Login />} />
+        <Route path="/user/find" element={<FindUser />} />
+      </Route>
 
       {/* 운영자레이아웃 */}
       <Route path="/admin" element={<AdminLayout />}>

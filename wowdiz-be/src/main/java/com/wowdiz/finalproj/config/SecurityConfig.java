@@ -77,19 +77,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //서버에서 제한없이 모든 접근 허용
                 .antMatchers("/").permitAll()
                 .antMatchers("/api/authenticate").permitAll()	
-                .antMatchers("/api/signup").permitAll()
+                .antMatchers("/api/user/signup").permitAll()
 
-                .antMatchers("/api/sns/signup").permitAll()
-                .antMatchers("/api/duplicateCheck").permitAll()  // 이메일 중복확인 및 인증코드 발송
+                .antMatchers("/api/user/sns/signup").permitAll()
+                .antMatchers("/api/user/duplicateCheck").permitAll()  // 이메일 중복확인 및 인증코드 발송
 
-                .antMatchers("/api/duplicateCheck").permitAll()
+                .antMatchers("/api/user/duplicateCheck").permitAll()
                 .antMatchers("/supportboard/*").permitAll()
 
                 .antMatchers("/purchase/getRewards").permitAll()
-                .antMatchers("/api/emailConfirm").permitAll() // 이메일 인증코드확인
-                .antMatchers("/api/nicknameCheck").permitAll() // 닉네임 중복확인
-                .antMatchers("/api/oauth2/kakao/**").permitAll() // 닉네임 중복확인
-                .antMatchers("/api/oauth2/kakao").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/user/emailConfirm").permitAll() // 이메일 인증코드확인
+                .antMatchers("/api/user/nicknameCheck").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/user/oauth2/kakao/**").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/user/oauth2/kakao").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/user/oauth2/naver").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/user/find/id").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/user/find/password").permitAll() // 닉네임 중복확인
                 .anyRequest().authenticated()
                 
                 

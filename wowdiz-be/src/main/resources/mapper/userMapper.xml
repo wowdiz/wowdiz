@@ -80,8 +80,12 @@
 	<select id="snsIdSelect" parameterType="String" resultType="UserDto" >
 		SELECT * FROM user where user_email=#{user_email};
 	</select>
+	<!--kakao 유저 등록 -->
 	<update id="snsInsert" parameterType="UserDto">
 		UPDATE user SET sns_id=#{sns_id}, sns_type=#{sns_type} WHERE user_id=#{user_id}
 	</update>
-		
+	<!-- PASSWORD 변경 -->
+	<update id="passwordUpdate" parameterType="UserDto" >
+		UPDATE user SET user_password=#{user_password} WHERE user_email=#{user_email}
+	</update>
 </mapper>
