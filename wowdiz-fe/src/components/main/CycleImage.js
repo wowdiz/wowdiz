@@ -6,7 +6,7 @@ import React from "react";
 
 const CycleImage = ({ data }) => {
   return (
-    <label>
+    <label className="home_mainpage_Support_layout">
       <div
         className="cycle_image"
         style={{ backgroundImage: `URL(${data.image})` }}
