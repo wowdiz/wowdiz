@@ -50,5 +50,7 @@ public interface UserMapper {
 	public UserDto snsIdSelect(String user_email); 
 // SNS 업데이트 
 	public void snsInsert(UserDto userDto);
+// Password 변경
+	public void passwordUpdate(UserDto userDto);
 	
 }

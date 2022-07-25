@@ -83,6 +83,7 @@ public class UserDto {
 	@Size(min = 0, max=10)	
 	private boolean enabled;
 	
+	@Pattern(regexp = "/^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$/i")
 	private String user_recommend;
 	
 }

@@ -1,16 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../style/login.css";
 import "../../../../src/assets/images/logo/logo.png";
-import logoimage from "../../../assets/images/logo/logo.png";
-import kakaos from "../../../assets/images/register/kakao.png";
-import naver from "../../../assets/images/register/naver.png";
-import { NavLink, useNavigate, withRouter } from "react-router-dom";
+import kakaoImage from "../../../assets/images/register/kakao.png";
+import naverImage from "../../../assets/images/register/naver.png";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import UserService from "../../../service/UserService";
 import AxiosService from "../../../service/AxiosService";
-import axios from "axios";
-import { RssFeed } from "@mui/icons-material";
-
+import kakaoLogin from "../../../assets/images/user/kakaoWide.png";
 // 최초 작업자: 이기민
 // 2022-07-06
 // 로그인 페이지 디자인
@@ -29,12 +26,11 @@ const Login = () => {
     Kakao.Auth.login({
       success: function (authObj) {
         console.log(authObj);
-        axios
-          .post(
-            "http://localhost:9150" + "/api/oauth2/kakao",
-            { access_token: authObj.access_token },
-            { withCredentials: true }
-          )
+        AxiosService.post(
+          "/api/user/oauth2/kakao",
+          { access_token: authObj.access_token },
+          { withCredentials: true }
+        )
           .then((res) => {
             console.log(res.data.sns_type);
             if (res.data.sns_type === "kakao") {
@@ -107,10 +103,6 @@ const Login = () => {
 
   return (
     <div>
-      {/* login header */}
-      <div className="login_top_header">
-        <img src={logoimage} className="logoimage" alt="" />
-      </div>
       {/* login main full layout */}
       <div className="login_main_form">
         <h1>로그인</h1>
@@ -157,11 +149,12 @@ const Login = () => {
                   : false
               }
             />
-
             <span style={{ display: "inline-block" }}>아이디 저장</span>
-            <span className="login_id_password_search">
-              아이디∙비밀번호 찾기
-            </span>
+            <NavLink to="../find" style={{ textDecoration: "none" }}>
+              <span className="login_id_password_search">
+                아이디∙비밀번호 찾기
+              </span>
+            </NavLink>
           </div>
           <button type="submit" className="login_data_button">
             <b>로그인</b>
@@ -175,12 +168,8 @@ const Login = () => {
           <div className="social_regist_login">
             <button
               className="kakao"
-              style={{ backgroundImage: `URL(${kakaos})` }}
+              style={{ backgroundImage: `URL(${kakaoLogin})` }}
               onClick={kakaoLoginClickHandler}
-            />
-            <button
-              className="naver"
-              style={{ backgroundImage: `URL(${naver})` }}
             />
           </div>
           <div className="email_register">
@@ -188,7 +177,7 @@ const Login = () => {
               <span>아직 와우디즈 계정이 없나요?</span>
             </div>
             <div className="email_register_nav_text">
-              <NavLink to="/register" style={{ textDecoration: "none" }}>
+              <NavLink to="../register" style={{ textDecoration: "none" }}>
                 <span>회원가입</span>
               </NavLink>
             </div>

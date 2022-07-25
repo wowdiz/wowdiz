@@ -56,9 +56,11 @@
 .register_page_form > button {
   position: relative;
   top: 15px;
-  background-color: #9ac7f8;
+  background-color: #69aef7;
   color: #fff;
   width: 100%;
+  font-weight: 700;
+  font-size: 20px;
   text-align: center;
   transition-duration: 0.2s;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -96,9 +98,11 @@
   font-family: roboto, Noto;
 }
 .user_email_box > button {
-  background-color: #9ac7f8;
+  background-color: #69aef7;
   color: #fff;
   width: 93px;
+  font-weight: 700;
+  font-size: 15px;
   text-align: center;
   transition-duration: 0.2s;
   border: 0px solid rgba(0, 0, 0, 0.15);
@@ -127,4 +131,13 @@
   vertical-align: middle;
   color: rgba(0, 0, 0, 0.84);
   font-family: roboto, Noto;
+}
+.user_gender {
+  width: 100px;
+}
+.men {
+  width: fit-content;
+}
+.girl {
+  width: fit-content;
 }
