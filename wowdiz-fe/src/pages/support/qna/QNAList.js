@@ -7,14 +7,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
-import Stack from "@mui/material/Stack";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-
 import AxiosService from "../../../service/AxiosService";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import "../../../style/qna.css";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,11 +36,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const QNAList = () => {
   const navi = useNavigate();
   const [data, setData] = useState([]);
-  const [pageData, setPageData] = useState([]);
 
   const { currentPage } = useParams();
 
-  // let pagelistUrl = "/supportboard/qnalist?currentPage=" + currentPage;
   let pagelistUrl = "/supportboard/qnapage?currentPage=" + currentPage;
 
   const pageList = useCallback(() => {
@@ -64,7 +59,7 @@ const QNAList = () => {
 
   return (
     <div>
-      <TableContainer component={Paper} sx={{ height: 500 }}>
+      <TableContainer component={Paper} sx={{ height: 550 }}>
         <Table
           sx={{ width: 900 }}
           style={{ margin: "30px auto" }}
@@ -98,7 +93,13 @@ const QNAList = () => {
                     {row.write_date}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {row.inquiry_status}
+                    <b>
+                      {row.inquiry_status === 0 ? (
+                        <p>답변대기</p>
+                      ) : (
+                        <p>답변완료</p>
+                      )}
+                    </b>
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
@@ -106,12 +107,16 @@ const QNAList = () => {
         </Table>
       </TableContainer>
 
-      <div className="faq_pagination_container">
-        <ul>
+      <div className="qna_pagination_container">
+        <ul className="qna_pagination_warp">
           {data.startPage > 1 ? (
-            <li className="faq_pagination_wrap" id="sss">
-              <Link to={`/supportboard/qnapage/${data.startPage - 1}`}>
-                이전
+            <li className="qna_pagination_box">
+              <Link
+                to={`/supportboard/qnapage/${data.startPage - 1}`}
+                className="qna_pagination_num"
+                style={{ textDecoration: "none" }}
+              >
+                <ArrowBackIosIcon />
               </Link>
             </li>
           ) : (
@@ -121,21 +126,26 @@ const QNAList = () => {
             data.parr.map((n, idx) => {
               const url = "/supportboard/qnapage/" + n;
               return (
-                <li key={idx} className="faq_pagination_wrap">
-                  <Link to={url}>
-                    <span
-                      className="sadas"
-                      // style={{ color: n === currentPage ? "red" : "black" }}
-                    >
-                      {n}
-                    </span>
+                <li key={idx} className="qna_pagination_box">
+                  <Link
+                    to={url}
+                    className="qna_pagination_num"
+                    style={{ textDecoration: "none" }}
+                  >
+                    {n}
                   </Link>
                 </li>
               );
             })}
           {data.endPage < data.totalPage ? (
-            <li className="faq_pagination_wrap">
-              <Link to={`/supportboard/qnapage/${data.endPage + 1}`}>다음</Link>
+            <li className="qna_pagination_box">
+              <Link
+                to={`/supportboard/qnapage/${data.endPage + 1}`}
+                className="qna_pagination_num"
+                style={{ textDecoration: "none" }}
+              >
+                <ArrowForwardIosIcon />
+              </Link>
             </li>
           ) : (
             ""

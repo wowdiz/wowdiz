@@ -40,6 +40,8 @@ const QNAAnswer = () => {
           : answer.user_email,
       title: watch("title") !== "" ? data.title : answer.inquiry_title,
       content: watch("content") !== "" ? data.content : answer.inquiry_content,
+      inquiry_status: "1",
+      inquiry_id: inquiry_id,
     }).then((res) => {
       console.log(data);
       console.log(res);
@@ -50,48 +52,54 @@ const QNAAnswer = () => {
   useEffect(() => {
     getData();
   }, []);
+
   return (
     <div className="answer_container">
-      <form className="asd" onSubmit={handleSubmit(onSubmit)}>
+      <form className="answer_form" onSubmit={handleSubmit(onSubmit)}>
         <div className="user_info_warp">
-          <p className="user_info">이름</p>
+          <div className="answer_user_name_warp">
+            <div className="user_info">이름</div>
+            <input
+              type="text"
+              className="answer_user_name"
+              defaultValue={answer.user_name}
+              {...register("answer_user_name")}
+            />
+          </div>
+          <div className="answer_user_mail_warp">
+            <div className="user_info">이메일</div>
+            <input
+              type="text"
+              className="answer_user_email"
+              defaultValue={answer.user_email}
+              {...register("answer_user_email")}
+            />
+          </div>
+        </div>
+        <div className="answer_title">
+          제목
           <input
             type="text"
-            className="answer_user_name"
-            defaultValue={answer.user_name}
-            {...register("answer_user_name")}
-          />
-          <p className="user_info">이메일</p>
-          <input
-            type="text"
-            className="answer_user_email"
-            defaultValue={answer.user_email}
-            {...register("answer_user_email")}
+            className="answer_title_name"
+            defaultValue={answer.inquiry_title}
+            {...register("title")}
           />
         </div>
-        <label for="title">제목</label>
-        <input
-          type="text"
-          id="title"
-          className="form-control"
-          defaultValue={answer.inquiry_title}
-          {...register("title")}
-        />
-        <div style={{ position: "relative" }}>
-          <label for="content">내용</label>
-          <textarea
-            name="content"
-            id="content"
-            className="form-control"
-            defaultValue={answer.inquiry_content}
-            {...register("content")}
-          ></textarea>
+        <div className="answer_content">
+          <div className="answer_content_name">
+            내용
+            <textarea
+              className="answer_user_content"
+              defaultValue={answer.inquiry_content}
+              {...register("content")}
+            ></textarea>
+          </div>
         </div>
-        <div className="qna_btn">
-          <button type="submit" className="btn_qna">
+        <div className="answer__btn">
+          <button type="submit" className="answer_btn_submit">
             전송
           </button>
-          <button type="button" className="btn_qna">
+          <button type="button" className="answer_btn_cencel">
             취소
           </button>
         </div>

@@ -24,6 +24,7 @@ import DetailCommunity from "./pages/funding/detail/DetailCommunity";
 import DetailInfo from "./pages/funding/detail/DetailInfo";
 import Notice from "./pages/support/notice/Notice";
 import Event from "./pages/support/event/Event";
+import EventDetail from "./pages/support/event/EventDetail";
 import FAQ from "./pages/support/faq/FAQ";
 import Test from "./pages/user/register/AddressApi";
 import RegisterForm from "./pages/user/register/RegisterForm";
@@ -33,6 +34,10 @@ import QNADetail from "./pages/support/qna/QNADetail";
 import QNAAnswer from "./pages/support/qna/QNAAnswer";
 import FAQWrite from "./pages/support/faq/FAQWrite";
 import FAQUpdate from "./pages/support/faq/FAQUpdate";
+import EventWrite from "./pages/support/event/EventWrite";
+import ClosedEvent from "./pages/support/event/ClosedEvent";
+import EventUpdate from "./pages/support/event/EventUpdate";
+import EmailSendImg from "./pages/support/qna/EmailSendImg";
 
 // 최초 작업자: 권능
 // 2022-06-29
@@ -60,6 +65,16 @@ function App() {
         <Route path="/supportboard" element={<SupportBoard />}>
           <Route path="/supportboard" element={<Notice />} />
           <Route path="/supportboard/event" element={<Event />} />
+          <Route path="/supportboard/closedevent" element={<ClosedEvent />} />
+          <Route
+            path="/supportboard/eventdetail/:event_id"
+            element={<EventDetail />}
+          />
+          <Route
+            path="/supportboard/eventupdate/:event_id"
+            element={<EventUpdate />}
+          />
+          <Route path="/supportboard/eventwrite" element={<EventWrite />} />
           <Route path="/supportboard/faqpage" element={<FAQ />} />
           <Route path="/supportboard/faqdetail/:faq_id" element={<FAQ />} />
           <Route path="/supportboard/faqdelete/:faq_id" element={<FAQ />} />
@@ -80,6 +95,10 @@ function App() {
           <Route
             path="/supportboard/qnaanswer/:inquiry_id"
             element={<QNAAnswer />}
+          />
+          <Route
+            path="/supportboard/qnaanswer/sendok"
+            element={<EmailSendImg />}
           />
         </Route>
         {/* 메이커 */}

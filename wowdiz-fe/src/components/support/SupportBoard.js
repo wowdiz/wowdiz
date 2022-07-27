@@ -1,20 +1,27 @@
 import React from "react";
 import "../../style/notice.css";
-const SupportBoard = (props) => {
+const SupportBoard = ({ data, setData }) => {
   return (
-    <div className="notice_main">
-      <ul className="notice_wrap">
-        <li className="notice_container">
-          <b className="notice_important">중요(select)</b>
-          <div className="notice_info">
-            <div className="notice_thum">thum</div>
-            <h3 className="notice_title">title</h3>
-            <br />
-            <span className="notice_admin">wowdiz</span>
-            <span className="notice_date">2022.06.30</span>
-          </div>
-        </li>
-      </ul>
+    <div>
+      {data.map((row, idx) => (
+        <div className="support_main" key={idx}>
+          <ul className="support_wrap">
+            <li className="support_container">
+              <b className="support_important">
+                {row.event_status === "Y" ? <p>마감</p> : <p>진행중</p>}
+              </b>
+              <div className="support_info">
+                <div className="support_thum">{row.thum}</div>
+                <h3 className="support_title">{row.event_title}</h3>
+                <br />
+                <span className="support_admin">wowdiz</span>
+                <span className="support_date">{row.write_date}</span>
+                <span></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      ))}
     </div>
   );
 };

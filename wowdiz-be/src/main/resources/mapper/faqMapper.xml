@@ -2,17 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wowdiz.finalproj.mapper.FAQMapper">
 
-	<!--  <select id="faqlist" parameterType="Map" resultType="FAQDto">
+	  <!--<select id="faqlist" parameterType="Map" resultType="FAQDto">
 		select faq_id, faq_title, faq_content, view_count 
-		from inquiry_faq order by faq_id desc limit 0, 8;
-	</select>-->
+		from inquiry_faq order by faq_id desc limit #{startNum}, #{perpage}
+	</select> -->
 	
-	<select id="faqPaging" parameterType="Map" resultType="FAQDto">
-		select * from inquiry_faq order by faq_id desc limit #{startNum}, #{perpage}
+	<select id="selectFaqList" resultType="FAQDto">
+		select * from inquiry_faq order by faq_id desc limit 0, 5
+	</select>
+	
+	<select id="selectAddFaqList" parameterType="Integer" resultType="FAQDto">
+		select * from inquiry_faq order by faq_id desc limit #{startNum}, 5
 	</select>
 	
 	<select id="faqtotalpage" resultType="Integer">
-		select count(*) from inquiry_faq		
+		select count(*) from inquiry_faq
 	</select>
 	
 	<insert id="faqcreate">

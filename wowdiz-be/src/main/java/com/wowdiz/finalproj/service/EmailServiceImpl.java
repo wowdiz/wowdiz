@@ -71,6 +71,7 @@ public class EmailServiceImpl implements EmailService {
 		String user_name = map.get("answer_user_name");
 		String title = map.get("title");
 		String content = map.get("content");
+		String status = map.get("status");
     	MimeMessage  faqMessage = emailSender.createMimeMessage();
     	faqMessage.addRecipients(RecipientType.TO, user_email);
     	faqMessage.setSubject(title);//제목

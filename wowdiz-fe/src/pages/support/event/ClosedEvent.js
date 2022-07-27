@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import AxiosService from "../../../service/AxiosService";
 import "../../../style/notice.css";
 
-const Event = () => {
+const ClosedEvent = () => {
   const { event_id } = useParams();
   const navi = useNavigate();
   const [eventData, setEventData] = useState([]);
@@ -35,11 +35,10 @@ const Event = () => {
           <b>진행중이벤트</b>
         </span>
       </div>
-
       <div>
         {eventData.map((row, idx) => (
           <div key={idx}>
-            {row.event_status === "Y" ? (
+            {row.event_status === "N" ? (
               <div className="support_main">
                 <ul className="support_wrap">
                   <li className="support_container">
@@ -72,4 +71,4 @@ const Event = () => {
   );
 };
 
-export default Event;
+export default ClosedEvent;

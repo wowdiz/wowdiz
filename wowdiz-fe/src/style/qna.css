@@ -8,7 +8,7 @@
   text-align: center;
   font-size: 30px;
   font-weight: bold;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(207, 206, 206, 0.788);
   margin-bottom: 50px;
 }
 label {
@@ -22,6 +22,7 @@ label {
   margin-bottom: 30px;
   border-radius: 10px;
   border: 2px solid #d8d8d8d8;
+border: 2px solid #f0eeeea6;
   font-size: 20px;
   padding: 0.75rem;
 }
@@ -152,45 +153,44 @@ span.file_name {
 }
 
 /*페이징 css*/
-.faq_pagination_container{
+.qna_pagination_container{
   text-align: center;
-  width:auto;
-  height:100px;
-  color:green;
-  margin-top:30px;
+  width:100%;
+  display: block;
+  float: right;
   text-decoration: none;
 }
 
-.faq_pagination_wrap {
-  float: left;
-  margin-right: 3px;
-  width: 30px;
-  color: green;
-  font: bold 12px tahoma;
-  border: 1px solid #eee;
-  text-decoration: none;
-  text-align: center;
-  border-radius:100px;
-  display: block;
+.admin_button{
+  width: 90px;
+  height: 30px;
+  background-color: #80DACE;
+  border: 0px;
+  margin: 10px;
+  cursor: pointer;
 }
 
-.faq_pagination_wrap a:hover{
-  background-color : #071a4c;
-  color:white;
+.qna_pagination_num {
+  width: 20px;
+  height: 20px;
   display: block;
-  text-decoration: none;
-}
-ul{
-  width: 1200px;
-  list-style: none;
-  float: left;
-  display: inline;
   text-align: center;
-  text-decoration: none;
-  
+  float: left;
+  border: 0px solid black;
+  border-radius: 100px;
+  margin-left: 10px;
+  font-size: 20px;
+  line-height: 20px;
+  color: black; 
+  padding: 10px;
 }
-ul a:hover {
-  background-color: #071a4c;
-  color: white;
-  text-decoration: none;
+.qna_pagination_num:hover{
+  background : #80DACE;
+  color: white
+}
+
+.qna_pagination_warp{
+width: 300px;
+margin-left: auto;
+margin-right: auto;
 }

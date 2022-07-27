@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ClassicEditor from "../../../components/editor/CKEditorClassic";
 import "../../../style/faq_write.css";
 import AxiosService from "../../../service/AxiosService";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,13 +14,12 @@ const FAQWrite = () => {
   const faqsubmit = (e) => {
     alert("제출 되었습니다.");
     e.preventDefault();
-
     AxiosService.post(faqWriteUrl, {
       faq_id,
       faq_title,
       faq_content,
     }).then((res) => {
-      navi("/supportboard/faq");
+      navi("/supportboard/faqpage");
     });
   };
 
@@ -40,7 +38,14 @@ const FAQWrite = () => {
             }}
           />
         </div>
-        <ClassicEditor setFaq_content={setFaq_content} />
+        <p className="write_content">내용</p>
+        <input
+          type="text"
+          className="faq_write_content"
+          onChange={(e) => {
+            setFaq_content(e.target.value);
+          }}
+        />
 
         <div>
           <button type="submit" className="faq_write_btn" onClick={faqsubmit}>
