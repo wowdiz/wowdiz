@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import MyCkeditor from '../../components/editor/MyCkeditor';
 
 const MakerOpenProjectForm2 = ({ form, setForm, handleProject }) => {
     return (
@@ -11,7 +11,7 @@ const MakerOpenProjectForm2 = ({ form, setForm, handleProject }) => {
 
                 <h4>프로젝트 스토리를 적어주세요</h4>
                 <h2>Using CKEditor 5 build in React</h2>
-                <CKEditor
+                {/* <CKEditor
                     editor={ ClassicEditor }
                     data={form.project_story}
                     onReady={ editor => {
@@ -34,7 +34,8 @@ const MakerOpenProjectForm2 = ({ form, setForm, handleProject }) => {
                     onFocus={ ( event, editor ) => {
                         console.log( 'Focus.', editor );
                     } }
-                />
+                /> */}
+                <MyCkeditor form={form} setForm={setForm} handleProject={handleProject}/>
             </div>
         </div>
     );

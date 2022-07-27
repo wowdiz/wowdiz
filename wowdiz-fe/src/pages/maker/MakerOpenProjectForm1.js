@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import defaultImg from '../../assets/images/util/fileUploader.png';
 import ClearIcon from '@mui/icons-material/Clear';
+import AxiosService from '../../service/AxiosService';
 
 
 const MakerOpenProjectForm1 = ( props ) => {
@@ -21,24 +22,51 @@ const MakerOpenProjectForm1 = ( props ) => {
 
     const fileInput = useRef(null);
 
+    // 이미지 업로드
+    const uploadImage = (e) => {
+        let uploadUrl = "/maker/uploadFiles";
+        const uploadFile = e.target.files[0];
+        const imageFile = new FormData();
+        imageFile.append("uploadFile", uploadFile); 
 
-    //대표이미지업로드
-    const handleFileUpload = (e) => {
-        if(e.target.files[0]){
-            props.setMainImage(e.target.files[0])
-        } else { //업로드 취소할 시
-            props.setMainImage(defaultImg);
+        if(!uploadFile) {
             return;
         }
-	    //화면에 프로필 사진 표시
-        const reader = new FileReader();
-        reader.onload = () => {
-            if(reader.readyState === 2){
-                props.setMainImage(reader.result);
-            }
-        }
-        reader.readAsDataURL(e.target.files[0]);
+
+        AxiosService({
+            method:'post',
+            url: uploadUrl,
+            data:imageFile,
+            headers:{'Content-Type':'multipart/form-data'}
+        }).then(response => {
+            props.setForm({
+                ...props.form,
+                project_thumbnail: response.data
+            }); 
+        }).catch(err => {
+            alert(err);
+        });
     }
+    console.log('props.form.project_thumbnail',props.form.project_thumbnail);
+    console.log('props.form.project_name',props.form.project_name);
+
+    // //대표이미지업로드
+    // const handleFileUpload = (e) => {
+    //     if(e.target.files[0]){
+    //         props.setMainImage(e.target.files[0])
+    //     } else { //업로드 취소할 시
+    //         props.setMainImage(defaultImg);
+    //         return;
+    //     }
+	//     //화면에 프로필 사진 표시
+    //     const reader = new FileReader();
+    //     reader.onload = () => {
+    //         if(reader.readyState === 2){
+    //             props.setMainImage(reader.result);
+    //         }
+    //     }
+    //     reader.readAsDataURL(e.target.files[0]);
+    // }
 
     //img 호버로 도움말 표시
     const [isHovering, setIsHovering] = useState(0);
@@ -125,16 +153,22 @@ const MakerOpenProjectForm1 = ( props ) => {
             </div>
             <div>
                 <h3>프로젝트 대표 이미지를 등록해주세요</h3>
-                <input type='file' style={{display:'none'}} accept={defaultImg}
-                    name='profile_img' onChange={handleFileUpload} ref={fileInput}/>
-                <img className='project_file_input_img' src={props.mainImage} alt='' 
+                <input type='file' style={{display:'none'}} 
+                    //accept={defaultImg}
+                    name='project_thumbnail' 
+                    // onChange={handleFileUpload} //기존
+                    onChange={uploadImage} //변경
+                    ref={fileInput}/>
+                <img className='project_file_input_img' 
+                    src={props.form.project_thumbnail===""?defaultImg:"http://localhost:9150/save/"+props.form.project_thumbnail} 
+                    alt='' 
                     onClick={() => {fileInput.current.click()}}
                     onMouseOver={() => setIsHovering(1)}
                     onMouseOut={() => setIsHovering(0)}
                     name='project_thumbnail'
-                    onBlur={(e) => {
-                    props.handleProject(e);
-                }}
+                    // onBlur={(e) => {
+                    // props.handleProject(e);
+                    // }}
                 />
                 <div className='img_hover' style={{height:'1px'}}>
                     <span style={{color:'gray'}}>{isHovering===1?'클릭하여 이미지를 교체할 수 있습니다.':''}</span>

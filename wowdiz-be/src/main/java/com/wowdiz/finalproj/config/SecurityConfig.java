@@ -79,9 +79,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/duplicateCheck").permitAll()
                 .antMatchers("/supportboard/*").permitAll()
                 .antMatchers("/purchase/getRewards").permitAll()
-                
                 //maker
-                .antMatchers("/maker/insertMakerProject").permitAll()
+                .antMatchers("/maker/*").permitAll()
+                //upload 파일 접근
+                .antMatchers("/save/*").permitAll()
+                .antMatchers("/file/*").permitAll()
+                .antMatchers("/ckeditorImages/*").permitAll()
+                .antMatchers("/UploadService").permitAll()
                 .anyRequest().authenticated()
 
                 .and()

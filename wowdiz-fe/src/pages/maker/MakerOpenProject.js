@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 import "../../style/maker.css";
 import Form1 from "./MakerOpenProjectForm1";
 import Form2 from "./MakerOpenProjectForm2";
 import Form3 from "./MakerOpenProjectForm3";
 import Form4 from "./MakerOpenProjectForm4";
 import defaultImg from "../../assets/images/util/fileUploader.png";
-import axios from "axios";
+import AxiosService from "../../service/AxiosService";
 
 const MakerOpenProject = () => {
+    const navi = useNavigate();
+
     const [processSelector, setProcessSelector] = useState(1);
     const [styler, setStyler] = useState(1);
     const [title, setTitle] = useState("기본정보");
@@ -20,7 +23,7 @@ const MakerOpenProject = () => {
         //form1
         project_name: "",
         target_amount: "",
-        project_thumbnail: mainImage,
+        project_thumbnail: "",
         project_keyword: keywordArr,
         close_date: today,
 
@@ -41,18 +44,15 @@ const MakerOpenProject = () => {
     };
 
     //여기서 엑시오스서비스가야함
-
-    //unlogin(axios)
-    const urll = "http://localhost:9150/maker/insertMakerProject";
-
-    //login(AxiosService)
-    const url = "/maker/insertMakerProject"
-
+    const insertUrl = "/maker/insertMakerProject";
     const onSubmit = () => {
         console.log("form", form);
 
-        axios.post(urll, form)
-        .then(res => console.log('post성공'))
+        AxiosService.post(insertUrl, form)
+        .then(res => {
+            // navi('/maker/success');
+        })
+
         .catch((error) => {
             console.log("insert fail");
             console.log(error);

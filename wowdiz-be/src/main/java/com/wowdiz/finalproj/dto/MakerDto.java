@@ -23,15 +23,15 @@ public class MakerDto {
 	private String close_date;
 	
 	//project_reward table
-	private Integer reward_id;
-	private Integer reward_price;
-	private String reward_title;
-	private String reward_info;
+	private Integer project_reward_id;
+	private Integer project_reward_price;
+	private String project_reward_title;
+	private String project_reward_info;
 	private Integer purchase_limit;
 	private String require_parcel;
 	
 	//project_reward_option table
-	private String reward_option_name;
-	private String reward_option_detail;
-	private String reward_option_type;
+	private String project_reward_option_name;
+	private String project_reward_option_detail;
+	private String project_reward_option_type;
 }

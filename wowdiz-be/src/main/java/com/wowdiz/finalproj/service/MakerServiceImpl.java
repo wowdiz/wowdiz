@@ -21,7 +21,7 @@ public class MakerServiceImpl implements MakerService{
 		MakerDto dto = new MakerDto();
 
 		//table project
-		System.out.println("서비스map : " + map);
+		System.out.println("!!!!!!!!!!!!!!!서비스map : " + map);
 		//map에 담겨있는 project데이터 꺼내오기
 		String projectName = (String)map.get("project_name");
 		String tmpTa = (String)map.get("target_amount");
@@ -50,53 +50,58 @@ public class MakerServiceImpl implements MakerService{
 		
 		//project_reward table 
 		List<Object> list = (List)map.get("reward");
-		Map<String,Object> rewardMap = (Map<String, Object>) list.get(0);
+		System.out.println("=======list.size()=======" + list.size());
 		
-		String tmpRp = (String)rewardMap.get("reward_price");
-		Integer rewardPrice = Integer.parseInt(tmpRp);
-		
-		String rewardTitle = (String)rewardMap.get("reward_title");
-		String rewardInfo = (String)rewardMap.get("reward_info");
-		
-		String requireParcel = (String)rewardMap.get("require_parcel");
-		
-		dto.setReward_price(rewardPrice);
-		dto.setReward_title(rewardTitle);
-		dto.setReward_info(rewardInfo);
-		dto.setRequire_parcel(requireParcel);
-		
-		System.out.println("setReward후 dto : " + dto);
-		
-		makerMapper.insertMakerProjectReward(dto);
-		
-		dto.getReward_id();
-		System.out.println("insert하자마자 반환된 reward_id : " + dto.getReward_id());
-		
-		//project_reward_option table
-		System.out.println("rewardMap.get('rewardOptions') : " + rewardMap.get("rewardOptions"));
-		List<Object> optionList = (List)rewardMap.get("rewardOptions");
-		for(int i = 0; i < optionList.size(); i++) {
-			System.out.println("optionList" + "[" + i + "] : " + optionList.get(i));
-			Map<String, Object> rewardOptionMap = (Map<String, Object>)optionList.get(i);
-			String rewardOptionName = (String)rewardOptionMap.get("reward_option_name");
-			String rewardOptionDetail = (String)rewardOptionMap.get("reward_option_detail");
-			String tmpRewardOptionType = (String)rewardOptionMap.get("reward_option_type");
-			String tmppRewardOptionType = tmpRewardOptionType.substring(0, 3);
-			String rewardOptionType = "";
-			if(tmppRewardOptionType.equals("선택형")) {
-				rewardOptionType = "S";
-			} else {
-				rewardOptionType = "A";
+		for(int i = 0; i < list.size(); i++) {
+			Map<String,Object> rewardMap = (Map<String, Object>) list.get(i);
+			System.out.println("rewardMap[" + i + "] : " + rewardMap);
+			String tmpRp = (String)rewardMap.get("project_reward_price");
+			Integer rewardPrice = Integer.parseInt(tmpRp);
+			
+			String rewardTitle = (String)rewardMap.get("project_reward_title");
+			String rewardInfo = (String)rewardMap.get("project_reward_info");
+			
+			String requireParcel = (String)rewardMap.get("require_parcel");
+			
+			dto.setProject_reward_price(rewardPrice);
+			dto.setProject_reward_title(rewardTitle);
+			dto.setProject_reward_info(rewardInfo);
+			dto.setRequire_parcel(requireParcel);
+			
+			System.out.println("project_reward[" + i + "] = *** " 
+					+ "project_reward_price[" + i + "] : "  + dto.getProject_reward_price() 
+					+ "project_reward_title[" + i + "] : "  + dto.getProject_reward_title() 
+					+ "project_reward_info[" + i + "] : "  + dto.getProject_reward_info()
+					+ "project_reward_parcel[" + i + "] : "  + dto.getRequire_parcel() + " ***");
+			
+			makerMapper.insertMakerProjectReward(dto);
+//			
+			List<Object> optionList = (List)rewardMap.get("rewardOptions");
+			
+			for(int j = 0; j < optionList.size(); j++) {
+				System.out.println("optionList" + "[" + j + "] : " + optionList.get(j));
+				Map<String, Object> rewardOptionMap = (Map<String, Object>)optionList.get(i);
+				String rewardOptionName = (String)rewardOptionMap.get("project_reward_option_name");
+				String rewardOptionDetail = (String)rewardOptionMap.get("project_reward_option_detail");
+				String tmpRewardOptionType = (String)rewardOptionMap.get("project_reward_option_type");
+				String tmppRewardOptionType = tmpRewardOptionType.substring(0, 3);
+				String rewardOptionType = "";
+				if(tmppRewardOptionType.equals("선택형")) {
+					rewardOptionType = "S";
+				} else {
+					rewardOptionType = "A";
+				}
+				
+				dto.setProject_reward_option_name(rewardOptionName);
+				dto.setProject_reward_option_detail(rewardOptionDetail);
+				dto.setProject_reward_option_type(rewardOptionType);
+				
+				System.out.println("project_reward_option : [" + j + "] : " 
+				+ dto.getProject_reward_option_name() + dto.getProject_reward_option_detail() + dto.getProject_reward_option_type());
+				
+				makerMapper.insertMakerProjectRewardOption(dto);
 			}
-			
-			dto.setReward_option_name(rewardOptionName);
-			dto.setReward_option_detail(rewardOptionDetail);
-			dto.setReward_option_type(rewardOptionType);
-			
-			System.out.println("[" + i + "] : " 
-			+ dto.getReward_option_name() + dto.getReward_option_detail() + dto.getReward_option_type());
-			
-			makerMapper.insertMakerProjectRewardOption(dto);
 		}
+		
 	}
 }

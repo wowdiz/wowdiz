@@ -358,3 +358,49 @@ div.wowdiz_return_policy{
     padding: 15px;
     font-size: 20px;
 }
+
+
+div.maker_success {
+display: block;
+margin: 0 auto;
+width: 400px;
+}
+
+div.maker_success > img {
+    width: 400px;
+}
+
+div.maker_success > p{
+    height: 150px;
+    width: 400px;
+    font-size: 24px;
+    font-weight: bold;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+}
+
+div.maker_success_btn {
+    display: inline-block;
+    width: 400px;
+    text-align: center;
+}
+
+div.maker_success_btn>div{
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #c2c2c2;
+    margin-left: 90px;
+    font-size: 20px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+
+div.maker_success_btn>div:hover{
+    background-color: #004d9f;
+    color: white;
+    transition: all 0.2s;
+}

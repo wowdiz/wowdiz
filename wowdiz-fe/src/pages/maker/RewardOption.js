@@ -40,7 +40,7 @@ const RewardOption = ({
       .concat({
         ...newRewardOption[i],
         [e.target.name]: e.target.value,
-        reward_option_type: rewardOptionType[i]})
+        project_reward_option_type: rewardOptionType[i]})
       .concat(newRewardOption.slice(i + 1))
     setRewardOption(newRewardOption);
     console.log('rewardOption',rewardOption);
@@ -53,9 +53,9 @@ const RewardOption = ({
       newRewardOption.slice(0, index)
       .concat({
         ...newRewardOption[index],
-        reward_option_name:"",
-        reward_option_detail:"",
-        reward_option_type: rewardOptionType[i]})
+        project_reward_option_name:"",
+        project_reward_option_detail:"",
+        project_reward_option_type: rewardOptionType[i]})
       .concat(newRewardOption.slice(index + 1))
     setRewardOption(newRewardOption);
     console.log('rewardOption',rewardOption);
@@ -87,7 +87,7 @@ const RewardOption = ({
 
             {rewardOptionType[i] === `선택형${i}`&&
             <div style={{marginBottom: '0px'}}>
-              <input className='reward_option_type1' name='reward_option_name'
+              <input className='reward_option_type1' name='project_reward_option_name'
               onChange={(e) => {
                 handleOption(e,i);
               }}
@@ -97,7 +97,7 @@ const RewardOption = ({
               placeholder='ex)옷의 사이즈를 적어주세요' />
 
 
-              <input className='reward_option_type3' name='reward_option_detail'
+              <input className='reward_option_type3' name='project_reward_option_detail'
               onChange={(e) => {
                 handleOption(e,i);
               }}
@@ -119,7 +119,7 @@ const RewardOption = ({
               } />
             </div>}
             {rewardOptionType[i] === `단답형${i}`&&
-            <input className='reward_option_type2' name='reward_option_name'
+            <input className='reward_option_type2' name='project_reward_option_name'
             onChange={(e) => {
               handleOption(e,i);
             }}

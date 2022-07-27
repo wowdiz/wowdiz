@@ -9,25 +9,26 @@
 		project_story, project_keyword, open_date, close_date, delivery_date, approved, reg_date, project_status)
 		VALUES
 		(2, 1, #{project_name}, #{target_amount}, #{project_thumbnail}, "이건뭐?", 
-		#{project_story}, #{project_keyword}, now(), #{close_date}, "2022-07-29", 0, now(), 0)
+		#{project_story}, #{project_keyword}, now(), #{close_date}, "2022-07-29", 0, now(), "N")
 	</insert>
 	
-	<insert id="insertMakerProjectReward" parameterType="MakerDto" useGeneratedKeys="true" keyProperty="reward_id">
+	<insert id="insertMakerProjectReward" parameterType="MakerDto" useGeneratedKeys="true" keyProperty="project_reward_id">
 		INSERT INTO project_reward
-		(project_id, reward_order, reward_price, reward_title, reward_info, 
+		(project_id, project_reward_price, project_reward_title, project_reward_info, 
 		purchase_limit, require_parcel, parcel_fee)
 		VALUES
-		(#{project_id}, 4, #{reward_price}, #{reward_title}, #{reward_info}, 
+		(#{project_id}, #{project_reward_price}, #{project_reward_title}, #{project_reward_info}, 
 		100, #{require_parcel}, 3000)
 	</insert>
 	
 	<insert id="insertMakerProjectRewardOption" parameterType="MakerDto">
 		INSERT INTO project_reward_option
-		(project_id, reward_id, reward_option_name, reward_option_detail, reward_option_type)
+		(project_id, project_reward_id, project_reward_option_name, 
+		project_reward_option_detail, project_reward_option_type)
 		VALUES
-		(#{project_id}, #{reward_id}, #{reward_option_name}, #{reward_option_detail}, #{reward_option_type}) 
+		(#{project_id}, #{project_reward_id}, #{project_reward_option_name}, 
+		#{project_reward_option_detail}, #{project_reward_option_type}) 
 	</insert>
-	
 	
 </mapper>
 

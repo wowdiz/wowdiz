@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import RegReward from "./RegReward";
 import RewardOption from "./RewardOption";
 
@@ -23,11 +23,11 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
     const [reward, setReward] = useState({
         rewardPossibility: "무제한", //단지 초기값이고 백에 넘기진 않을것.
         purchase_limit: "",
-        deliveryDate: today, //예약배송일이없다 테이블에 추가하자
-        reward_info: "", //reward_info
-        reward_price: "", //reward_price
+        project_delivery_date: today, //예약배송일이없다 테이블에 추가하자
+        project_reward_info: "", //reward_info
+        project_reward_price: "", //reward_price
         rewardOptions: "",
-        reward_title: "", //reward_title
+        project_reward_title: "", //reward_title
         require_parcel: "Y", //배송필요유무
     });
 
@@ -88,7 +88,6 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
         setRewardArr(rewardArr.concat(reward));
         console.log("rewardArr", rewardArr);
         onResetReward();
-        onBlurResetReward();
     };
 
     const addForm = () => {
@@ -113,7 +112,6 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
         setRewardOptionArr(rewardOptionArr.filter((data, index) => idx !== index));
     };
 
-    //아직 미구현...
     const onResetReward = () => {
         rewardRef.current[0].value = null;
         rewardRef.current[3].value = null;
@@ -123,7 +121,18 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
     };
 
     const onBlurResetReward = () => {
-        setReward([]);
+        setReward({
+            ...reward,
+            rewardPossibility: "무제한", //단지 초기값이고 백에 넘기진 않을것.
+            purchase_limit: "",
+            project_delivery_date: today, //예약배송일이없다 테이블에 추가하자
+            project_reward_info: "", //reward_info
+            project_reward_price: "", //reward_price
+            rewardOptions: "",
+            project_reward_title: "", //reward_title
+            require_parcel: "Y", //배송필요유무
+        });
+        setPossibility("제한");
     }
 
     const titleLengthChecker = () => {
@@ -153,7 +162,7 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
                                 <td>
                                 <input
                                 className="project_input"
-                                name="reward_price"
+                                name="project_reward_price"
                                 type="number"
                                 defaultValue={reward.reward_price}
                                 onChange={handleReward}
@@ -223,7 +232,7 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
                                 <td>
                                 <input
                                 className="project_input"
-                                name="reward_title"
+                                name="project_reward_title"
                                 type="text"
                                 maxLength={30}
                                 onChange={handleRewardSubjectLength}
@@ -240,7 +249,7 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
                                 <td>
                                 <textarea
                                 className="reward_content"
-                                name="reward_info"
+                                name="project_reward_info"
                                 maxLength={70}
                                 type="text"
                                 placeholder="준비된 리워드와 설명을 적어주세요"
@@ -256,7 +265,7 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
                                 <td>
                                 <input
                                 className="project_input"
-                                name="deliveryDate"
+                                name="project_delivery_date"
                                 type="date"
                                 onChange={handleReward}
                                 defaultValue={reward.deliveryDate}
