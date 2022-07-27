@@ -18,6 +18,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.wowdiz.finalproj.dto.AuthenticationDto;
+import com.wowdiz.finalproj.dto.InterestCategoryDto;
 import com.wowdiz.finalproj.dto.RecommendationDto;
 import com.wowdiz.finalproj.dto.UserDto;
 import com.wowdiz.finalproj.dto.WowPointDto;
@@ -57,37 +58,48 @@ public class UserServiceImpl implements UserService{
 		userDto.setAuth("ROLE_USER");
 		userDto.setEnabled(true);
 		userMapper.insertGeneralUser(userDto);
+		Integer user_id=userDto.getUser_id();
+		//이메일 인증 초기화  
 		AuthenticationDto authenticationDto = new AuthenticationDto();
 		authenticationDto.setAuthentication_email(userDto.getUser_email());
 		authenticationDto.setAuthentication_enabled(false);
 		userMapper.authenticationEnabledUpdate(authenticationDto);
+		// 카테고리 생성 
+		InterestCategoryDto interestDto = new InterestCategoryDto();
+		interestDto.setUser_id(user_id);
+		userMapper.userInterestInsert(interestDto);
+		
 		return "pass";
 		}
 	}
 	
 	@Transactional(readOnly = true)
 	public Optional<UserDto> getUserWithAuthorities(String user_email){
+		if(user_email.contains("kakao:")) {
+			user_email = user_email.substring(6);
+			return userMapper.selectUserWithAuthoritiesByUserEmail(user_email);
+		}
 		return userMapper.selectUserWithAuthoritiesByUserEmail(user_email);
 	}
 	
 	@Transactional(readOnly = true)
 	public Optional<UserDto> getUserWithAuthorities(){
+		
 		return SecurityUtil.getCurrentUserEmail().flatMap(userMapper::selectUserWithAuthoritiesByUserEmail);
 	}
+	
 	
 	//이메일 중복확인 및 이메일 찾기 
 	@Override
 	public Integer emailDuplicateCheck(String user_email) {
-//		String user_email = map.get("user_email");
-//		System.out.println(user_email);
-		System.out.println(userMapper.emailDuplicateSelect(user_email));
+
 		return userMapper.emailDuplicateSelect(user_email);
 	}
 	// 이메일 인증번호 생성 
 	@Override
 	public Boolean authenticationCreate(Map<String,String> map) throws Exception {
 		String user_email = map.get("user_email");
-		System.out.println(user_email);
+
 		Integer authenticationCheck=userMapper.authenticationSelect(user_email);
 		
 		
@@ -118,12 +130,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Boolean nicknameDuplicateSelect(Map<String, String> map) {
 		String user_nickname = map.get("user_nickname");
-		System.out.println(user_nickname);
+
 		Integer nicknameCheck=userMapper.nicknameDuplicateSelect(user_nickname);
-		System.out.println(nicknameCheck);
+
 		if(nicknameCheck==1) {
 			
-			System.out.println("sdsd");
 			return false;
 		} else {
 			return true;
@@ -160,15 +171,13 @@ public class UserServiceImpl implements UserService{
 		userMapper.recommendationInsert(recommendationDto);
 		// 유저 포인트 추가
 		WowPointDto wowUserPointDto= new WowPointDto();
-		wowUserPointDto.setUser_id(user_email);
+		wowUserPointDto.setUser_id(userID);
 		wowUserPointDto.setCurrent_wowpoint(recomendationPoint);
 		userMapper.pointInsert(wowUserPointDto);
 		// 추천인 포인트 추가 
-		System.out.println("test"+recommendation_email);
 		WowPointDto wowRecommenderPointDto = new WowPointDto();
-		wowRecommenderPointDto.setUser_id(recommendation_email);
+		wowRecommenderPointDto.setUser_id(recmmendationID);
 		wowRecommenderPointDto = userMapper.pointUser(wowRecommenderPointDto);
-		System.out.println("fdf"+wowRecommenderPointDto);
 		wowRecommenderPointDto.setCurrent_wowpoint((Integer)(wowRecommenderPointDto.getCurrent_wowpoint()+recomendationPoint));
 		userMapper.pointUpdate(wowRecommenderPointDto);
 		// 유저 히스토리 등록
@@ -187,7 +196,7 @@ public class UserServiceImpl implements UserService{
 	}
 	//최초 포인트 테이블 생성
 	@Override
-	public void pointInsert(String user_id, Integer current_wowpoint) {
+	public void pointInsert(Integer user_id, Integer current_wowpoint) {
 		WowPointDto wowPointDto = new WowPointDto();
 		wowPointDto.setUser_id(user_id);
 		wowPointDto.setCurrent_wowpoint(current_wowpoint);
@@ -195,7 +204,7 @@ public class UserServiceImpl implements UserService{
 	}
 	//포인트 충전
 	@Override
-	public void pointAdd(String user_id, Integer current_wowpoint) {
+	public void pointAdd(Integer user_id, Integer current_wowpoint) {
 		WowPointDto wowPointDto = new WowPointDto();
 		wowPointDto.setUser_id(user_id);
 		wowPointDto.setCurrent_wowpoint(current_wowpoint);
@@ -203,9 +212,13 @@ public class UserServiceImpl implements UserService{
 	}
 	//포인트 검색
 	@Override
-	public Integer pointFind(String user_id) {
+	public Integer pointFind(Integer user_id) {
 		// TODO Auto-generated method stub
-		return null;
+		WowPointDto wowPointDto = new WowPointDto();
+		wowPointDto.setUser_id(user_id);
+		wowPointDto =userMapper.pointUser(wowPointDto);
+		
+		return wowPointDto.getCurrent_wowpoint();
 	}
 	//카카오 유저 정보 가져오기 
 	@Override
@@ -324,5 +337,97 @@ public class UserServiceImpl implements UserService{
 		userDto.setUser_password(passwordEncoder.encode(userDto.getUser_password()));
 		userMapper.passwordUpdate(userDto);		
 	}
+
+	@Override
+	public Map<String, String> userInfoLoad(String user_email) {
+		
+		UserDto userDto = userMapper.userNameSelect(user_email);
+		String category = userMapper.userInterestSelect(userDto.getUser_id()); 
+		Map<String, String> userInfo = new HashMap<>();
+		userInfo.put("user_id", String.valueOf(userDto.getUser_id()));
+		userInfo.put("user_email", userDto.getUser_email());
+		userInfo.put("user_name", userDto.getUser_name());
+		userInfo.put("user_nickname", userDto.getUser_nickname());
+		userInfo.put("profile_image", userDto.getProfile_picture());
+		userInfo.put("user_phone", userDto.getUser_phone());
+		userInfo.put("category_id",category);
+		
+		return userInfo;
+	}
+	//유저 기본 정보 변경
+	@Override
+	public void userInfoChage(Map<String, String> map) {
+//		String interest = userMapper.userInterestSelect(Integer.parseInt(map.get("user_id")));
+		String categoryIdReplec = map.get("category_id").replace("[","");
+		String category_id = categoryIdReplec.replace("]", "");
 	
+		if(map.get("user_nickname")==null) {
+			UserDto userDto = new UserDto();
+			userDto.setUser_id(Integer.parseInt(map.get("user_id")));
+			userDto.setUser_phone(map.get("user_phone"));
+			userDto.setUser_email(map.get("user_email"));
+			userDto.setProfile_picture(map.get("profile_picture"));
+	        userMapper.userInfoPhoneUpdate(userDto);
+	        userMapper.userInfoProfileUpdate(userDto); 
+	        InterestCategoryDto interestCategoryDto = new InterestCategoryDto();
+	        interestCategoryDto.setUser_id(Integer.parseInt(map.get("user_id")));
+	        interestCategoryDto.setCategory_id(category_id);
+	        userMapper.userInterestUpdate(interestCategoryDto);
+	      
+//		}else if(map.get("user_profile_picture")==null){
+//			UserDto userDto = new UserDto();
+//			userDto.setUser_id(Integer.parseInt(map.get("user_id")));
+//			userDto.setUser_phone(map.get("user_phone"));
+//			userDto.setUser_email(map.get("user_email"));
+//			userDto.setUser_nickname(map.get("user_nickname"));
+//	        userMapper.userInfoPhoneUpdate(userDto);
+//	        userMapper.userInfoNicknameUpdate(userDto);
+//	        InterestCategoryDto interestCategoryDto = new InterestCategoryDto();
+//	        interestCategoryDto.setCategory_id(map.get("category_id"));
+//	        userMapper.userInterestUpdate(interestCategoryDto);
+//	       
+//	       
+//		}else if(map.get("user_profile_picture")==null && map.get("user_nickname")==null ) {
+//			UserDto userDto = new UserDto();
+//			userDto.setUser_id(Integer.parseInt(map.get("user_id")));
+//			userDto.setUser_phone(map.get("user_phone"));
+//			userDto.setUser_email(map.get("user_email"));
+//	        userMapper.userInfoPhoneUpdate(userDto);
+//	        InterestCategoryDto interestCategoryDto = new InterestCategoryDto();
+//	        interestCategoryDto.setCategory_id(map.get("category_id"));
+//	        userMapper.userInterestUpdate(interestCategoryDto);
+//	       
+		}else  {
+			UserDto userDto = new UserDto();			
+			userDto.setUser_id(Integer.parseInt(map.get("user_id")));
+			userDto.setUser_phone(map.get("user_phone"));
+			userDto.setUser_email(map.get("user_email"));
+			userDto.setProfile_picture(map.get("profile_picture"));
+			userDto.setUser_nickname(map.get("user_nickname"));
+	        userMapper.userInfoPhoneUpdate(userDto);
+	        userMapper.userInfoProfileUpdate(userDto); 
+	        userMapper.userInfoNicknameUpdate(userDto);
+	        InterestCategoryDto interestCategoryDto = new InterestCategoryDto();
+	        interestCategoryDto.setUser_id(Integer.parseInt(map.get("user_id")));
+	        interestCategoryDto.setCategory_id(category_id);
+	        userMapper.userInterestUpdate(interestCategoryDto);
+	       
+		}
+	}
+
+	@Override
+	public Map<String, String> myPageInfoLoad(String user_email) {
+		Map<String, Object> map = new HashMap<>();
+		map = userMapper.myPageUserInfo(user_email);
+		Map<String, String> userInfo = new HashMap<>();
+		userInfo.put("user_id", String.valueOf(map.get("user_id")));
+		userInfo.put("user_email", map.get("user_email").toString());
+		userInfo.put("user_name", map.get("user_name").toString());
+		userInfo.put("user_nickname", map.get("user_nickname").toString());
+//		userInfo.put("profile_image", map.get("profile_image").toString());
+		userInfo.put("user_phone", map.get("user_phone").toString());
+		userInfo.put("category_id",map.get("category_id").toString());
+		userInfo.put("current_wowpoint",map.get("current_wowpoint").toString());
+		return userInfo;
+	}
 }

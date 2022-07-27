@@ -58,7 +58,7 @@ const Login = () => {
   };
 
   // 체크박스 상태
-  const [isRemember, setIsRemember] = useState();
+  const [isRemember, setIsRemember] = useState(false);
 
   //페이지가 최초 렌더링 될 경우
   useEffect(() => {
@@ -112,6 +112,7 @@ const Login = () => {
           <div className="input_id_text_div">
             <input
               type="email"
+              required
               defaultValue={
                 localStorage.getItem("rememberUserId") !== undefined
                   ? localStorage.getItem("remeberUserId")
@@ -126,12 +127,13 @@ const Login = () => {
           {/* login password text box */}
           <div className="input_password_text_div">
             <input
+              required
               type="password"
               {...register("user_pwd")}
               className="user_password"
               maxLength="17"
-              placeholder="비밀번호(영문, 숫자, 특수 문자 포함 6자 이상)"
-              title="비밀번호(영문, 숫자, 특수 문자 포함 6자 이상)"
+              placeholder="비밀번호"
+              title="비밀번호"
             />
           </div>
           {/* id and password input type design */}
@@ -168,7 +170,10 @@ const Login = () => {
           <div className="social_regist_login">
             <button
               className="kakao"
-              style={{ backgroundImage: `URL(${kakaoLogin})` }}
+              style={{
+                backgroundImage: `URL(${kakaoLogin})`,
+                cursor: "pointer",
+              }}
               onClick={kakaoLoginClickHandler}
             />
           </div>

@@ -8,11 +8,11 @@
 		SELECT * FROM user where user_email=#{user_email} and sns_type=#{sns_type};
 	</select>
 	<!-- 회원가입 -->
-	<insert id="insertGeneralUser" parameterType="UserDto">
-		INSERT INTO user(user_id, user_email, user_password, user_name, user_phone,
+	<insert id="insertGeneralUser" parameterType="UserDto" useGeneratedKeys="true" keyProperty="user_id" keyColumn="user_id">
+		INSERT INTO user( user_email, user_password, user_name, user_phone,
 		user_birthday, user_gender, user_nickname, profile_picture, 
 		create_date, modified_date, sns_type, sns_id, auth, enabled)
-		VALUES(#{user_id}, #{user_email}, #{user_password}, #{user_name}, #{user_phone},
+		VALUES( #{user_email}, #{user_password}, #{user_name}, #{user_phone},
 		#{user_birthday}, #{user_gender}, #{user_nickname}, #{profile_picture}, 
 		now(), #{modified_date}, #{sns_type}, #{sns_id}, #{auth}, #{enabled})
 	</insert>
@@ -78,7 +78,7 @@
 	</select>
 	<!-- kakao 유저확인 -->
 	<select id="snsIdSelect" parameterType="String" resultType="UserDto" >
-		SELECT * FROM user where user_email=#{user_email};
+		SELECT * FROM user WHERE user_email=#{user_email};
 	</select>
 	<!--kakao 유저 등록 -->
 	<update id="snsInsert" parameterType="UserDto">
@@ -88,4 +88,63 @@
 	<update id="passwordUpdate" parameterType="UserDto" >
 		UPDATE user SET user_password=#{user_password} WHERE user_email=#{user_email}
 	</update>
+	<!--  유저 네임 및 기본적인 정보  -->
+	<select id="userNameSelect" parameterType="String" resultType="UserDto" >
+		SELECT user_id, user_name, user_nickname, user_email, profile_picture, user_phone FROM user WHERE user_email=#{user_email}
+	</select>
+	<!--유저 폰번호 수정   -->
+	<update id="userInfoPhoneUpdate" parameterType="UserDto">
+		UPDATE user SET user_phone=#{user_phone}, modified_date=now() WHERE user_email=#{user_email}
+	</update>
+	<!-- 유저 사진 수정 -->
+	<update id="userInfoProfileUpdate" parameterType="UserDto">
+		UPDATE user SET profile_picture=#{profile_picture}, modified_date=now() WHERE user_email=#{user_email}
+	</update>	
+	<!-- 유저 닉네임 수정 -->
+	<update id="userInfoNicknameUpdate" parameterType="UserDto">
+		UPDATE user SET user_nickname=#{user_nickname}, modified_date=now() WHERE user_email=#{user_email}
+	</update>	
+	<!-- 유저 관심사 확인 -->
+	<select id="userInterestSelect" parameterType="Integer" resultType="String">
+		SELECT category_id FROM user_interest_category WHERE user_id=#{user_id} 
+	</select>
+	<!-- 유저 관심사 최초 등록 -->
+	<insert id="userInterestInsert" parameterType="Integer">
+		INSERT INTO user_interest_category (user_id, category_id) VALUES (#{user_id}, #{category_id});
+	</insert>
+	<!-- 유저 관심사 업데이트  -->
+	<update id="userInterestUpdate" parameterType="InterestCategoryDto">
+		UPDATE user_interest_category SET category_id=#{category_id} WHERE user_id=#{user_id}
+	</update>
+<!--  	<resultMap id = "myPageUesrInfo" type ="com.wowdiz.finalIproj.dto.UserDto">
+        <id property="user_email" column="user_email"/>
+        <association property="UserDto" javaType="com.wowdiz.finalIproj.dto.UserDto">
+            <result property="user_id" column="user_id"/>
+            <result property="user_email" column="user_email"/>
+            <result property="user_nickname" column="user_nickname"/>
+            <result property="profile_picture" column="profile_picture"/>
+             <result property="create_date" column="create_date"/>
+        </association>
+        <association property="WoWPointDto" javaType="com.wowdiz.finalIproj.dto.WoWPointDto">
+            <result property="current_wowpoint" column="current_wowpoint"/>
+        </association>
+        <association property="InterestCategoryDto" javaType="com.wowdiz.finalIproj.dto.InterestCategoryDto">
+            <result property="category_id" column="category_id"/>
+        </association>
+    </resultMap>
+  -->   
+    
+	<!-- my table 유저 정보확인-->
+<!-- 	<select id="myPageUserInfo" parameterType="String" resultType="map">
+		SELECT u.user_id, u.user_email, u.user_nickname, u.profile_picture, u.create_date, p.current_wowpoint, i.category_id 
+		FROM user AS u
+		JOIN wowdiz.wowpoint AS p
+		ON p.user_id = u.user_id
+		JOIN wowdiz.user_interest_category AS i
+		ON i.user_id = u.user_id
+		WHERE u.user_email = #{user_email};
+	</select> -->
+	
+
+	
 </mapper>

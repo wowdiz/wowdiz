@@ -221,10 +221,11 @@ const RegisterTest = () => {
             user_email: data.user_email,
             user_pwd: data.user_password,
           });
-          console.log("isLoggedIn()", isLoggedIn());
+          UserService.isLoggedIn();
           if (isLoggedIn) {
-            navigation("/");
+            setTimeout(() => navigation("/"), 1000);
           }
+          console.log("isLoggedIn()", isLoggedIn());
         } else if (res.data === "emailCheck") {
           handleOpen();
           setModalTitle("회원가입 오류");

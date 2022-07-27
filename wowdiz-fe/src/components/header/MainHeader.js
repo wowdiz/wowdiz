@@ -1,10 +1,11 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
 import logo from "../../assets/images/logo/logo.png";
 import "../../style/header.css";
 import LogoutComponent from "./LogoutComponent";
 import LoginComponent from "./LoginComponent";
 import UserService from "../../service/UserService";
+import AxiosService from "../../service/AxiosService";
 
 // 최초 작업자: 이광호
 // 2022-06-30
@@ -62,17 +63,19 @@ const Header = () => {
             />
           </form>
         </div>
-        {/* 유저 로그인 회원가입 버튼 */}
-        {/* 로그인 전에는 LoginComponent , 로그인후에는 LogoutComponent로 바껴야함 */}
+        <div className="login_user_componet">
+          {/* 유저 로그인 회원가입 버튼 */}
+          {/* 로그인 전에는 LoginComponent , 로그인후에는 LogoutComponent로 바껴야함 */}
 
-        {isLoggedIn ? <LogoutComponent /> : <LoginComponent />}
+          {isLoggedIn ? <LogoutComponent /> : <LoginComponent />}
 
-        {/* <LogoutComponent /> */}
-        {/* <span className="user_bar">
+          {/* <LogoutComponent /> */}
+          {/* <span className="user_bar">
           {!isUserLoggedIn && <NavLink to="/login" className="user_bar_li">로그인</NavLink>}
           {!isUserLoggedIn && <NavLink to="/register" className="user_bar_li">회원가입</NavLink>}
           {isUserLoggedIn && <NavLink className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</NavLink>}
         </span>*/}
+        </div>
       </div>
     </div>
   );

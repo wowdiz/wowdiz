@@ -89,12 +89,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/api/user/emailConfirm").permitAll() // 이메일 인증코드확인
                 .antMatchers("/api/user/nicknameCheck").permitAll() // 닉네임 중복확인
-                .antMatchers("/api/user/oauth2/kakao/**").permitAll() // 닉네임 중복확인
-                .antMatchers("/api/user/oauth2/kakao").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/user/oauth2/kakao/logout").permitAll() // 카카오 로그인
+                .antMatchers("/api/user/oauth2/kakao").permitAll() // 카카오 로그인
                 .antMatchers("/api/user/oauth2/naver").permitAll() // 닉네임 중복확인
-                .antMatchers("/api/user/find/id").permitAll() // 닉네임 중복확인
-                .antMatchers("/api/user/find/password").permitAll() // 닉네임 중복확인
-
+                .antMatchers("/api/user/find/id").permitAll() // 아이디찾기
+                .antMatchers("/api/user/find/password").permitAll() // 패스워드 찾기
+                .antMatchers("/api/user/userinfo").hasAuthority("ROLE_USER") // 이름 및 닉네임 찾기
+                .antMatchers("/api/user/userinfo/change").hasAuthority("ROLE_USER") // 유저 정보 변경 
                 .antMatchers("/notice/list").permitAll()
 
                 .anyRequest().authenticated()
