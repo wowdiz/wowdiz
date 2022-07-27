@@ -87,6 +87,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/purchase/getRewards").permitAll()
 
+                //maker
+                .antMatchers("/maker/*").permitAll()
+                //upload 파일 접근
+                .antMatchers("/save/*").permitAll()
+                .antMatchers("/file/*").permitAll()
+                .antMatchers("/ckeditorImages/*").permitAll()
+                .antMatchers("/UploadService").permitAll()
+                .anyRequest().authenticated()
+                
                 .antMatchers("/api/user/emailConfirm").permitAll() // 이메일 인증코드확인
                 .antMatchers("/api/user/nicknameCheck").permitAll() // 닉네임 중복확인
                 .antMatchers("/api/user/oauth2/kakao/**").permitAll() // 닉네임 중복확인

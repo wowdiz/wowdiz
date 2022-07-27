@@ -7,7 +7,7 @@ import Register from "./pages/user/register/Register";
 import FundingList from "./pages/funding/list/FundingList";
 import MyPage from "./pages/user/mypage/MyPage";
 import AdminLayout from "./layout/AdminLayout";
-import { MakerOpenProject } from "./pages/maker";
+import { MakerOpenProject, MakerSuccess } from "./pages/maker";
 import {
   AdminHome,
   AdminMember,
@@ -37,6 +37,7 @@ import SnsRegister from "./pages/user/register/SnsRegister";
 import QNAAnswer from "./pages/support/qna/QNAAnswer";
 import FAQWrite from "./pages/support/faq/FAQWrite";
 import FAQUpdate from "./pages/support/faq/FAQUpdate";
+import Write from "./components/CKEeditor/Write";
 import FindUser from "./pages/user/register/FindUser";
 import UserLayout from "./layout/UserLayout";
 
@@ -92,6 +93,7 @@ function App() {
         </Route>
         {/* 메이커 */}
         <Route path="maker/open_project" element={<MakerOpenProject />} />
+        <Route path="maker/success" element={<MakerSuccess />} />
       </Route>
 
       {/* 로그인 */}
@@ -115,6 +117,7 @@ function App() {
         <Route path="/admin/funding/detail" element={<AdminFundingDetail />} />
         <Route path="/admin/member" element={<AdminMember />} />
       </Route>
+      <Route path="/write" element={<Write />} />
     </Routes>
   );
 }
