@@ -1,19 +1,33 @@
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import SupportBoard from "../../../components/support/SupportBoard";
+import AxiosService from "../../../service/AxiosService";
 
 const Notice = () => {
-  const [support, setSupport] = useState([
-    {
-      importent: "중요",
-      thum: "사진",
-      title: "제목",
-      name: "이름",
-      date: "날짜",
-    },
-  ]);
+
+
+  const [data,setData] =useState([])
+
+  useEffect(() => {
+    AxiosService.get("/notice/list").then(res=>{
+    console.dir(res.data)
+    setData(res.data)
+  })
+    return () => {
+      console.log('컴포넌트가 화면에서 사라짐');
+    };
+  }, []);
+
   return (
     <div>
-      <SupportBoard data={support} setData={setSupport} />
+      <div>
+      {data &&
+        data.map((data, idx) => (
+            <SupportBoard  key={idx} data={data} />
+      ))}
+
+      </div>
+
     </div>
   );
 };

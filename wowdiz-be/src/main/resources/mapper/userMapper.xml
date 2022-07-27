@@ -4,6 +4,9 @@
 	<select id="selectUserWithAuthoritiesByUserEmail" parameterType="String" resultType="UserDto">
 		SELECT * FROM user where user_email=#{user_email};
 	</select>
+		<select id="selectUserWithAuthoritiesBySnsUserEmail" parameterType="Map" resultType="UserDto">
+		SELECT * FROM user where user_email=#{user_email} and sns_type=#{sns_type};
+	</select>
 	<!-- 회원가입 -->
 	<insert id="insertGeneralUser" parameterType="UserDto">
 		INSERT INTO user(user_id, user_email, user_password, user_name, user_phone,
@@ -14,14 +17,18 @@
 		now(), #{modified_date}, #{sns_type}, #{sns_id}, #{auth}, #{enabled})
 	</insert>
 	<!-- 이메일 중복 확인 -->
-	<select id="duplicateSelect" parameterType="String" resultType="Integer">
+	<select id="emailDuplicateSelect" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) FROM user WHERE user_email=#{user_eamil}
+	</select>
+	<!-- 닉네임 중복확인 -->
+	<select id="nicknameDuplicateSelect" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM user WHERE user_nickname=#{user_nickname}
 	</select>
 	<!-- 인증 이메일 아이디 확인 -->
 	<select id="authenticationSelect" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) FROM authentication WHERE authentication_email=#{user_email}
 	</select>
-	<!-- 인증이메일 테이블에 등록 -->
+	<!-- 신규 인증이메일 등록 및 인증키생성  -->
 	<insert id="authenticationInsert" parameterType="AuthenticationDto" >
 		INSERT INTO authentication (authentication_id, authentication_email, authentication_key, create_date, authentication_enabled)
 		VALUES (#{authentication_id}, #{authentication_email},#{authentication_key},now(),#{authentication_enabled}) 	
@@ -34,4 +41,51 @@
 	<select id="authenticationKeySelect" parameterType="String" resultType="String">
 		SELECT authentication_key FROM authentication WHERE authentication_email=#{user_email}
 	</select>
+	<!-- 인증키 승인 -->
+	<update id="authenticationEnabledUpdate" parameterType="AuthenticationDto">
+		UPDATE authentication SET authentication_enabled=#{authentication_enabled},create_date=now() WHERE authentication_email=#{authentication_email};
+	</update>
+	<!-- 인증완료 확인 -->
+	<select id="authenticationEnabledSelect" parameterType="String" resultType="String">
+		SELECT authentication_enabled FROM authentication WHERE authentication_email=#{user_email}
+	</select>
+	<!-- 추천인등록 -->
+	<insert id="recommendationInsert" parameterType="RecommendationDto">
+		INSERT INTO user_recommendation (user_id, target_user_id, recommend_date)
+		VALUES (#{user_id}, #{target_user_id}, now())
+	</insert>
+	<!-- 회원 고유 ID 찾기 -->
+	<select id="userIDSelect" parameterType="String" resultType="Integer">
+		SELECT user_id FROM user WHERE user_email=#{user_email}
+	</select>
+	<!-- 회원가입시 최초 포인트  -->
+	<insert id="pointInsert" parameterType="WowPointDto" >
+		INSERT INTO wowpoint (user_id, current_wowpoint) 
+		VALUES (#{user_id}, #{current_wowpoint})
+	</insert> 
+	<!-- 포인트 충전 -->
+	<update id="pointUpdate" parameterType="WowPointDto">
+		UPDATE wowpoint SET current_wowpoint=#{current_wowpoint} WHERE user_id=#{user_id}
+	</update>
+	<!-- 포인트 기록 등록 -->
+	<insert id="pointHistoryInsert" parameterType="WowPointHistoryDto" >
+		INSERT INTO wowpoint_history (point_history_id, user_id, point_amount, proccess_type, reg_date) 
+		VALUES (#{point_history_id}, #{user_id}, #{point_amount}, #{proccess_type}, now())
+	</insert>
+	<!-- 포인트 테이블 등록확인 -->
+	<select id="pointUser" parameterType="WowPointDto" resultType="WowPointDto">
+		SELECT * FROM wowpoint WHERE user_id=#{user_id}
+	</select>
+	<!-- kakao 유저확인 -->
+	<select id="snsIdSelect" parameterType="String" resultType="UserDto" >
+		SELECT * FROM user where user_email=#{user_email};
+	</select>
+	<!--kakao 유저 등록 -->
+	<update id="snsInsert" parameterType="UserDto">
+		UPDATE user SET sns_id=#{sns_id}, sns_type=#{sns_type} WHERE user_id=#{user_id}
+	</update>
+	<!-- PASSWORD 변경 -->
+	<update id="passwordUpdate" parameterType="UserDto" >
+		UPDATE user SET user_password=#{user_password} WHERE user_email=#{user_email}
+	</update>
 </mapper>

@@ -1,5 +1,5 @@
 server:
-  port: 9100
+  port: 9150
   
 spring:
   profiles:
@@ -9,3 +9,7 @@ mybatis:
   type-aliases-package: com.wowdiz.finalproj.dto
   mapper-locations:
   - /mapper/**/*.xml
+  
+logging:
+  level:
+    com.wowdiz.finalproj: DEBUG

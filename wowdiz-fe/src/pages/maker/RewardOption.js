@@ -1,28 +1,25 @@
 import React from 'react';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import ClearIcon from '@mui/icons-material/Clear';
 
-const RewardOption = ({rewardOptionRef, rewardOption, handleReward, setRewardOptionArr, rewardOptionArr, addRewardOption, setRewardOption, rewardOptionType, setRewardOptionType, rewardRef}) => {
+const RewardOption = ({
+  isHovering, setIsHovering,
+  reward, setReward, i, rewardOptionRef, rewardOption,setRewardOptionArr, 
+  rewardOptionArr, addRewardOption, setRewardOption, 
+  rewardOptionType, setRewardOptionType}) => {
   const onAdd = () => {
     addRewardOption();
-    setRewardOption(rewardOption.concat({
-      rewardOptionLong:"",
-      rewardOptionKeyword:"",
-      rewardOptionShort:""
-    }))
   }
 
-  const onAddRewardOption = (e) => {
-    setRewardOption({
-      ...rewardOption,
-      [e.target.name] : e.target.value
-    })
-    console.log(rewardOption);
+  const addReward = () => {
+    setReward({
+      ...reward,
+      rewardOptions : rewardOption
+    });
   }
 
   const delRewardOption = (i) => {
-    console.log('delRewardOption.idx',i);
-    console.log(rewardOptionArr);
     setRewardOptionArr(rewardOptionArr.filter((data,index) => i !== index));
   }
 
@@ -38,13 +35,13 @@ const RewardOption = ({rewardOptionRef, rewardOption, handleReward, setRewardOpt
 
   const handleOption = (e, i) => {
     let newRewardOption = rewardOption;
-    const index = i;
     newRewardOption = 
-      newRewardOption.slice(0, index)
+      newRewardOption.slice(0, i)
       .concat({
-        ...newRewardOption[index],
-        [e.target.name]: e.target.value})
-      .concat(newRewardOption.slice(index + 1))
+        ...newRewardOption[i],
+        [e.target.name]: e.target.value,
+        project_reward_option_type: rewardOptionType[i]})
+      .concat(newRewardOption.slice(i + 1))
     setRewardOption(newRewardOption);
     console.log('rewardOption',rewardOption);
   }
@@ -56,21 +53,16 @@ const RewardOption = ({rewardOptionRef, rewardOption, handleReward, setRewardOpt
       newRewardOption.slice(0, index)
       .concat({
         ...newRewardOption[index],
-        rewardOptionLong:"",
-        rewardOptionKeyword:"",
-        rewardOptionShort:""})
+        project_reward_option_name:"",
+        project_reward_option_detail:"",
+        project_reward_option_type: rewardOptionType[i]})
       .concat(newRewardOption.slice(index + 1))
     setRewardOption(newRewardOption);
     console.log('rewardOption',rewardOption);
   }
-
   return (
     <div>
-      {rewardOptionArr.length===0?<div className='project_input reward_option_btn'
-          type="button" style={{marginBottom: '0px'}} onClick={onAdd}>리워드 옵션 추가하기</div>:''}
-      
-      {rewardOptionArr && rewardOptionArr.map((item, i) => (
-        <div className='reward_option' key={i}>
+      <div className='reward_option' key={i} style={{marginBottom: '-70px'}}>
           <p style={{color:'gray'}}>옵션선택 #{i+1}</p>
           <div style={{marginBottom: '20px'}}>
             <label className={rewardOptionType[i]===`선택형${i}`?'reward_label_radio_checked':'reward_label_radio'}
@@ -95,32 +87,45 @@ const RewardOption = ({rewardOptionRef, rewardOption, handleReward, setRewardOpt
 
             {rewardOptionType[i] === `선택형${i}`&&
             <div style={{marginBottom: '0px'}}>
-              <input className='reward_option_type1' name='rewardOptionLong'
+              <input className='reward_option_type1' name='project_reward_option_name'
               onChange={(e) => {
                 handleOption(e,i);
               }}
+              onBlur={addReward}
               type='text' 
-              // ref={(el) => (rewardRef.current[6] = el)}
-              ref={(el) => (rewardOptionRef.current[0] = el)}
+              ref={(el) => (rewardOptionRef.current[i] = el)}
               placeholder='ex)옷의 사이즈를 적어주세요' />
-              <input className='reward_option_type3' name='rewardOptionKeyword'
+
+
+              <input className='reward_option_type3' name='project_reward_option_detail'
               onChange={(e) => {
                 handleOption(e,i);
               }}
+              onBlur={addReward}
               type='text' 
-              // ref={(el) => (rewardRef.current[7] = el)}
-              ref={(el) => (rewardOptionRef.current[1] = el)}
-              placeholder='키워드 입력 후 엔터를 눌러주세요.' />
-              
+              ref={(el) => (rewardOptionRef.current[i+100] = el)}
+              placeholder='옵션 키워드를 ","로 구분하여 적어주세요.'
+              value={
+                rewardOption.rewardOptionKeyword && rewardOption.rewardOptionKeyword.split(',').map((data,idx) => (
+                  <span className='keyword' key={idx}>
+                  {data}&nbsp;
+                  <ClearIcon className='delIcon'
+                  style={isHovering===idx+1 ? {fontSize:'12px',backgroundColor:'#55a7ff'}:{fontSize:'12px'}}
+                  onMouseOver={() => setIsHovering(idx+1)}
+                  onMouseOut={() => setIsHovering(0)}
+                  />
+              </span>
+                  ))
+              } />
             </div>}
             {rewardOptionType[i] === `단답형${i}`&&
-            <input className='reward_option_type2' name='rewardOptionShort'
+            <input className='reward_option_type2' name='project_reward_option_name'
             onChange={(e) => {
               handleOption(e,i);
             }}
+            onBlur={addReward}
             type='text' 
-            // ref={(el) => (rewardRef.current[8] = el)}
-            ref={(el) => (rewardOptionRef.current[2] = el)}
+            ref={(el) => (rewardOptionRef.current[i] = el)}
             placeholder='ex)옷의 사이즈를 적어주세요' />}
             <div className='reward_preview_btn' style={{marginBottom: '0px',display:'block'}}>
               {rewardOptionArr.length===(i+1) && 
@@ -138,7 +143,6 @@ const RewardOption = ({rewardOptionRef, rewardOption, handleReward, setRewardOpt
               </div>
           </div>
         </div>
-      ))}
     </div>
   );
 };

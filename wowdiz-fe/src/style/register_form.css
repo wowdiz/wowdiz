@@ -1,7 +1,7 @@
 .register_wrap {
   display: block;
   margin: 0 auto;
-  margin-top: 15%;
+  margin-top: 5%;
 }
 .register_form_container {
   display: block;
@@ -27,11 +27,11 @@
 }
 .social_regist > button {
   background-size: contain;
-  width: 50px;
+  width: 80%;
   height: 50px;
-  border-radius: 100%;
   margin-left: 20px;
   border-color: #fff;
+  margin: 0 auto;
   border: 0;
   margin-bottom: 15px;
 }

@@ -3,6 +3,7 @@
   display: block;
   margin-top: 50px;
 }
+
 .container_header {
   height: 100px;
   text-align: center;
@@ -11,11 +12,13 @@
   border-bottom: 1px solid rgba(207, 206, 206, 0.788);
   margin-bottom: 50px;
 }
+
 label {
   display: inline;
   margin-bottom: 0.5rem;
   display: block;
 }
+
 #title {
   width: 600px;
   height: 30px;
@@ -26,10 +29,10 @@ border: 2px solid #f0eeeea6;
   font-size: 20px;
   padding: 0.75rem;
 }
+
 #user_name,
 #mail,
-#phone
-{
+#phone {
   display: inline-block;
   width: 260px;
   height: 30px;
@@ -39,7 +42,8 @@ border: 2px solid #f0eeeea6;
   font-size: 15px;
   padding: 0.75rem;
 }
-.qna_type{
+
+.qna_type {
   display: inline-block;
   width: 286px;
   height: 56px;
@@ -49,6 +53,7 @@ border: 2px solid #f0eeeea6;
   font-size: 15px;
   padding: 0.75rem;
 }
+
 #file {
   width: 300px;
   border-radius: 10px;
@@ -56,6 +61,7 @@ border: 2px solid #f0eeeea6;
   font-size: 15px;
   padding: 18px;
 }
+
 #content {
   display: block;
   width: 600px;
@@ -66,6 +72,7 @@ border: 2px solid #f0eeeea6;
   font-size: 15px;
   padding: 0.75rem;
 }
+
 .file_form {
   position: relative;
   display: inline-block;
@@ -75,17 +82,21 @@ border: 2px solid #f0eeeea6;
   position: relative;
   display: inline-block;
 }
+
 #file::file-selector-button {
   float: right;
   display: none;
 }
+
 .filewrap {
   display: flex;
   flex-direction: row;
 }
-.filewrap > div {
+
+.filewrap>div {
   width: calc(100% - 128px);
 }
+
 span.file_name {
   border-radius: 10px;
   border: 1px solid #d8d8d8;
@@ -97,6 +108,7 @@ span.file_name {
   margin-left: 8px;
   line-height: 48px;
 }
+
 .btn_qna {
   width: 250px;
   height: 60px;
@@ -107,31 +119,35 @@ span.file_name {
   font-size: 20px;
   cursor: pointer;
 }
+
 .qna_btn {
   width: 100%;
   margin-top: 80px;
   margin-bottom: 80px;
   text-align: center;
 }
+
 .warp {
   display: block;
 }
+
 .user_name_warp,
-.phone_warp
-{
+.phone_warp {
   display: inline-block;
   margin-left: 50px;
 }
+
 .qna_type_warp,
-.mail_warp
-{
+.mail_warp {
   display: inline-block;
 }
+
 .qna_form {
   position: relative;
   left: 300px;
   display: inline-block;
 }
+
 #qna_consent {
   background-size: 24px 24px;
   border-radius: 100%;
@@ -139,6 +155,7 @@ span.file_name {
   width: 17px;
   height: 17px;
 }
+
 .consent_wrap {
   width: 100%;
   font-size: 18px;
@@ -146,6 +163,7 @@ span.file_name {
   cursor: pointer;
   font-weight: bold;
 }
+
 .consent_info {
   color: #a8a8a8;
   font-size: 15px;
@@ -153,6 +171,7 @@ span.file_name {
 }
 
 /*페이징 css*/
+
 .qna_pagination_container{
   text-align: center;
   width:100%;
@@ -194,3 +213,45 @@ width: 300px;
 margin-left: auto;
 margin-right: auto;
 }
+
+.faq_pagination_container {
+  text-align: center;
+  width: auto;
+  height: 100px;
+  color: green;
+  margin-top: 30px;
+  text-decoration: none;
+}
+
+.faq_pagination_wrap {
+  float: left;
+  margin-right: 3px;
+  width: 30px;
+  color: green;
+  font: bold 12px tahoma;
+  border: 1px solid #eee;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 100px;
+  display: block;
+}
+
+.faq_pagination_wrap a:hover {
+  background-color: #071a4c;
+  color: white;
+  display: block;
+  text-decoration: none;
+}
+
+.qna_pagination_warp {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul a:hover {
+  background-color: #071a4c;
+  color: white;
+  text-decoration: none;
+}
+

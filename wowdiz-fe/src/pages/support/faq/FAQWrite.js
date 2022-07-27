@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+// import ClassicEditor from "../../../components/editor/CKEditorClassic";
+
 import "../../../style/faq_write.css";
 import AxiosService from "../../../service/AxiosService";
 import { useNavigate, useParams } from "react-router-dom";
@@ -46,6 +49,8 @@ const FAQWrite = () => {
             setFaq_content(e.target.value);
           }}
         />
+
+        {/* <ClassicEditor setFaq_content={setFaq_content} /> */}
 
         <div>
           <button type="submit" className="faq_write_btn" onClick={faqsubmit}>

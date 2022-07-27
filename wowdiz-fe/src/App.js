@@ -7,7 +7,7 @@ import Register from "./pages/user/register/Register";
 import FundingList from "./pages/funding/list/FundingList";
 import MyPage from "./pages/user/mypage/MyPage";
 import AdminLayout from "./layout/AdminLayout";
-import { MakerOpenProject } from "./pages/maker";
+import { MakerOpenProject, MakerSuccess } from "./pages/maker";
 import {
   AdminHome,
   AdminMember,
@@ -23,6 +23,7 @@ import DetailNews from "./pages/funding/detail/DetailNews";
 import DetailCommunity from "./pages/funding/detail/DetailCommunity";
 import DetailInfo from "./pages/funding/detail/DetailInfo";
 import Notice from "./pages/support/notice/Notice";
+import NoticeDetail from "./pages/support/notice/NoticeDetail";
 import Event from "./pages/support/event/Event";
 import EventDetail from "./pages/support/event/EventDetail";
 import FAQ from "./pages/support/faq/FAQ";
@@ -31,13 +32,22 @@ import RegisterForm from "./pages/user/register/RegisterForm";
 import FundingReward from "./pages/funding/pay/FundingReward";
 import QNAList from "./pages/support/qna/QNAList";
 import QNADetail from "./pages/support/qna/QNADetail";
+
+import SnsRegister from "./pages/user/register/SnsRegister";
+
 import QNAAnswer from "./pages/support/qna/QNAAnswer";
 import FAQWrite from "./pages/support/faq/FAQWrite";
 import FAQUpdate from "./pages/support/faq/FAQUpdate";
+
 import EventWrite from "./pages/support/event/EventWrite";
 import ClosedEvent from "./pages/support/event/ClosedEvent";
 import EventUpdate from "./pages/support/event/EventUpdate";
 import EmailSendImg from "./pages/support/qna/EmailSendImg";
+
+import Write from "./components/CKEeditor/Write";
+import FindUser from "./pages/user/register/FindUser";
+import UserLayout from "./layout/UserLayout";
+
 
 // 최초 작업자: 권능
 // 2022-06-29
@@ -49,6 +59,7 @@ function App() {
 
       <Route path="/" element={<MainLayout />}>
         <Route path="" element={<Home />} />
+        <Route path="maker/open_project" element={<MakerOpenProject/>}/>
 
         {/*펀딩페이지*/}
         <Route path="/funding" element={<FundingList />} />
@@ -64,6 +75,7 @@ function App() {
         {/*고객센터페이지*/}
         <Route path="/supportboard" element={<SupportBoard />}>
           <Route path="/supportboard" element={<Notice />} />
+          <Route path="/supportboard/noticedetail" element={<NoticeDetail />} />
           <Route path="/supportboard/event" element={<Event />} />
           <Route path="/supportboard/closedevent" element={<ClosedEvent />} />
           <Route
@@ -103,19 +115,22 @@ function App() {
         </Route>
         {/* 메이커 */}
         <Route path="maker/open_project" element={<MakerOpenProject />} />
+        <Route path="maker/success" element={<MakerSuccess />} />
       </Route>
 
       {/* 로그인 */}
-      <Route path="/login" element={<Login />} />
+
       <Route path="/test" element={<Test />} />
 
-      {/* 회원가입 */}
-      <Route path="/register" element={<RegisterForm />} />
-      <Route path="/register_join" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-
-      {/* 회원가입 */}
-      <Route path="/register" element={<Register />} />
+      {/* 회원가입  / 로그인  / 아이디 찾기 / 패스워드 찾기*/}
+      <Route path="/user" element={<UserLayout />}>
+        <Route path="/user/login" element={<Login />} />
+        <Route path="/user/register" element={<RegisterForm />} />
+        <Route path="/user/register_join" element={<Register />} />
+        <Route path="/user/snsregister_join" element={<SnsRegister />} />
+        <Route path="/user/login" element={<Login />} />
+        <Route path="/user/find" element={<FindUser />} />
+      </Route>
 
       {/* 운영자레이아웃 */}
       <Route path="/admin" element={<AdminLayout />}>
@@ -124,6 +139,7 @@ function App() {
         <Route path="/admin/funding/detail" element={<AdminFundingDetail />} />
         <Route path="/admin/member" element={<AdminMember />} />
       </Route>
+      <Route path="/write" element={<Write />} />
     </Routes>
   );
 }

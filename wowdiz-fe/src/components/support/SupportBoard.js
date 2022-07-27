@@ -1,5 +1,6 @@
 import React from "react";
 import "../../style/notice.css";
+
 const SupportBoard = ({ data, setData }) => {
   return (
     <div>
@@ -22,6 +23,7 @@ const SupportBoard = ({ data, setData }) => {
           </ul>
         </div>
       ))}
+
     </div>
   );
 };

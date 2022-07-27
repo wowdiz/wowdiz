@@ -12,6 +12,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.wowdiz.finalproj.mapper.UserMapper;
 import com.wowdiz.finalproj.util.RandomNumberKey;
 
 @Service
@@ -19,14 +20,15 @@ public class EmailServiceImpl implements EmailService {
 
 	private final JavaMailSender emailSender;
 	private final RandomNumberKey randomKey;
-	private String authenticationKey = "";
+
+	
 
 	public EmailServiceImpl(JavaMailSender emailSender, RandomNumberKey randomNumberKey) {
 		this.emailSender = emailSender;
 		this.randomKey = randomNumberKey;
 	}
 
-	
+	private String authenticationKey;
 
     private MimeMessage createMessage(String user_email)throws Exception{
         MimeMessage  message = emailSender.createMimeMessage();
@@ -63,6 +65,7 @@ public class EmailServiceImpl implements EmailService {
             err.printStackTrace();
             throw new IllegalArgumentException();
         }
+        
         return authenticationKey;
     }
     
