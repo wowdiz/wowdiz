@@ -48,10 +48,11 @@ function App() {
   return (
     <Routes>
       {/* 메인레이아웃 */}
-
+      kakaologout
       <Route path="/" element={<MainLayout />}>
         <Route path="" element={<Home />} />
-        <Route path="maker/open_project" element={<MakerOpenProject/>}/>
+        <Route path="/kakaologout" element={<Home />} />
+        <Route path="maker/open_project" element={<MakerOpenProject />} />
 
         {/*펀딩페이지*/}
         <Route path="/funding" element={<FundingList />} />
@@ -63,7 +64,7 @@ function App() {
         </Route>
         {/* 펀딩 결제 */}
         <Route path="/funding/purchase" element={<FundingReward />}></Route>
-        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/user/mypage" element={<MyPage />} />
         {/*고객센터페이지*/}
         <Route path="/supportboard" element={<SupportBoard />}>
           <Route path="/supportboard" element={<Notice />} />
@@ -95,11 +96,8 @@ function App() {
         <Route path="maker/open_project" element={<MakerOpenProject />} />
         <Route path="maker/success" element={<MakerSuccess />} />
       </Route>
-
       {/* 로그인 */}
-
       <Route path="/test" element={<Test />} />
-
       {/* 회원가입  / 로그인  / 아이디 찾기 / 패스워드 찾기*/}
       <Route path="/user" element={<UserLayout />}>
         <Route path="/user/login" element={<Login />} />
@@ -109,7 +107,6 @@ function App() {
         <Route path="/user/login" element={<Login />} />
         <Route path="/user/find" element={<FindUser />} />
       </Route>
-
       {/* 운영자레이아웃 */}
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="" element={<AdminHome />} />

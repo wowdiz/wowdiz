@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -65,7 +67,7 @@ public class UserController {
 	   else {
 		   //회원가입 성공 
 		   if(userService.signup(userDto).equals("pass")) {
-		      userService.pointInsert(userDto.getUser_email(), 0);
+		      userService.pointInsert(userDto.getUser_id(), 0);
 			  return ResponseEntity.ok("pass"); 
 		   }else {
 			//회원가입 실패 
@@ -98,7 +100,7 @@ public class UserController {
 	   else {
 		   //회원가입 성공 
 		   if(userService.signup(userDto).equals("pass")) {
-		      userService.pointInsert(userDto.getUser_email(), 0);
+		      userService.pointInsert(userDto.getUser_id(), 0);
 			  return ResponseEntity.ok("pass"); 
 		   }else {
 			//회원가입 실패 
@@ -120,6 +122,7 @@ public class UserController {
       System.out.println(user_email);
       return ResponseEntity.ok(userService.getUserWithAuthorities(user_email).get());
    }
+   
 //	이메일 (ID 중복확인 및 이메일 인증번호 보내기)
 	@PostMapping("/user/duplicateCheck")
 	public ResponseEntity<String> duplicateCheck(@RequestBody Map<String, String> map ) throws Exception {
@@ -200,4 +203,27 @@ public class UserController {
 	public void changeUserPassword(@RequestBody UserDto userDto) throws Exception {
 		userService.changePassword(userDto);
 	}
+	@GetMapping("/user/info")
+	public ResponseEntity<Map<String, String>>  userInfoLaod(@RequestParam String user_email) throws Exception {
+		 Map<String, String> map = userService.userInfoLoad(user_email);
+		 String user_id = user_email;
+		 Integer point = userService.pointFind(Integer.parseInt(map.get("user_id")));
+		 map.put("point",String.valueOf(point));
+//		Map<String, String> map = userService.myPageInfoLoad(user_email);
+		return ResponseEntity.ok(map);
+	}
+	
+	//유저 기본정보 변경 (닉네임, 사진, 전화번호, 관심사 )
+	@PostMapping("/user/info/change")
+	public void userInfoChange(@RequestBody Map <String, String> map) throws Exception {
+				System.out.println(map);
+				map.get("user_email");
+		userService.userInfoChage(map);
+		
+	}
+	@GetMapping("/user/oauth2/kakao/logout")
+	public void kakaoLogout() throws Exception {
+		
+	}
+			
 }

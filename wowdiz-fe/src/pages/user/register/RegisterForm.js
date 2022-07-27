@@ -1,12 +1,8 @@
 import React from "react";
 import "../../../style/register_form.css";
-import kakao from "../../../assets/images/register/kakao.png";
-import naver from "../../../assets/images/register/naver.png";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { NavLink } from "react-router-dom";
-import RegisterHead from "../../../components/header/RegisterHead";
-import axios from "axios";
-import { useNavigate, withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AxiosService from "../../../service/AxiosService";
 import kakaoLogin from "../../../assets/images/user/kakaoWide.png";
 // 최초 작업자: 이광호

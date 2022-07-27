@@ -96,6 +96,7 @@
   }
   /* 이메일 회원가입 버튼 */
   .social_regist_login > button {
+    ursor: pointer;
     background-size: contain;
     width: 80%;
     height: 50px;

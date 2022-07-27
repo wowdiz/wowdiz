@@ -26,6 +26,7 @@
   text-align: center;
 }
 .social_regist > button {
+  cursor: pointer;
   background-size: contain;
   width: 80%;
   height: 50px;
