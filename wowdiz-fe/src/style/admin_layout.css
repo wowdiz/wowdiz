@@ -70,9 +70,20 @@
 .admin_header_menu_link{
     float: left;
     margin-left: 20px;
-    
 }
 
 .admin_header_menu{
     list-style: none;
+}
+
+.drop_admin_menu_board{
+    position: absolute;
+    left: 220px;
+    top: 55px;
+    background-color: #3CBBA4;
+    display: inline-block;
+    border-radius: 25px;
+    padding: 10px;
+    height: 40px;
+    line-height: 40px;
 }

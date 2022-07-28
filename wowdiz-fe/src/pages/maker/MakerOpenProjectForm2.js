@@ -2,40 +2,34 @@ import React, { Component } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import MyCkeditor from '../../components/editor/MyCkeditor';
+import HTMLReactParser from 'html-react-parser';
 
-const MakerOpenProjectForm2 = ({ form, setForm, handleProject }) => {
+const MakerOpenProjectForm2 = ({ form, setForm, handleProject, processSelector, setProcessSelector }) => {
     return (
         <div className='maker_open_project_form'>
             <div>
-                <h3>프로젝트 소개 이미지를 등록해주세요</h3>
-
-                <h4>프로젝트 스토리를 적어주세요</h4>
-                <h2>Using CKEditor 5 build in React</h2>
-                {/* <CKEditor
-                    editor={ ClassicEditor }
-                    data={form.project_story}
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                        setForm({
-                            ...form,
-                            project_story : data
-                        })
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        // console.log( 'Blur.', editor );
-                        
-                    } }
-                    // onBlur={handleContent}
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
-                /> */}
+                <h3>프로젝트 요약을 적어주세요</h3>
+                <textarea className="project_summary"
+                name="project_summary"
+                maxLength={100} type="text"
+                onChange={(e) => {
+                    setForm({
+                        ...form,
+                        [e.target.name] : e.target.value
+                    })
+                }}
+                defaultValue={form.project_summary}
+                />
+                <h3>프로젝트 스토리를 적어주세요</h3>
                 <MyCkeditor form={form} setForm={setForm} handleProject={handleProject}/>
+                <div className='process_wrap'>
+                    <div className='prevBtn' onClick={() => {
+                        setProcessSelector(processSelector -1);
+                    }}>PREV</div>
+                    <div className='nextBtn' onClick={() => {
+                        setProcessSelector(processSelector +1);
+                    }}>NEXT</div>
+                </div>
             </div>
         </div>
     );

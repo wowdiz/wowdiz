@@ -5,7 +5,6 @@ import Editor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import AxiosService from '../../service/AxiosService';
 
-
 const MyCkeditor = ({form, setForm, handleProject}) => {
     const API_URl = "http://localhost:9150/ckeditorImages";
     const UPLOAD_ENDPOINT = "file/upload";

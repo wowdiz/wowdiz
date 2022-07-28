@@ -404,3 +404,97 @@ div.maker_success_btn>div:hover{
     color: white;
     transition: all 0.2s;
 }
+
+.project_summary{
+    width: 835px;
+    height: 150px;
+    border: 0;
+    border: solid 1px #ccc;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.ck-content {
+
+    min-height: 300px;
+}
+
+div.process_wrap{
+    display: inline-block;
+}
+
+div.firstNextBtn{
+    display: inline-block;
+    border: 1px solid #003f83;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    margin-left: 200px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+div.firstNextBtn:hover{
+    background-color: #003f83;
+    color: white;
+    transition: all 0.2s;
+}
+
+div.prevBtn{
+    display: inline-block;
+    border: 1px solid #003f83;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    margin-left: 250px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+div.nextBtn{
+    display: inline-block;
+    border: 1px solid #003f83;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+div.nextBtn:hover{
+    background-color: #003f83;
+    color: white;
+    transition: all 0.2s;
+}
+
+div.prevBtn:hover{
+    background-color: #830037;
+    color: white;
+    transition: all 0.2s;
+}
+
+div.lastPrevBtn{
+    display: inline-block;
+    border: 1px solid #003f83;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    margin-left: 300px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+div.lastPrevBtn:hover{
+    background-color: #830037;
+    color: white;
+    transition: all 0.2s;
+}
