@@ -124,3 +124,10 @@ input.keyword::placeholder {
   height: 50px;
 
 }
+.uesr_image {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 365px 365px 365px 365px;
+  z-index: 4;
+}

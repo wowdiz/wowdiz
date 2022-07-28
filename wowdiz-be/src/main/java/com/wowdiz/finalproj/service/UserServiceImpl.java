@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -184,14 +185,14 @@ public class UserServiceImpl implements UserService{
 		WowPointHistoryDto wowUserPointHistoryDto = new WowPointHistoryDto();
 		wowUserPointHistoryDto.setUser_id(userID);
 		wowUserPointHistoryDto.setPoint_amount(recomendationPoint);
-		wowUserPointHistoryDto.setProccess_type("recommender");
+		wowUserPointHistoryDto.setProccess_type("최초 추천인 포인트");
 		userMapper.pointHistoryInsert(wowUserPointHistoryDto);
 		
 		// 추천인 히스토리 등록
 		WowPointHistoryDto wowRecommenderPointHistoryDto = new WowPointHistoryDto();
 		wowRecommenderPointHistoryDto.setUser_id(recmmendationID);
 		wowRecommenderPointHistoryDto.setPoint_amount(recomendationPoint);
-		wowRecommenderPointHistoryDto.setProccess_type("recommender");
+		wowRecommenderPointHistoryDto.setProccess_type("추천인 :"+user_email);
 		userMapper.pointHistoryInsert(wowRecommenderPointHistoryDto);	
 	}
 	//최초 포인트 테이블 생성
@@ -348,7 +349,7 @@ public class UserServiceImpl implements UserService{
 		userInfo.put("user_email", userDto.getUser_email());
 		userInfo.put("user_name", userDto.getUser_name());
 		userInfo.put("user_nickname", userDto.getUser_nickname());
-		userInfo.put("profile_image", userDto.getProfile_picture());
+		userInfo.put("profile_picture", userDto.getProfile_picture());
 		userInfo.put("user_phone", userDto.getUser_phone());
 		userInfo.put("category_id",category);
 		
@@ -358,10 +359,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void userInfoChage(Map<String, String> map) {
 //		String interest = userMapper.userInterestSelect(Integer.parseInt(map.get("user_id")));
-		String categoryIdReplec = map.get("category_id").replace("[","");
-		String category_id = categoryIdReplec.replace("]", "");
+//		String categoryIdReplec = map.get("category_id").replace("[","");
+//		String category_id = categoryIdReplec.replace("]", "");
+		String user_naickname = map.get("user_nickname");
 	
-		if(map.get("user_nickname")==null) {
+		if(user_naickname==null) {
 			UserDto userDto = new UserDto();
 			userDto.setUser_id(Integer.parseInt(map.get("user_id")));
 			userDto.setUser_phone(map.get("user_phone"));
@@ -371,7 +373,7 @@ public class UserServiceImpl implements UserService{
 	        userMapper.userInfoProfileUpdate(userDto); 
 	        InterestCategoryDto interestCategoryDto = new InterestCategoryDto();
 	        interestCategoryDto.setUser_id(Integer.parseInt(map.get("user_id")));
-	        interestCategoryDto.setCategory_id(category_id);
+	        interestCategoryDto.setCategory_id(map.get("category_id"));
 	        userMapper.userInterestUpdate(interestCategoryDto);
 	      
 //		}else if(map.get("user_profile_picture")==null){
@@ -409,7 +411,7 @@ public class UserServiceImpl implements UserService{
 	        userMapper.userInfoNicknameUpdate(userDto);
 	        InterestCategoryDto interestCategoryDto = new InterestCategoryDto();
 	        interestCategoryDto.setUser_id(Integer.parseInt(map.get("user_id")));
-	        interestCategoryDto.setCategory_id(category_id);
+	        interestCategoryDto.setCategory_id(map.get("category_id"));
 	        userMapper.userInterestUpdate(interestCategoryDto);
 	       
 		}
@@ -424,10 +426,16 @@ public class UserServiceImpl implements UserService{
 		userInfo.put("user_email", map.get("user_email").toString());
 		userInfo.put("user_name", map.get("user_name").toString());
 		userInfo.put("user_nickname", map.get("user_nickname").toString());
-//		userInfo.put("profile_image", map.get("profile_image").toString());
+		userInfo.put("profile_picture", map.get("profile_picture").toString());
 		userInfo.put("user_phone", map.get("user_phone").toString());
 		userInfo.put("category_id",map.get("category_id").toString());
 		userInfo.put("current_wowpoint",map.get("current_wowpoint").toString());
 		return userInfo;
+	}
+
+	@Override
+	public List<WowPointHistoryDto> pointHistory(Integer user_id) {
+		
+		return userMapper.pointHistory(user_id);
 	}
 }

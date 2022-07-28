@@ -1,4 +1,5 @@
 import React from "react";
+import "../../style/perference_funding.css";
 
 // 최초 작업자: 이광호
 // 2022-07-04

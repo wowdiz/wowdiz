@@ -1,5 +1,6 @@
 package com.wowdiz.finalproj.mapper;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -69,4 +70,6 @@ public interface UserMapper {
 	public void userInterestUpdate(InterestCategoryDto interestCategoryDto);
 // mypage 한번에 정보가져오기 join
 	public Map<String, Object> myPageUserInfo(String user_email);
+// 포인트 히스토리 확인
+	public List<WowPointHistoryDto> pointHistory(Integer user_id);
 }

@@ -2,6 +2,7 @@ package com.wowdiz.finalproj.controller;
 
 import java.text.ParseException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wowdiz.finalproj.dto.UserDto;
+import com.wowdiz.finalproj.dto.WowPointHistoryDto;
 import com.wowdiz.finalproj.service.EmailService;
 import com.wowdiz.finalproj.service.UserService;
 
@@ -221,9 +223,12 @@ public class UserController {
 		userService.userInfoChage(map);
 		
 	}
-	@GetMapping("/user/oauth2/kakao/logout")
-	public void kakaoLogout() throws Exception {
-		
+	
+	//포인트 기록확인 
+	@GetMapping("/user/point/history")
+	public ResponseEntity<List<WowPointHistoryDto>> userPointLoad(@RequestParam Integer user_id) throws Exception {
+		   
+		return  ResponseEntity.ok(userService.pointHistory(user_id));
 	}
 			
 }
