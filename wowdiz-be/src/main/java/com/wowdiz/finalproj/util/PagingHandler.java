@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import com.wowdiz.finalproj.dto.FAQDto;
+import com.wowdiz.finalproj.dto.NoticeDto;
 import com.wowdiz.finalproj.dto.QNADto;
 
 public class PagingHandler {
@@ -36,29 +37,31 @@ public class PagingHandler {
 	}
 	
 	
+	//qna
+	
 	public Map<String, Object> paging(List<QNADto> list) {
 
-	 List<QNADto> boardList=list;
-	 
-	 Vector<Integer> parr=new Vector<>();
-      for(int pp=startPage;pp<=endPage;pp++) {
-    	  parr.add(pp);
-      }
-      
-      Map<String,Object> map1 = new HashMap<>();
-      map1.put("list", boardList);
-      map1.put("parr", parr);
-      map1.put("totalCount", totalCount);
-      map1.put("totalPage", totalPage);
-      map1.put("startPage", startPage);
-      map1.put("endPage", endPage);
-      map1.put("no", no);
-      return map1;
-	}
+		 List<QNADto> boardList=list;
+		 
+		 Vector<Integer> parr=new Vector<>();
+	      for(int pp=startPage;pp<=endPage;pp++) {
+	    	  parr.add(pp);
+	      }
+	      
+	      Map<String,Object> map1 = new HashMap<>();
+	      map1.put("list", boardList);
+	      map1.put("parr", parr);
+	      map1.put("totalCount", totalCount);
+	      map1.put("totalPage", totalPage);
+	      map1.put("startPage", startPage);
+	      map1.put("endPage", endPage);
+	      map1.put("no", no);
+	      return map1;
+		}
 	
-	public Map<String, Object> faqpaging(List<FAQDto> list) {
+	public Map<String, Object> noticePaging(List<NoticeDto> list) {
 
-		 List<FAQDto> boardList=list;
+		 List<NoticeDto> boardList=list;
 		 
 		 Vector<Integer> parr=new Vector<>();
 	      for(int pp=startPage;pp<=endPage;pp++) {

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wowdiz.finalproj.mapper.UniqueKeyMapper">
+	<select id="selectUniqueKey" parameterType="String" resultType="String">
+		SELECT ${column} FROM unique_key;
+	</select>
+	<update id="increaseUniqueKey" parameterType="String">
+		UPDATE unique_key SET ${column} = ${column} + 1;
+	</update>
+	<select id="isAlreadyExist" parameterType="Map" resultType="int">
+		SELECT COUNT(${column}) FROM ${table} WHERE ${column}='${generatedKey}';
+	</select>
+</mapper>

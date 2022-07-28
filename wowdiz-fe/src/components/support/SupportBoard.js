@@ -1,25 +1,29 @@
 import React from "react";
 import "../../style/notice.css";
-const SupportBoard = ({data}) => {
-  console.log(data);
+
+const SupportBoard = ({ data, setData }) => {
   return (
-    <div className="notice_main">
-      <ul className="notice_wrap">
-        <li className="notice_container">
-          <div className="notice_info">
-            <div className="notice_important"><b>{(
-              data.important ==="Y"
-                  ? <p>중요 · BEST</p>
-                  : null
-                )}</b></div>
-            <div className="notice_thum">{data.notice_thumbnail}</div>
-            <div className="notice_title" Link to="#">{data.notice_title}</div>
-            <br/>
-            <span className="notice_admin">{data.admin_id}</span>
-            <span className="notice_date">{data.write_date}</span>
-          </div>
-        </li>
-      </ul>
+    <div>
+      {data.map((row, idx) => (
+        <div className="support_main" key={idx}>
+          <ul className="support_wrap">
+            <li className="support_container">
+              <b className="support_important">
+                {row.event_status === "Y" ? <p>마감</p> : <p>진행중</p>}
+              </b>
+              <div className="support_info">
+                <div className="support_thum">{row.thum}</div>
+                <h3 className="support_title">{row.event_title}</h3>
+                <br />
+                <span className="support_admin">wowdiz</span>
+                <span className="support_date">{row.write_date}</span>
+                <span></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      ))}
+
     </div>
   );
 };

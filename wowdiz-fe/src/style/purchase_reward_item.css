@@ -1,0 +1,152 @@
+li {
+    list-style-type: none;
+}
+
+.purchase_wrap {
+    width: 820px;
+    margin: 0 auto;
+}
+
+.reward_box {
+    position: relative;
+    padding: 20px;
+    margin-top: 15px;
+    background-color: #f1f1f1;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    /* overflow: hidden;     */
+}
+
+.reward_box.checked{
+    background-color: #e4f0ff;
+}
+
+
+.reward_box > .left {
+    width: 100px;
+    /* display: flex;
+    justify-content: center; */
+}
+.reward_box > .left > input{
+    position: absolute;
+    left: 50px;
+    top: 50px;
+}
+.reward_box > .right {
+    /* float: left; */
+    width: 100%;
+
+}
+
+/* float를 시켰을 때 부모가 height 값을 잃어버리는데
+부모의 height값을 지켜준다.
+*/
+.reward_box::after{
+    content:'';
+    display:block;
+    clear:left;
+}
+
+div.reward_detail {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+p.reward_price{
+    margin: 0 0 15px 0;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+p.reward_title {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+p.reward_info, p.reward_delivery {
+    margin:0;
+    font-size: 12px;
+    font-weight: 500;
+
+}
+
+
+div.reward_amount{
+    display: inline-block;
+    width: 140px;
+}
+
+div.reward_amount p{
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.reward_qty, .reward_qty::placeholder, .increase_btn, .decrease_btn {
+    font-size: 14px;
+    margin-bottom: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+div.reward_option{
+    display: inline-block;
+    width: 530px;
+}
+
+div.reward_option p{
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+input.reward_qty{
+    width: 50px;
+    text-align: center;
+}
+
+input.reward_option{
+    width: 100%;
+}
+
+
+.project_reward_option_detail, .project_reward_option_detail::placeholder{
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+div.reward_list > .option_lists {
+    background-color: #d1e7ff;
+}
+
+p.purchase_info{
+    text-align: center;
+    font-weight: 600;
+    margin: 50px 0;
+}
+
+span.purchase_total_price{
+    color: #599ee8;
+    text-decoration: underline;
+}
+
+button.next_step_btn{
+    padding: 15px 30px;
+    font-weight: 500;
+    font-size: 15px;
+    color: white;
+    background-color: #9ac7f8;
+    border: 0;
+    cursor: pointer;
+}

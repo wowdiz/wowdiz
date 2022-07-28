@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import RegReward from "./RegReward";
 import RewardOption from "./RewardOption";
 
-const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
+const MakerOpenProjectForm3 = ({ form, setForm, processSelector, setProcessSelector }) => {
     const [possibility, setPossibility] = useState("무제한");
     const [necessity, setNecessity] = useState("Y");
     const [rewardOptionType, setRewardOptionType] = useState(["선택형0"]);
@@ -132,7 +132,6 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
             project_reward_title: "", //reward_title
             require_parcel: "Y", //배송필요유무
         });
-        setPossibility("제한");
     }
 
     const titleLengthChecker = () => {
@@ -142,6 +141,10 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
             return rewardRef.current[3].value.length;
         }
     }
+
+    useEffect(() => {
+        window.scroll(0,0);
+    },[])
 
     return (
         <div className="maker_open_project_form">
@@ -398,6 +401,9 @@ const MakerOpenProjectForm3 = ({ form, setForm, handleProject }) => {
                 <RegReward data={item} key={idx} idx={idx} onDelete={delReward} />
                 ))}
             </div>
+            <div className='lastPrevBtn' onClick={() => {
+                    setProcessSelector(processSelector -1);
+                }}>PREV</div>
         </div>
     );
 };

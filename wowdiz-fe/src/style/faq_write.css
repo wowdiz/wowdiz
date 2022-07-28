@@ -4,7 +4,7 @@
     margin-top: 50px;
     text-align: center;
 }
-.faq_write_title{
+.faq_write_title, .faq_write_content{
     display: inline-block;
     width: 600px;
     height: 30px;
@@ -15,14 +15,24 @@
     padding: 0.75rem;
     margin-left: 10px;
 }
-.write_title{
+.faq_write_content {
+    display: inline-block;
+    width: 600px;
+    height: 500px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border: 2px solid #d8d8d8d8;
+    font-size: 20px;
+    padding: 0.75rem;
+    margin-left: 10px
+}
+.write_title, .write_content{
     display: inline-block;
     font-size: 20px;
 }
 .faq_write_btn{
     width: 250px;
     height: 60px;
-    text-align: center;
     top: 1984px;
     border-radius: 10px;
     border: 0;
@@ -30,4 +40,33 @@
     cursor: pointer;
     background-color: #80DACE;
     margin-top: 20px;
+    text-align: center;
+}
+.button_more{
+    width: 300px;
+    height: 60px;
+    text-align: center;
+    top: 1984px;
+    border-radius: 10px;
+    border: 0;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgba(154, 199, 248, 1);
+    margin-top: 20px;
+}
+.faq_header{
+    height: 100px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(207, 206, 206, 0.788);
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+.faq_update_btn, .faq_update_delete{
+    background-color: #80DACE;
+    border: 0px;
+}
+.faq_update_delete{
+    margin-right: 10px;
 }

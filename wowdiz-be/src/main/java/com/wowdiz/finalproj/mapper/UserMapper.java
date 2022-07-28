@@ -10,6 +10,7 @@ import com.wowdiz.finalproj.dto.AuthenticationDto;
 import com.wowdiz.finalproj.dto.InterestCategoryDto;
 import com.wowdiz.finalproj.dto.LoginDto;
 import com.wowdiz.finalproj.dto.RecommendationDto;
+import com.wowdiz.finalproj.dto.UserAddressDto;
 import com.wowdiz.finalproj.dto.UserDto;
 import com.wowdiz.finalproj.dto.WowPointDto;
 import com.wowdiz.finalproj.dto.WowPointHistoryDto;
@@ -54,6 +55,10 @@ public interface UserMapper {
 	public void snsInsert(UserDto userDto);
 // Password 변경
 	public void passwordUpdate(UserDto userDto);
+	
+	public List<UserAddressDto> selectMyParcelAddress(Integer integer);
+	
+	public Integer insertMyParcelAddress(UserAddressDto userAddressDto);
 // 유저 이름 및 닉네임 찾기
 	public UserDto userNameSelect(String user_email);	
 // 유저 닉네임 변경
@@ -70,6 +75,4 @@ public interface UserMapper {
 	public void userInterestUpdate(InterestCategoryDto interestCategoryDto);
 // mypage 한번에 정보가져오기 join
 	public Map<String, Object> myPageUserInfo(String user_email);
-// 포인트 히스토리 확인
-	public List<WowPointHistoryDto> pointHistory(Integer user_id);
 }

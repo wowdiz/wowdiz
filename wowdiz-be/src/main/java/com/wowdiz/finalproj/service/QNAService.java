@@ -13,4 +13,5 @@ public interface QNAService {
 	public QNADto qnadetail(Integer inquiry_id);
 	public QNADto qnaanswer (Integer inquiry_id);
 	public void qnadelete(Integer inquiry_id);
+	public void qnastatus(Map<String, String> map);
 }

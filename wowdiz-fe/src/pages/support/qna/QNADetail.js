@@ -43,7 +43,7 @@ const QNADetail = () => {
           <span style={{ marginLeft: "20px" }}>{detail.write_date}</span>
         </div>
         <div className="detail_content">
-          <div>{detail.inquiry_content}</div>
+          <div><b>문의내용 : </b>{detail.inquiry_content}</div>
         </div>
         <div className="button_warp">
           <button

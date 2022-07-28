@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +20,7 @@ import com.google.gson.JsonParser;
 import com.wowdiz.finalproj.dto.AuthenticationDto;
 import com.wowdiz.finalproj.dto.InterestCategoryDto;
 import com.wowdiz.finalproj.dto.RecommendationDto;
+import com.wowdiz.finalproj.dto.UserAddressDto;
 import com.wowdiz.finalproj.dto.UserDto;
 import com.wowdiz.finalproj.dto.WowPointDto;
 import com.wowdiz.finalproj.dto.WowPointHistoryDto;
@@ -185,14 +185,14 @@ public class UserServiceImpl implements UserService{
 		WowPointHistoryDto wowUserPointHistoryDto = new WowPointHistoryDto();
 		wowUserPointHistoryDto.setUser_id(userID);
 		wowUserPointHistoryDto.setPoint_amount(recomendationPoint);
-		wowUserPointHistoryDto.setProccess_type("최초 추천인 포인트");
+		wowUserPointHistoryDto.setProccess_type("recommender");
 		userMapper.pointHistoryInsert(wowUserPointHistoryDto);
 		
 		// 추천인 히스토리 등록
 		WowPointHistoryDto wowRecommenderPointHistoryDto = new WowPointHistoryDto();
 		wowRecommenderPointHistoryDto.setUser_id(recmmendationID);
 		wowRecommenderPointHistoryDto.setPoint_amount(recomendationPoint);
-		wowRecommenderPointHistoryDto.setProccess_type("추천인 :"+user_email);
+		wowRecommenderPointHistoryDto.setProccess_type("recommender");
 		userMapper.pointHistoryInsert(wowRecommenderPointHistoryDto);	
 	}
 	//최초 포인트 테이블 생성
@@ -340,6 +340,16 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+	public List<UserAddressDto> selectMyParcelAddress() {
+		UserDto userDto = getUserWithAuthorities().get();
+		return userMapper.selectMyParcelAddress(userDto.getUser_id());
+	}
+
+	@Override
+	public Integer insertMyParcelAddress(UserAddressDto userAddressDto) {
+		userAddressDto.setUser_id(Integer.valueOf(getUserWithAuthorities().get().getUser_id()));
+		return userMapper.insertMyParcelAddress(userAddressDto);
+	}
 	public Map<String, String> userInfoLoad(String user_email) {
 		
 		UserDto userDto = userMapper.userNameSelect(user_email);
@@ -349,7 +359,7 @@ public class UserServiceImpl implements UserService{
 		userInfo.put("user_email", userDto.getUser_email());
 		userInfo.put("user_name", userDto.getUser_name());
 		userInfo.put("user_nickname", userDto.getUser_nickname());
-		userInfo.put("profile_picture", userDto.getProfile_picture());
+		userInfo.put("profile_image", userDto.getProfile_picture());
 		userInfo.put("user_phone", userDto.getUser_phone());
 		userInfo.put("category_id",category);
 		
@@ -359,11 +369,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void userInfoChage(Map<String, String> map) {
 //		String interest = userMapper.userInterestSelect(Integer.parseInt(map.get("user_id")));
-//		String categoryIdReplec = map.get("category_id").replace("[","");
-//		String category_id = categoryIdReplec.replace("]", "");
-		String user_naickname = map.get("user_nickname");
+		String categoryIdReplec = map.get("category_id").replace("[","");
+		String category_id = categoryIdReplec.replace("]", "");
 	
-		if(user_naickname==null) {
+		if(map.get("user_nickname")==null) {
 			UserDto userDto = new UserDto();
 			userDto.setUser_id(Integer.parseInt(map.get("user_id")));
 			userDto.setUser_phone(map.get("user_phone"));
@@ -373,7 +382,7 @@ public class UserServiceImpl implements UserService{
 	        userMapper.userInfoProfileUpdate(userDto); 
 	        InterestCategoryDto interestCategoryDto = new InterestCategoryDto();
 	        interestCategoryDto.setUser_id(Integer.parseInt(map.get("user_id")));
-	        interestCategoryDto.setCategory_id(map.get("category_id"));
+	        interestCategoryDto.setCategory_id(category_id);
 	        userMapper.userInterestUpdate(interestCategoryDto);
 	      
 //		}else if(map.get("user_profile_picture")==null){
@@ -411,7 +420,7 @@ public class UserServiceImpl implements UserService{
 	        userMapper.userInfoNicknameUpdate(userDto);
 	        InterestCategoryDto interestCategoryDto = new InterestCategoryDto();
 	        interestCategoryDto.setUser_id(Integer.parseInt(map.get("user_id")));
-	        interestCategoryDto.setCategory_id(map.get("category_id"));
+	        interestCategoryDto.setCategory_id(category_id);
 	        userMapper.userInterestUpdate(interestCategoryDto);
 	       
 		}
@@ -426,16 +435,10 @@ public class UserServiceImpl implements UserService{
 		userInfo.put("user_email", map.get("user_email").toString());
 		userInfo.put("user_name", map.get("user_name").toString());
 		userInfo.put("user_nickname", map.get("user_nickname").toString());
-		userInfo.put("profile_picture", map.get("profile_picture").toString());
+//		userInfo.put("profile_image", map.get("profile_image").toString());
 		userInfo.put("user_phone", map.get("user_phone").toString());
 		userInfo.put("category_id",map.get("category_id").toString());
 		userInfo.put("current_wowpoint",map.get("current_wowpoint").toString());
 		return userInfo;
-	}
-
-	@Override
-	public List<WowPointHistoryDto> pointHistory(Integer user_id) {
-		
-		return userMapper.pointHistory(user_id);
 	}
 }

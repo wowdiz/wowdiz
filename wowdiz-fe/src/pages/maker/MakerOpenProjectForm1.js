@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import defaultImg from '../../assets/images/util/fileUploader.png';
 import ClearIcon from '@mui/icons-material/Clear';
 import AxiosService from '../../service/AxiosService';
@@ -8,15 +8,15 @@ const MakerOpenProjectForm1 = ( props ) => {
     const [lengthChecker, setLengthChecker] = useState(0);
     const [duration, setDuration] = useState(0);
 
-    //onChange 현재날짜로부터 선택한 종료일사이의 일수 구하기
+    useEffect(() => {
+        window.scroll(0,0);
+    },[])
+
     const diffDate = (e) => {
         let value = e.target.value;
         const toDate = new Date(value);
         const dMillis = toDate.getTime() - Math.floor(new Date().getTime()/86400000)*86400000;
         const dDay = dMillis/86400000; //1000*60*60*24=하루
-        if(dDay > 60 || dDay < 7) {
-            alert('최소 7일부터 최대 60일까지로 기간을 다시 설정해 주세요.');
-        }
         setDuration(Number(dDay));
     };
 
@@ -50,23 +50,6 @@ const MakerOpenProjectForm1 = ( props ) => {
     console.log('props.form.project_thumbnail',props.form.project_thumbnail);
     console.log('props.form.project_name',props.form.project_name);
 
-    // //대표이미지업로드
-    // const handleFileUpload = (e) => {
-    //     if(e.target.files[0]){
-    //         props.setMainImage(e.target.files[0])
-    //     } else { //업로드 취소할 시
-    //         props.setMainImage(defaultImg);
-    //         return;
-    //     }
-	//     //화면에 프로필 사진 표시
-    //     const reader = new FileReader();
-    //     reader.onload = () => {
-    //         if(reader.readyState === 2){
-    //             props.setMainImage(reader.result);
-    //         }
-    //     }
-    //     reader.readAsDataURL(e.target.files[0]);
-    // }
 
     //img 호버로 도움말 표시
     const [isHovering, setIsHovering] = useState(0);
@@ -142,8 +125,15 @@ const MakerOpenProjectForm1 = ( props ) => {
             <div>
                 <h3>프로젝트의 진행 기간을 적어주세요</h3>
                 <p style={{color:'gray'}}>최소 7일부터 최대 60일까지 가능합니다.</p>
-                <span style={{fontSize:'1.2em'}}>"{duration}"</span><span style={{color:'gray'}}>일 남음</span>
-                <input className='project_input_small' type='date' onChange={diffDate}
+                <span style={{color:'gray'}}>프로젝트 오픈일로부터</span><span style={{fontSize:'1.2em'}}> "{duration}"</span><span style={{color:'gray'}}>일 남음</span><br/><br/>
+                <span>오픈날짜 설정 : </span><input className='project_input_small' type='date' onChange={diffDate}
+                name='open_date'
+                defaultValue={props.form.open_date}
+                onBlur={(e) => {
+                    props.handleProject(e);
+                }}
+                /><br/>
+                <span>종료날짜 설정 : </span><input className='project_input_small' type='date'
                 name='close_date'
                 defaultValue={props.form.close_date}
                 onBlur={(e) => {
@@ -154,9 +144,7 @@ const MakerOpenProjectForm1 = ( props ) => {
             <div>
                 <h3>프로젝트 대표 이미지를 등록해주세요</h3>
                 <input type='file' style={{display:'none'}} 
-                    //accept={defaultImg}
                     name='project_thumbnail' 
-                    // onChange={handleFileUpload} //기존
                     onChange={uploadImage} //변경
                     ref={fileInput}/>
                 <img className='project_file_input_img' 
@@ -166,9 +154,6 @@ const MakerOpenProjectForm1 = ( props ) => {
                     onMouseOver={() => setIsHovering(1)}
                     onMouseOut={() => setIsHovering(0)}
                     name='project_thumbnail'
-                    // onBlur={(e) => {
-                    // props.handleProject(e);
-                    // }}
                 />
                 <div className='img_hover' style={{height:'1px'}}>
                     <span style={{color:'gray'}}>{isHovering===1?'클릭하여 이미지를 교체할 수 있습니다.':''}</span>
@@ -177,7 +162,6 @@ const MakerOpenProjectForm1 = ( props ) => {
             <div>
                 <h3>프로젝트 키워드를 적어주세요. <span className='target_money'>(선택사항)</span></h3>
                 <input className='project_input' type='text' onChange={handleKeyword} 
-                //onKeyUp={onKeyUp} 
                 onKeyUp={onKeyUp}
                 onBlur={addKeywordToProject}
                 placeholder='키워드 입력 후 엔터를 눌러주세요.'/>
@@ -195,8 +179,11 @@ const MakerOpenProjectForm1 = ( props ) => {
                     ))
                 }
                 </div>
-                
+                <div className='firstNextBtn' onClick={() => {
+                    props.setProcessSelector(props.processSelector +1);
+                }}>NEXT</div>
             </div>
+            
         </div>
     );
 };

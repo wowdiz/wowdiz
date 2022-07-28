@@ -1,0 +1,20 @@
+.add_parcel_address_wrap input[type="text"]{
+    width:500px;
+    height:30px;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.add_parcel_address_wrap input[name="address"]::placeholder{
+    color: #73aae6;
+    font-weight: 600;
+}
+
+.add_parcel_address_wrap .saveAddress{
+    display: block;
+}
+
+div.registered_parcel_address{
+    border: 1px solid black;
+}

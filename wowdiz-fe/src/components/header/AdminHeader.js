@@ -77,11 +77,44 @@ const AdminHeader = () => {
           ) : (
             ""
           )}
+
+          <label className="admin_header_board_label">
+            <li
+              onMouseOver={() => setIsHovering(2)} //onMouseIn, onMouseEnter, onMouseLeave ??
+              onMouseOut={() => setIsHovering(0)}
+            >
+              <NavLink
+                to="/admin/funding"
+                className="admin_header_menu_link admin_menu_funding"
+                style={{ cursor: "pointer" }}
+              >
+                BOARD
+              </NavLink>
+            </li>
+          </label>
+          {isHovering === 2 ? (
+            <div
+              className="drop_admin_menu_board"
+              onMouseOver={() => setIsHovering(2)}
+              onMouseOut={() => setIsHovering(0)}
+            >
+              <span onClick={() => handleScroll(0)}>NOTICE</span>&nbsp;
+              |&nbsp;
+              <span onClick={() => handleScroll(800)}>EVENT</span>&nbsp;
+              |&nbsp;
+              <span onClick={() => handleScroll(1580)}>1:1문의</span>
+            </div>
+          ) : (
+            ""
+          )}
+
+
+
         </ul>
 
         <ul className="admin_header_menu">
           <li className="admin_header_menu_link" style={{ float: "right" }}>
-            ADMIN
+            여기에 ADMIN 사용자 아이디 출력할것
           </li>
         </ul>
       </div>

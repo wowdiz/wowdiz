@@ -4,14 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.wowdiz.finalproj.dto.AuthenticationDto;
-import com.wowdiz.finalproj.dto.RecommendationDto;
+import com.wowdiz.finalproj.dto.UserAddressDto;
 import com.wowdiz.finalproj.dto.UserDto;
 import com.wowdiz.finalproj.dto.WowPointDto;
-import com.wowdiz.finalproj.dto.WowPointHistoryDto;
 import com.wowdiz.finalproj.util.SecurityUtil;
 
 public interface UserService {
@@ -37,7 +32,7 @@ public interface UserService {
 // 포인트 추가
 	public void pointAdd(Integer user_id, Integer current_wowpoint);
 // 포인트 정보 확인
-	public Integer pointFind(Integer user_id);
+	public Integer pointFind(Integer user_email);
 	
 //카카오 토큰얻기
 	public Map<String, Object> kakaoUser(String access_Token);
@@ -51,13 +46,15 @@ public interface UserService {
 	public Integer findUserPassword(String user_email);
 // Password 변경
 	public void changePassword(UserDto userDto);
+	
+	public List<UserAddressDto> selectMyParcelAddress();
+	public Integer insertMyParcelAddress(UserAddressDto userAddressDto);
 // 유저 이름 및 닉네임 로드
 	public Map<String, String> userInfoLoad(String user_email);
 // 유저 정보 변경
 	public void userInfoChage(Map<String, String> map);
 // myPage 한번에 정보가져오기
 	public Map<String, String> myPageInfoLoad(String user_email);
-//  와우포인트 기록
-	public List<WowPointHistoryDto> pointHistory(Integer user_id);
+
 
 }

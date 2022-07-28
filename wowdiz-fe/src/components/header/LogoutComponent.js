@@ -6,19 +6,23 @@ import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import defaultImage from "../../assets/images/user/default_image.jpg";
+import user from "../../assets/images/user/default_image.jpg";
 import UserService from "../../service/UserService";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import AxiosService from "../../service/AxiosService";
 import { fontWeight } from "@mui/system";
 
 const settings = ["마이페이지", "내가 펀딩한 목록", "로그아웃"];
-const { Kakao } = window;
 
 const LogoutComponent = ({ loadUserName }) => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
- 
+  const activeStyle = {
+    background: "red",
+    fontWeight: "700",
+    color: "black",
+  };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -26,10 +30,6 @@ const LogoutComponent = ({ loadUserName }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-
-
-  
 
   const navigation = useNavigate();
 
@@ -39,7 +39,6 @@ const LogoutComponent = ({ loadUserName }) => {
     name: "",
     nickname: "",
     user_email: "",
-    profile_picture:"",
   });
 
   const userInfoload = () => {
@@ -47,7 +46,6 @@ const LogoutComponent = ({ loadUserName }) => {
       "/api/user/info?user_email=" + localStorage.getItem("authenticatedUser");
     AxiosService.get(uri)
       .then((res) => {
-        console.log(res.data)
         setUserDataLoad({
           ...userDataLoad,
           userId: res.data.user_id,
@@ -55,7 +53,6 @@ const LogoutComponent = ({ loadUserName }) => {
           nickname: res.data.user_nickname,
           uesr_email: res.data.user_email,
           user_phoen: res.data.user_phone,
-          profile_picture: res.data.profile_picture,
         });
       })
       .catch((err) => {
@@ -89,7 +86,7 @@ const LogoutComponent = ({ loadUserName }) => {
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="MyPage" src={userDataLoad.profile_picture===null?defaultImage:"http://localhost:9150/save/"+userDataLoad.profile_picture} className="uesr_image"/>
+              <Avatar alt="Remy Sharp" src={user} />
             </IconButton>
           </Tooltip>
           <Menu
@@ -125,16 +122,13 @@ const LogoutComponent = ({ loadUserName }) => {
             <MenuItem key={settings[1]} onClick={handleCloseUserMenu}>
               <Typography textAlign="center">{settings[1]}</Typography>
             </MenuItem>
-            <div onClick={UserService.logout}>
             <MenuItem key={settings[2]} onClick={handleCloseUserMenu}>
               <Typography textAlign="center" onClick={UserService.logout}>
                 {settings[2]}
               </Typography>
             </MenuItem>
-            </div>
           </Menu>
         </Box>
-
       </div>
     </div>
   );

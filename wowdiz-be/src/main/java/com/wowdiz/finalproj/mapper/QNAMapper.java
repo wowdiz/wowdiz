@@ -17,6 +17,7 @@ public interface QNAMapper {
 	public QNADto qnaanswer (Integer inquiry_id);
 	public void qnadelete (Integer inquiry_id);
 	public Integer qnatotalpage();
+	public void qnastatus(QNADto dto);
 	
 }
 

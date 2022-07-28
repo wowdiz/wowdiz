@@ -129,7 +129,6 @@
 /* ㅇㅇㅇ님께서 최근 관심있는 펀딩 이미지 레이아웃 */
 .mypage_like_funding_image_layout{
     width: 700px;
-    height: 330px;
     margin: 0 auto;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -201,12 +200,7 @@
     white-space:pre-line;
     word-break:break-all;
 }
-.profile_image_upload{
-    width: 200px;
-    height: 200px;
-    border-radius: 365px 365px 365px 365px;
-    margin-bottom: 30px;
-}
+
 .profile_image {
     display: inline-block;
     width: 200px;
@@ -351,16 +345,5 @@
     margin: 0 auto;
     margin-bottom: 55px;
     min-height: 30px;
-}
-
-.like_nothing_text {
-    width: 700px;
-    height: 280px;
-    text-align: center;
-    font-size: 22px;
-    font-weight: 700;
-}
-.like_nothing_text > p {
-    margin-top: 180px;
 }
 
