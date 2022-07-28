@@ -2,6 +2,7 @@
 .login_top_header{
     height: 70px;
     border: 1px solid rgba(0,0,0,.15);
+    display: block;
   }
   /* login logo image */
   .logoimage{
@@ -68,6 +69,7 @@
   .login_id_password_search{
     margin-top: 2px;
     display: inline;
+    text-decoration: none;
     float: right;
     cursor: pointer;
   }
@@ -78,7 +80,7 @@
     width: 100%;
     display: inline;
     color: #fff;
-    background-color: rgba(154,199,248,1);
+    background-color: #69aef7;
     cursor: pointer;
     font-size: 16px;
     height: 48px;
@@ -94,12 +96,13 @@
   }
   /* 이메일 회원가입 버튼 */
   .social_regist_login > button {
+    ursor: pointer;
     background-size: contain;
-    width: 50px;
+    width: 80%;
     height: 50px;
-    border-radius: 100%;
     margin-left: 20px;
     border-color: #fff;
+    margin: 0 auto;
     border: 0;
     margin-bottom: 15px;
   }

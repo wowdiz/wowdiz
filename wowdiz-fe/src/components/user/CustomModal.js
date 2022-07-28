@@ -21,11 +21,15 @@ const CustomModal = ({ open, handleClose, modalTitle, modalContent }) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Typography id="modal-modal-title" variant="h4" component="h2">
           {modalTitle}
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          <p style={{ color: "blue", bold: "700" }}>{modalContent}</p>
+          <p
+            style={{ color: "rgba(0,0,0,.54)", bold: "700", fontSize: "18px" }}
+          >
+            {modalContent}
+          </p>
         </Typography>
       </Box>
     </Modal>

@@ -1,9 +1,14 @@
 package com.wowdiz.finalproj.controller;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpHeaders;
@@ -15,11 +20,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wowdiz.finalproj.dto.LoginDto;
@@ -37,12 +45,14 @@ public class AuthController {
 	private final AuthenticationManagerBuilder authenticationManagerBuilder;
 	private final UserService userService;
 	private final PasswordEncoder passwordEncoder;
+
 	
 	public AuthController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder,UserService userService,PasswordEncoder passwordEncoder) {
 		this.tokenProvider = tokenProvider;
 		this.authenticationManagerBuilder = authenticationManagerBuilder;
 		this.userService = userService;
 		this.passwordEncoder = passwordEncoder;
+
 	}
 	
 	@PostMapping("/authenticate")
@@ -53,7 +63,7 @@ public class AuthController {
 		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 			
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		System.out.println("test1"+authenticationToken);
+	
 		String jwt = tokenProvider.createToken(authentication);
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
@@ -66,13 +76,13 @@ public class AuthController {
 		
 	}
 	
-	@PostMapping("/oauth2/kakao")
+	@PostMapping("/user/oauth2/kakao")
 	public ResponseEntity<TokenDto> KakaoLogin(@RequestBody Map<String, String> map) throws ParseException  {
 		
 		String accessToken = map.get("access_token");
 		Map<String, Object> map1 = new HashMap<>();
 		map1 = userService.kakaoUser(accessToken);
-		System.out.println(map1);
+
 		String kakaoEmail = "kakao:"+(String)map1.get("user_email");
 		String sns_id = (String)map1.get("sns_id");
 		String sns_type = "kakao";
@@ -85,13 +95,17 @@ public class AuthController {
 		else {
 		UserDto userDto = new UserDto();
 		userDto=userService.snsIdfind((String)map1.get("user_email"));
-		String kakao_id = userDto.getSns_id();
-		String kakao_type = (String)userDto.getSns_type();
-		if(kakao_type==null) {
-		userDto.setSns_type("kakao");
+		String sns_types = (String)userDto.getSns_type();
+		if(sns_types==null) {
+		userDto.setSns_type("user,kakao");
 		userDto.setSns_id(passwordEncoder.encode((String)map1.get("sns_id")));
 		userService.snsInsert(userDto);
+		}else if(sns_types.contains("naver")){
+			userDto.setSns_type("user,kakao,naver");
+			userDto.setSns_id(passwordEncoder.encode((String)map1.get("sns_id")));
+			userService.snsInsert(userDto);
 		}
+			
 				
 		UsernamePasswordAuthenticationToken authenticationToken = 
 				new UsernamePasswordAuthenticationToken(kakaoEmail,(String)map1.get("sns_id"));
@@ -115,5 +129,6 @@ public class AuthController {
 			}
 		}
 	}
+
 }
 

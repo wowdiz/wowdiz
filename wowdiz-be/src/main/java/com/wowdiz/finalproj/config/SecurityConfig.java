@@ -77,15 +77,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //서버에서 제한없이 모든 접근 허용
                 .antMatchers("/").permitAll()
                 .antMatchers("/api/authenticate").permitAll()	
-                .antMatchers("/api/signup").permitAll()
+                .antMatchers("/api/user/signup").permitAll()
 
-                .antMatchers("/api/sns/signup").permitAll()
-                .antMatchers("/api/duplicateCheck").permitAll()  // 이메일 중복확인 및 인증코드 발송
+                .antMatchers("/api/user/sns/signup").permitAll()
+                .antMatchers("/api/user/duplicateCheck").permitAll()  // 이메일 중복확인 및 인증코드 발송
 
-                .antMatchers("/api/duplicateCheck").permitAll()
+                .antMatchers("/api/user/duplicateCheck").permitAll()
                 .antMatchers("/supportboard/*").permitAll()
 
                 .antMatchers("/purchase/getRewards").permitAll()
+
                 .antMatchers("/notice/*").permitAll()
                 .antMatchers("/api/emailConfirm").permitAll() // 이메일 인증코드확인
                 .antMatchers("/api/nicknameCheck").permitAll() // 닉네임 중복확인
@@ -97,6 +98,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/notice/update").permitAll()
                 .antMatchers("/notice/uploadFile").permitAll()
                 .antMatchers("/save/**").permitAll()
+
+
+                //maker
+                .antMatchers("/maker/*").permitAll()
+                //upload 파일 접근
+                .antMatchers("/save/*").permitAll()
+                .antMatchers("/file/*").permitAll()
+                .antMatchers("/ckeditorImages/*").permitAll()
+                //admin
+                .antMatchers("/admin/*").permitAll()
+                
+                .antMatchers("/UploadService").permitAll()
+                .antMatchers("/api/user/emailConfirm").permitAll() // 이메일 인증코드확인
+                .antMatchers("/api/user/nicknameCheck").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/user/oauth2/kakao/logout").permitAll() // 카카오 로그인
+                .antMatchers("/api/user/oauth2/kakao").permitAll() // 카카오 로그인
+                .antMatchers("/api/user/oauth2/naver").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/user/find/id").permitAll() // 아이디찾기
+                .antMatchers("/api/user/find/password").permitAll() // 패스워드 찾기
+                .antMatchers("/api/user/userinfo").hasAuthority("ROLE_USER") // 이름 및 닉네임 찾기
+                .antMatchers("/api/user/userinfo/change").hasAuthority("ROLE_USER") // 유저 정보 변경 
+                .antMatchers("/notice/list").permitAll()
+
+
                 .anyRequest().authenticated()
                 
                 

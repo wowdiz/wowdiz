@@ -1,10 +1,9 @@
 .admin_funding{
-    height: 2300px;
+
 }
 
 .funding_awaiting_list{
     width: 1200px;
-    height: 600px;
     background-color: #F8F8F8;
     padding: 15px;
     margin-bottom: 100px;
@@ -12,7 +11,6 @@
 
 .funding_proceeding_list{
     width: 1200px;
-    height: 600px;
     background-color: #F8F8F8;
     padding: 15px;
     margin-bottom: 100px;
@@ -20,7 +18,6 @@
 
 .funding_finished_list{
     width: 1200px;
-    height: 600px;
     background-color: #F8F8F8;
     padding: 15px;
 }
@@ -28,19 +25,17 @@
 .funding_scroll_top{
     float: right;
     cursor: pointer;
-    
 }
 
 
 /* funding_detail */
 .admin_funding_awaiting_detail{
-    height: 2300px;
 }
 
 .admin_funding_awaiting_detail_form{
     margin-top: 30px;
     width: 1200px;
-    height: 2200px;
+    height: 700px;
     background-color: #F8F8F8;
     padding: 15px;
 }
@@ -61,6 +56,64 @@ table.admin_funding_awaiting_detail_form_table td{
     width: 450px;
 }
 
-td.rowSeven{
+td.rowSeven>img{
+    max-width: 500px;
+    max-height: 650px;
+}
+
+.admin_awaiting_row_project_summary{
+    cursor: pointer;
+}
+
+.admin_awaiting_row_project_summary:hover{
+    /* border-bottom: 1px solid black; */
+    text-decoration: underline;
+}
+
+div.approve{
+    display: inline-block;
     border: 1px solid black;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+div.approve:hover{
+    background-color: #830037;
+    color: white;
+    transition: all 0.2s;
+}
+
+div.approvalFinished{
+    display: inline-block;
+    border: 1px solid black;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #830037;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 22px;
+    color: white;
+}
+
+div.approvalFinished:hover{
+    transition: all 0.2s;
+    background-color: #F8F8F8;
+    color: black;
+}
+
+div.admin_project_detail_project_story{
+    background-color: #F8F8F8;
+    padding: 15px;
+}
+
+div.admin_project_detail_project_story img{
+    width: 1000px;
 }

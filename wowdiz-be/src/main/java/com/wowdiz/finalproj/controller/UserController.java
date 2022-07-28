@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -39,7 +41,7 @@ public class UserController {
    }
    
 
-   @PostMapping("/signup")
+   @PostMapping("/user/signup")
    public ResponseEntity<String> signup(@Valid @RequestBody UserDto userDto) {
 	   String recommenderEmail = userDto.getUser_recommend();
 	   
@@ -65,7 +67,7 @@ public class UserController {
 	   else {
 		   //회원가입 성공 
 		   if(userService.signup(userDto).equals("pass")) {
-		      userService.pointInsert(userDto.getUser_email(), 0);
+		      userService.pointInsert(userDto.getUser_id(), 0);
 			  return ResponseEntity.ok("pass"); 
 		   }else {
 			//회원가입 실패 
@@ -73,10 +75,10 @@ public class UserController {
 		   }
 	   }
    }
-   @PostMapping("sns/signup")
+   @PostMapping("/user/sns/signup")
    public ResponseEntity<String> snsSignup(@Valid @RequestBody UserDto userDto) {
 	   String recommenderEmail = userDto.getUser_recommend();
-	   String snsId = userDto.getSns_id()+"E";
+	   String snsId = userDto.getSns_id()+"E!";
 	   userDto.setUser_password(passwordEncoder.encode(snsId));
 	   //추천인 아이디 입력시 
 	   if(recommenderEmail != "" ) {
@@ -98,7 +100,7 @@ public class UserController {
 	   else {
 		   //회원가입 성공 
 		   if(userService.signup(userDto).equals("pass")) {
-		      userService.pointInsert(userDto.getUser_email(), 0);
+		      userService.pointInsert(userDto.getUser_id(), 0);
 			  return ResponseEntity.ok("pass"); 
 		   }else {
 			//회원가입 실패 
@@ -120,8 +122,9 @@ public class UserController {
       System.out.println(user_email);
       return ResponseEntity.ok(userService.getUserWithAuthorities(user_email).get());
    }
+   
 //	이메일 (ID 중복확인 및 이메일 인증번호 보내기)
-	@PostMapping("/duplicateCheck")
+	@PostMapping("/user/duplicateCheck")
 	public ResponseEntity<String> duplicateCheck(@RequestBody Map<String, String> map ) throws Exception {
 		String user_email = map.get("user_email");
 		Integer confirmCheck = userService.emailDuplicateCheck(user_email);
@@ -136,7 +139,7 @@ public class UserController {
 	}
 	
 	//인증번호 확인하기 
-	@PostMapping("/emailConfirm")
+	@PostMapping("/user/emailConfirm")
 	public ResponseEntity<String> emailConfirm(@RequestBody Map<String, String> map ) throws Exception {
 		System.out.println(map);
 		
@@ -157,7 +160,7 @@ public class UserController {
 		}
 	}
 	 //닉네임 중복확인
-	@PostMapping("/nicknameCheck")
+	@PostMapping("/user/nicknameCheck")
 	public ResponseEntity<Boolean> nicknameCheck(@RequestBody Map<String, String> map) throws Exception {
 		System.out.println(map);
 		Boolean nickname = userService.nicknameDuplicateSelect(map);
@@ -168,7 +171,59 @@ public class UserController {
 			return ResponseEntity.ok(false);
 		
 	}
+	// 아이디 찾기
+	@GetMapping("/user/find/id")
+	public ResponseEntity<Integer> findUserId(@RequestParam String user_email) throws Exception {
+		Integer result = userService.emailDuplicateCheck(user_email);
+		if(result==1) {
+			Integer userType=userService.snsUserDivision(user_email);
+			return ResponseEntity.ok(userType);
+		}else {
+		return ResponseEntity.ok(result);
+		}
+	}
 	
-
-
+	// 패스워드 찾기 
+	@GetMapping("/user/find/password")
+	public ResponseEntity<Integer> findUserPassword(@RequestParam String user_email) throws Exception {
+		Integer result = userService.emailDuplicateCheck(user_email);
+		if(result==1) {
+			Integer userType=userService.snsUserDivision(user_email);
+			if(userType!=2 || userType!=4) {
+				result = userService.findUserPassword(user_email);
+				return ResponseEntity.ok(result);
+			}else {
+			return ResponseEntity.ok(userType); //sns 로만 가입되어있는 유저는 비밀번호 변경 불가능 
+			}
+		}else {
+		return ResponseEntity.ok(result); // 없는 이메일의 경우
+		}
+	}
+	@PostMapping("/user/change/password")
+	public void changeUserPassword(@RequestBody UserDto userDto) throws Exception {
+		userService.changePassword(userDto);
+	}
+	@GetMapping("/user/info")
+	public ResponseEntity<Map<String, String>>  userInfoLaod(@RequestParam String user_email) throws Exception {
+		 Map<String, String> map = userService.userInfoLoad(user_email);
+		 String user_id = user_email;
+		 Integer point = userService.pointFind(Integer.parseInt(map.get("user_id")));
+		 map.put("point",String.valueOf(point));
+//		Map<String, String> map = userService.myPageInfoLoad(user_email);
+		return ResponseEntity.ok(map);
+	}
+	
+	//유저 기본정보 변경 (닉네임, 사진, 전화번호, 관심사 )
+	@PostMapping("/user/info/change")
+	public void userInfoChange(@RequestBody Map <String, String> map) throws Exception {
+				System.out.println(map);
+				map.get("user_email");
+		userService.userInfoChage(map);
+		
+	}
+	@GetMapping("/user/oauth2/kakao/logout")
+	public void kakaoLogout() throws Exception {
+		
+	}
+			
 }

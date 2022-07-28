@@ -39,40 +39,33 @@
   color: white;
 }
 
-.user_bar {
-  float: right;
-}
 
 .user_bar_li {
   text-decoration-line: none;
   color: white;
-  margin-left: 1px;
   font-weight: 550;
   margin-right: 15px;
+  position: relative;
   line-height: 70px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .search_bar {
   display: inline-block;
-  padding-right: 10px;
-  margin-left: 140px;
+  margin-top: 15px;
+  margin-left: 190px;
   min-width: 100px;
   color: white;
 }
 
 .search_form {
-  display: block;
-  position: relative;
+  display: inline-block;
   border: 1px solid white;
   border-radius: 20px;
   height: 40px;
   padding: 0;
-  left: 0px;
-  top: 16px;
   box-sizing: border-box;
   width: 300px;
-  margin-left: 135px;
 }
 
 .keyword {
@@ -102,19 +95,32 @@ input.keyword::placeholder {
   color: white;
 }
 
-.login_wrap {
+.login_user_componet {
   display: inline-block;
-  margin-top: 5px;
-  margin-left: 100px;
+  position: relative;
+  left: 50px;
+}
+.login_user_wrap {
+  width: 11px;
 }
 
 .user_bar_login_name {
+  position: relative;
   display: inline-block;
   color: white;
   font-weight: 700;
-  margin-right: 20px;
+  width: 100px;
+  max-width: 50px;
+  white-space: nowrap;
 }
 
 .user_bar_login {
   display: inline-block;
+
+}
+.login_user_wrap {
+  display: inline;
+  width: 100px;
+  height: 50px;
+
 }
