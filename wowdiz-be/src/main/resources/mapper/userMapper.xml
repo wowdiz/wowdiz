@@ -88,4 +88,28 @@
 	<update id="passwordUpdate" parameterType="UserDto" >
 		UPDATE user SET user_password=#{user_password} WHERE user_email=#{user_email}
 	</update>
+	
+	<select id="selectMyParcelAddress" resultType="UserAddressDto" parameterType="String">
+		SELECT user_address_id 
+		,	address_name
+		,	address
+		,	address_detail
+		,	zipcode
+		FROM user_address;
+	</select>
+	
+	<insert id="insertMyParcelAddress" parameterType="UserAddressDto">
+		INSERT INTO user_address (
+			user_id
+		,	address_name
+		,	address
+		,	address_detail
+		,	zipcode
+		) VALUES (
+			#{user_id}
+		,	#{address_name}
+		,	#{address}
+		,	#{address_detail}
+		,	#{zipcode});
+	</insert>
 </mapper>

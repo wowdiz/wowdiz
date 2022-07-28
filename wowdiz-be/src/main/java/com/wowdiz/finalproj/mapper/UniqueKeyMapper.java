@@ -12,6 +12,7 @@ import com.wowdiz.finalproj.dto.RewardOptionDto;
 
 @Mapper
 public interface UniqueKeyMapper {
-	public String selectUniqueKey(String type);
-	public void increaseUniqueKey(String type);
+	public String selectUniqueKey(String column);
+	public void increaseUniqueKey(String cokumn);
+	public Integer isAlreadyExist(Map<String, String> map);
 }

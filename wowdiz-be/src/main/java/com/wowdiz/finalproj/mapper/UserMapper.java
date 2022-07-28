@@ -1,13 +1,14 @@
 package com.wowdiz.finalproj.mapper;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import com.wowdiz.finalproj.dto.AuthenticationDto;
-import com.wowdiz.finalproj.dto.LoginDto;
 import com.wowdiz.finalproj.dto.RecommendationDto;
+import com.wowdiz.finalproj.dto.UserAddressDto;
 import com.wowdiz.finalproj.dto.UserDto;
 import com.wowdiz.finalproj.dto.WowPointDto;
 import com.wowdiz.finalproj.dto.WowPointHistoryDto;
@@ -53,4 +54,7 @@ public interface UserMapper {
 // Password 변경
 	public void passwordUpdate(UserDto userDto);
 	
+	public List<UserAddressDto> selectMyParcelAddress(String user_id);
+	
+	public Integer insertMyParcelAddress(UserAddressDto userAddressDto);
 }

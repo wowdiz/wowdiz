@@ -1,7 +1,6 @@
 package com.wowdiz.finalproj.controller;
 
-import java.text.ParseException;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -9,7 +8,6 @@ import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wowdiz.finalproj.dto.UserAddressDto;
 import com.wowdiz.finalproj.dto.UserDto;
 import com.wowdiz.finalproj.service.EmailService;
 import com.wowdiz.finalproj.service.UserService;
@@ -196,8 +195,20 @@ public class UserController {
 		return ResponseEntity.ok(result); // 없는 이메일의 경우
 		}
 	}
+	
 	@PostMapping("/user/change/password")
 	public void changeUserPassword(@RequestBody UserDto userDto) throws Exception {
 		userService.changePassword(userDto);
+	}
+	
+	@PostMapping("/user/myParcelAddress")
+	public ResponseEntity<List<UserAddressDto>> myParcelAddress(){
+		return ResponseEntity.ok(userService.selectMyParcelAddress());
+	}
+	
+	@PostMapping("/user/saveParcelAddress")
+	public ResponseEntity saveParcelAddress(@RequestBody UserAddressDto userAddressDto) {
+		System.out.println(userAddressDto);
+		return ResponseEntity.ok(userService.insertMyParcelAddress(userAddressDto));
 	}
 }

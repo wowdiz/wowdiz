@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wowdiz.finalproj.mapper.PurchaseMapper">
+
+<select id="selectPurchaseSupporterInfo" parameterType="String" resultType="PurchaseSupporterInfoDto" >    
+		SELECT 
+		    u.user_id,
+		    u.user_email,
+		    u.user_name,
+		    u.user_phone,
+		    wp.current_wowpoint
+		FROM
+		    user AS u
+		        LEFT JOIN
+		    wowpoint AS wp ON wp.user_id = u.user_id
+		WHERE
+		    u.user_id = #{user_id}
+    </select>
+
+</mapper>

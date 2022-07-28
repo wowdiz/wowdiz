@@ -116,7 +116,7 @@ input.reward_option{
 }
 
 
-.reward_option_detail, .reward_option_detail::placeholder{
+.project_reward_option_detail, .project_reward_option_detail::placeholder{
     width: 100%;
     font-size: 14px;
     margin-bottom: 5px;
