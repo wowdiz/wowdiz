@@ -98,11 +98,11 @@
 	</update>
 	<!-- 유저 사진 수정 -->
 	<update id="userInfoProfileUpdate" parameterType="UserDto">
-		UPDATE user SET profile_picture=#{profile_picture}, modified_date=now() WHERE user_id=#{user_id}
+		UPDATE user SET profile_picture=#{profile_picture}, modified_date=now() WHERE user_email=#{user_email}
 	</update>	
 	<!-- 유저 닉네임 수정 -->
 	<update id="userInfoNicknameUpdate" parameterType="UserDto">
-		UPDATE user SET user_nickname=#{user_nickname}, modified_date=now() WHERE user_id=#{user_id}
+		UPDATE user SET user_nickname=#{user_nickname}, modified_date=now() WHERE user_email=#{user_email}
 	</update>	
 	<!-- 유저 관심사 확인 -->
 	<select id="userInterestSelect" parameterType="Integer" resultType="String">
@@ -116,13 +116,6 @@
 	<update id="userInterestUpdate" parameterType="InterestCategoryDto">
 		UPDATE user_interest_category SET category_id=#{category_id} WHERE user_id=#{user_id}
 	</update>
-	<!--  포인트 기록  -->
-	<select id="pointHistory" parameterType="Integer" resultType="WowPointHistoryDto">
-	 	SELECT point_amount, proccess_type, reg_date FROM wowpoint_history WHERE user_id=#{user_id} 
-	</select>
-	
-	
-	
 <!--  	<resultMap id = "myPageUesrInfo" type ="com.wowdiz.finalIproj.dto.UserDto">
         <id property="user_email" column="user_email"/>
         <association property="UserDto" javaType="com.wowdiz.finalIproj.dto.UserDto">
