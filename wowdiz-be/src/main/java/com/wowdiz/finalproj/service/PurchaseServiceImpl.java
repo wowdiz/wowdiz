@@ -14,7 +14,7 @@ public class PurchaseServiceImpl implements PurchaseService{
 		this.purchaseMapper = purchaseMapper;
 	}
 	
-	public PurchaseSupporterInfoDto selectPurchaseSupporterInfo(String user_id) {
+	public PurchaseSupporterInfoDto selectPurchaseSupporterInfo(Integer user_id) {
 		return purchaseMapper.selectPurchaseSupporterInfo(user_id);
 	}
 }

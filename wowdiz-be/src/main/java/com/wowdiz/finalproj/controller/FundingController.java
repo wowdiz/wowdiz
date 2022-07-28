@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FundingController {
 	
-	public List<ProjectDto> fundingLists(){
-		
-	}
+//	public List<ProjectDto> fundingLists(){
+//		
+//	}
 }

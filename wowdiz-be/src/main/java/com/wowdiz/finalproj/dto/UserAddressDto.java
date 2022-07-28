@@ -8,7 +8,7 @@ import lombok.Data;
 @Alias("UserAddressDto")
 public class UserAddressDto {
 	private String user_address_id;
-	private String user_id;
+	private Integer user_id;
 	private String address_name;
 	private String address;
 	private String address_detail;

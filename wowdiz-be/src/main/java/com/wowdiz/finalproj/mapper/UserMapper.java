@@ -56,7 +56,7 @@ public interface UserMapper {
 // Password 변경
 	public void passwordUpdate(UserDto userDto);
 	
-	public List<UserAddressDto> selectMyParcelAddress(String user_id);
+	public List<UserAddressDto> selectMyParcelAddress(Integer integer);
 	
 	public Integer insertMyParcelAddress(UserAddressDto userAddressDto);
 // 유저 이름 및 닉네임 찾기
