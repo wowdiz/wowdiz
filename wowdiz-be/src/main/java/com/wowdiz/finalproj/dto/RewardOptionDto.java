@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 @Alias("RewardOptionDto")
 public class RewardOptionDto {
-	private String reward_option_id;
+	private String project_reward_option_id;
 	private String project_id;
-	private String reward_id;
-	private String reward_option_name;
-	private String reward_option_detail;
-	private String reward_option_type;
+	private String project_reward_id;
+	private String project_reward_option_name;
+	private String project_reward_option_detail;
+	private String project_reward_option_type;
 
 }

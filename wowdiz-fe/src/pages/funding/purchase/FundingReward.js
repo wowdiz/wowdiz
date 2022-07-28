@@ -1,15 +1,19 @@
 import React, { useEffect, useRef, useState, useReducer } from "react";
 import PurchaseStep from "../../../components/funding/PurchaseStep";
-import "../../../style/reward_item.css";
+import "../../../style/purchase_reward_item.css";
 import "../../../style/reset.css";
 import AxiosService from "../../../service/AxiosService";
 import RewardItem from "./../../../components/funding/RewardItem";
+import { NavLink } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const FundingReward = ({ project_id }) => {
-  project_id = 1;
+const FundingReward = () => {
+  const { project_id } = useParams();
+
   const [project, setProject] = useState([]);
-
+  const navigator = useNavigate();
   const [rewardData, setRewardData] = useState([]);
+
   useEffect(() => {
     AxiosService.post("/purchase/getRewards", project_id).then((res) => {
       setProject(res.data[0]);
@@ -54,42 +58,49 @@ const FundingReward = ({ project_id }) => {
         return;
       }
     }
+    console.log({ ...purchaseInfo });
+    localStorage.setItem("purchaseInfo", JSON.stringify(purchaseInfo));
+    navigator("/funding/pay");
+    // window.location.href = "/funding/pay";
   };
   return (
-    <div className="purchase_wrap">
-      <PurchaseStep />
-      <div className="reward_list">
-        <ol>
-          {rewardData.map((singleReward, singleRewardIndex) => (
-            <RewardItem
-              key={singleRewardIndex}
-              singleReward={singleReward}
-              singleRewardIndex={singleRewardIndex}
-              purchaseInfo={purchaseInfo}
-              setPurchaseInfo={setPurchaseInfo}
-              totalPrice={totalPrice}
-              setTotalPrice={setTotalPrice}
-              project={project}
-              setProject={setProject}
-            />
-          ))}
-        </ol>
+    <>
+      <div className="purchase_wrap">
+        <PurchaseStep />
+
+        <div className="reward_list">
+          <ol>
+            {rewardData.map((singleReward, singleRewardIndex) => (
+              <RewardItem
+                key={singleRewardIndex}
+                singleReward={singleReward}
+                singleRewardIndex={singleRewardIndex}
+                purchaseInfo={purchaseInfo}
+                setPurchaseInfo={setPurchaseInfo}
+                totalPrice={totalPrice}
+                setTotalPrice={setTotalPrice}
+                project={project}
+                setProject={setProject}
+              />
+            ))}
+          </ol>
+        </div>
+        <p className="purchase_info">
+          {project.project_name}에{" "}
+          <span className="purchase_total_price">{totalPrice}</span>원을
+          펀딩합니다.
+        </p>
+        <div style={{ textAlign: "center" }}>
+          <button
+            type="button"
+            className="next_step_btn"
+            onClick={handleNextStepButton}
+          >
+            다음 단계로
+          </button>
+        </div>
       </div>
-      <p className="purchase_info">
-        {project.project_name}에{" "}
-        <span className="purchase_total_price">{totalPrice}</span>원을
-        펀딩합니다.
-      </p>
-      <div style={{ textAlign: "center" }}>
-        <button
-          type="button"
-          className="next_step_btn"
-          onClick={handleNextStepButton}
-        >
-          다음 단계로
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 

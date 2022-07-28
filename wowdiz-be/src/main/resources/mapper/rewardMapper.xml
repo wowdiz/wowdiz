@@ -7,26 +7,26 @@
         ,	p.project_name
         ,	p.open_date
 		,	p.close_date
-        , p.delivery_date
-        ,	pr.reward_id
-        , 	pr.reward_price
-        , 	pr.reward_title
-        , 	pr.reward_info
+        , 	p.delivery_date
+        ,	pr.project_reward_id
+        , 	pr.project_reward_price
+        , 	pr.project_reward_title
+        , 	pr.project_reward_info
         ,	pr.purchase_limit
         ,	pr.require_parcel
         ,	pr.parcel_fee
-        ,	pro.reward_option_id
-        ,	pro.reward_option_name
-        ,	pro.reward_option_detail
-		,	pro.reward_option_type
+        ,	pro.project_reward_option_id
+        ,	pro.project_reward_option_name
+        ,	pro.project_reward_option_detail
+		,	pro.project_reward_option_type
         FROM project AS p
         LEFT OUTER JOIN project_reward AS pr
         ON p.project_id = pr.project_id
 		LEFT OUTER JOIN project_reward_option AS pro
 			ON pr.project_id = pro.project_id
-			AND pr.reward_id = pro.reward_id
+			AND pr.project_reward_id = pro.project_reward_id
 		WHERE pr.project_id = #{project_id}
-		ORDER BY pr.reward_order ASC, pro.reward_option_id ASC;
+		ORDER BY pr.project_reward_order ASC, pro.project_reward_option_id ASC;
     </select>
 
     <resultMap id="projectResultMap" type="ProjectRewardOptionDto">
@@ -37,11 +37,11 @@
         <result column="delivery_date" property="delivery_date"/>
 	        
 	    	<collection property="rewardList" ofType="RewardDto" javaType="java.util.List">
-		        <id column="reward_id" property="reward_id"/>
-		        <result column="reward_order" property="reward_order"/>
-		        <result column="reward_price" property="reward_price"/>
-		        <result column="reward_title" property="reward_title"/>
-		        <result column="reward_info" property="reward_info"/>
+		        <id column="project_reward_id" property="project_reward_id"/>
+		        <result column="project_reward_order" property="project_reward_order"/>
+		        <result column="project_reward_price" property="project_reward_price"/>
+		        <result column="project_reward_title" property="project_reward_title"/>
+		        <result column="project_reward_info" property="project_reward_info"/>
 		        <result column="purchase_limit" property="purchase_limit"/>
 		        <result column="require_parcel" property="require_parcel"/>
 		        <result column="parcel_fee" property="parcel_fee"/>
@@ -54,94 +54,92 @@
 					<result column="reward_option_type" property="reward_option_type"/>
 		        </association> -->
 				<collection property="optionList" ofType="RewardOptionDto" javaType="java.util.List">
-					<id column="reward_option_id" property="reward_option_id"/>
+					<id column="project_reward_option_id" property="project_reward_option_id"/>
 					<!--
 					<result column="project_id" property="reward_id"/>
 					<result column="reward_id" property="reward_id"/>
 					 -->
-					 <result column="reward_option_name" property="reward_option_name"/>
-					<result column="reward_option_detail" property="reward_option_detail"/>
-					<result column="reward_option_type" property="reward_option_type"/>
+					 <result column="project_reward_option_name" property="project_reward_option_name"/>
+					<result column="project_reward_option_detail" property="project_reward_option_detail"/>
+					<result column="project_reward_option_type" property="project_reward_option_type"/>
 				</collection>
 			</collection>
 		</resultMap>
-
+ 
 	<select id="selectRewardResultMap" parameterType="String" resultMap="rewardResultMap" >    
-		SELECT pr.reward_id
-        , 	pr.reward_price
-        , 	pr.reward_title
-        , 	pr.reward_info
+		SELECT pr.project_reward_id
+        , 	pr.project_reward_price
+        , 	pr.project_reward_title
+        , 	pr.project_reward_info
         ,	pr.purchase_limit
         ,	pr.require_parcel
         ,	pr.parcel_fee
-        ,	pro.reward_option_id
-        ,	pro.reward_option_name
-        ,	pro.reward_option_detail
-		,	pro.reward_option_type
+        ,	pro.project_reward_option_id
+        ,	pro.project_reward_option_name
+        ,	pro.project_reward_option_detail
+		,	pro.project_reward_option_type
         FROM project_reward AS pr
 		LEFT OUTER JOIN project_reward_option AS pro
 			ON pr.project_id = pro.project_id
-			AND pr.reward_id = pro.reward_id
+			AND pr.project_reward_id = pro.project_reward_id
 		WHERE pr.project_id = #{project_id}
-		ORDER BY pr.reward_order ASC, pro.reward_option_id ASC;
+		ORDER BY pr.project_reward_order ASC, pro.project_reward_option_id ASC;
     </select>
 
     <resultMap id="rewardResultMap" type="RewardAndRewardOptionDto">
-        <id column="reward_id" property="reward_id"/>
+        <id column="project_reward_id" property="project_reward_id"/>
         <result column="project_id" property="project_id"/>
-        <result column="reward_order" property="reward_order"/>
-        <result column="reward_price" property="reward_price"/>
-        <result column="reward_title" property="reward_title"/>
-        <result column="reward_info" property="reward_info"/>
+        <result column="project_reward_order" property="project_reward_order"/>
+        <result column="project_reward_price" property="project_reward_price"/>
+        <result column="project_reward_title" property="project_reward_title"/>
+        <result column="project_reward_info" property="project_reward_info"/>
         <result column="purchase_limit" property="purchase_limit"/>
         <result column="require_parcel" property="require_parcel"/>
         <result column="parcel_fee" property="parcel_fee"/>
-<!--         <association property="rewardOptionDto" >
-        	<result column="reward_option_id" property="reward_option_id"/>
-			<result column="project_id" property="reward_id"/>
-			<result column="reward_id" property="reward_id"/>
-			<result column="reward_option" property="reward_option"/>
-			<result column="reward_option_detail" property="reward_option_detail"/>
-			<result column="reward_option_type" property="reward_option_type"/>
+        <!-- <association property="optionList" >
+        	<result column="project_reward_option_id" property="reward_option_id"/>
+			<result column="project_id" property="project_id"/>
+			<result column="project_reward_id" property="project_reward_id"/>
+			<result column="project_reward_option" property="project_reward_option"/>
+			<result column="project_reward_option_detail" property="project_reward_option_detail"/>
+			<result column="project_reward_option_type" property="project_reward_option_type"/>
         </association> -->
 		<collection property="optionList" ofType="RewardOptionDto" javaType="java.util.List">
-			<id column="reward_option_id" property="reward_option_id"/>
-			<!--
+			<id column="project_reward_option_id" property="project_reward_option_id"/>
 			<result column="project_id" property="reward_id"/>
-			<result column="reward_id" property="reward_id"/>
-			 -->
-			 <result column="reward_option_name" property="reward_option_name"/>
-			<result column="reward_option_detail" property="reward_option_detail"/>
-			<result column="reward_option_type" property="reward_option_type"/>
+			<result column="project_reward_id" property="project_reward_id"/>
+			 <result column="project_reward_option_name" property="project_reward_option_name"/>
+			<result column="project_reward_option_detail" property="project_reward_option_detail"/>
+			<result column="project_reward_option_type" property="project_reward_option_type"/>
 		</collection>
     </resultMap>
     
 	<select id="selectReward" resultType="RewardDto" parameterType="String">
-		SELECT reward_id
+		SELECT project_reward_id
        ,	project_id
-       ,	reward_order
-       ,	reward_price
-       ,	reward_title
-       ,	reward_info
+       ,	project_reward_order
+       ,	project_reward_price
+       ,	project_reward_title
+       ,	project_reward_info
        ,	purchase_limit
        ,	require_parcel
        ,	parcel_fee
        FROM project_reward
        WHERE project_id=#{project_id}
-       ORDER BY reward_order ASC;
+       ORDER BY project_reward_order ASC;
 	</select>
     
     <select id="selectRewardOption" resultType="RewardOptionDto" parameterType="String">
-		SELECT reward_option_id
+		SELECT project_reward_option_id
         ,	project_id
-        ,	reward_id
-        ,	reward_option
-        ,	reward_option_detail
-        ,	reward_option_type
+        ,	project_reward_id
+        ,	project_reward_option
+        ,	project_reward_option_detail
+        ,	project_reward_option_type
     	FROM project_reward_option
     	WHERE project_id=#{project_id}
-    		AND reward_id=#{reward_id}
-    	ORDER BY reward_option_id ASC;
+    		AND project_reward_id=#{reward_id}
+    	ORDER BY project_reward_option_id ASC;
     </select>
 
 

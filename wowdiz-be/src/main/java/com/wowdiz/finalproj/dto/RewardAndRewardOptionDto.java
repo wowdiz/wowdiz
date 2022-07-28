@@ -10,12 +10,12 @@ import lombok.Data;
 @Data
 @Alias("RewardAndRewardOptionDto")
 public class RewardAndRewardOptionDto {
-	private String reward_id;
+	private String project_reward_id;
 	private String project_id;
-	private Integer reward_order;
-	private Integer reward_price;
-	private String reward_title;
-	private String reward_info;
+	private Integer project_reward_order;
+	private Integer project_reward_price;
+	private String project_reward_title;
+	private String project_reward_info;
 	private String purchase_limit;
 	private boolean require_parcel;
 	private String parcel_fee;

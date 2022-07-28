@@ -38,7 +38,7 @@ const RewardItem = ({
       optionArr.slice(0, optionArr.length - initialOptionList.length)
     );
 
-    setTotalPrice(totalPrice - singleReward.reward_price);
+    setTotalPrice(totalPrice - singleReward.project_reward_price);
 
     setNewCurrentOptionList(
       newCurrentOptionList.slice(
@@ -65,7 +65,7 @@ const RewardItem = ({
 
     setQty((qty) => qty + 1);
 
-    setTotalPrice(totalPrice + singleReward.reward_price);
+    setTotalPrice(totalPrice + singleReward.project_reward_price);
 
     let newOptionList = optionArr;
     newOptionList = newOptionList.concat(initialOptionList);
@@ -74,7 +74,7 @@ const RewardItem = ({
 
   useEffect(() => {
     if (checkbox) {
-      setTotalPrice(totalPrice + singleReward.reward_price);
+      setTotalPrice(totalPrice + singleReward.project_reward_price);
 
       let newSingleReward = {
         ...singleReward,
@@ -96,10 +96,10 @@ const RewardItem = ({
       purchaseInfo.total_price = totalPrice;
     } else {
       if (totalPrice > 0)
-        setTotalPrice(totalPrice - singleReward.reward_price * qty);
+        setTotalPrice(totalPrice - singleReward.project_reward_price * qty);
 
       let afterDeleteRewards = purchaseInfo.rewards.filter(
-        (data) => singleReward.reward_id !== data.reward_id
+        (data) => singleReward.project_reward_id !== data.project_reward_id
       );
 
       setQty(1);
@@ -135,10 +135,10 @@ const RewardItem = ({
         </div>
         <div className="right">
           <p className="reward_price">
-            {singleReward.reward_price}원 펀딩합니다.
+            {singleReward.project_reward_price}원 펀딩합니다.
           </p>
-          <p className="reward_title">{singleReward.reward_title}</p>
-          <p className="reward_info">{singleReward.reward_info}</p>
+          <p className="reward_title">{singleReward.project_reward_title}</p>
+          <p className="reward_info">{singleReward.project_reward_info}</p>
           <p className="reward_delivery">
             배송비:{singleReward.parcel_fee}원 │ 리워드 제공 예상일 :{" "}
             {project.delivery_date} 예정
@@ -173,7 +173,7 @@ const RewardItem = ({
               <div className="reward_option">
                 {singleReward.optionList !== 0 &&
                   optionArr.map((singleOption, singleOptionIndex) =>
-                    singleOption.reward_option_detail ? (
+                    singleOption.project_reward_option_detail ? (
                       <RewardOptionSelection
                         key={singleOptionIndex}
                         singleReward={singleReward}

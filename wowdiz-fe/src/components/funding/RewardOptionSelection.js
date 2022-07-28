@@ -15,12 +15,12 @@ const RewardOptionSelection = ({
   setNewCurrentOptionList,
   qty,
 }) => {
-  const splitOptionList = singleOption.reward_option_detail.split(",");
+  const splitOptionList = singleOption.project_reward_option_detail.split(",");
 
   const handleOptionChange = (e) => {
     let currentSingleOption = {
-      reward_option_name: singleOption.reward_option_name,
-      reward_option_type: singleOption.reward_option_type,
+      project_reward_option_name: singleOption.project_reward_option_name,
+      project_reward_option_type: singleOption.project_reward_option_type,
       [e.target.name]: e.target.value,
     };
 
@@ -40,7 +40,10 @@ const RewardOptionSelection = ({
     //기준을 singleRewardIndex주지 말고 reward_id로 줄수 있는 방법을 찾아야함.
 
     for (let i = 0; i < purchaseInfo.rewards.length; i++) {
-      if (singleReward.reward_id === purchaseInfo.rewards[i].reward_id) {
+      if (
+        singleReward.project_reward_id ===
+        purchaseInfo.rewards[i].project_reward_id
+      ) {
         purchaseInfo.rewards[i] = newSingleReward;
       }
     }
@@ -55,9 +58,9 @@ const RewardOptionSelection = ({
       {/* <p>옵션: {singleOption.reward_option_name}</p> */}
       <p>옵션: </p>
       <select
-        name="reward_option_detail"
-        id="reward_option_detail"
-        className="reward_option_detail"
+        name="project_reward_option_detail"
+        id="project_reward_option_detail"
+        className="project_reward_option_detail"
         defaultValue={""}
         onChange={(e) => {
           handleOptionChange(e);
