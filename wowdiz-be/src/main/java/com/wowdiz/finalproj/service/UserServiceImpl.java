@@ -347,7 +347,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public Integer insertMyParcelAddress(UserAddressDto userAddressDto) {
-		userAddressDto.setUser_id(getUserWithAuthorities().get().getUser_id());
+		userAddressDto.setUser_id(Integer.valueOf(getUserWithAuthorities().get().getUser_id()));
 		return userMapper.insertMyParcelAddress(userAddressDto);
 	}
 	public Map<String, String> userInfoLoad(String user_email) {
