@@ -9,14 +9,22 @@ const MakerOpenProjectForm1 = ( props ) => {
     const [duration, setDuration] = useState(0);
 
     //onChange 현재날짜로부터 선택한 종료일사이의 일수 구하기
+    // const diffDate = (e) => {
+    //     let value = e.target.value;
+    //     const toDate = new Date(value);
+    //     const dMillis = toDate.getTime() - Math.floor(new Date().getTime()/86400000)*86400000;
+    //     const dDay = dMillis/86400000; //1000*60*60*24=하루
+    //     if(dDay > 60 || dDay < 7) {
+    //         alert('최소 7일부터 최대 60일까지로 기간을 다시 설정해 주세요.');
+    //     }
+    //     setDuration(Number(dDay));
+    // };
+
     const diffDate = (e) => {
         let value = e.target.value;
         const toDate = new Date(value);
         const dMillis = toDate.getTime() - Math.floor(new Date().getTime()/86400000)*86400000;
         const dDay = dMillis/86400000; //1000*60*60*24=하루
-        if(dDay > 60 || dDay < 7) {
-            alert('최소 7일부터 최대 60일까지로 기간을 다시 설정해 주세요.');
-        }
         setDuration(Number(dDay));
     };
 
@@ -142,8 +150,15 @@ const MakerOpenProjectForm1 = ( props ) => {
             <div>
                 <h3>프로젝트의 진행 기간을 적어주세요</h3>
                 <p style={{color:'gray'}}>최소 7일부터 최대 60일까지 가능합니다.</p>
-                <span style={{fontSize:'1.2em'}}>"{duration}"</span><span style={{color:'gray'}}>일 남음</span>
-                <input className='project_input_small' type='date' onChange={diffDate}
+                <span style={{color:'gray'}}>프로젝트 오픈일로부터</span><span style={{fontSize:'1.2em'}}> "{duration}"</span><span style={{color:'gray'}}>일 남음</span><br/><br/>
+                <span>오픈날짜 설정 : </span><input className='project_input_small' type='date' onChange={diffDate}
+                name='open_date'
+                defaultValue={props.form.open_date}
+                onBlur={(e) => {
+                    props.handleProject(e);
+                }}
+                /><br/>
+                <span>종료날짜 설정 : </span><input className='project_input_small' type='date'
                 name='close_date'
                 defaultValue={props.form.close_date}
                 onBlur={(e) => {
@@ -195,8 +210,11 @@ const MakerOpenProjectForm1 = ( props ) => {
                     ))
                 }
                 </div>
-                
+                <div className='firstNextBtn' onClick={() => {
+                    props.setProcessSelector(props.processSelector +1);
+                }}>NEXT</div>
             </div>
+            
         </div>
     );
 };

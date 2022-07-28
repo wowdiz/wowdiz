@@ -2,7 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wowdiz.finalproj.mapper.NoticeMapper">
 	 <select id="noticeAllSelect" resultType="NoticeDto">
-		SELECT admin_id, notice_title, notice_content, write_date,
-		view_count, important FROM notice ORDER BY notice_id DESC;
+		SELECT *
+		FROM notice ORDER BY notice_id DESC;
 	 </select>
+	 <select id="noticeTotalSelect" resultType="Integer">
+		select count(*) from notice;		
+	</select>
+	<select id="noticePagingSelect" parameterType="Map" resultType="NoticeDto">
+		select notice_id, admin_id, notice_title, notice_thumbnail, notice_content, write_date, view_count, important
+		from notice order by notice_id desc limit #{startNum}, #{perPage}
+	</select>
+	 
+	 <select id="noticeDetail" parameterType="Integer" resultType="NoticeDto">
+		SELECT notice_id, admin_id, notice_title, notice_thumbnail, notice_content, write_date, view_count, important 
+		FROM notice where notice_id=#{notice_id}
+	 </select>
+	 <update id="noticeUpdate" parameterType="NoticeDto">
+	 	UPDATE notice SET notice_title=#{notice_title}, notice_thumbnail=#{notice_thumbnail}, notice_content=#{notice_content},
+	 	important=#{important} WHERE notice_id=#{notice_id}
+	 </update>
+	 
+	 
+	 <insert id="noticeCreate">
+	 	INSERT INTO notice (admin_id, notice_title, notice_content, notice_thumbnail, important, write_date)
+	 	VALUE (#{admin_id}, #{notice_title}, #{notice_content}, #{notice_thumbnail}, #{important}, now())
+	 </insert>
+	 
+	 <delete id="noticeDelete">
+	 	DELETE FROM notice where notice_id=#{notice_id} 
+	 </delete>
 </mapper>

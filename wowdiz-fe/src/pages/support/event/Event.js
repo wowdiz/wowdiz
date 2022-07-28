@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AxiosService from "../../../service/AxiosService";
 import Parser from "html-react-parser";
 import "../../../style/event.css";
+=======
+import React from "react";
+>>>>>>> d0a79c96aafe4f86c448b70e72ff052858e875b8
 
 const Event = () => {
   const { event_id } = useParams();
@@ -23,6 +27,7 @@ const Event = () => {
 
   return (
     <div>
+<<<<<<< HEAD
       <div className="event_close">
         <span
           className="event_menu"
@@ -81,6 +86,9 @@ const Event = () => {
           </div>
         ))}
       </div>
+=======
+        123
+>>>>>>> d0a79c96aafe4f86c448b70e72ff052858e875b8
     </div>
   );
 };

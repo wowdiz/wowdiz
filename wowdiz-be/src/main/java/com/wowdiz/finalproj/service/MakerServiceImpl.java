@@ -26,6 +26,7 @@ public class MakerServiceImpl implements MakerService{
 		String projectName = (String)map.get("project_name");
 		String tmpTa = (String)map.get("target_amount");
 		Integer targetAmount = Integer.parseInt(tmpTa);
+		String projectSummary = (String)map.get("project_summary");
 		String projectThumbnail = (String)map.get("project_thumbnail");
 		String tmpPk = map.get("project_keyword").toString();
 		String projectKeyword = tmpPk.substring(1, tmpPk.length()-1);
@@ -35,6 +36,7 @@ public class MakerServiceImpl implements MakerService{
 		//dto에 꺼내온 데이터 담기
 		dto.setProject_name(projectName);
 		dto.setTarget_amount(targetAmount);
+		dto.setProject_summary(projectSummary);
 		dto.setProject_thumbnail(projectThumbnail);
 		dto.setProject_keyword(projectKeyword);
 		dto.setClose_date(closeDate);
@@ -77,10 +79,13 @@ public class MakerServiceImpl implements MakerService{
 			makerMapper.insertMakerProjectReward(dto);
 //			
 			List<Object> optionList = (List)rewardMap.get("rewardOptions");
+			System.out.println("!!!!!!!!!!!!!!!!optionList = "+optionList);
+			System.out.println("!!!!!!!!!!!!!!!!optionList[0]" + optionList.get(0));
+			System.out.println("!!!!!!!!!!!!!!!!optionList[1]" + optionList.get(1));
 			
 			for(int j = 0; j < optionList.size(); j++) {
 				System.out.println("optionList" + "[" + j + "] : " + optionList.get(j));
-				Map<String, Object> rewardOptionMap = (Map<String, Object>)optionList.get(i);
+				Map<String, Object> rewardOptionMap = (Map<String, Object>)optionList.get(j);
 				String rewardOptionName = (String)rewardOptionMap.get("project_reward_option_name");
 				String rewardOptionDetail = (String)rewardOptionMap.get("project_reward_option_detail");
 				String tmpRewardOptionType = (String)rewardOptionMap.get("project_reward_option_type");

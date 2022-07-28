@@ -35,12 +35,13 @@
 /* 마이페이지 프로필 이미지 박스 */
 .mypage_profile_image_box{
     margin: 75px;
-    margin-left: 85px;
-    background-color: #9AC7F8;
+    width: 80px;
+    width: 80px;
+    max-width: 150px;
+    max-height: 150px;
     text-align: center;
     font-size: 22px;
     display: inline-block;
-    padding: 45px;
     border-radius: 365px 365px 365px 365px;
 }
 /* 마이페이지 프로필 하단 텍스트 */
@@ -199,3 +200,150 @@
     white-space:pre-line;
     word-break:break-all;
 }
+
+.profile_image {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border-radius: 365px 365px 365px 365px;
+    margin-bottom: 30px;
+}
+
+/* UserInfoUpdate CSS */
+.user_info_change {
+    display: block;
+    width: 790px;
+    max-width: 790px;
+    white-space:pre-line;
+    word-break:break-all;
+
+}
+.user_info_tile {
+    display: block;
+    text-align: center;
+}
+.profile_image_update{
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border-radius: 365px 365px 365px 365px;
+}
+.user_profile_image_box {
+    width: 790px;
+    max-width: 790px;
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+}
+.user_profile_image_update_text {
+    position: absolute;
+    top: 150px;
+    margin-left: 350px;
+    font-size: 18px;
+    color: #555353;
+    font-weight: 700;
+}
+.user_update_boxs {
+    width: 100%;
+
+    display: block;
+    margin-left: 80px;
+    margin-bottom: 15px;
+}
+.user_update_label {
+    display: inline-table;
+    position: relative;
+    top:3px;
+    width: 150px;
+    font-weight: 700;
+    font-size: 22px;
+}
+.user_subject_update {
+    display: inline-table;
+    border-radius: 3px;
+    width: 200px;
+    height: 30px;
+    line-height: 1.2em;
+    font-size: 17px;
+    font-weight: 300;
+    transition-property: border-color, height, padding-right, color;
+    transition-duration: 0.2s, 0s;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    background: #fff;
+    padding: 0 0.94118em;
+    vertical-align: middle;
+    color: rgba(0, 0, 0, 0.84);
+    font-family: roboto, Noto;
+    margin-right: 15px;
+}
+.user_nickname_update_button {
+    display: inline-table;
+    background-color: #69aef7;
+    position: relative;
+    top: 2px;
+    margin-left: 10px;
+    color: #fff;
+    width: 100px;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    transition-duration: 0.2s;
+    border: 0.5px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    height: 30px;
+    padding-top: 0.07em;
+    text-decoration: none;
+    cursor: pointer;
+}
+.error_message {
+    display: inline-table;
+    margin-left: 5px;
+    color: red;
+}
+.like_box {
+    float: left;
+    width: 200px;
+    margin:0 auto;
+
+}
+.like_check_box {
+    width: 50px;
+    max-height: 50px;
+    display: inline-table;
+}
+.like_text {
+    width:140px;
+    max-height: 50px;
+    display: inline-table
+}
+.like_box_wrap {
+    width: 420px;
+    height: 240px;
+    max-width: 420px;
+    margin-left: 120px;
+ 
+}
+
+.user_update_button {
+    display: block;
+    background-color: #69aef7;
+    position: relative;
+    top: 2px;
+    margin-left: 10px;
+    color: #fff;
+    width: 100px;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    transition-duration: 0.2s;
+    border: 0.5px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    height: 30px;
+    padding-top: 0.07em;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-bottom: 55px;
+    min-height: 30px;
+}
+

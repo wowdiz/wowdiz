@@ -12,7 +12,6 @@ const MakerOpenProject = () => {
     const navi = useNavigate();
 
     const [processSelector, setProcessSelector] = useState(1);
-    const [styler, setStyler] = useState(1);
     const [title, setTitle] = useState("기본정보");
     const [mainImage, setMainImage] = useState(defaultImg);
     const [keywordArr, setKeywordArr] = useState([]);
@@ -26,7 +25,7 @@ const MakerOpenProject = () => {
         project_thumbnail: "",
         project_keyword: keywordArr,
         close_date: today,
-
+        open_date: today,
         //form2
         project_story: "",
 
@@ -50,7 +49,7 @@ const MakerOpenProject = () => {
 
         AxiosService.post(insertUrl, form)
         .then(res => {
-            // navi('/maker/success');
+            navi('/maker/success');
         })
 
         .catch((error) => {
@@ -75,9 +74,8 @@ const MakerOpenProject = () => {
                 <h3>프로젝트 만들기</h3>
                 <div className="maker_open_project_rowmenu">
                 <h4
-                className={styler === 1 ? "rowmenu_clicked" : ""}
+                className={processSelector === 1 ? "rowmenu_clicked" : ""}
                 onClick={() => {
-                    setStyler(1);
                     setProcessSelector(1);
                     setTitle("기본정보");
                 }}
@@ -85,9 +83,8 @@ const MakerOpenProject = () => {
                 1.기본정보
                 </h4>
                 <h4
-                className={styler === 2 ? "rowmenu_clicked" : ""}
+                className={processSelector === 2 ? "rowmenu_clicked" : ""}
                 onClick={() => {
-                    setStyler(2);
                     setProcessSelector(2);
                     setTitle("스토리");
                 }}
@@ -95,25 +92,23 @@ const MakerOpenProject = () => {
                 2.스토리
                 </h4>
                 <h4
-                className={styler === 3 ? "rowmenu_clicked" : ""}
+                className={processSelector === 3 ? "rowmenu_clicked" : ""}
                 onClick={() => {
-                    setStyler(3);
                     setProcessSelector(3);
                     setTitle("리워드");
                 }}
                 >
                 3.리워드
                 </h4>
-                <h4
-                className={styler === 4 ? "rowmenu_clicked" : ""}
+                {/* <h4
+                className={processSelector === 4 ? "rowmenu_clicked" : ""}
                 onClick={() => {
-                    setStyler(4);
                     setProcessSelector(4);
                     setTitle("안내사항");
                 }}
                 >
                 4.안내사항
-                </h4>
+                </h4> */}
                 {/* <h4 className={styler===5?'rowmenu_clicked':''} onClick={() => {
                                     setStyler(5);
                                     setProcessSelector(5);
@@ -130,19 +125,26 @@ const MakerOpenProject = () => {
                 setMainImage={setMainImage}
                 keywordArr={keywordArr}
                 setKeywordArr={setKeywordArr}
+                processSelector={processSelector}
+                setProcessSelector={setProcessSelector}
                 />
                 ) : processSelector === 2 ? (
-                <Form2 form={form} setForm={setForm} handleProject={handleProject} />
-                ) : processSelector === 3 ? (
+                <Form2 
+                form={form} 
+                setForm={setForm} 
+                handleProject={handleProject} 
+                processSelector={processSelector}
+                setProcessSelector={setProcessSelector}/>
+                ) : (
                 <Form3
                 form={form}
                 setForm={setForm}
                 handleProject={handleProject}
+                processSelector={processSelector}
+                setProcessSelector={setProcessSelector}
                 // rewardOptionArr={rewardOptionArr}
                 // setRewardOptionArr={setRewardOptionArr}
                 />
-                ) : (
-                <Form4 />
                 )}
             </div>
         </div>

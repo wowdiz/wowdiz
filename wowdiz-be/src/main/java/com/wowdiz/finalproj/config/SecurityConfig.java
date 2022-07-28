@@ -87,6 +87,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/purchase/getRewards").permitAll()
 
+                .antMatchers("/notice/*").permitAll()
+                .antMatchers("/api/emailConfirm").permitAll() // 이메일 인증코드확인
+                .antMatchers("/api/nicknameCheck").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/oauth2/kakao/**").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/oauth2/kakao").permitAll() // 닉네임 중복확인
+                
+                .antMatchers("/notice/page/**").permitAll()
+                .antMatchers("/notice/delete").permitAll()
+                .antMatchers("/notice/update").permitAll()
+                .antMatchers("/notice/uploadFile").permitAll()
+                .antMatchers("/save/**").permitAll()
+
+
                 //maker
                 .antMatchers("/maker/*").permitAll()
                 //upload 파일 접근
@@ -95,16 +108,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/ckeditorImages/*").permitAll()
                 .antMatchers("/UploadService").permitAll()
                
+                //admin
+                .antMatchers("/admin/*").permitAll()
                 
+                .antMatchers("/UploadService").permitAll()
                 .antMatchers("/api/user/emailConfirm").permitAll() // 이메일 인증코드확인
                 .antMatchers("/api/user/nicknameCheck").permitAll() // 닉네임 중복확인
-                .antMatchers("/api/user/oauth2/kakao/**").permitAll() // 닉네임 중복확인
-                .antMatchers("/api/user/oauth2/kakao").permitAll() // 닉네임 중복확인
+                .antMatchers("/api/user/oauth2/kakao/logout").permitAll() // 카카오 로그인
+                .antMatchers("/api/user/oauth2/kakao").permitAll() // 카카오 로그인
                 .antMatchers("/api/user/oauth2/naver").permitAll() // 닉네임 중복확인
-                .antMatchers("/api/user/find/id").permitAll() // 닉네임 중복확인
-                .antMatchers("/api/user/find/password").permitAll() // 닉네임 중복확인
-
+                .antMatchers("/api/user/find/id").permitAll() // 아이디찾기
+                .antMatchers("/api/user/find/password").permitAll() // 패스워드 찾기
+                .antMatchers("/api/user/userinfo").hasAuthority("ROLE_USER") // 이름 및 닉네임 찾기
+                .antMatchers("/api/user/userinfo/change").hasAuthority("ROLE_USER") // 유저 정보 변경 
                 .antMatchers("/notice/list").permitAll()
+
 
                 .anyRequest().authenticated()
                 

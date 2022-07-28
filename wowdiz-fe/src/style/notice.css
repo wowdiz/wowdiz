@@ -42,6 +42,7 @@
   font-weight: bold;
   width: auto;
   display: block;
+  cursor: pointer;
 }
 
 .notice_admin,
@@ -56,12 +57,73 @@
 .notice_thum {
   width: 150px;
   height: 150px;
+  cursor: pointer;
   float: right;
-  border: 1px solid black;
-  border-radius: 20px;
-  display: inline-block
+  display: inline-table
+}
+
+.notice_thum_img_box {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.notice_thum_img {
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .notice_info {
   margin-left: 20px;
+}
+
+.notice_create {
+  margin-top: 30px;
+  margin-right: 42px;
+}
+
+/*페이징 css*/
+.faq_pagination_container {
+  text-align: center;
+  width: auto;
+  height: 100px;
+  color: green;
+  margin-top: 30px;
+  text-decoration: none;
+}
+
+.faq_pagination_wrap {
+  float: left;
+  margin-right: 3px;
+  width: 30px;
+  color: green;
+  font: bold 12px tahoma;
+  border: 1px solid #eee;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 100px;
+  display: block;
+}
+
+.faq_pagination_wrap a:hover {
+  background-color: #071a4c;
+  color: white;
+  display: block;
+  text-decoration: none;
+}
+
+.qna_pagination_warp {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faq_pagination_wrap>Link {
+  color: white;
+  text-decoration: none;
+}
+
+.faq_pagination_wrap>Link:hover {
+  background-color: #071a4c;
+  color: white;
+  text-decoration: none;
 }
