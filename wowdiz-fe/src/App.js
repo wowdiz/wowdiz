@@ -24,6 +24,7 @@ import DetailCommunity from "./pages/funding/detail/DetailCommunity";
 import DetailInfo from "./pages/funding/detail/DetailInfo";
 import Notice from "./pages/support/notice/Notice";
 import NoticeDetail from "./pages/support/notice/NoticeDetail";
+import NoticeCreate from "./pages/support/notice/NoticeCreate";
 import Event from "./pages/support/event/Event";
 import FAQ from "./pages/support/faq/FAQ";
 import Test from "./pages/user/register/AddressApi";
@@ -31,14 +32,14 @@ import RegisterForm from "./pages/user/register/RegisterForm";
 import FundingReward from "./pages/funding/pay/FundingReward";
 import QNAList from "./pages/support/qna/QNAList";
 import QNADetail from "./pages/support/qna/QNADetail";
-
 import SnsRegister from "./pages/user/register/SnsRegister";
-
 import QNAAnswer from "./pages/support/qna/QNAAnswer";
 import FAQWrite from "./pages/support/faq/FAQWrite";
 import FAQUpdate from "./pages/support/faq/FAQUpdate";
+import NoticeUpdate from "./pages/support/notice/NoticeUpdate";
 import FindUser from "./pages/user/register/FindUser";
 import UserLayout from "./layout/UserLayout";
+
 
 // 최초 작업자: 권능
 // 2022-06-29
@@ -66,8 +67,10 @@ function App() {
         <Route path="/user/mypage" element={<MyPage />} />
         {/*고객센터페이지*/}
         <Route path="/supportboard" element={<SupportBoard />}>
-          <Route path="/supportboard" element={<Notice />} />
-          <Route path="/supportboard/noticedetail" element={<NoticeDetail />} />
+          <Route path="/supportboard/:currentPage" element={<Notice />} />
+          <Route path="/supportboard/noticedetail/:notice_id" element={<NoticeDetail />} />
+          <Route path="/supportboard/noticeupdate/:notice_id" element={<NoticeUpdate />} />
+          <Route path="/supportboard/noticecreate" element={<NoticeCreate />} />
           <Route path="/supportboard/event" element={<Event />} />
           <Route path="/supportboard/faqpage" element={<FAQ />} />
           <Route path="/supportboard/faqdetail/:faq_id" element={<FAQ />} />

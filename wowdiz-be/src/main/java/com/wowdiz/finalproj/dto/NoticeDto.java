@@ -16,5 +16,5 @@ public class NoticeDto {
 	private String notice_thumbnail;
 	private Date write_date;
 	private Integer view_count;
-	private char important;
+	private String important;
 }
