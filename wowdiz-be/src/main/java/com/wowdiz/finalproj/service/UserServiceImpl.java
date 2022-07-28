@@ -6,10 +6,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +20,7 @@ import com.google.gson.JsonParser;
 import com.wowdiz.finalproj.dto.AuthenticationDto;
 import com.wowdiz.finalproj.dto.InterestCategoryDto;
 import com.wowdiz.finalproj.dto.RecommendationDto;
+import com.wowdiz.finalproj.dto.UserAddressDto;
 import com.wowdiz.finalproj.dto.UserDto;
 import com.wowdiz.finalproj.dto.WowPointDto;
 import com.wowdiz.finalproj.dto.WowPointHistoryDto;
@@ -339,6 +340,16 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+	public List<UserAddressDto> selectMyParcelAddress() {
+		UserDto userDto = getUserWithAuthorities().get();
+		return userMapper.selectMyParcelAddress(userDto.getUser_id());
+	}
+
+	@Override
+	public Integer insertMyParcelAddress(UserAddressDto userAddressDto) {
+		userAddressDto.setUser_id(getUserWithAuthorities().get().getUser_id());
+		return userMapper.insertMyParcelAddress(userAddressDto);
+	}
 	public Map<String, String> userInfoLoad(String user_email) {
 		
 		UserDto userDto = userMapper.userNameSelect(user_email);

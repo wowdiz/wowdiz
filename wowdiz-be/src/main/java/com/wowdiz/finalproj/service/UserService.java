@@ -1,13 +1,10 @@
 package com.wowdiz.finalproj.service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.wowdiz.finalproj.dto.AuthenticationDto;
-import com.wowdiz.finalproj.dto.RecommendationDto;
+import com.wowdiz.finalproj.dto.UserAddressDto;
 import com.wowdiz.finalproj.dto.UserDto;
 import com.wowdiz.finalproj.dto.WowPointDto;
 import com.wowdiz.finalproj.util.SecurityUtil;
@@ -49,6 +46,9 @@ public interface UserService {
 	public Integer findUserPassword(String user_email);
 // Password 변경
 	public void changePassword(UserDto userDto);
+	
+	public List<UserAddressDto> selectMyParcelAddress();
+	public Integer insertMyParcelAddress(UserAddressDto userAddressDto);
 // 유저 이름 및 닉네임 로드
 	public Map<String, String> userInfoLoad(String user_email);
 // 유저 정보 변경

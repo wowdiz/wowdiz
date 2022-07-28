@@ -27,9 +27,9 @@ import NoticeDetail from "./pages/support/notice/NoticeDetail";
 import NoticeCreate from "./pages/support/notice/NoticeCreate";
 import Event from "./pages/support/event/Event";
 import FAQ from "./pages/support/faq/FAQ";
-import Test from "./pages/user/register/AddressApi";
+import Test from "./components/myParcelAddress/KakaoAddressApi.jsx";
 import RegisterForm from "./pages/user/register/RegisterForm";
-import FundingReward from "./pages/funding/pay/FundingReward";
+import FundingReward from "./pages/funding/purchase/FundingReward";
 import QNAList from "./pages/support/qna/QNAList";
 import QNADetail from "./pages/support/qna/QNADetail";
 import SnsRegister from "./pages/user/register/SnsRegister";
@@ -39,6 +39,7 @@ import FAQUpdate from "./pages/support/faq/FAQUpdate";
 import NoticeUpdate from "./pages/support/notice/NoticeUpdate";
 import FindUser from "./pages/user/register/FindUser";
 import UserLayout from "./layout/UserLayout";
+import FundingPay from "./pages/funding/pay/FundingPay";
 
 
 // 최초 작업자: 권능
@@ -48,7 +49,7 @@ function App() {
   return (
     <Routes>
       {/* 메인레이아웃 */}
-      kakaologout
+      
       <Route path="/" element={<MainLayout />}>
         <Route path="" element={<Home />} />
         <Route path="/kakaologout" element={<Home />} />
@@ -63,7 +64,12 @@ function App() {
           <Route path="/funding/detail/info" element={<DetailInfo />} />
         </Route>
         {/* 펀딩 결제 */}
-        <Route path="/funding/purchase" element={<FundingReward />}></Route>
+        <Route
+          path="/funding/purchase/:project_id"
+          element={<FundingReward />}
+        ></Route>
+        <Route path="/funding/pay" element={<FundingPay />}></Route>
+
         <Route path="/user/mypage" element={<MyPage />} />
         {/*고객센터페이지*/}
         <Route path="/supportboard" element={<SupportBoard />}>

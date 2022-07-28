@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../../style/funding_detail.css";
 import "swiper/css";
@@ -6,11 +6,16 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 
 const FundingDetail = () => {
+  // const { project_id } = useParams();
+  const project_id = 70;
   const [style, setStyle] = useState(1);
   const [like, setLike] = useState("false");
+
+  useEffect(() => {}, []);
+
   return (
     <div>
       <div className="reward_header">

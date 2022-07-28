@@ -1,5 +1,6 @@
 package com.wowdiz.finalproj.mapper;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import com.wowdiz.finalproj.dto.AuthenticationDto;
 import com.wowdiz.finalproj.dto.InterestCategoryDto;
 import com.wowdiz.finalproj.dto.LoginDto;
 import com.wowdiz.finalproj.dto.RecommendationDto;
+import com.wowdiz.finalproj.dto.UserAddressDto;
 import com.wowdiz.finalproj.dto.UserDto;
 import com.wowdiz.finalproj.dto.WowPointDto;
 import com.wowdiz.finalproj.dto.WowPointHistoryDto;
@@ -53,6 +55,10 @@ public interface UserMapper {
 	public void snsInsert(UserDto userDto);
 // Password 변경
 	public void passwordUpdate(UserDto userDto);
+	
+	public List<UserAddressDto> selectMyParcelAddress(String user_id);
+	
+	public Integer insertMyParcelAddress(UserAddressDto userAddressDto);
 // 유저 이름 및 닉네임 찾기
 	public UserDto userNameSelect(String user_email);	
 // 유저 닉네임 변경

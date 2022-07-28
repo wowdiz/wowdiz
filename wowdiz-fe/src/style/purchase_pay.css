@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+.pay_wrap p, .pay_wrap hr{
+    margin: 0;
+    padding: 0;
+}
+
+.pay_wrap{
+    width: 950px;
+    margin: 0 auto;
+}
+
+
+p.pay_title.first{
+    font-size: 30px;
+    margin-top: 0px;
+    font-weight: 800;
+}
+
+p.pay_title{
+    font-size: 30px;
+    margin-top: 40px;
+    font-weight: 800;
+}
+
+hr.divider {
+    margin-bottom: 20px;
+}
+.pay_wrap span{
+    width: 100%;
+    display: inline-block;
+    font-size: 16px;
+}
+
+input.supporter_email{
+    width: 20%;
+}
+
+div.pay_wrap_left{
+    display: inline-block;
+    width: 55%;
+    padding: 10px;
+
+}
+
+div.pay_wrap_right{
+    float: right;
+    width: 35%;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+div.pay_wrap_right::after{
+    content:'';
+    display:block;
+    clear:left;
+}
+
+div.pay_wrap input[type="text"], div.pay_wrap input[type="number"]{
+    display: inline-block;
+    font-size: 16px;
+    width: 180px;
+    height: 20px;
+    margin-bottom: 20px;
+    padding: 7px 12px 7px 12px;
+}
+
+div.pay_parcel_address input[type="text"]{
+    width: 85%;
+}
