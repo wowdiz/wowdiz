@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wowdiz.finalproj.config.NaverLoginBO;
 import com.wowdiz.finalproj.dto.LoginDto;
 import com.wowdiz.finalproj.dto.TokenDto;
 import com.wowdiz.finalproj.dto.UserDto;
@@ -46,15 +45,14 @@ public class AuthController {
 	private final AuthenticationManagerBuilder authenticationManagerBuilder;
 	private final UserService userService;
 	private final PasswordEncoder passwordEncoder;
-    /* NaverLoginBO */
-    private NaverLoginBO naverLoginBO;
+
 	
-	public AuthController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder,UserService userService,PasswordEncoder passwordEncoder, NaverLoginBO naverLoginBO) {
+	public AuthController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder,UserService userService,PasswordEncoder passwordEncoder) {
 		this.tokenProvider = tokenProvider;
 		this.authenticationManagerBuilder = authenticationManagerBuilder;
 		this.userService = userService;
 		this.passwordEncoder = passwordEncoder;
-		this.naverLoginBO = naverLoginBO;
+
 	}
 	
 	@PostMapping("/authenticate")
@@ -66,7 +64,7 @@ public class AuthController {
 		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 			
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		System.out.println("test1"+authenticationToken);
+	
 		String jwt = tokenProvider.createToken(authentication);
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
@@ -85,7 +83,7 @@ public class AuthController {
 		String accessToken = map.get("access_token");
 		Map<String, Object> map1 = new HashMap<>();
 		map1 = userService.kakaoUser(accessToken);
-		System.out.println(map1);
+
 		String kakaoEmail = "kakao:"+(String)map1.get("user_email");
 		String sns_id = (String)map1.get("sns_id");
 		String sns_type = "kakao";
@@ -133,17 +131,5 @@ public class AuthController {
 		}
 	}
 
-	@GetMapping("/user/oauth2/naver")
-	public String naverLogin(Model model, HttpSession session) {
-		
-	       /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
-        String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-        
-        //네이버 
-        model.addAttribute("url", naverAuthUrl);
-				
-		return "redirect:"+naverAuthUrl;
-	}
-	
 }
 

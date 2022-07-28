@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wowdiz.finalproj.mapper.FAQMapper">
+
+	<!--  <select id="faqlist" parameterType="Map" resultType="FAQDto">
+		select faq_id, faq_title, faq_content, view_count 
+		from inquiry_faq order by faq_id desc limit 0, 8;
+	</select>-->
+	
+	<select id="faqPaging" parameterType="Map" resultType="FAQDto">
+		select * from inquiry_faq order by faq_id desc limit #{startNum}, #{perpage}
+	</select>
+	
+	<select id="faqtotalpage" resultType="Integer">
+		select count(*) from inquiry_faq		
+	</select>
+	
+	<insert id="faqcreate">
+		insert into inquiry_faq (faq_id, faq_title, faq_content)
+		value (#{faq_id}, #{faq_title}, #{faq_content})
+	</insert>
+	
+	<select id="faqdetail" parameterType="Integer" resultType="FAQDto">
+		select faq_id, faq_title, faq_content, view_count
+		from inquiry_faq where faq_id=#{faq_id}
+	</select>
+
+	<delete id="faqdelete">
+		delete from inquiry_faq where faq_id=#{faq_id}
+	</delete>	
+	
+	<update id="faqupdate" parameterType="FAQDto" >
+		update inquiry_faq set faq_id = #{faq_id}, faq_title = #{faq_title}, faq_content = #{faq_content}
+		 where faq_id = #{faq_id}
+	</update>
+</mapper>

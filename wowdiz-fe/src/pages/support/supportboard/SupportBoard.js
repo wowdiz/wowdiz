@@ -17,7 +17,7 @@ const SupportBoard = () => {
           <span className="support_menu">
             <NavLink
               className={style === 1 ? "menu_style" : "menu_title"}
-              to="/supportboard"
+              to="/supportboard/1"
               
               style={{ textDecoration: "none" }}
               onClick={() => {

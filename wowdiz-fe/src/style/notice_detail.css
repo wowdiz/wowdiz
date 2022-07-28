@@ -1,4 +1,213 @@
-.noticedetail_main {
+.notice_detail_layout {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
     margin-top: 30px;
-    margin-left: 40px;
+    white-space: normal;
+
+}
+
+.notice_board_logo {
+    width: 80px;
+    margin-top: 15px;
+}
+
+.notice_detail_layout>span {
+    white-space: normal;
+    word-break: keep-all;
+}
+
+.notice_detail_layout>span>p {
+    margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 32px;
+    font-weight: 700;
+    width: 1100px;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.notice_board_logo_layout {
+    float: left;
+}
+
+.notice_board_admin_and_write_date {
+    width: 1020px;
+    margin-left: 80px;
+    height: 80px;
+    margin-top: 38px;
+}
+
+.notice_board_admin_and_write_date_sub {
+    width: 300px;
+    margin-left: 20px;
+    padding-top: 15px;
+}
+
+.notice_content {
+    margin-top: 50px;
+}
+
+.notice_content>pre {
+    height: 600px;
+    font-size: 20px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+.notice_back_layout {
+    display: inline-block;
+}
+
+.notice_create_layout {
+    float: right;
+    margin-left: 10px;
+}
+
+.notice_delete_layout {
+    float: right;
+    margin-left: 10px;
+}
+
+.notice_update_layout {
+    float: right;
+
+}
+
+.notice_delete_layout>button {
+    background: lightcoral;
+    color: #fff;
+    border: none;
+    position: relative;
+    height: 60px;
+    font-size: 20px;
+    padding: 0 2em;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+}
+
+.notice_delete_layout>button:hover {
+    background: #fff;
+    color: lightcoral;
+}
+
+.notice_delete_layout>button:before,
+.notice_delete_layout>button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: lightcoral;
+    transition: 400ms ease all;
+}
+
+.notice_delete_layout>button:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.notice_delete_layout>button:hover:before,
+.notice_delete_layout>button:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+.notice_back_layout>button,
+.notice_create_layout>button {
+    background: rgba(154, 199, 248, 1);
+    color: #fff;
+    border: none;
+    position: relative;
+    height: 60px;
+    font-size: 20px;
+    padding: 0 2em;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+}
+
+.notice_back_layout>button:hover,
+.notice_create_layout>button:hover {
+    background: #fff;
+    color: rgba(154, 199, 248, 1);
+}
+
+.notice_back_layout>button:before,
+.notice_create_layout>button:before,
+.notice_back_layout>button:after,
+.notice_create_layout>button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: rgba(154, 199, 248, 1);
+    transition: 400ms ease all;
+}
+
+.notice_back_layout>button::after,
+.notice_create_layout>button:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.notice_back_layout>button:hover:before,
+.notice_create_layout>button:hover:before,
+.notice_back_layout>button:hover:after,
+.notice_create_layout>button:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+.notice_update_layout>button {
+    background: #1AAB8A;
+    color: #fff;
+    border: none;
+    position: relative;
+    height: 60px;
+    font-size: 20px;
+    padding: 0 2em;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+}
+
+.notice_update_layout>button:hover {
+    background: #fff;
+    color: #1AAB8A;
+}
+
+.notice_update_layout>button:before,
+.notice_update_layout>button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: #1AAB8A;
+    transition: 400ms ease all;
+}
+
+.notice_update_layout>button:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.notice_update_layout>button:hover:before,
+.notice_update_layout>button:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
 }
