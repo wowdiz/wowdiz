@@ -4,7 +4,6 @@ import "../../style/maker.css";
 import Form1 from "./MakerOpenProjectForm1";
 import Form2 from "./MakerOpenProjectForm2";
 import Form3 from "./MakerOpenProjectForm3";
-import Form4 from "./MakerOpenProjectForm4";
 import defaultImg from "../../assets/images/util/fileUploader.png";
 import AxiosService from "../../service/AxiosService";
 
@@ -142,8 +141,6 @@ const MakerOpenProject = () => {
                 handleProject={handleProject}
                 processSelector={processSelector}
                 setProcessSelector={setProcessSelector}
-                // rewardOptionArr={rewardOptionArr}
-                // setRewardOptionArr={setRewardOptionArr}
                 />
                 )}
             </div>

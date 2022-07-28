@@ -42,7 +42,6 @@ import EventWrite from "./pages/support/event/EventWrite";
 import ClosedEvent from "./pages/support/event/ClosedEvent";
 import EventUpdate from "./pages/support/event/EventUpdate";
 
-import Write from "./components/CKEeditor/Write";
 import NoticeUpdate from "./pages/support/notice/NoticeUpdate";
 import FindUser from "./pages/user/register/FindUser";
 import UserLayout from "./layout/UserLayout";

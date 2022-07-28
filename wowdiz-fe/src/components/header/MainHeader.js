@@ -37,6 +37,11 @@ const Header = () => {
               고객센터
             </NavLink>
           </li>
+          <li>
+            <NavLink to="" className="menu_li">
+              open
+            </NavLink>
+          </li>
         </ul>
         {/* 서치 폼  */}
         <div className="search_bar">
