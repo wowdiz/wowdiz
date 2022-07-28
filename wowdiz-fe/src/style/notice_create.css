@@ -1,0 +1,164 @@
+.notice_create_form_layout {
+    width: 1100px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.notice_create_form_content {
+    margin-top: 20px;
+}
+
+.notice_create_form_important {
+    margin-top: 20px;
+}
+
+.notice_create_form_thumbnail {
+    margin-top: 20px;
+}
+
+.notice_create_form_writedate {
+    margin-top: 20px;
+}
+
+.notice_create_form_writeadmin {
+    margin-top: 20px;
+}
+
+.title_input {
+    width: 800px;
+}
+
+.create_input_content {
+    width: 800px;
+}
+
+.admin_input {
+    width: 300px;
+}
+
+#notice_create_form_content_area {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.4375em;
+    letter-spacing: 0.00938em;
+    color: rgba(0, 0, 0, 0.87);
+    box-sizing: border-box;
+    position: relative;
+    cursor: text;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 800px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    display: block;
+    height: 300px;
+    margin-bottom: 30px;
+    border: 1px solid #d8d8d8;
+    font-size: 15px;
+    padding: 0.75rem;
+}
+
+.notice_create_form_layout_sub {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.notice_create_button {
+    background: rgba(154, 199, 248, 1);
+    color: #fff;
+    border: none;
+    position: relative;
+    height: 60px;
+    font-size: 20px;
+    padding: 0 2em;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+    margin-top: 30px;
+}
+
+
+.notice_create_button:hover {
+    background: #fff;
+    color: rgba(154, 199, 248, 1);
+}
+
+.notice_create_button:before,
+.notice_create_button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: rgba(154, 199, 248, 1);
+    transition: 400ms ease all;
+}
+
+.notice_create_button:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.notice_create_button:hover:before,
+.notice_create_button:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+.notice_create_button {
+    float: right;
+}
+
+.notice_back_button {
+    margin-top: 30px;
+    background: lightcoral;
+    color: #fff;
+    border: none;
+    position: relative;
+    height: 60px;
+    font-size: 20px;
+    padding: 0 2em;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+    margin-top: 30px;
+}
+
+
+.notice_back_button:hover {
+    background: #fff;
+    color: lightcoral;
+}
+
+.notice_back_button:before,
+.notice_back_button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: lightcoral;
+    transition: 400ms ease all;
+}
+
+.notice_back_button:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.notice_back_button:hover:before,
+.notice_back_button:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
