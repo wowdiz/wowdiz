@@ -20,23 +20,6 @@ const QNA = ({ history }) => {
 
   const qnaListUrl = "/supportboard/qna";
 
-  // const QnaSubmit = (e) => {
-  //   alert("제출 되었습니다.");
-  //   //e.preventDefault();
-  //   AxiosService.post(qnaListUrl, {
-  //     inquiry_id: inquiry_id,
-  //     user_name: user_name,
-  //     user_email: user_email,
-  //     user_phone: user_phone,
-  //     inquiry_title: inquiry_title,
-  //     inquiry_content: inquiry_content,
-  //     inquiry_type: inquiry_type,
-  //   }).then((res) => {
-  //     console.log("성공");
-  //     //navi("/supportboard/qna");
-  //   });
-  // };
-
   const QnaSubmit = (e) => {
     AxiosService.post(qnaListUrl, inquiryData).then(() => {
       console.log("성공");
@@ -105,7 +88,6 @@ const QNA = ({ history }) => {
               className="qna_type"
               name="inquiry_type"
               onChange={(e) => {
-                //setInquiry_type(e.target.value);
                 setter(e);
               }}
             >
@@ -125,7 +107,6 @@ const QNA = ({ history }) => {
               className="form-control"
               placeholder="이름을 입력하세요."
               onChange={(e) => {
-                //setUser_name(e.target.value);
                 setter(e);
               }}
             />
@@ -142,22 +123,20 @@ const QNA = ({ history }) => {
               className="form-control"
               placeholder="이메일을 입력해주세요."
               onChange={(e) => {
-                // setUser_email(e.target.value);
                 setter(e);
               }}
             />
           </div>
           <div className="phone_warp">
-            <label for="phone">휴대폰 번호</label>
+            <label for="phone">휴대폰 번호(선택)</label>
             <input
               type="tel"
               id="phone"
               name="user_phone"
               className="form-control"
-              // value={num}
-              // ref={phoneRef}
+              value={num}
+              ref={phoneRef}
               onChange={(e) => {
-                // setUser_phone(e.target.value);
                 setter(e);
               }}
               placeholder="휴대폰 번호를 입력해주세요."
@@ -173,7 +152,6 @@ const QNA = ({ history }) => {
           required="required"
           placeholder="제목을 입력해 주세요"
           onChange={(e) => {
-            // setInquiry_title(e.target.value);
             setter(e);
           }}
         />
@@ -186,19 +164,19 @@ const QNA = ({ history }) => {
             className="form-control"
             placeholder="문의하실 내용을 입력해 주세요"
             onChange={(e) => {
-              // setInquiry_content(e.target.value);
               setter(e);
             }}
-          />
+          >
+          </textarea>
         </div>
 
-        <label for="file">파일 첨부하기 (선택)</label>
+        {/* <label for="file">파일 첨부하기 (선택)</label>
         <div className="file_form">
           <label className="file_label">
             <input type="file" id="file" className="file_input" />
             <span className="file_name">파일업로드</span>
           </label>
-        </div>
+        </div> */}
         <div className="consent_container">
           <label for="qna_consent" className="consent_wrap">
             <input

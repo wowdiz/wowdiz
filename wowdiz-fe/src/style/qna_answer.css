@@ -37,17 +37,21 @@
     width: 300px;
 }
 .answer_user_mail_warp{
-margin-left: 50px;
+    margin-left: 50px;
 }
 .answer_user_content{
-    display:inline;
+    display:inline-block;
     width: 650px;
+    min-width: 650px;
     height: 400px;
     margin-bottom: 30px;
     border-radius: 10px;
     border: 1px solid #d8d8d8;
     font-size: 15px;
     padding: 0.75rem;
+    white-space: pre-wrap;
+    overflow-x: auto;
+
 }
 .answer__btn{
     width: 100%;

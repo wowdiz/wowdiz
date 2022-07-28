@@ -27,7 +27,7 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/event" className="menu_li">
+            <NavLink to="/supportboard/event" className="menu_li">
               이벤트
             </NavLink>
           </li>

@@ -77,8 +77,9 @@
     cursor: pointer;
     display: inline;
 }
-.event_write_title1{
-    display: inline-block;
+.event_write_title{
+    display: block;
+    width: 200px;
 }
 .event_write_editor{
     width: 700px;
@@ -105,17 +106,98 @@
     font-size: 15px;
     padding: 0.75rem;
 }
+.event_end_date{
+margin-left: 20px;
+margin-top: 30px;
+}
 .event_start{
     width: 300px;
     margin: 0;
+
     float: left;
 }
 .event_date{
     width: 300px;
     margin: 0;
     float: left;
-    margin-left: 10px;
+    display: inline-flex;
 }
-.aaa{
 
+/*이벤트페이지*/
+.event_main {
+    width: 1118px;
+    height: auto;
+    border: 0px solid black;
+    margin: 0 auto;
+}
+
+.event_wrap {
+    list-style: none;
+    display: inline-block;
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0;
+    margin-top: 30px;
+    background-color: aliceblue;
+}
+
+.event_container {
+    display: inline-block;
+    width: 100%;
+    max-width: 1098px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.event_important {
+    display: inline-block;
+    color: #4462ee;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.event_title {
+    display: inline-block;
+    padding: 5px 0px 2px 0px;
+    margin: 0px;
+    font-size: 25px;
+    font-weight: bold;
+    width: auto;
+    display: block;
+    cursor: pointer;
+}
+
+.event_admin,
+.event_date {
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 10px;
+    color: #696f75;
+    margin-top: 20px;
+}
+.event_date{
+    width: 80px;
+}
+
+.event_thum {
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    float: right;
+    border: 1px solid black;
+    border-radius: 20px;
+    display: inline-block
+}
+
+.event_info {
+    margin-left: 20px;
+}
+
+.evnet_create {
+    margin-top: 30px;
+    margin-right: 42px;
 }

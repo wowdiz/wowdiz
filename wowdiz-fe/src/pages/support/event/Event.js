@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AxiosService from "../../../service/AxiosService";
-import "../../../style/notice.css";
+import Parser from "html-react-parser";
+import "../../../style/event.css";
 
 const Event = () => {
   const { event_id } = useParams();
@@ -12,7 +13,7 @@ const Event = () => {
   const eventList = useCallback(() => {
     AxiosService.get(eventUrl, event_id).then((res) => {
       setEventData(res.data);
-      console.log(res);
+      console.log(res.data);
     });
   }, [eventUrl]);
 
@@ -27,7 +28,7 @@ const Event = () => {
           className="event_menu"
           onClick={() => navi("/supportboard/closedevent")}
         >
-          <b>종료된이벤트</b>{" "}
+          <b>종료된이벤트</b>
         </span>
       </div>
       <div className="event_progress">
@@ -35,31 +36,43 @@ const Event = () => {
           <b>진행중이벤트</b>
         </span>
       </div>
-
       <div>
         {eventData.map((row, idx) => (
           <div key={idx}>
             {row.event_status === "Y" ? (
-              <div className="support_main">
-                <ul className="support_wrap">
-                  <li className="support_container">
-                    <b className="support_important">
-                      {row.event_status === "Y" ? <p>진행중</p> : <p>마감</p>}
-                    </b>
-                    <div className="support_info">
-                      <div className="support_thum">{row.thum}</div>
-                      <h3
-                        className="support_title"
+              <div className="event_main">
+                <ul className="event_wrap">
+                  <li className="event_container">
+                    <div className="event_info">
+                      <div className="event_important">
+                        <b>
+                          {row.event_status === "Y" ? (
+                            <p>진행중</p>
+                          ) : (
+                            <p>마감</p>
+                          )}
+                        </b>
+                      </div>
+
+                      <div
+                        className="notice_thum"
+                        onClick={() =>
+                          navi("/supportboard/eventdetail/" + row.event_id)
+                        }
+                      >                        
+                      </div>
+
+                      <div
+                        className="event_title"
                         onClick={() =>
                           navi("/supportboard/eventdetail/" + row.event_id)
                         }
                       >
                         {row.event_title}
-                      </h3>
+                      </div>
                       <br />
-                      <span className="support_admin">wowdiz</span>
-                      <span className="support_date">{row.write_date}</span>
-                      <span></span>
+                      <span className="event_admin">wowdiz</span>
+                      <span className="event_date">{row.write_date}</span>
                     </div>
                   </li>
                 </ul>

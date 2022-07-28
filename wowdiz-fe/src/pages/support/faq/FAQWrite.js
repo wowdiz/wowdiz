@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 // import ClassicEditor from "../../../components/editor/CKEditorClassic";
-
 import "../../../style/faq_write.css";
 import AxiosService from "../../../service/AxiosService";
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,7 +9,7 @@ const FAQWrite = () => {
   const [faq_title, setFaq_title] = useState("");
   const [faq_content, setFaq_content] = useState("");
   const { faq_id } = useParams;
-  // const SPRING_URL = "http://localhost:9150/";
+
   const faqWriteUrl = "/supportboard/faqwrite";
 
   const faqsubmit = (e) => {
@@ -28,10 +26,12 @@ const FAQWrite = () => {
 
   return (
     <div className="faq_write_container">
-      <form className="faq_write_form" action={faqWriteUrl} method="post">
+      <form className="faq_write_form" >
         <input type="hidden" value={faq_id} />
         <div>
+          <div>
           <p className="write_title">제목</p>
+          </div>
           <input
             type="text"
             className="faq_write_title"
@@ -41,9 +41,11 @@ const FAQWrite = () => {
             }}
           />
         </div>
-        <p className="write_content">내용</p>
-        <input
-          type="text"
+        <div>
+          <p className="write_content">내용</p>
+        </div>
+
+        <textarea
           className="faq_write_content"
           onChange={(e) => {
             setFaq_content(e.target.value);
@@ -53,7 +55,7 @@ const FAQWrite = () => {
         {/* <ClassicEditor setFaq_content={setFaq_content} /> */}
 
         <div>
-          <button type="submit" className="faq_write_btn" onClick={faqsubmit}>
+          <button type="button" className="faq_write_btn" onClick={faqsubmit}>
             저장
           </button>
         </div>

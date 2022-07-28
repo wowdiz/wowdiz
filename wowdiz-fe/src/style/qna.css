@@ -249,9 +249,9 @@ margin-right: auto;
   margin-right: auto;
 }
 
-ul a:hover {
-  background-color: #071a4c;
+.qna_pagination_warp a:hover {
+  background-color: #80DACE;
   color: white;
   text-decoration: none;
 }
-
+/*답변글쓰기*/

@@ -8,7 +8,7 @@
 	</select> -->
 	
 	<select id="selectFaqList" resultType="FAQDto">
-		select * from inquiry_faq order by faq_id desc limit 0, 5
+		select * from inquiry_faq order by faq_id desc limit 1, 5
 	</select>
 	
 	<select id="selectAddFaqList" parameterType="Integer" resultType="FAQDto">

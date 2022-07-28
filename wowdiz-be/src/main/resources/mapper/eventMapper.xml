@@ -4,7 +4,7 @@
 
 
 	<select id="eventList" resultType="EventDto">
-		select * from event order by event_id 
+		select * from event order by event_id desc;
 	</select>
 	
 	<insert id="eventCreate">

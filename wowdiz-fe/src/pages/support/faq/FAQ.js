@@ -56,7 +56,7 @@ const FAQ = () => {
       console.log(res);
 
       alert("삭제되었습니다.");
-      window.location.href = "/supportboard/faq";
+      window.location.href = "/supportboard/faqpage";
     });
   };
 
@@ -104,8 +104,8 @@ const FAQ = () => {
                   >
                     <div style={{ margin: "0px" }}>
                       <Typography
-                        sx={{ height: "60px" }}
-                        style={{ margin: "0", lineHeight: "4.3" }}
+                        sx={{ height: "90px" }}
+                        style={{ margin: "0", lineHeight: "7" }}
                       >
                         <b>{row.faq_title}</b>
                       </Typography>
@@ -113,14 +113,14 @@ const FAQ = () => {
                   </AccordionSummary>
 
                   <AccordionDetails
-                    sx={{ minHeight: 10 }}
+                    sx={{ minHeight: 10, height: 100 }}
                     style={{
                       backgroundColor: "#fafafb",
                       textAlign: "left",
                       padding: "16px 16px 16px;",
                     }}
                   >
-                    <Typography>
+                    <Typography sx={{ height: 100, lineHeight: "3" }}>
                       {row.faq_content}
                       <br />
 

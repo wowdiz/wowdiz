@@ -42,7 +42,6 @@ import FAQUpdate from "./pages/support/faq/FAQUpdate";
 import EventWrite from "./pages/support/event/EventWrite";
 import ClosedEvent from "./pages/support/event/ClosedEvent";
 import EventUpdate from "./pages/support/event/EventUpdate";
-import EmailSendImg from "./pages/support/qna/EmailSendImg";
 
 import Write from "./components/CKEeditor/Write";
 import FindUser from "./pages/user/register/FindUser";
@@ -107,10 +106,6 @@ function App() {
           <Route
             path="/supportboard/qnaanswer/:inquiry_id"
             element={<QNAAnswer />}
-          />
-          <Route
-            path="/supportboard/qnaanswer/sendok"
-            element={<EmailSendImg />}
           />
         </Route>
         {/* 메이커 */}

@@ -1,15 +1,16 @@
 import AxiosService from "../../../service/AxiosService";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../../style/qna_answer.css";
 import { useForm } from "react-hook-form";
+import { DoDisturb } from "@mui/icons-material";
 
 const QNAAnswer = () => {
+  const navi = useNavigate();
   const { inquiry_id } = useParams();
   const [answer, setAnswer] = useState([]);
 
   const { register, handleSubmit, watch } = useForm();
-
   let answertUrl = "/supportboard/qnaanswer?inquiry_id=" + inquiry_id;
   const getData = () => {
     AxiosService.get(answertUrl, inquiry_id).then((res) => {
@@ -17,7 +18,16 @@ const QNAAnswer = () => {
         ...res.data,
         user_name: res.data.user_name,
         user_email: res.data.user_email,
-        inquiry_content: "문의내용 : " + res.data.inquiry_content,
+        inquiry_content:
+          "<br/><br/>" +
+          "안녕하세요 WOWDIZ 입니다."+"<br/><br/>" +"고객님의 1:1문의에 대해 답변드립니다." +
+          "<br/><br/>" +
+          "문의내용 : " +
+          res.data.inquiry_content +
+          "\r\n" +
+          "<br/><br/>" +
+          "\r\n" +
+          "답변 : ",
         inquiry_title:
           "[WOWDIZ] " + res.data.user_name + "님의 1:1문의에 대한 답변입니다.",
       });
@@ -45,13 +55,15 @@ const QNAAnswer = () => {
     }).then((res) => {
       console.log(data);
       console.log(res);
-      alert("이메일 성공");
+      alert("빠른 시일내에 답변드리겠습니다. 감사합니다");
+      navi("/supportboard/qna");
     });
   };
 
   useEffect(() => {
     getData();
   }, []);
+
 
   return (
     <div className="answer_container">
@@ -85,6 +97,7 @@ const QNAAnswer = () => {
             {...register("title")}
           />
         </div>
+
         <div className="answer_content">
           <div className="answer_content_name">
             내용
