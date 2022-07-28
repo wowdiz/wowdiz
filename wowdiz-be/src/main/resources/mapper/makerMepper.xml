@@ -8,7 +8,7 @@
 		(maker_id, project_category_id, project_name, target_amount, project_thumbnail, project_summary, 
 		project_story, project_keyword, open_date, close_date, delivery_date, approved, reg_date, project_status)
 		VALUES
-		(2, 1, #{project_name}, #{target_amount}, #{project_thumbnail}, "이건뭐?", 
+		(2, 1, #{project_name}, #{target_amount}, #{project_thumbnail}, #{project_summary}, 
 		#{project_story}, #{project_keyword}, now(), #{close_date}, "2022-07-29", 0, now(), "N")
 	</insert>
 	

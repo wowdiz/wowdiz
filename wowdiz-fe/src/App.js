@@ -37,7 +37,6 @@ import SnsRegister from "./pages/user/register/SnsRegister";
 import QNAAnswer from "./pages/support/qna/QNAAnswer";
 import FAQWrite from "./pages/support/faq/FAQWrite";
 import FAQUpdate from "./pages/support/faq/FAQUpdate";
-import Write from "./components/CKEeditor/Write";
 import FindUser from "./pages/user/register/FindUser";
 import UserLayout from "./layout/UserLayout";
 
@@ -111,10 +110,9 @@ function App() {
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="" element={<AdminHome />} />
         <Route path="/admin/funding" element={<AdminFunding />} />
-        <Route path="/admin/funding/detail" element={<AdminFundingDetail />} />
+        <Route path="/admin/funding/detail/:project_id" element={<AdminFundingDetail />} />
         <Route path="/admin/member" element={<AdminMember />} />
       </Route>
-      <Route path="/write" element={<Write />} />
     </Routes>
   );
 }
