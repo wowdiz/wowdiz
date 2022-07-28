@@ -137,12 +137,12 @@ const UserInfoUpdate = ({ userDataLoad }) => {
             ) : (
               ""
             )}
-            <h3> {userDataLoad.name}</h3>
+            <h3> {userDataLoad.user_name}</h3>
           </div>
           <div className="user_update_boxs">
             <label className="user_update_label">닉네임</label>
             <input
-              defaultValue={userDataLoad.nickname}
+              defaultValue={userDataLoad.user_nickname}
               className="user_subject_update"
               placeholder="닉네임을 입력해주세요"
               required
@@ -180,7 +180,7 @@ const UserInfoUpdate = ({ userDataLoad }) => {
           <div className="user_update_boxs">
             <label className="user_update_label">휴대폰 번호</label>
             <input
-              defaultValue={userDataLoad.phone}
+              defaultValue={userDataLoad.user_phone}
               className="user_subject_update"
               required
               maxLength="13"
