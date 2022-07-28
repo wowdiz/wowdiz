@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wowdiz.finalproj.mapper.PurchaseMapper">
 
-<select id="selectPurchaseSupporterInfo" parameterType="String" resultType="PurchaseSupporterInfoDto" >    
+<select id="selectPurchaseSupporterInfo" parameterType="int" resultType="PurchaseSupporterInfoDto" >    
 		SELECT 
 		    u.user_id,
 		    u.user_email,
