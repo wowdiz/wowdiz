@@ -10,7 +10,7 @@ const LoginComponent = () => {
       <NavLink to="/login" className="user_bar_li">
         로그인
       </NavLink>
-      <NavLink to="/register" className="user_bar_li">
+      <NavLink to="/user/register" className="user_bar_li">
         회원가입
       </NavLink>
     </span>

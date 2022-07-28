@@ -24,6 +24,8 @@ import YoutubeLayout from "../../components/main/YoutubeLayout";
 import qnaImage from "../../assets/images/main/qna_image.jpg";
 import noticeImage from "../../assets/images/main/notice_image.jpg";
 import eventImage from "../../assets/images/main/event_image.jpg";
+import { NavigateBefore } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 // 최초 작업자: 이광호
 // 2022-07-04
 // 리액트 홈페이지 메인 프론트엔드
@@ -109,6 +111,8 @@ const Home = () => {
     },
   ];
 
+  const navi = useNavigate();
+
   return (
     <div className="main">
       {/* 슬라이드 배너 영역 */}
@@ -148,6 +152,9 @@ const Home = () => {
       <div
         className="project_wrap"
         style={{ backgroundImage: `URL(${image1})` }}
+        onClick={(e => {
+          navi('/maker/open_project');
+        })}
       >
         <h2 className="project_button_title"> WOW diz, ProJect Open </h2>
         <p className="project_button_content">

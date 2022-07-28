@@ -142,6 +142,10 @@ const MakerOpenProjectForm3 = ({ form, setForm, processSelector, setProcessSelec
         }
     }
 
+    useEffect(() => {
+        window.scrollTo(0,0);
+    },[]);
+
     return (
         <div className="maker_open_project_form">
             <div>

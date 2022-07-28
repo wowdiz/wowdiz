@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import MyCkeditor from '../../components/editor/MyCkeditor';
 import HTMLReactParser from 'html-react-parser';
 
 const MakerOpenProjectForm2 = ({ form, setForm, handleProject, processSelector, setProcessSelector }) => {
+    useEffect(() => {
+        window.scrollTo(0,0);
+    },[]);
     return (
         <div className='maker_open_project_form'>
             <div>
