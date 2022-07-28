@@ -41,7 +41,7 @@ public class QNAController {
 		
 	}
 	@PostMapping("/qna")
-	public void qnacreate(QNADto dto) {	
+	public void qnacreate(@RequestBody QNADto dto) {
 		qnaService.qnacreate(dto);
 	}
 	
@@ -65,8 +65,11 @@ public class QNAController {
 	
 	@PostMapping("/qnaanswersend")
 	public void qnaEmailSend (@RequestBody Map<String, String> map) throws Exception {
+	
 		System.out.println(map);
+		qnaService.qnastatus(map);
 		emailService.sendFaqAnswerMessage(map);
+		
 	}
 
 }

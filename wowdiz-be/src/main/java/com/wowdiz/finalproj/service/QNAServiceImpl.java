@@ -32,8 +32,8 @@ public class QNAServiceImpl implements QNAService {
 	public Map<String, Object> qnaPaging(Integer currentPage) {
 
 		Integer totalCount = qnaMapper.qnatotalpage();
-		Integer perPage = 3; 
-		Integer perBlock = 2;
+		Integer perPage = 5; 
+		Integer perBlock = 5;
 		Integer no = totalCount-(currentPage-1)*perPage;
 		
 		PagingHandler pagingHandler = new PagingHandler(totalCount, currentPage, perPage, perBlock);
@@ -74,6 +74,17 @@ public class QNAServiceImpl implements QNAService {
 	@Override
 	public void qnadelete(Integer inquiry_id){
 		qnaMapper.qnadelete(inquiry_id);
+	}
+	
+	@Override
+	public void qnastatus(Map<String, String> map) {
+		QNADto dto = new QNADto();
+		Integer s = Integer.parseInt(map.get("inquiry_status"));
+		Integer i = Integer.parseInt(map.get("inquiry_id"));
+		dto.setInquiry_status(s);
+		dto.setInquiry_id(i);
+		
+		qnaMapper.qnastatus(dto);
 	}
 	
 }

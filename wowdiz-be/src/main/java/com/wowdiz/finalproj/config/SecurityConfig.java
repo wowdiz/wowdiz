@@ -106,6 +106,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/save/*").permitAll()
                 .antMatchers("/file/*").permitAll()
                 .antMatchers("/ckeditorImages/*").permitAll()
+                .antMatchers("/UploadService").permitAll()
+               
                 //admin
                 .antMatchers("/admin/*").permitAll()
                 

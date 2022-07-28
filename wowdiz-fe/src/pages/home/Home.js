@@ -26,6 +26,8 @@ import RankingView5 from "../../components/main/RankingView5";
 import RankingView4 from "../../components/main/RankingView4";
 import RankingView3 from "../../components/main/RankingView3";
 import RankingView2 from "../../components/main/RankingView2";
+import { useNavigate } from "react-router-dom";
+
 // 최초 작업자: 이광호
 // 2022-07-04
 // 리액트 홈페이지 메인 프론트엔드
@@ -34,6 +36,8 @@ SwiperCore.use([Navigation, Pagination, Autoplay]); //
 
 const Home = () => {
   const image1 = back_image;
+
+  const navi = useNavigate();
 
   const supportComponent =[
     {
@@ -152,6 +156,9 @@ const Home = () => {
       <div
         className="project_wrap"
         style={{ backgroundImage: `URL(${image1})` }}
+        onClick={() => {
+          navi('/maker/open_project');
+        }}
       >
         <h2 className="project_button_title"> WOW diz, ProJect Open </h2>
         <p className="project_button_content">

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wowdiz.finalproj.mapper.EventMapper">
+
+
+	<select id="eventList" resultType="EventDto">
+		select * from event order by event_id desc;
+	</select>
+	
+	<insert id="eventCreate">
+		insert into event (event_id, event_title, event_content, write_date, event_start_date, event_end_date, event_status)
+		value (#{event_id}, #{event_title}, #{event_content}, now(), #{event_start_date}, #{event_end_date}, #{event_status})
+	</insert>
+	
+	<select id="eventDetail" parameterType="Integer" resultType="EventDto">
+		select event_id, event_title, event_content, view_count, write_date, event_start_date, event_end_date, event_status
+		from event where event_id=#{event_id}
+	</select>
+
+	<delete id="eventDelete">
+		delete from event where event_id=#{event_id}
+	</delete>	
+	
+	<update id="eventUpdate" parameterType="EventDto" >
+		update event set event_title = #{event_title}, event_content = #{event_content}, 
+		event_start_date = #{event_start_date}, event_end_date = #{event_end_date}, event_status = #{event_status} where event_id = #{event_id}
+	</update>
+
+</mapper>

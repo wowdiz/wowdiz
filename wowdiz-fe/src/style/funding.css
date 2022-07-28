@@ -15,16 +15,96 @@
 }
 .category_container {
   display: inline-block;
-  margin-right: 18px;
+  margin-right: 50px;
 }
 .category_name {
-  margin-top: 60px;
+  margin-top: 65px;
   line-height: 18px;
   white-space: nowrap;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
 }
-.funding_content {
+.perference_fundig_title {
+  color: black;
+  width: 314px;
+  font-size: 17px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 25px;
+  margin-bottom: 3px;
   width: 100%;
-  border: 1px solid black;
+  height: 50px;
+}
+.perference_funding_image {
+  width: 100%;
+  height: 150px;
+}
+
+.funding_content > .perference_funding_detail {
+  width: 320px;
+  margin-left: 40px;
+}
+.funding_content{
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(3, calc(33.33333% - 30px));
+  grid-row-gap: 90px;
+  grid-column-gap: 30px;
+  margin-bottom: 150px;
+}
+.category_icon1{
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 25px;
+  background: #dedede no-repeat 50% / cover border-box;
+  width: 56px;
+  height: 56px;
+  box-sizing: border-box;
+  background-image: url(../assets/images/test/category1.jpg);
+}
+.category_icon2 {
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 25px;
+  background: #dedede no-repeat 50% / cover border-box;
+  width: 56px;
+  height: 56px;
+  box-sizing: border-box;
+  background-image: url(../assets/images/test/category5.jpg);
+}
+.category_icon3 {
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 25px;
+  background: #dedede no-repeat 50% / cover border-box;
+  width: 56px;
+  height: 56px;
+  box-sizing: border-box;
+  background-image: url(../assets/images/test/category3.jpg);
+}
+.category_icon4 {
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 25px;
+  background: #dedede no-repeat 50% / cover border-box;
+  width: 56px;
+  height: 56px;
+  box-sizing: border-box;
+  background-image: url(../assets/images/test/category4.jpg);
+}
+.category_icon5 {
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 25px;
+  background: #dedede no-repeat 50% / cover border-box;
+  width: 56px;
+  height: 56px;
+  box-sizing: border-box;
+  background-image: url(../assets/images/test/category2.jpg);
 }

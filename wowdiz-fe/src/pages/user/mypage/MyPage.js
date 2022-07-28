@@ -6,7 +6,19 @@ import { useNavigate } from "react-router-dom";
 import Perference_funding from "../../../components/main/Perference_funding";
 import UserInfoUpdate from "../../../components/user/UserInfoUpdate";
 
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper"; // 추가
+import "swiper/css"; //basic
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import Myfunding from "../../../components/user/Myfunding";
+import Point from "../../../components/user/Point";
+import UserService from "../../../service/UserService";
+// 최초 작업자: 이기민, 이광호
+
 // 최초 작업자: 이기민
+
 // 2022-07-13
 // 마이 페이지 디자인
 
@@ -104,7 +116,7 @@ const MyPage = () => {
             <button type="button" className="mypage_data_button">
               포인트 충전
             </button>
-            <button type="button" className="mypage_data_button">
+            <button type="button" className="mypage_data_button" onClick={UserService.logout}>
               로그아웃
             </button>
           </div>

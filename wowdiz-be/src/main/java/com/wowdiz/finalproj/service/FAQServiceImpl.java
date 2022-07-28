@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.wowdiz.finalproj.dto.FAQDto;
+import com.wowdiz.finalproj.dto.QNADto;
 import com.wowdiz.finalproj.mapper.FAQMapper;
 import com.wowdiz.finalproj.util.PagingHandler;
 
@@ -24,25 +25,16 @@ public class FAQServiceImpl implements FAQService {
 //		
 //		return faqMapper.faqlist();
 //	}
+	
 	@Override
-	public Map<String, Object> faqPaging(Integer currentPage) {
-
-		Integer totalCount = faqMapper.faqtotalpage();
-		Integer perPage = 3; 
-		Integer perBlock = 2;
-		Integer no =totalCount-(currentPage-1)*perPage;
+	public List <FAQDto> faqGetData() {
 		
-		PagingHandler pagingHandler = new PagingHandler(totalCount, currentPage, perPage, perBlock);
-		
-//		Integer startNum = pagingHandler.getStartNum();
-		Map<String, Integer> map1 = new HashMap<>();
-		map1.put("startNum",pagingHandler.getStartNum());
-		map1.put("perPage",perPage);
-		
-		List<FAQDto> list = faqMapper.faqPaging(map1);
-		
-		Map<String, Object> map = pagingHandler.faqpaging(list);
-		return map;
+		return faqMapper.selectFaqList();
+	}
+	
+	@Override
+	public List<FAQDto> selectAddFaqList(Integer startNum) {
+		return faqMapper.selectAddFaqList(startNum);
 	}
 	
 	@Override

@@ -18,10 +18,9 @@ public class QNADto {
 	private String inquiry_title;
 	private String inquiry_content;
 	private String inquiry_type;
-	private String	 write_date;
+	private String write_date;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Timestamp answer_date;
 	private Integer inquiry_status;
 	private Integer qnatotalpage;
-	private Integer no;
 }
