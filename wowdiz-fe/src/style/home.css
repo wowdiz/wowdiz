@@ -12,9 +12,8 @@
 
 .main_banner {
   position: relative;
+  width: 1200px;
   height: 330px;
-  min-width: 1200px;
-  display: block;
   z-index: 2;
   cursor: pointer;
   margin-top: -32px;
@@ -191,6 +190,7 @@
   height: 50px;
   white-space: normal;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .ranking_funding_list_main_component {

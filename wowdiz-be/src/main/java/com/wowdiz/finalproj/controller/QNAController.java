@@ -39,7 +39,6 @@ public class QNAController {
 		System.out.println("ddd"+currentPage);
 		return qnaService.qnaPaging(currentPage);
 		
-		
 	}
 	@PostMapping("/qna")
 	public void qnacreate(QNADto dto) {	
