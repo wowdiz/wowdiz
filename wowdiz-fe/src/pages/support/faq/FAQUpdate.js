@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AxiosService from "../../../service/AxiosService";
 
 const FAQUpdate = ({ title, content, faqid }) => {
+  const navi = useNavigate();
   const [updatetitle, setUpdatetitle] = useState(title);
   const [updatecontent, setUpdatecontent] = useState(content);
 
@@ -15,6 +17,7 @@ const FAQUpdate = ({ title, content, faqid }) => {
       faq_content: updatecontent,
     }).then((res) => {
       console.log("res.datai1", res.data);
+      navi("/supportboard/faqpage/"); 
     });
   };
 
@@ -39,10 +42,12 @@ const FAQUpdate = ({ title, content, faqid }) => {
             setUpdatecontent(e.target.value);
           }}
         />
-        <button type="submit" onClick={postData}>
+        <button type="button" onClick={postData}>
           완료
         </button>
-        <button type="submit">취소</button>
+        <button type="button" onClick={() => navi("/supportboard/faqpage")}>
+          취소
+        </button>
       </form>
     </div>
   );

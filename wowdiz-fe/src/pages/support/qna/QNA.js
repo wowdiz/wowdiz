@@ -1,15 +1,32 @@
 import React, { useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import AxiosService from "../../../service/AxiosService";
 import "../../../style/qna.css";
 
 const QNA = ({ history }) => {
-  const [checkbutton, setCheckbutton] = useState([]);
-  const [num, setNum] = useState("");
+  const navi = useNavigate();
   const phoneRef = useRef();
+  const [checkbutton, setCheckbutton] = useState([]);
+  // const [user_name, setUser_name] = useState("");
+  // const [user_email, setUser_email] = useState("");
+  // const [user_phone, setUser_phone] = useState("");
+  // const [inquiry_title, setInquiry_title] = useState("");
+  // const [inquiry_content, setInquiry_content] = useState("");
+  // const [inquiry_type, setInquiry_type] = useState("");
+  const [inquiryData, setInquiryData] = useState([]);
+  const { inquiry_id } = useParams;
 
-  const SPRING_URL = "http://localhost:9150/";
-  const pagelistUrl = SPRING_URL + "supportboard/qna";
+  const [num, setNum] = useState("");
 
+  const qnaListUrl = "/supportboard/qna";
+
+  const QnaSubmit = (e) => {
+    AxiosService.post(qnaListUrl, inquiryData).then(() => {
+      console.log("성공");
+      navi("/supportboard/event");
+    });
+  };
+  console.log("inquiryData", inquiryData);
   const changeHandle = (checked, id) => {
     if (checked) {
       setCheckbutton([...checkbutton, id]);
@@ -50,9 +67,12 @@ const QNA = ({ history }) => {
 
     setNum(e.target.value);
   };
-  const qnasubmit = () => {
-    alert("제출 되었습니다.");
-    document.location.href = "http://localhost:4200/supportboard/qna";
+
+  const setter = (e) => {
+    setInquiryData({
+      ...inquiryData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
@@ -60,11 +80,17 @@ const QNA = ({ history }) => {
       <div className="container_header">
         궁금한 점/의견을 남겨주시면 빠른 시일 내에 이메일로 답변 드리겠습니다.
       </div>
-      <form className="qna_form" action={pagelistUrl} method="post">
+      <form className="qna_form" action={qnaListUrl} method="post">
         <div className="warp">
           <div className="qna_type_warp">
             <p style={{ margin: "0px 0px 8px" }}>문의유형</p>
-            <select className="qna_type" name="inquiry_type">
+            <select
+              className="qna_type"
+              name="inquiry_type"
+              onChange={(e) => {
+                setter(e);
+              }}
+            >
               <option value="일반문의">일반문의</option>
               <option value="리워드문의">리워드문의</option>
               <option value="배송문의">배송문의</option>
@@ -80,6 +106,9 @@ const QNA = ({ history }) => {
               required="required"
               className="form-control"
               placeholder="이름을 입력하세요."
+              onChange={(e) => {
+                setter(e);
+              }}
             />
           </div>
         </div>
@@ -93,19 +122,23 @@ const QNA = ({ history }) => {
               required="required"
               className="form-control"
               placeholder="이메일을 입력해주세요."
+              onChange={(e) => {
+                setter(e);
+              }}
             />
           </div>
           <div className="phone_warp">
-            <label for="phone">휴대폰 번호</label>
+            <label for="phone">휴대폰 번호(선택)</label>
             <input
               type="tel"
               id="phone"
               name="user_phone"
-              required="required"
               className="form-control"
               value={num}
               ref={phoneRef}
-              onChange={handlePhone}
+              onChange={(e) => {
+                setter(e);
+              }}
               placeholder="휴대폰 번호를 입력해주세요."
             />
           </div>
@@ -118,6 +151,9 @@ const QNA = ({ history }) => {
           className="form-control"
           required="required"
           placeholder="제목을 입력해 주세요"
+          onChange={(e) => {
+            setter(e);
+          }}
         />
         <div style={{ position: "relative" }}>
           <label for="content">문의 내용</label>
@@ -127,16 +163,20 @@ const QNA = ({ history }) => {
             required="required"
             className="form-control"
             placeholder="문의하실 내용을 입력해 주세요"
-          />
+            onChange={(e) => {
+              setter(e);
+            }}
+          >
+          </textarea>
         </div>
 
-        <label for="file">파일 첨부하기 (선택)</label>
+        {/* <label for="file">파일 첨부하기 (선택)</label>
         <div className="file_form">
           <label className="file_label">
             <input type="file" id="file" className="file_input" />
             <span className="file_name">파일업로드</span>
           </label>
-        </div>
+        </div> */}
         <div className="consent_container">
           <label for="qna_consent" className="consent_wrap">
             <input
@@ -157,7 +197,7 @@ const QNA = ({ history }) => {
         </div>
         <div className="qna_btn">
           <button
-            type="submit"
+            type="button"
             className="btn_qna"
             disabled={disabled}
             style={
@@ -165,7 +205,7 @@ const QNA = ({ history }) => {
                 ? { backgroundColor: "#acd4ff", cursor: "default" }
                 : { backgroundColor: "#9ac7f8" }
             }
-            onClick={qnasubmit}
+            onClick={QnaSubmit}
           >
             제출하기
           </button>

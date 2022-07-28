@@ -12,5 +12,7 @@ public class FAQDto {
 	private String faq_title;
 	private String faq_content;
 	private String view_count;
+	private Integer startNum;
+	private Integer perPage;
 
 }

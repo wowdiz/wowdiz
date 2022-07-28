@@ -1,13 +1,12 @@
 .answer_container{
-    display: block;
-    width: 100%;
+    width: 700px;
+    margin: 0;
     margin-top: 50px;
-    display: inline-block;
-    text-align: center;
+    margin-left: 250px;
 }
 .answer_user_name, .answer_user_email{
-    display: inline-block;
-    width: 260px;
+    display:inline;
+    width: 300px;
     height: 30px;
     margin-bottom: 30px;
     border-radius: 10px;
@@ -17,10 +16,60 @@
 }
 .user_info {
     margin: 0px 0px 0px 0px;
-    display: inline;
-    width: 300px;
+    display: inline-block;
 }
 .user_info_warp {
     display: block;
     width: auto;
+}
+.answer_title_name{
+    display:inline;
+    width: 650px;
+    height: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border: 1px solid #d8d8d8;
+    font-size: 15px;
+    padding: 0.75rem;
+}
+.answer_user_name_warp, .answer_user_mail_warp{
+    display: inline-block;
+    width: 300px;
+}
+.answer_user_mail_warp{
+    margin-left: 50px;
+}
+.answer_user_content{
+    display:inline-block;
+    width: 650px;
+    min-width: 650px;
+    height: 400px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border: 1px solid #d8d8d8;
+    font-size: 15px;
+    padding: 0.75rem;
+    white-space: pre-wrap;
+    overflow-x: auto;
+
+}
+.answer__btn{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    text-align: center;
+}
+.answer_btn_submit , .answer_btn_cencel {
+    width: 250px;
+    height: 60px;
+    text-align: center;
+    top: 1984px;
+    border-radius: 10px;
+    border: 0;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgba(154, 199, 248, 1);
+}
+.answer_btn_cencel{
+    margin-left: 20px;
 }

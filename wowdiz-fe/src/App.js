@@ -26,6 +26,7 @@ import Notice from "./pages/support/notice/Notice";
 import NoticeDetail from "./pages/support/notice/NoticeDetail";
 import NoticeCreate from "./pages/support/notice/NoticeCreate";
 import Event from "./pages/support/event/Event";
+import EventDetail from "./pages/support/event/EventDetail";
 import FAQ from "./pages/support/faq/FAQ";
 import Test from "./components/myParcelAddress/KakaoAddressApi.jsx";
 import RegisterForm from "./pages/user/register/RegisterForm";
@@ -36,10 +37,17 @@ import SnsRegister from "./pages/user/register/SnsRegister";
 import QNAAnswer from "./pages/support/qna/QNAAnswer";
 import FAQWrite from "./pages/support/faq/FAQWrite";
 import FAQUpdate from "./pages/support/faq/FAQUpdate";
+
+import EventWrite from "./pages/support/event/EventWrite";
+import ClosedEvent from "./pages/support/event/ClosedEvent";
+import EventUpdate from "./pages/support/event/EventUpdate";
+
+import Write from "./components/CKEeditor/Write";
 import NoticeUpdate from "./pages/support/notice/NoticeUpdate";
 import FindUser from "./pages/user/register/FindUser";
 import UserLayout from "./layout/UserLayout";
 import FundingPay from "./pages/funding/pay/FundingPay";
+
 
 
 // 최초 작업자: 권능
@@ -78,6 +86,16 @@ function App() {
           <Route path="/supportboard/noticeupdate/:notice_id" element={<NoticeUpdate />} />
           <Route path="/supportboard/noticecreate" element={<NoticeCreate />} />
           <Route path="/supportboard/event" element={<Event />} />
+          <Route path="/supportboard/closedevent" element={<ClosedEvent />} />
+          <Route
+            path="/supportboard/eventdetail/:event_id"
+            element={<EventDetail />}
+          />
+          <Route
+            path="/supportboard/eventupdate/:event_id"
+            element={<EventUpdate />}
+          />
+          <Route path="/supportboard/eventwrite" element={<EventWrite />} />
           <Route path="/supportboard/faqpage" element={<FAQ />} />
           <Route path="/supportboard/faqdetail/:faq_id" element={<FAQ />} />
           <Route path="/supportboard/faqdelete/:faq_id" element={<FAQ />} />
