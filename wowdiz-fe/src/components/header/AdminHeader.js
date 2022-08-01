@@ -78,7 +78,7 @@ const AdminHeader = () => {
             ""
           )}
 
-          <label className="admin_header_board_label">
+          {/* <label className="admin_header_board_label">
             <li
               onMouseOver={() => setIsHovering(2)} //onMouseIn, onMouseEnter, onMouseLeave ??
               onMouseOut={() => setIsHovering(0)}
@@ -91,7 +91,7 @@ const AdminHeader = () => {
                 BOARD
               </NavLink>
             </li>
-          </label>
+          </label> */}
           {isHovering === 2 ? (
             <div
               className="drop_admin_menu_board"
@@ -114,7 +114,7 @@ const AdminHeader = () => {
 
         <ul className="admin_header_menu">
           <li className="admin_header_menu_link" style={{ float: "right" }}>
-            여기에 ADMIN 사용자 아이디 출력할것
+            ADMIN
           </li>
         </ul>
       </div>

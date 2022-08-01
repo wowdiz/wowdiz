@@ -123,10 +123,10 @@ const AdminHome = () => {
                 </div>
             </div>
 
-            <h3 style={{color:'#ACACAC'}}>승인대기중인 펀딩</h3>
+            {/* <h3 style={{color:'#ACACAC'}}>승인대기중인 펀딩</h3>
             <div className='home_awaiting_list'>
                 <BasicTable data={data4} title={title}/>
-            </div>
+            </div> */}
         </div>
     );
 };

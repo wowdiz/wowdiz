@@ -3,9 +3,11 @@
 <mapper namespace="com.wowdiz.finalproj.mapper.AdminMapper">
 
 	<select id="selectAwaitingProjectList" resultType="MakerDto">
-		SELECT * FROM project WHERE approved="N" 
+		SELECT * FROM project 
+		WHERE approved="N" 
 		<!-- AND open_date <![CDATA[>]]> now()  -->
 		ORDER BY reg_date desc
+		LIMIT 0, 10
 	</select>
 	
 	<select id="selectOnProjectList" resultType="MakerDto">
@@ -32,6 +34,13 @@
 		SET approved = #{approved}, approved_date = now()
 		WHERE project_id = #{project_id}
 	</update>
+	
+	<select id="selectMainList" resultType="MakerDto">
+		SELECT * FROM project
+		WHERE approved="Y"
+		ORDER BY reg_date desc
+		LIMIT 0, 6
+	</select>
 </mapper>
 
 

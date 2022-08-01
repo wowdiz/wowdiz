@@ -1,13 +1,16 @@
 import AxiosService from "./AxiosService";
+import { useNavigate } from "react-router-dom"
 
 // 최초 작업자: 권능
 // 2022-07-16
 class UserService {
+  
   login = (userData) => {
     AxiosService.post("/api/authenticate", userData, { withCredentials: true })
       .then((res) => {
         localStorage.setItem("jwtToken", res.data.token);
         localStorage.setItem("authenticatedUser", userData.user_email);
+        
       })
       .catch((error) => {
         console.log("login fail");

@@ -48,4 +48,10 @@ public class AdminController {
    public void approveProject(@RequestBody Map<String, String> map) {
 	   adminService.approveProject(map);
    }
+   
+   @GetMapping("/mainList")
+   public List<MakerDto> getMainList() {
+	   System.out.println("신호감지");
+	   return adminService.getMainList();
+   }
 }

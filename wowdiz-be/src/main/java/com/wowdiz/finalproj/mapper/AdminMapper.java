@@ -15,4 +15,5 @@ public interface AdminMapper {
 	public List<MakerDto> selectProjectDetail(Integer project_id);
 	public MakerDto selectOneProject(Integer project_id);
 	public void updateProjectApproved(AdminDto dto);
+	public List<MakerDto> selectMainList();
 }

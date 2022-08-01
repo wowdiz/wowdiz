@@ -79,18 +79,19 @@ const Login = () => {
     //리액트는 렌더링될 때,  이미 모든 값을 읽은 후라서 그런다.
     //로그인눌러서 if문 체크해도 이미 false값을 받아놓은 상태이다.
     UserService.login(userData);
+
     console.log("isLoggedIn()", isLoggedIn());
 
     if (isLoggedIn) {
       if (isRemember === false) {
         localStorage.removeItem("rememberUserId");
         setIsRemember(false);
-        setTimeout(() => navigation("/"), 700);
+        setTimeout(() => navigation("/admin"), 700);
       } else {
         const userId = getValues("user_email");
         setIsRemember(true);
         localStorage.setItem("rememberUserId", userId);
-        setTimeout(() => navigation("/"), 700);
+        setTimeout(() => navigation("/admin"), 1000);
       }
     } else {
       alert("아이디 비밀번호를 확인해주세요.");

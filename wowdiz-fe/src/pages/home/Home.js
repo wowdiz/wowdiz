@@ -25,6 +25,16 @@ import qnaImage from "../../assets/images/main/qna_image.jpg";
 import noticeImage from "../../assets/images/main/notice_image.jpg";
 import eventImage from "../../assets/images/main/event_image.jpg";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import AxiosService from "../../service/AxiosService";
+import { useScrollTrigger } from "@mui/material";
+import MainFundingList from '../../components/main/MainFundingList';
+import RankingView5 from "../../components/main/RankingView5";
+import RankingView4 from "../../components/main/RankingView4";
+import RankingView3 from "../../components/main/RankingView3";
+import RankingView2 from "../../components/main/RankingView2";
+
+
 // 최초 작업자: 이광호
 // 2022-07-04
 // 리액트 홈페이지 메인 프론트엔드
@@ -35,6 +45,19 @@ const Home = () => {
   const image1 = back_image;
 
   const navi = useNavigate();
+
+  const [data,setData] = useState(null);
+
+  useEffect(() => {
+    const url = "/admin/mainList";
+    AxiosService.get(url)
+    .then(res => {
+      console.log('성공');
+      setData(res.data);
+    })
+  },[])
+
+  console.log('data',data);
 
   const supportComponent =[
     {
@@ -124,10 +147,15 @@ const Home = () => {
             <h2 className="preference_line">취향 맞춤 펀딩</h2>
             <p className="preference_line_sub">지금 함께 만드는 성공</p>
           </div>
-          {banner &&
+          {/* {banner &&
             banner.map((data, idx) => (
               <Perference_funding data={data} idx={idx} key={idx} />
-            ))}
+            ))} */}
+            {
+              data === null ? '' : data.map((item, idx) => (
+                <MainFundingList data={item} idx={idx} key={item.project_id} />
+              ))
+            }
         </div>
         {/* 실시간 순위보기 영역 */}
         <div className="rangking_funding_form">
@@ -138,10 +166,10 @@ const Home = () => {
           <p className="rangking_line_sub">베스트 오브 베스트</p>
           {/* 랭킹 view_메인 페이지 */}
           <RankingView />
-          <RankingView />
-          <RankingView />
-          <RankingView />
-          <RankingView />
+          <RankingView2 />
+          <RankingView3 />
+          <RankingView4 />
+          <RankingView5 />
         </div>
       </div>
       {/* 프로젝트 만들기 */}

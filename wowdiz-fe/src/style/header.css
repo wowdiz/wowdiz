@@ -53,7 +53,7 @@
 .search_bar {
   display: inline-block;
   margin-top: 15px;
-  margin-left: 190px;
+  margin-left: 110px;
   min-width: 100px;
   color: white;
 }
@@ -123,4 +123,34 @@ input.keyword::placeholder {
   width: 100px;
   height: 50px;
 
+}
+
+.maker_open_project_btn{
+  position:relative;
+  left:150px;
+  /* border: 1px solid white;
+  border-radius:5px;
+  background-color: white;
+  color:#9ac7f8; */
+}
+
+/* .maker_open_project_btn:hover{
+  background-color: #9ac7f8;
+  color: white;
+  transition: all 0.2s;
+} */
+
+.maker_open_project_btn_li{
+  text-decoration: none;
+  color: #9ac7f8;
+  border: 1px solid white;
+  border-radius:5px;
+  background-color: white;
+  padding: 5px;
+}
+
+.maker_open_project_btn_li:hover{
+  background-color: #9ac7f8;
+  color: white;
+  transition: all 0.2s;
 }
