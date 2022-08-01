@@ -198,6 +198,7 @@ const UserInfoUpdate = ({ userDataLoad, setUserDataLoad  }) => {
             ) : (
               ""
             )}
+            
             <h3> {userDataLoad.user_nickname}</h3>
           </div>
           <div className="user_update_boxs">

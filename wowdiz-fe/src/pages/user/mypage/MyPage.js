@@ -20,6 +20,8 @@ import "swiper/css/pagination";
 import Myfunding from "../../../components/user/Myfunding";
 import UserService from "../../../service/UserService";
 // 최초 작업자: 이기민, 이광호
+import Point from "../../../components/user/Point";
+
 // 2022-07-13
 // 마이 페이지 디자인
 // 작업자 : 이광호
@@ -195,6 +197,9 @@ const MyPage = () => {
               onClick={userPointOpen}>
               포인트 사용내역 
             </button> */}
+            <button type="button" className="mypage_data_button">
+              포인트 충전
+            </button>
             <button type="button" className="mypage_data_button" onClick={UserService.logout}>
               로그아웃
             </button>

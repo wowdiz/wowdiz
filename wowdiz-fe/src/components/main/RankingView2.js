@@ -1,5 +1,5 @@
 import React from "react";
-import ranking_1 from "../../assets/images/test/ranking2.jpg"
+import ranking_1 from "../../assets/images/test/ranking2.jpg";
 
 const RankingView2 = () => {
   return (

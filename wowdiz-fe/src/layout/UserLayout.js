@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../components/footer/AdminFooter";
+import Footer from "../components/footer/Footer";
 import { Outlet } from "react-router-dom";
 import RegisterHead from "../components/header/RegisterHead";
 const UserLayout = () => {
