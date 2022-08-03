@@ -52,4 +52,9 @@ public class AdminServiceImpl implements AdminService{
 		dto.setProject_id(ProjectId);
 		adminMapper.updateProjectApproved(dto);
 	}
+	
+	@Override
+	public List<MakerDto> getMainList() {
+		return adminMapper.selectMainList();
+	}
 }

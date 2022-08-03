@@ -77,11 +77,11 @@ public class MakerServiceImpl implements MakerService{
 					+ "project_reward_parcel[" + i + "] : "  + dto.getRequire_parcel() + " ***");
 			
 			makerMapper.insertMakerProjectReward(dto);
-//			
+			System.out.println("!!!!!!!!!!!!!!!!!!!"+rewardMap.get("rewardOptions").getClass());
+			
+			if(rewardMap.get("rewardOptions").equals("")) return;
+			
 			List<Object> optionList = (List)rewardMap.get("rewardOptions");
-			System.out.println("!!!!!!!!!!!!!!!!optionList = "+optionList);
-			System.out.println("!!!!!!!!!!!!!!!!optionList[0]" + optionList.get(0));
-			System.out.println("!!!!!!!!!!!!!!!!optionList[1]" + optionList.get(1));
 			
 			for(int j = 0; j < optionList.size(); j++) {
 				System.out.println("optionList" + "[" + j + "] : " + optionList.get(j));

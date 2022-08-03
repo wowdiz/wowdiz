@@ -11,6 +11,10 @@ const AdminFundingDetail = () => {
     const [data, setData] = useState(null);
     const [renderer, setRenderer] = useState(0);
     // let url = "/admin/projectData?project_id=" + project_id;
+
+    useEffect(() => {
+        window.scroll(0,0);
+    },[])
     
     const getList = () => {
         const url = "/admin/projectData?project_id=" + project_id;

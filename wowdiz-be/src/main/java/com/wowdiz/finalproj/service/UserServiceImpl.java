@@ -359,7 +359,7 @@ public class UserServiceImpl implements UserService{
 		userInfo.put("user_email", userDto.getUser_email());
 		userInfo.put("user_name", userDto.getUser_name());
 		userInfo.put("user_nickname", userDto.getUser_nickname());
-		userInfo.put("profile_image", userDto.getProfile_picture());
+		userInfo.put("profile_picture", userDto.getProfile_picture());
 		userInfo.put("user_phone", userDto.getUser_phone());
 		userInfo.put("category_id",category);
 		
@@ -435,7 +435,7 @@ public class UserServiceImpl implements UserService{
 		userInfo.put("user_email", map.get("user_email").toString());
 		userInfo.put("user_name", map.get("user_name").toString());
 		userInfo.put("user_nickname", map.get("user_nickname").toString());
-//		userInfo.put("profile_image", map.get("profile_image").toString());
+		userInfo.put("profile_picture", map.get("profile_image").toString());
 		userInfo.put("user_phone", map.get("user_phone").toString());
 		userInfo.put("category_id",map.get("category_id").toString());
 		userInfo.put("current_wowpoint",map.get("current_wowpoint").toString());

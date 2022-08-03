@@ -1,17 +1,20 @@
 import { margin } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Profile from "../../assets/images/user/default_image.jpg";
 import AxiosService from "../../service/AxiosService";
 import UserService from "../../service/UserService";
 import CustomModal from "./CustomModal";
+// import defaultImage from "../../../assets/images/user/default_image.jpg";
 
-const UserInfoUpdate = ({ userDataLoad }) => {
+const UserInfoUpdate = ({ userDataLoad, setUserDataLoad  }) => {
   // 카테고리 목록
   // 데이터를 넣을 빈배열
   const [checkedLikeList, setCheckedLikeList] = useState([]);
+  const [userImageLoad,setUserImageLoad] = useState();
   const userCheck = userDataLoad.category_id;
+ 
 
   const likeList = [
     "교육∙키즈",
@@ -32,7 +35,7 @@ const UserInfoUpdate = ({ userDataLoad }) => {
       setCheckedLikeList(checkedLikeList.filter(item));
     }
   };
-
+  const fileInput = useRef(null);
   // react-hook-form 함수
   const {
     register,
@@ -44,7 +47,7 @@ const UserInfoUpdate = ({ userDataLoad }) => {
   } = useForm();
 
   const [user_nicknameCheck, setUser_nicknameCheck] = useState(null);
-  const userNickName = userDataLoad.nickname;
+  const userNickName = userDataLoad.user_nickname;
   const [open, setOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState();
   const [modalContent, setModalContent] = useState();
@@ -61,6 +64,7 @@ const UserInfoUpdate = ({ userDataLoad }) => {
         handleOpen();
         setModalTitle("아이디 중복확인");
         setModalContent("중복된 아이디입니다.");
+
       } else {
         setUser_nicknameCheck(true);
         handleOpen();
@@ -70,18 +74,47 @@ const UserInfoUpdate = ({ userDataLoad }) => {
     });
   };
 
+
+      // 이미지 업로드
+      const uploadImage = (e) => {
+        let uploadUrl = "/maker/uploadFiles";
+        const uploadFile = e.target.files[0];
+        const imageFile = new FormData();
+        imageFile.append("uploadFile", uploadFile); 
+        if(!uploadFile) {
+            return;
+        }
+        AxiosService({
+            method:'post',
+            url: uploadUrl,
+            data:imageFile,
+            headers:{'Content-Type':'multipart/form-data'}
+        }).then((res) => {
+          console.log(res.data)
+          setUserImageLoad(res.data)
+          setUserDataLoad({
+            ...userDataLoad,
+            profile_image: res.data,
+        })}).catch(err => { 
+            alert(err);
+        });
+    }
+
   const onSubmit = (data) => {
     const check = data.user_nickname;
     const userlikeList = JSON.stringify(checkedLikeList);
+    
     if (check === userNickName) {
       const userInfoChange = {
         user_id: userDataLoad.user_id,
         user_email: data.user_email,
         user_phone: data.user_phone,
+        profile_image:userDataLoad.profile_image,
         category_id: userlikeList,
       };
       const url = "api/user/info/change";
       AxiosService.post(url, userInfoChange).then((res) => {
+        console.log(res.data);
         setUser_nicknameCheck(true);
         handleOpen();
         setModalTitle("정보변경");
@@ -94,50 +127,79 @@ const UserInfoUpdate = ({ userDataLoad }) => {
       setModalTitle("닉네임 중복화인");
       setModalContent("닉네임이 중복확인 후 변경해주세요 ");
     } else if (user_nicknameCheck === true) {
+        
       const userInfoChange = {
         user_id: userDataLoad.user_id,
         user_email: data.user_email,
         user_phone: data.user_phone,
         user_nickname: data.user_nickname,
+        profile_image:userDataLoad.profile_image,
         category_id: userlikeList,
       };
       const url = "api/user/info/change";
       AxiosService.post(url, userInfoChange).then((res) => {
+        console.log(res.data);
         setUser_nicknameCheck(true);
         handleOpen();
         setModalTitle("정보변경");
         setModalContent("정보변경이 완료되었습니다.");
         window.location.reload();
       });
-    }
-  };
+    }else {       
+      const userInfoChange = {
+        user_id: userDataLoad.user_id,
+        user_email: data.user_email,
+        user_phone: data.user_phone,
+        user_nickname: data.user_nickname,
+        profile_image:userDataLoad.profile_image,
+        category_id: userlikeList,
+      };
+      const url = "api/user/info/change";
+    AxiosService.post(url, userInfoChange).then((res) => {
+      console.log(res.data);
+      setUser_nicknameCheck(true);
+      handleOpen();
+      setModalTitle("정보변경");
+      setModalContent("정보변경이 완료되었습니다.");
+      window.location.reload();
+    })}
+  }
+
   const [isHovering, setIsHovering] = useState(0);
 
-  useEffect(() => {
-    // userInfoload();
-  }, []);
+  // useEffect(() => {
+  //   // userInfoload();
+  // }, []);
+
+
   return (
     <div>
       <div className="user_info_change">
         <h2 className="user_info_tile">개인정보 변경 </h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div
+            <div
             className="user_profile_image_box"
-            style={{ boder: "2px solid black" }}
-          >
-            <img
-              src={Profile}
-              alt=""
-              className="profile_image_update"
-              onMouseOver={() => setIsHovering(1)}
-              onMouseOut={() => setIsHovering(0)}
-            />
+            style={{ boder: "2px solid black" }}>
+                    <input type='file' style={{display:'none'}} 
+                    className='profile_image_upload' 
+                    onChange={uploadImage} //변경
+                    ref={fileInput}/>
+            
+                <img className='profile_image' 
+                    src={userDataLoad.profile_image===null ||userDataLoad.profile_image==="" ?Profile:"http://localhost:9150/save/"+userDataLoad.profile_image} 
+                    alt='' 
+                    onClick={() => {fileInput.current.click()}}
+                    onMouseOver={() => setIsHovering(1)}
+                    onMouseOut={() => setIsHovering(0)}
+        
+                />
             {isHovering ? (
               <p className="user_profile_image_update_text">이미지 변경</p>
             ) : (
               ""
             )}
-            <h3> {userDataLoad.user_name}</h3>
+            
+            <h3> {userDataLoad.user_nickname}</h3>
           </div>
           <div className="user_update_boxs">
             <label className="user_update_label">닉네임</label>
@@ -148,10 +210,7 @@ const UserInfoUpdate = ({ userDataLoad }) => {
               required
               onKeyUp={(e) => {
                 if (e.target.value !== null) {
-                  setUser_nicknameCheck(false);
-                  //   console.log("user" + userCheck);
-
-                  //   console.log(checkedLikeList);
+                  setUser_nicknameCheck(false);  
                 }
               }}
               {...register("user_nickname", {
@@ -166,9 +225,6 @@ const UserInfoUpdate = ({ userDataLoad }) => {
               className="user_nickname_update_button"
               onClick={() => {
                 nicknameCheck();
-              }}
-              onBlur={() => {
-                trigger("user_nickname");
               }}
             >
               중복확인

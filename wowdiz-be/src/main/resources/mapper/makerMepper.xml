@@ -6,10 +6,10 @@
 	<insert id="insertMakerProject" parameterType="MakerDto" useGeneratedKeys="true" keyProperty="project_id">
 		INSERT INTO project
 		(maker_id, project_category_id, project_name, target_amount, project_thumbnail, project_summary, 
-		project_story, project_keyword, open_date, close_date, delivery_date, approved, reg_date, project_status)
+		project_story, project_keyword, open_date, close_date, approved, reg_date, project_status, delivery_date)
 		VALUES
 		(2, 1, #{project_name}, #{target_amount}, #{project_thumbnail}, #{project_summary}, 
-		#{project_story}, #{project_keyword}, now(), #{close_date}, "2022-07-29", 0, now(), "N")
+		#{project_story}, #{project_keyword}, now(), #{close_date}, "N", now(), "N", "2022-07-29")
 	</insert>
 	
 	<insert id="insertMakerProjectReward" parameterType="MakerDto" useGeneratedKeys="true" keyProperty="project_reward_id">

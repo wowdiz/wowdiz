@@ -11,4 +11,5 @@ public interface AdminService {
 	public List<MakerDto> getFinishedList();
 	public List<MakerDto> getProjectData(Integer project_id);
 	public void approveProject(Map<String, String> map);
+	public List<MakerDto> getMainList();
 }

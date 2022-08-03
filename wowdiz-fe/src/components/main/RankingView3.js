@@ -25,4 +25,5 @@ const RankingView3 = () => {
 );
 };
 
+
 export default RankingView3;

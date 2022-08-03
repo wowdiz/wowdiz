@@ -37,9 +37,18 @@ const Header = () => {
               고객센터
             </NavLink>
           </li>
-          <li>
-            <NavLink to="" className="menu_li">
-              open
+          <li className="maker_open_project_btn"
+          // style={{
+          //   position:'relative',
+          //   left:'180px',
+          //   border:'1px solid white',
+          //   borderRadius:'5px',
+          //   backgroundColor:'white',
+          //   color:'#9ac7f8'
+          // }}
+          >
+            <NavLink to="/maker/open_project" className="maker_open_project_btn_li" >
+              프로젝트 오픈
             </NavLink>
           </li>
         </ul>
